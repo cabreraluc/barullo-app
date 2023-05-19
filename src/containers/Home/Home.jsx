@@ -30,9 +30,9 @@ export default function Home(props) {
   useEffect(() => {
     getProductsPaginate(products, setProducts, pagina);
     getAllProducts();
-    if (JSON.parse(localStorage.getItem("user")).data?._id) {
-      getCart(JSON.parse(localStorage.getItem("user")).data?._id);
-      getFavourites(JSON.parse(localStorage.getItem("user")).data?._id);
+    if (JSON.parse(localStorage.getItem("user"))?.data?._id) {
+      getCart(JSON.parse(localStorage.getItem("user"))?.data?._id);
+      getFavourites(JSON.parse(localStorage.getItem("user"))?.data?._id);
     }
   }, [pagina]);
 
