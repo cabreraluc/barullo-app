@@ -1,0 +1,59 @@
+.container {
+  display: flex;
+  background-color: #f1f1f1;
+  height: 100vh;
+  flex-direction: column;
+}
+
+.header {
+  font-family: "Bebas Neue", cursive;
+  font-size: 1.6rem;
+  margin-right: 1rem;
+  background-color: black;
+  color: white;
+  height: 4rem;
+  align-items: center;
+  display: flex;
+  padding-left: 26%;
+}
+
+.form {
+  width: 30%;
+  background-color: white;
+  height: 40rem;
+  margin: 4rem auto;
+  padding: 2rem;
+  box-shadow: 0px 0px 1rem #e0e0e0;
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Open Sans", sans-serif;
+}
+
+.formItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem;
+}
+.formItem input {
+  width: 16rem;
+  padding: 0.9rem;
+  border-radius: 0.5rem;
+
+  border: solid 1px rgb(187, 187, 187);
+}
+
+.buttonRegister {
+  padding: 1rem;
+  width: 20rem;
+  border-radius: 0.5rem;
+  border-color: transparent;
+  background-color: rgb(101, 103, 108);
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 2rem;
+}

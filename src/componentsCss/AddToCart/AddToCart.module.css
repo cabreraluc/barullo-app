@@ -1,0 +1,101 @@
+.form {
+  width: 60%;
+  background-color: white;
+  height: 40rem;
+  margin: 4rem auto;
+  padding: 2rem;
+  box-shadow: 0px 0px 1rem #e0e0e0;
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Open Sans", sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  background-color: #f1f1f1;
+}
+
+.item {
+  width: 90%;
+  border-bottom: solid 1px lightGray;
+  display: flex;
+  height: 10rem;
+  padding-left: 2rem;
+  align-items: center;
+  text-decoration-line: none;
+  align-items: center;
+}
+
+.item_titles_img_img {
+  width: 4rem;
+}
+
+.item_titles_message_title {
+  font-family: "Open Sans", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration-line: none;
+  color: black;
+}
+
+.item_titles_img {
+  width: 35%;
+
+  color: black;
+
+  display: flex;
+  align-items: center;
+  border-right: solid 1px lightGray;
+  height: 60%;
+}
+
+.item > span {
+  font-size: 1.2rem;
+}
+
+.tilde {
+  margin-top: 3rem;
+  margin-left: -1rem;
+  margin-right: 2rem;
+}
+
+.item_titles {
+  display: flex;
+  flex-direction: column;
+}
+
+.item_titles_message {
+  font-size: 1.5rem;
+  color: green;
+}
+
+.products_price {
+  display: flex;
+  flex-direction: column;
+  margin-left: 2rem;
+  width: 25%;
+}
+
+.buttons_container {
+  width: 40%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button {
+  margin: 1rem;
+  padding: 1rem;
+  width: 20rem;
+  border-radius: 0.5rem;
+  border-color: transparent;
+  background-color: rgb(101, 103, 108);
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
