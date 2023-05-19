@@ -31,8 +31,8 @@ export default function Home(props) {
     getProductsPaginate(products, setProducts, pagina);
     getAllProducts();
     if (JSON.parse(localStorage.getItem("user")).data?._id) {
-      getCart(JSON.parse(localStorage.getItem("user")).data._id);
-      getFavourites(JSON.parse(localStorage.getItem("user")).data._id);
+      getCart(JSON.parse(localStorage.getItem("user")).data?._id);
+      getFavourites(JSON.parse(localStorage.getItem("user")).data?._id);
     }
   }, [pagina]);
 
