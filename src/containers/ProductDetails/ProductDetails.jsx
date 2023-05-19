@@ -37,8 +37,8 @@ export default function ProductDetails() {
     getAllProducts();
     isFavouriteFunct();
     isCartFunct();
-    getDataCart(JSON.parse(localStorage.getItem("user")).data?._id);
-    getDataFavourites(JSON.parse(localStorage.getItem("user")).data?._id);
+    getDataCart(JSON.parse(localStorage.getItem("user"))?.data?._id);
+    getDataFavourites(JSON.parse(localStorage.getItem("user"))?.data?._id);
   }, []);
 
   const product = allProducts.filter((e) => e?._id === id);
@@ -46,7 +46,7 @@ export default function ProductDetails() {
   async function handlerAddToFavourites() {
     addToFavourites(
       product[0]?._id,
-      JSON.parse(localStorage.getItem("user")).data?._id
+      JSON.parse(localStorage.getItem("user"))?.data?._id
     );
     setIsFavourite(!isFavourite);
   }

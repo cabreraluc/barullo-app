@@ -11,7 +11,7 @@ export default function Cart() {
   const { favourites, cart, isFavouritesLoading, getFavourites, getCart } =
     useProductDetails();
   useEffect(() => {
-    getCart(JSON.parse(localStorage.getItem("user")).data?._id);
+    getCart(JSON.parse(localStorage.getItem("user"))?.data?._id);
   }, []);
   console.log(cart);
   return (
