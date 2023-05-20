@@ -155,7 +155,7 @@ export default function ProductDetails() {
                       margin: "1rem",
                     }}
                   >
-                    Llega gratis mañana
+                    Arrives for free tomorrow
                   </span>
                 </div>
               )}

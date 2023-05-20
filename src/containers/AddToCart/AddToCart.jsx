@@ -62,7 +62,7 @@ export default function AddToCart() {
               onClick={() => redirect(`/products/${product[0]?._id}`)}
             >
               <span className={styles.item_titles_message}>
-                Agregaste a tu carrito
+                You added to your cart
               </span>
               <span>
                 <Link
@@ -80,7 +80,7 @@ export default function AddToCart() {
           </div>
           <div className={styles.buttons_container}>
             <Link to="/cart">
-              <button className={styles.button}>Ver carrito</button>
+              <button className={styles.button}>View cart</button>
             </Link>
           </div>
         </div>
