@@ -15,6 +15,7 @@ import { Link } from "react-router-dom";
 export default function ProductDetails() {
   const { id } = useParams();
   const { allProducts, getAllProducts } = useHome();
+  const [userLoged, setUserLoged] = useState({});
 
   const {
     favourites,
@@ -32,14 +33,6 @@ export default function ProductDetails() {
 
   const [isFavourite, setIsFavourite] = useState(false);
   const [isInCart, setIsInCart] = useState(false);
-
-  useEffect(() => {
-    getAllProducts();
-    isFavouriteFunct();
-    isCartFunct();
-    getDataCart(JSON.parse(localStorage.getItem("user"))?.data?._id);
-    getDataFavourites(JSON.parse(localStorage.getItem("user"))?.data?._id);
-  }, []);
 
   const product = allProducts.filter((e) => e?._id === id);
 
@@ -76,6 +69,19 @@ export default function ProductDetails() {
   }
 
   useEffect(() => {
+    getAllProducts();
+    isFavouriteFunct();
+    isCartFunct();
+    getDataCart(JSON.parse(localStorage.getItem("user"))?.data?._id);
+    getDataFavourites(JSON.parse(localStorage.getItem("user"))?.data?._id);
+    setUserLoged(JSON.parse(localStorage.getItem("user")));
+  }, []);
+
+  useEffect(() => {
+    setUserLoged(JSON.parse(localStorage.getItem("user")));
+  }, [JSON.parse(localStorage.getItem("user"))]);
+
+  useEffect(() => {
     isFavouriteFunct();
     isCartFunct();
   }, [favourites, cart]);
@@ -103,11 +109,22 @@ export default function ProductDetails() {
           </div>
           <div className={styles.thirtSection}>
             <div className={styles.thirtSectionSub}>
-              {isDataLoading ? (
+              {isDataLoading && userLoged?.data?.name ? (
                 <div className={styles.loading}>
                   <Box>
                     <CircularProgress></CircularProgress>
                   </Box>
+                </div>
+              ) : isDataLoading && !userLoged?.data?.name ? (
+                <div className={styles.thirtSectionSubSub}>
+                  <Link to={`/login`}>
+                    <button className={styles.buttons}>¡Login to buy!</button>
+                  </Link>
+                  <Link to={`/register`}>
+                    <button className={styles.buttons}>
+                      Register in Allstore
+                    </button>
+                  </Link>
                 </div>
               ) : (
                 <div className={styles.thirtSectionSubSub}>

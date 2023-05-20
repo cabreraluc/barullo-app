@@ -16,7 +16,11 @@ export default function Login() {
   };
 
   const HandleLoginUser = () => {
-    loginUser(data);
+    if (data.email === "" || data.password === "") {
+      alert("Complete the data");
+    } else {
+      loginUser(data);
+    }
   };
 
   return (
@@ -55,6 +59,10 @@ export default function Login() {
           <button className={styles.buttonRegister} onClick={HandleLoginUser}>
             Log In
           </button>
+          <span>You don't have an account?</span>
+          <Link to="/register">
+            <span> Click here</span>
+          </Link>
         </div>
       </div>
     </div>

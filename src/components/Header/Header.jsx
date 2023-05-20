@@ -24,7 +24,7 @@ import Stack from "@mui/material/Stack";
 import Autocomplete from "@mui/material/Autocomplete";
 import logo from "./logo.png";
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, redirect } from "react-router-dom";
 import useFavourites from "../../containers/Favourites/useFavourites";
 import useCart from "../../containers/Cart/useCart";
 import Button from "@mui/material/Button";
@@ -125,6 +125,7 @@ export default function Header({
   const Logout = () => {
     localStorage.setItem("user", JSON.stringify({}));
     setUserLoged({});
+    window.location.href = "/1";
   };
 
   const menuId = "primary-search-account-menu";

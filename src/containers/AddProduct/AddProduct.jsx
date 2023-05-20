@@ -33,7 +33,16 @@ export default function AddProduct() {
   }, []);
 
   const HandleCreateProduct = () => {
-    createProduct(data);
+    if (
+      data.title === "" ||
+      data.description === "" ||
+      data.price === "" ||
+      data.image === ""
+    ) {
+      alert("Complete the data");
+    } else {
+      createProduct(data);
+    }
   };
 
   return (

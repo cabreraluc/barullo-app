@@ -4,7 +4,7 @@ export default function useRegister() {
   const registerUser = async (data) => {
     try {
       const response = await axios.post(
-        "http://https://allstore.fly.dev/v1/registeruser",
+        "https://allstore.fly.dev/v1/registeruser",
         data,
         {
           headers: {
@@ -15,7 +15,7 @@ export default function useRegister() {
       window.location.href = "/login";
       console.log(response);
     } catch (error) {
-      alert("Usuario ya registrado");
+      alert("User already registered");
     }
   };
   return { registerUser };

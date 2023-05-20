@@ -17,7 +17,7 @@ export default function useLogin() {
       localStorage.setItem("user", JSON.stringify(userData));
       window.location.href = "/";
     } catch (error) {
-      alert("Usuario no encontrado");
+      alert("User not found");
     }
   };
   return { loginUser };
