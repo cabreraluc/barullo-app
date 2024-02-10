@@ -25,14 +25,9 @@ export default function Login() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
-        <Link style={{ color: "white", textDecorationLine: "none" }} to={"/1"}>
-          AllStore
-        </Link>
-      </div>
       <div className={styles.form}>
         <div className={styles.title}>
-          <h1>Enter your AllStore email and password</h1>
+          <h1>Enter your Lejos email and password</h1>
         </div>
         <div className={styles.form_body}>
           <div className={styles.formItem}>

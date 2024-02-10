@@ -1,67 +1,37 @@
-import styles from "../../componentsCss/Home/home.module.css";
-import Header from "../Header/Header";
-import SideBar from "../../components/Home/SideBar";
-import { useEffect, useState } from "react";
-import Tables from "../../components/Home/Tables";
-import useHome from "./useHome";
-import Pagination from "../../components/Pagination/Pagination";
-import { useLocation, useParams } from "react-router-dom";
-import useHeader from "../Header/useHeader";
+import SideBar from "../Layout/SideBar/SideBar";
+import { HomeContainer, Screen } from "./homeStyles";
+import { useState } from "react";
+import { useLocation } from "react-router-dom";
+import Prospects from "../Prospects/Prospects";
+import Statistics from "../Statistics/Statistics";
+import Calendar from "../Calendar/Calendar";
+import Users from "../Users/Users";
+import Clients from "../Clients/Clients";
+
 export default function Home(props) {
-  const { pagina } = useParams();
-  const {
-    getProductsPaginate,
-    products,
-    setProducts,
-    page,
-    setPage,
-    totalPages,
-    getAllProducts,
-    allProducts,
-    getFavourites,
-    getCart,
-    favourites,
-    cart,
-    setCart,
-    setFavourites,
-    isFavouritesLoading,
-  } = useHome();
-
-  useEffect(() => {
-    getProductsPaginate(products, setProducts, pagina);
-    getAllProducts();
-    if (JSON.parse(localStorage.getItem("user"))?.data?._id) {
-      getCart(JSON.parse(localStorage.getItem("user"))?.data?._id);
-      getFavourites(JSON.parse(localStorage.getItem("user"))?.data?._id);
+  const { pathname } = useLocation();
+  const pathSplitted = pathname.split("/")[2];
+  const componentShowed = () => {
+    if (pathSplitted === "prospects") {
+      return <Prospects></Prospects>;
     }
-  }, [pagina]);
-
+    if (pathSplitted === "statistics") {
+      return <Statistics></Statistics>;
+    }
+    if (pathSplitted === "calendar") {
+      return <Calendar></Calendar>;
+    }
+    if (pathSplitted === "users") {
+      return <Users></Users>;
+    }
+    if (pathSplitted === "clients") {
+      return <Clients></Clients>;
+    }
+  };
   return (
-    <div className={styles.container}>
-      <Header
-        allProducts={allProducts}
-        getFavourites={getFavourites}
-        favourites={favourites}
-        getCart={getCart}
-        cart={cart}
-        isFavouritesLoading={isFavouritesLoading}
-      ></Header>
-      <div className={styles.bodyContainer}>
-        <div className={styles.tablesContainer}>
-          <Tables
-            data={products}
-            getCart={getCart}
-            cart={cart}
-            favourites={favourites}
-            getFavourites={getFavourites}
-          ></Tables>
-        </div>
-        <Pagination
-          setPage={setPage}
-          page={page}
-          totalPages={totalPages}
-        ></Pagination>
-      </div>
-    </div>
+    <HomeContainer>
+      <SideBar></SideBar>
+      <Screen>{componentShowed()}</Screen>
+    </HomeContainer>
   );
 }

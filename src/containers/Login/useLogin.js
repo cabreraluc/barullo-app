@@ -1,10 +1,16 @@
 import axios from "axios";
+import env from "../../env/env";
+import { useNavigate } from "react-router-dom";
 
 export default function useLogin() {
+  const navigate = useNavigate();
+  const handleRedirect = (path) => {
+    navigate(path);
+  };
   const loginUser = async (data) => {
     try {
       const userData = await axios.post(
-        "https://allstore.fly.dev/v1/loginuser",
+        `${env.API_URL}users/login-user`,
         data,
         {
           headers: {
@@ -13,11 +19,11 @@ export default function useLogin() {
         }
       );
 
-      console.log(userData);
       localStorage.setItem("user", JSON.stringify(userData));
-      window.location.href = "/";
+      handleRedirect("/home");
     } catch (error) {
-      alert("User not found");
+      console.log(error);
+      alert(error.response.data.error);
     }
   };
   return { loginUser };

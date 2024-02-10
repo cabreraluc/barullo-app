@@ -1,10 +1,11 @@
 import axios from "axios";
+import env from "../../env/env";
 
 export default function useRegister() {
   const registerUser = async (data) => {
     try {
       const response = await axios.post(
-        "https://allstore.fly.dev/v1/registeruser",
+        `${env.API_URL}users/register-user`,
         data,
         {
           headers: {
@@ -15,7 +16,7 @@ export default function useRegister() {
       window.location.href = "/login";
       console.log(response);
     } catch (error) {
-      alert("User already registered");
+      console.log(error);
     }
   };
   return { registerUser };

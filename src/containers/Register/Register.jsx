@@ -32,11 +32,6 @@ export default function Login() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
-        <Link style={{ color: "white", textDecorationLine: "none" }} to={"/1"}>
-          AllStore
-        </Link>
-      </div>
       <div className={styles.form}>
         <h1>Fill in the details to create your account</h1>
         <div className={styles.formItem}>
@@ -79,7 +74,7 @@ export default function Login() {
         <button onClick={HandleRegisterUser} className={styles.buttonRegister}>
           Register
         </button>
-        <span>Do you have an account?</span>
+        <span>do you have an account?</span>
         <Link to="/login">
           <span> Click here</span>
         </Link>
