@@ -6,9 +6,11 @@ import { Link } from "react-router-dom";
 export default function Login() {
   const [data, setData] = useState({
     name: "",
+    lastName: "",
     email: "",
     password: "",
     image: "",
+    rol: "",
   });
   const { registerUser } = useRegister();
 
@@ -20,9 +22,11 @@ export default function Login() {
   const HandleRegisterUser = () => {
     if (
       data.name === "" ||
+      data.lastName === "" ||
       data.email === "" ||
+      data.cellphone === "" ||
       data.password === "" ||
-      data.image === ""
+      data.rol === ""
     ) {
       alert("Complete the data");
     } else {
@@ -35,11 +39,20 @@ export default function Login() {
       <div className={styles.form}>
         <h1>Fill in the details to create your account</h1>
         <div className={styles.formItem}>
-          <span>Username</span>
+          <span>Name</span>
           <input
             type="text"
             name={"name"}
             value={data.name}
+            onChange={(e) => handleChange(e.target)}
+          />
+        </div>
+        <div className={styles.formItem}>
+          <span>Last name</span>
+          <input
+            type="text"
+            name={"lastName"}
+            value={data.lastName}
             onChange={(e) => handleChange(e.target)}
           />
         </div>
@@ -53,6 +66,15 @@ export default function Login() {
           />
         </div>
         <div className={styles.formItem}>
+          <span>Cellphone</span>
+          <input
+            type="text"
+            name={"cellphone"}
+            value={data.cellphone}
+            onChange={(e) => handleChange(e.target)}
+          />
+        </div>
+        <div className={styles.formItem}>
           <span>Password</span>
           <input
             type="password"
@@ -62,15 +84,15 @@ export default function Login() {
           />
         </div>
         <div className={styles.formItem}>
-          <span>Photo</span>
+          <span>Rol</span>
           <input
             type="text"
-            placeholder="URL"
-            name={"image"}
-            value={data.image}
+            name={"rol"}
+            value={data.rol}
             onChange={(e) => handleChange(e.target)}
           />
         </div>
+
         <button onClick={HandleRegisterUser} className={styles.buttonRegister}>
           Register
         </button>

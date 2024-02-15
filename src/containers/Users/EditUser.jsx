@@ -1,0 +1,265 @@
+import * as React from "react";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import {
+  UsersActionsContainer,
+  PastPageDataContainerAndTitle,
+  Title,
+  FormContainertUsersAction,
+  LeftSectionContainer,
+  RightSectionContainer,
+  FormSectionsContainer,
+  TitleContainer,
+  PastPageContainer,
+  ActionButtonContainer,
+  ButtonsContainer,
+} from "./usersStyles";
+import {
+  ActionButton,
+  CancelActionButton,
+  BreadcumsContainer,
+} from "../../components/Global/GlobalStyles";
+import BreadcrumbsMui from "../../components/Breadcrumbs/Breadcrumbs";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import InputLabel from "@mui/material/InputLabel";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
+const AddUser = () => {
+  const [userInfo, setUserInfo] = useState({
+    email: "",
+    name: "",
+    lastName: "",
+    cellphone: "",
+    password: "",
+    userRole: "",
+    repeatPassword: "",
+  });
+
+  const handleChange = (e) => {
+    const { value, name } = e.target;
+    setUserInfo({ ...userInfo, [name]: value });
+    console.log(value, name);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // const response = validateUserForm(userInfo);
+
+    // if (response.valid) {
+    //   AddNewUser(userInfo, setErrors);
+    // } else {
+    //   setErrors(response);
+    // }
+  };
+
+  // useEffect(() => {
+  //   console.log(userInfo);
+  // }, [userInfo]);
+
+  const navigate = useNavigate();
+  return (
+    <UsersActionsContainer>
+      <FormContainertUsersAction>
+        <PastPageDataContainerAndTitle>
+          <PastPageContainer>
+            <BreadcumsContainer>
+              <BreadcrumbsMui
+                title="Edit user"
+                prev="Users"
+                path={"/home/users"}
+              ></BreadcrumbsMui>
+            </BreadcumsContainer>
+          </PastPageContainer>
+          <TitleContainer>
+            <Title>Edit user</Title>
+          </TitleContainer>
+        </PastPageDataContainerAndTitle>
+        <FormSectionsContainer>
+          <LeftSectionContainer>
+            <TextField
+              // InputLabelProps={{
+              //   style: { color: `${themeMui.palette.inputText.main}` },
+              // }}
+              // sx={{
+              //   input: {
+              //     color: `${themeMui.palette.inputText.main}`,
+              //   },
+              //   width: "497px",
+              //   "& .MuiInputLabel-root": { color: "#D3D6DA" },
+              // }}
+              autoComplete="given-name"
+              required
+              id="firstName"
+              label="Name"
+              autoFocus
+              name="name"
+              variant="standard"
+              fullWidth
+              onChange={(e) => console.log(e)}
+              // error={errors?.name?.error}
+              value={userInfo.name}
+            />
+            <TextField
+              // InputLabelProps={{
+              //   style: { color: `${themeMui.palette.inputText.main}` },
+              // }}
+              // sx={{
+              //   input: {
+              //     color: `${themeMui.palette.inputText.main}`,
+              //   },
+              //   width: "497px",
+              //   "& .MuiInputLabel-root": { color: "#D3D6DA" },
+              // }}
+              variant="standard"
+              required
+              fullWidth
+              id="phone"
+              label="Cellphone"
+              autoComplete="cellphone"
+              name="cellphone"
+              onChange={handleChange}
+              // error={errors?.cellphone?.error}
+              value={userInfo.cellphone}
+            />
+
+            <TextField
+              // InputLabelProps={{
+              //   style: { color: `${themeMui.palette.inputText.main}` },
+              // }}
+              // sx={{
+              //   input: {
+              //     color: `${themeMui.palette.inputText.main}`,
+              //   },
+              //   width: "497px",
+              //   "& .MuiInputLabel-root": { color: "#D3D6DA" },
+              // }}
+              required
+              fullWidth
+              label="Password"
+              variant="standard"
+              id="password"
+              autoComplete="new-password"
+              name="password"
+              onChange={handleChange}
+              // error={errors?.password?.error}
+              value={userInfo.password}
+              type="password"
+            />
+            <FormControl>
+              <InputLabel id="rol-label">Rol</InputLabel>
+              <Select
+                // sx={{
+                //   input: {
+                //     color: `${themeMui.palette.inputText.main}`,
+                //   },
+                //   width: "497px",
+                // }}
+                // SelectDisplayProps={{
+                //   style: { color: `${themeMui.palette.inputText.main}` },
+                // }}
+                // labelId="rol-label"
+                onChange={handleChange}
+                name="userRole"
+                // error={errors?.userRole?.error}
+                variant="standard"
+              >
+                {/* {roles.map((r) => (
+                  <MenuItem
+                    key={r.value}
+                    value={r.value}
+                    style={getStyles(r.name, r.name, theme)}
+                  >
+                    {r.name}
+                  </MenuItem>
+                ))} */}
+              </Select>
+            </FormControl>
+          </LeftSectionContainer>
+          <RightSectionContainer>
+            <TextField
+              // InputLabelProps={{
+              //   style: { color: `${themeMui.palette.inputText.main}` },
+              // }}
+              // sx={{
+              //   input: {
+              //     color: `${themeMui.palette.inputText.main}`,
+              //   },
+              //   width: "497px",
+              //   "& .MuiInputLabel-root": { color: "#D3D6DA" },
+              // }}
+              required
+              fullWidth
+              label="Last name"
+              variant="standard"
+              id="lastname"
+              autoComplete="new-lastname"
+              name="lastname"
+              onChange={handleChange}
+              // error={errors?.password?.error}
+              value={userInfo.lastName}
+            />
+            <TextField
+              // InputLabelProps={{
+              //   style: { color: `${themeMui.palette.inputText.main}` },
+              // }}
+              // sx={{
+              //   input: {
+              //     color: `${themeMui.palette.inputText.main}`,
+              //   },
+              //   width: "497px",
+              //   "& .MuiInputLabel-root": { color: "#D3D6DA" },
+              // }}
+              autoComplete="given-email"
+              required
+              id="email"
+              label="Email"
+              autoFocus
+              name="email"
+              variant="standard"
+              fullWidth
+              onChange={handleChange}
+              // error={errors?.name?.error}
+              value={userInfo.email}
+            />
+            <TextField
+              // InputLabelProps={{
+              //   style: { color: `${themeMui.palette.inputText.main}` },
+              // }}
+              // sx={{
+              //   input: {
+              //     color: `${themeMui.palette.inputText.main}`,
+              //   },
+              //   width: "497px",
+              //   "& .MuiInputLabel-root": { color: "#D3D6DA" },
+              // }}
+              required
+              fullWidth
+              label="Repeat password"
+              variant="standard"
+              id="repeat-password"
+              autoComplete="repeat-password"
+              name="repeatPassword"
+              onChange={handleChange}
+              // error={errors?.password?.error}
+              value={userInfo.repeatPassword}
+              type="password"
+            />
+          </RightSectionContainer>
+        </FormSectionsContainer>
+        <ActionButtonContainer>
+          <ButtonsContainer>
+            <ActionButton>Create</ActionButton>
+            <CancelActionButton onClick={() => navigate("/home/users")}>
+              Cancel
+            </CancelActionButton>
+          </ButtonsContainer>
+        </ActionButtonContainer>
+      </FormContainertUsersAction>
+    </UsersActionsContainer>
+  );
+};
+
+export default AddUser;

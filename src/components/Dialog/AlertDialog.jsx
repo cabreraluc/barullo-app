@@ -1,0 +1,80 @@
+import * as React from "react";
+import Dialog from "@mui/material/Dialog";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import IconButton from "@mui/material/IconButton";
+import { BtnCancelDialog, BtnSaveDialog, Title } from "./alertDialogStyles.js";
+
+const contextMap = {
+  users: {
+    title: "Disable user",
+    message: "¿Are you sure that you want to disable this user?",
+    action: "DISABLE",
+  },
+};
+
+export default function AlertDialog({
+  handlerAction,
+  page,
+  objectId,
+  open,
+  context,
+  onClose,
+  object,
+}) {
+  const { title, message, action } = contextMap[context];
+
+  return (
+    <div>
+      {console.log(objectId)}
+      <Dialog
+        open={open}
+        onClose={onClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+        maxWidth="xl"
+        sx={{}}
+      >
+        <div style={{ margin: "4rem 10rem" }}>
+          <IconButton
+            aria-label="close"
+            onClick={onClose}
+            sx={{
+              position: "absolute",
+              right: 30,
+              top: 25,
+              color: (theme) => theme.palette.grey[500],
+            }}
+          >
+            X
+          </IconButton>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description"></DialogContentText>
+          </DialogContent>
+
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <Title>{title}</Title>
+          </div>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <span style={{ fontSize: "16px", color: "rgb(56,71,100,0.55)" }}>
+              {message}
+            </span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              marginTop: "3.7rem",
+              marginBottom: "2.2rem",
+            }}
+          >
+            <BtnCancelDialog onClick={() => onClose()}>CANCEL</BtnCancelDialog>
+            <BtnSaveDialog onClick={() => handlerAction(objectId)}>
+              {action}
+            </BtnSaveDialog>
+          </div>
+        </div>
+      </Dialog>
+    </div>
+  );
+}
