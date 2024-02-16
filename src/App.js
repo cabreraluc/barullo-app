@@ -8,6 +8,8 @@ import Landing from "./containers/Landing/Landing";
 import Header from "./containers/Layout/Header/Header";
 import EditUser from "./containers/Users/EditUser";
 import AddUser from "./containers/Users/AddUser";
+import EditClient from "./containers/Clients/EditClient";
+import AddClient from "./containers/Clients/AddClient";
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/edit-user/:id" element={<EditUser />} />
         <Route path="/add-user" element={<AddUser />} />
+        <Route path="/edit-client/:id" element={<EditClient />} />
+        <Route path="/add-client" element={<AddClient />} />
       </Routes>
     </div>
   );

@@ -1,4 +1,4 @@
-export const ClientValidations = (ClientData, context) => {
+export const clientValidations = (clientData, context) => {
   const validateEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
   const validateNum = /^[0-9]+$/;
   const validPassword = /(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,}$/;

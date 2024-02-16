@@ -23,7 +23,8 @@ export default function ClientTable({ allClients, disableClient }) {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Name</TableCell>
+            <TableCell align="left">Name</TableCell>
+            <TableCell align="left">Bussines name</TableCell>
             <TableCell align="left">Email</TableCell>
             <TableCell align="left">Cellphone</TableCell>
             <TableCell sx={{ width: "1.5rem" }} align="left"></TableCell>

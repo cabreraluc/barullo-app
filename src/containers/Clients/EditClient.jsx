@@ -34,7 +34,7 @@ import { useParams } from "react-router-dom";
 const EditClient = () => {
   const clientRoles = ["Admin", "Setter", "Closer"];
   const { id } = useParams();
-  const { editClient, getClientById, Client, isLoading } = useClients();
+  const { editClient, getClientById, client, isLoading } = useClients();
   const [clientInfo, setClientInfo] = useState({
     email: "",
     name: "",
@@ -218,6 +218,29 @@ const EditClient = () => {
                   return <MenuItem value={rol}>{rol}</MenuItem>;
                 })}
               </Select>
+
+              <TextField
+                // InputLabelProps={{
+                //   style: { color: `${themeMui.palette.inputText.main}` },
+                // }}
+                // sx={{
+                //   input: {
+                //     color: `${themeMui.palette.inputText.main}`,
+                //   },
+                //   width: "497px",
+                //   "& .MuiInputLabel-root": { color: "#D3D6DA" },
+                // }}
+                variant="standard"
+                required
+                fullWidth
+                id="cellphone"
+                label="Service"
+                autoComplete="cellphone"
+                name="cellphone"
+                onChange={handleChange}
+                error={errors[1]?.cellphone}
+                value={clientInfo.cellphone}
+              />
             </FormControl>
           </LeftSectionContainer>
           <RightSectionContainer>

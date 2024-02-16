@@ -2,10 +2,10 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import {
-  UsersActionsContainer,
+  ClientsActionsContainer,
   PastPageDataContainerAndTitle,
   Title,
-  FormContainertUsersAction,
+  FormContainertClientsAction,
   LeftSectionContainer,
   RightSectionContainer,
   FormSectionsContainer,
@@ -13,7 +13,7 @@ import {
   PastPageContainer,
   ActionButtonContainer,
   ButtonsContainer,
-} from "./usersStyles";
+} from "./clientsStyles";
 import {
   ActionButton,
   CancelActionButton,
@@ -26,28 +26,33 @@ import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import useUsers from "./useUsers";
-import { userValidations } from "./userValidations";
+import useClients from "./useClients";
+import { clientValidations } from "./clientValidations";
 import useNotistack from "../../components/Notistack/useNotistack";
 
 const AddClient = () => {
-  const userRoles = ["Admin", "Setter", "Closer"];
-  const { addUser, isLoading } = useUsers();
-  const [userInfo, setUserInfo] = useState({
+  const clientRoles = ["Admin", "Setter", "Closer"];
+  const { addClient, isLoading } = useClients();
+  const [clientInfo, setClientInfo] = useState({
     email: "",
     name: "",
     lastName: "",
     cellphone: "",
     password: "",
-    userRole: "",
     repeatPassword: "",
+    dues: "",
+    totalPayment: "",
+    closer: "",
+    setter: "",
+    growthPartner: "",
   });
+
   const { showNotification } = useNotistack();
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     const { value, name } = e.target;
-    setUserInfo({ ...userInfo, [name]: value });
+    setClientInfo({ ...clientInfo, [name]: value });
   };
 
   const handleSetErrors = (errors) => {
@@ -58,10 +63,10 @@ const AddClient = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = userValidations(userInfo, "addUser");
+    const response = clientValidations(clientInfo, "addClient");
 
     if (response.valid) {
-      addUser(userInfo, setErrors);
+      addClient(clientInfo, setErrors);
     } else {
       setErrors(response);
     }
@@ -74,20 +79,20 @@ const AddClient = () => {
 
   const navigate = useNavigate();
   return (
-    <UsersActionsContainer>
-      <FormContainertUsersAction onSubmit={(e) => handleSubmit(e)} noValidate>
+    <ClientsActionsContainer>
+      <FormContainertClientsAction onSubmit={(e) => handleSubmit(e)} noValidate>
         <PastPageDataContainerAndTitle>
           <PastPageContainer>
             <BreadcumsContainer>
               <BreadcrumbsMui
-                title="Add user"
-                prev="Users"
-                path={"/home/users"}
+                title="Add client"
+                prev="Clients"
+                path={"/home/clients"}
               ></BreadcrumbsMui>
             </BreadcumsContainer>
           </PastPageContainer>
           <TitleContainer>
-            <Title>Add user</Title>
+            <Title>Add client</Title>
           </TitleContainer>
         </PastPageDataContainerAndTitle>
         {/* <BoxMui
@@ -122,7 +127,7 @@ const AddClient = () => {
               fullWidth
               onChange={handleChange}
               error={errors[1]?.name}
-              value={userInfo.name}
+              value={clientInfo.name}
             />
             <TextField
               // InputLabelProps={{
@@ -144,7 +149,7 @@ const AddClient = () => {
               name="cellphone"
               onChange={handleChange}
               error={errors[1]?.cellphone}
-              value={userInfo.cellphone}
+              value={clientInfo.cellphone}
             />
 
             <TextField
@@ -167,7 +172,7 @@ const AddClient = () => {
               name="password"
               onChange={handleChange}
               error={errors[1]?.password}
-              value={userInfo.password}
+              value={clientInfo.password}
               type="password"
             />
             <FormControl
@@ -175,7 +180,7 @@ const AddClient = () => {
                 width: "100%",
               }}
             >
-              <InputLabel id="rol-label">Rol</InputLabel>
+              {/* <InputLabel id="rol-label">Rol</InputLabel>
               <Select
                 MenuProps={{ disableScrollLock: true }}
                 // sx={{
@@ -189,14 +194,58 @@ const AddClient = () => {
                 // }}
                 // labelId="rol-label"
                 onChange={handleChange}
-                name="userRole"
-                error={errors[1]?.userRole}
+                name="clientRole"
+                error={errors[1]?.clientRole}
                 variant="standard"
               >
-                {userRoles.map((rol) => {
+                {clientRoles.map((rol) => {
                   return <MenuItem value={rol}>{rol}</MenuItem>;
                 })}
-              </Select>
+              </Select> */}
+              <TextField
+                // InputLabelProps={{
+                //   style: { color: `${themeMui.palette.inputText.main}` },
+                // }}
+                // sx={{
+                //   input: {
+                //     color: `${themeMui.palette.inputText.main}`,
+                //   },
+                //   width: "497px",
+                //   "& .MuiInputLabel-root": { color: "#D3D6DA" },
+                // }}
+                variant="standard"
+                required
+                fullWidth
+                id="cellphone"
+                label="Total price"
+                autoComplete="cellphone"
+                name="cellphone"
+                onChange={handleChange}
+                error={errors[1]?.cellphone}
+                value={clientInfo.cellphone}
+              />
+              <TextField
+                // InputLabelProps={{
+                //   style: { color: `${themeMui.palette.inputText.main}` },
+                // }}
+                // sx={{
+                //   input: {
+                //     color: `${themeMui.palette.inputText.main}`,
+                //   },
+                //   width: "497px",
+                //   "& .MuiInputLabel-root": { color: "#D3D6DA" },
+                // }}
+                variant="standard"
+                required
+                fullWidth
+                id="cellphone"
+                label="Service"
+                autoComplete="cellphone"
+                name="cellphone"
+                onChange={handleChange}
+                error={errors[1]?.cellphone}
+                value={clientInfo.cellphone}
+              />
             </FormControl>
           </LeftSectionContainer>
           <RightSectionContainer>
@@ -220,7 +269,7 @@ const AddClient = () => {
               name="lastName"
               onChange={handleChange}
               error={errors[1]?.lastName}
-              value={userInfo.lastName}
+              value={clientInfo.lastName}
             />
             <TextField
               // InputLabelProps={{
@@ -243,7 +292,7 @@ const AddClient = () => {
               fullWidth
               onChange={handleChange}
               error={errors[1]?.email}
-              value={userInfo.email}
+              value={clientInfo.email}
             />
             <TextField
               // InputLabelProps={{
@@ -265,8 +314,30 @@ const AddClient = () => {
               name="repeatPassword"
               onChange={handleChange}
               error={errors[1]?.repeatPassword}
-              value={userInfo.repeatPassword}
+              value={clientInfo.repeatPassword}
               type="password"
+            />
+            <TextField
+              // InputLabelProps={{
+              //   style: { color: `${themeMui.palette.inputText.main}` },
+              // }}
+              // sx={{
+              //   input: {
+              //     color: `${themeMui.palette.inputText.main}`,
+              //   },
+              //   width: "497px",
+              //   "& .MuiInputLabel-root": { color: "#D3D6DA" },
+              // }}
+              variant="standard"
+              required
+              fullWidth
+              id="cellphone"
+              label="Dues"
+              autoComplete="cellphone"
+              name="cellphone"
+              onChange={handleChange}
+              error={errors[1]?.cellphone}
+              value={clientInfo.cellphone}
             />
           </RightSectionContainer>
         </FormSectionsContainer>
@@ -276,13 +347,13 @@ const AddClient = () => {
             <ActionButton type="submit" disabled={isLoading ? true : false}>
               Create
             </ActionButton>
-            <CancelActionButton onClick={() => navigate("/home/users")}>
+            <CancelActionButton onClick={() => navigate("/home/clients")}>
               Cancel
             </CancelActionButton>
           </ButtonsContainer>
         </ActionButtonContainer>
-      </FormContainertUsersAction>
-    </UsersActionsContainer>
+      </FormContainertClientsAction>
+    </ClientsActionsContainer>
   );
 };
 
