@@ -1,49 +1,49 @@
-export const userValidations = (userData, context) => {
+export const ClientValidations = (ClientData, context) => {
   const validateEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
   const validateNum = /^[0-9]+$/;
   const validPassword = /(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,}$/;
 
-  if (userData.name === "") {
+  if (clientData.name === "") {
     return [['The "Name" field cannot be empty.'], { name: true }];
   }
 
-  if (userData.lastName === "") {
+  if (clientData.lastName === "") {
     return [['The "Last name" field cannot be empty.'], { lastName: true }];
   }
 
-  if (userData.cellphone === "") {
+  if (clientData.cellphone === "") {
     return [['The "Cellphone" field cannot be empty.'], { cellphone: true }];
   }
 
-  if (userData.cellphone !== "") {
-    if (!validateNum.test(userData.cellphone)) {
+  if (clientData.cellphone !== "") {
+    if (!validateNum.test(clientData.cellphone)) {
       return [["Invalid cellphone"], { cellphone: true }];
     }
   }
 
-  if (userData.email === "") {
+  if (clientData.email === "") {
     return [['The "Email" field cannot be empty.'], { email: true }];
   }
 
-  if (userData.email !== "") {
-    if (!validateEmail.test(userData.email)) {
+  if (clientData.email !== "") {
+    if (!validateEmail.test(clientData.email)) {
       return [["Invalid email."], { email: true }];
     }
   }
 
-  if (context === "addUser") {
-    if (userData.password === "") {
+  if (context === "addClient") {
+    if (clientData.password === "") {
       return [['The "Password" field cannot be empty.'], { password: true }];
     }
 
-    if (userData.repeatPassword === "") {
+    if (clientData.repeatPassword === "") {
       return [
         ['The "Repeat password" field cannot be empty.'],
         { password: true },
       ];
     }
   }
-  if (userData.password !== "" && !validPassword.test(userData.password)) {
+  if (clientData.password !== "" && !validPassword.test(clientData.password)) {
     return [
       [
         `The password must have at least 8 digits, a capital letter and a number.`,
@@ -52,14 +52,14 @@ export const userValidations = (userData, context) => {
     ];
   }
 
-  if (userData.repeatPassword !== "") {
-    if (userData.password === "") {
+  if (clientData.repeatPassword !== "") {
+    if (clientData.password === "") {
       return [['The "Password" field cannot be empty.'], { password: true }];
     }
   }
 
-  if (userData.password !== "") {
-    if (userData.repeatPassword === "") {
+  if (clientData.password !== "") {
+    if (clientData.repeatPassword === "") {
       return [
         ['The "Repeat password" field cannot be empty.'],
         { password: true },
@@ -68,15 +68,15 @@ export const userValidations = (userData, context) => {
   }
 
   if (
-    userData.password !== "" &&
-    userData.repeatPassword !== "" &&
-    userData.password !== userData.repeatPassword
+    clientData.password !== "" &&
+    clientData.repeatPassword !== "" &&
+    clientData.password !== clientData.repeatPassword
   ) {
     return [["The password¨s are diferents"], { password: true }];
   }
 
-  if (userData.userRole === "") {
-    return [["You must select a role."], { userRole: true }];
+  if (clientData.clientRole === "") {
+    return [["You must select a role."], { clientRole: true }];
   }
 
   return { valid: true };

@@ -2,10 +2,10 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import {
-  UsersActionsContainer,
+  ClientsActionsContainer,
   PastPageDataContainerAndTitle,
   Title,
-  FormContainertUsersAction,
+  FormContainertClientsAction,
   LeftSectionContainer,
   RightSectionContainer,
   FormSectionsContainer,
@@ -13,7 +13,7 @@ import {
   PastPageContainer,
   ActionButtonContainer,
   ButtonsContainer,
-} from "./usersStyles";
+} from "./clientsStyles";
 import {
   ActionButton,
   CancelActionButton,
@@ -26,20 +26,22 @@ import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import useUsers from "./useUsers";
-import { userValidations } from "./userValidations";
+import useClients from "./useClients";
+import { clientValidations } from "./clientValidations";
 import useNotistack from "../../components/Notistack/useNotistack";
+import { useParams } from "react-router-dom";
 
-const AddUser = () => {
-  const userRoles = ["Admin", "Setter", "Closer"];
-  const { addUser, isLoading } = useUsers();
-  const [userInfo, setUserInfo] = useState({
+const EditClient = () => {
+  const clientRoles = ["Admin", "Setter", "Closer"];
+  const { id } = useParams();
+  const { editClient, getClientById, Client, isLoading } = useClients();
+  const [clientInfo, setClientInfo] = useState({
     email: "",
     name: "",
     lastName: "",
     cellphone: "",
     password: "",
-    userRole: "",
+    clientRole: "",
     repeatPassword: "",
   });
   const { showNotification } = useNotistack();
@@ -47,7 +49,7 @@ const AddUser = () => {
 
   const handleChange = (e) => {
     const { value, name } = e.target;
-    setUserInfo({ ...userInfo, [name]: value });
+    setClientInfo({ ...clientInfo, [name]: value });
   };
 
   const handleSetErrors = (errors) => {
@@ -58,10 +60,10 @@ const AddUser = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = userValidations(userInfo, "addUser");
+    const response = clientValidations(clientInfo);
 
     if (response.valid) {
-      addUser(userInfo, setErrors);
+      editClient(clientInfo, id, setErrors);
     } else {
       setErrors(response);
     }
@@ -69,25 +71,43 @@ const AddUser = () => {
 
   useEffect(() => {
     handleSetErrors(errors);
-    console.log(errors);
   }, [errors]);
+
+  useEffect(() => {
+    getClientById(id);
+  }, []);
+
+  useEffect(() => {
+    setClientInfo({
+      ...clientInfo,
+      email: client?.email,
+      name: client?.name,
+      lastName: client?.lastName,
+      cellphone: client?.cellphone,
+      clientRole: client?.clientRole,
+    });
+  }, [client]);
+
+  useEffect(() => {
+    console.log(clientInfo);
+  }, [clientInfo]);
 
   const navigate = useNavigate();
   return (
-    <UsersActionsContainer>
-      <FormContainertUsersAction onSubmit={(e) => handleSubmit(e)} noValidate>
+    <ClientsActionsContainer>
+      <FormContainertClientsAction onSubmit={(e) => handleSubmit(e)} noValidate>
         <PastPageDataContainerAndTitle>
           <PastPageContainer>
             <BreadcumsContainer>
               <BreadcrumbsMui
-                title="Add user"
-                prev="Users"
-                path={"/home/users"}
+                title="Edit client"
+                prev="Clients"
+                path={"/home/clients"}
               ></BreadcrumbsMui>
             </BreadcumsContainer>
           </PastPageContainer>
           <TitleContainer>
-            <Title>Add user</Title>
+            <Title>Edit client</Title>
           </TitleContainer>
         </PastPageDataContainerAndTitle>
         {/* <BoxMui
@@ -122,7 +142,7 @@ const AddUser = () => {
               fullWidth
               onChange={handleChange}
               error={errors[1]?.name}
-              value={userInfo.name}
+              value={clientInfo.name}
             />
             <TextField
               // InputLabelProps={{
@@ -144,7 +164,7 @@ const AddUser = () => {
               name="cellphone"
               onChange={handleChange}
               error={errors[1]?.cellphone}
-              value={userInfo.cellphone}
+              value={clientInfo.cellphone}
             />
 
             <TextField
@@ -167,7 +187,7 @@ const AddUser = () => {
               name="password"
               onChange={handleChange}
               error={errors[1]?.password}
-              value={userInfo.password}
+              value={clientInfo.password}
               type="password"
             />
             <FormControl
@@ -189,11 +209,12 @@ const AddUser = () => {
                 // }}
                 // labelId="rol-label"
                 onChange={handleChange}
-                name="userRole"
-                error={errors[1]?.userRole}
+                name="clientRole"
+                error={errors[1]?.clientRole}
                 variant="standard"
+                value={clientInfo?.clientRole}
               >
-                {userRoles.map((rol) => {
+                {clientRoles.map((rol) => {
                   return <MenuItem value={rol}>{rol}</MenuItem>;
                 })}
               </Select>
@@ -220,7 +241,7 @@ const AddUser = () => {
               name="lastName"
               onChange={handleChange}
               error={errors[1]?.lastName}
-              value={userInfo.lastName}
+              value={clientInfo.lastName}
             />
             <TextField
               // InputLabelProps={{
@@ -243,7 +264,7 @@ const AddUser = () => {
               fullWidth
               onChange={handleChange}
               error={errors[1]?.email}
-              value={userInfo.email}
+              value={clientInfo.email}
             />
             <TextField
               // InputLabelProps={{
@@ -265,7 +286,7 @@ const AddUser = () => {
               name="repeatPassword"
               onChange={handleChange}
               error={errors[1]?.repeatPassword}
-              value={userInfo.repeatPassword}
+              value={clientInfo.repeatPassword}
               type="password"
             />
           </RightSectionContainer>
@@ -276,14 +297,14 @@ const AddUser = () => {
             <ActionButton type="submit" disabled={isLoading ? true : false}>
               Create
             </ActionButton>
-            <CancelActionButton onClick={() => navigate("/home/users")}>
+            <CancelActionButton onClick={() => navigate("/home/clients")}>
               Cancel
             </CancelActionButton>
           </ButtonsContainer>
         </ActionButtonContainer>
-      </FormContainertUsersAction>
-    </UsersActionsContainer>
+      </FormContainertClientsAction>
+    </ClientsActionsContainer>
   );
 };
 
-export default AddUser;
+export default EditClient;

@@ -26,8 +26,15 @@ import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import useUsers from "./useUsers";
+import { userValidations } from "./userValidations";
+import useNotistack from "../../components/Notistack/useNotistack";
+import { useParams } from "react-router-dom";
 
-const AddUser = () => {
+const EditUser = () => {
+  const userRoles = ["Admin", "Setter", "Closer"];
+  const { id } = useParams();
+  const { editUser, getUserById, user, isLoading } = useUsers();
   const [userInfo, setUserInfo] = useState({
     email: "",
     name: "",
@@ -37,32 +44,58 @@ const AddUser = () => {
     userRole: "",
     repeatPassword: "",
   });
+  const { showNotification } = useNotistack();
+  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     const { value, name } = e.target;
     setUserInfo({ ...userInfo, [name]: value });
-    console.log(value, name);
+  };
+
+  const handleSetErrors = (errors) => {
+    errors[0]?.forEach((error) => {
+      showNotification(error, "error");
+    });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // const response = validateUserForm(userInfo);
+    const response = userValidations(userInfo);
 
-    // if (response.valid) {
-    //   AddNewUser(userInfo, setErrors);
-    // } else {
-    //   setErrors(response);
-    // }
+    if (response.valid) {
+      editUser(userInfo, id, setErrors);
+    } else {
+      setErrors(response);
+    }
   };
 
-  // useEffect(() => {
-  //   console.log(userInfo);
-  // }, [userInfo]);
+  useEffect(() => {
+    handleSetErrors(errors);
+  }, [errors]);
+
+  useEffect(() => {
+    getUserById(id);
+  }, []);
+
+  useEffect(() => {
+    setUserInfo({
+      ...userInfo,
+      email: user?.email,
+      name: user?.name,
+      lastName: user?.lastName,
+      cellphone: user?.cellphone,
+      userRole: user?.userRole,
+    });
+  }, [user]);
+
+  useEffect(() => {
+    console.log(userInfo);
+  }, [userInfo]);
 
   const navigate = useNavigate();
   return (
     <UsersActionsContainer>
-      <FormContainertUsersAction>
+      <FormContainertUsersAction onSubmit={(e) => handleSubmit(e)} noValidate>
         <PastPageDataContainerAndTitle>
           <PastPageContainer>
             <BreadcumsContainer>
@@ -77,6 +110,15 @@ const AddUser = () => {
             <Title>Edit user</Title>
           </TitleContainer>
         </PastPageDataContainerAndTitle>
+        {/* <BoxMui
+          component="form"
+          noValidate
+          onSubmit={handleSubmit}
+          sx={{
+            width: "80%",
+            height: "450px",
+          }}
+        > */}
         <FormSectionsContainer>
           <LeftSectionContainer>
             <TextField
@@ -98,8 +140,8 @@ const AddUser = () => {
               name="name"
               variant="standard"
               fullWidth
-              onChange={(e) => console.log(e)}
-              // error={errors?.name?.error}
+              onChange={handleChange}
+              error={errors[1]?.name}
               value={userInfo.name}
             />
             <TextField
@@ -116,12 +158,12 @@ const AddUser = () => {
               variant="standard"
               required
               fullWidth
-              id="phone"
+              id="cellphone"
               label="Cellphone"
               autoComplete="cellphone"
               name="cellphone"
               onChange={handleChange}
-              // error={errors?.cellphone?.error}
+              error={errors[1]?.cellphone}
               value={userInfo.cellphone}
             />
 
@@ -144,13 +186,18 @@ const AddUser = () => {
               autoComplete="new-password"
               name="password"
               onChange={handleChange}
-              // error={errors?.password?.error}
+              error={errors[1]?.password}
               value={userInfo.password}
               type="password"
             />
-            <FormControl>
+            <FormControl
+              sx={{
+                width: "100%",
+              }}
+            >
               <InputLabel id="rol-label">Rol</InputLabel>
               <Select
+                MenuProps={{ disableScrollLock: true }}
                 // sx={{
                 //   input: {
                 //     color: `${themeMui.palette.inputText.main}`,
@@ -163,18 +210,13 @@ const AddUser = () => {
                 // labelId="rol-label"
                 onChange={handleChange}
                 name="userRole"
-                // error={errors?.userRole?.error}
+                error={errors[1]?.userRole}
                 variant="standard"
+                value={userInfo?.userRole}
               >
-                {/* {roles.map((r) => (
-                  <MenuItem
-                    key={r.value}
-                    value={r.value}
-                    style={getStyles(r.name, r.name, theme)}
-                  >
-                    {r.name}
-                  </MenuItem>
-                ))} */}
+                {userRoles.map((rol) => {
+                  return <MenuItem value={rol}>{rol}</MenuItem>;
+                })}
               </Select>
             </FormControl>
           </LeftSectionContainer>
@@ -196,9 +238,9 @@ const AddUser = () => {
               variant="standard"
               id="lastname"
               autoComplete="new-lastname"
-              name="lastname"
+              name="lastName"
               onChange={handleChange}
-              // error={errors?.password?.error}
+              error={errors[1]?.lastName}
               value={userInfo.lastName}
             />
             <TextField
@@ -221,7 +263,7 @@ const AddUser = () => {
               variant="standard"
               fullWidth
               onChange={handleChange}
-              // error={errors?.name?.error}
+              error={errors[1]?.email}
               value={userInfo.email}
             />
             <TextField
@@ -243,15 +285,18 @@ const AddUser = () => {
               autoComplete="repeat-password"
               name="repeatPassword"
               onChange={handleChange}
-              // error={errors?.password?.error}
+              error={errors[1]?.repeatPassword}
               value={userInfo.repeatPassword}
               type="password"
             />
           </RightSectionContainer>
         </FormSectionsContainer>
+        {/* </BoxMui> */}
         <ActionButtonContainer>
           <ButtonsContainer>
-            <ActionButton>Create</ActionButton>
+            <ActionButton type="submit" disabled={isLoading ? true : false}>
+              Create
+            </ActionButton>
             <CancelActionButton onClick={() => navigate("/home/users")}>
               Cancel
             </CancelActionButton>
@@ -262,4 +307,4 @@ const AddUser = () => {
   );
 };
 
-export default AddUser;
+export default EditUser;

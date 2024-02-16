@@ -30,7 +30,7 @@ import useUsers from "./useUsers";
 import { userValidations } from "./userValidations";
 import useNotistack from "../../components/Notistack/useNotistack";
 
-const AddUser = () => {
+const AddClient = () => {
   const userRoles = ["Admin", "Setter", "Closer"];
   const { addUser, isLoading } = useUsers();
   const [userInfo, setUserInfo] = useState({
@@ -286,4 +286,4 @@ const AddUser = () => {
   );
 };
 
-export default AddUser;
+export default AddClient;

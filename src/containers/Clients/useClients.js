@@ -4,17 +4,17 @@ import { useState } from "react";
 import useNotistack from "../../components/Notistack/useNotistack";
 import { useNavigate } from "react-router-dom";
 
-export default function useUsers() {
+export default function useClients() {
   const navigate = useNavigate();
   const { showNotification } = useNotistack();
-  const [allUsers, setAllUsers] = useState([]);
-  const [user, setUser] = useState({});
+  const [allClients, setAllClients] = useState([]);
+  const [client, setClient] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  const addUser = async (data) => {
+  const addClient = async (data) => {
     setIsLoading(true);
     try {
       const response = await axios.post(
-        `${env.API_URL}users/register-user`,
+        `${env.API_URL}clients/register-client`,
         data,
         {
           headers: {
@@ -24,16 +24,16 @@ export default function useUsers() {
       );
 
       showNotification(response.data[1]);
-      navigate("/home/users");
+      navigate("/home/clients");
     } catch (error) {
       showNotification(error.response.data, "error");
     }
   };
 
-  const getUsers = async () => {
+  const getClients = async () => {
     try {
       setIsLoading(true);
-      const response = await axios.get(`${env.API_URL}users/`, {
+      const response = await axios.get(`${env.API_URL}clients/`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -42,15 +42,15 @@ export default function useUsers() {
       console.log(response);
 
       if (response.data.length) {
-        setAllUsers(response.data);
+        setAllClients(response.data);
       }
     } catch (error) {}
     setIsLoading(false);
   };
 
-  const getUserById = async (id) => {
+  const getClientById = async (id) => {
     try {
-      const response = await axios.get(`${env.API_URL}/users/${id}`, {
+      const response = await axios.get(`${env.API_URL}/clients/${id}`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -58,17 +58,17 @@ export default function useUsers() {
 
       if (response.data) {
         console.log(response.data);
-        setUser(response.data);
+        setClient(response.data);
       }
     } catch (error) {
       showNotification(error, "error");
     }
   };
 
-  const disableUser = async (id) => {
+  const disableClient = async (id) => {
     try {
       const response = await axios.post(
-        `${env.API_URL}users/disable-user/${id}`,
+        `${env.API_URL}clients/disable-client/${id}`,
 
         {
           headers: {
@@ -76,17 +76,17 @@ export default function useUsers() {
           },
         }
       );
-      getUsers();
+      getClients();
     } catch (error) {
       console.log(error);
     }
   };
 
-  const editUser = async (data, id, setErrors) => {
+  const editClient = async (data, id, setErrors) => {
     setIsLoading(true);
     try {
       const response = await axios.put(
-        `${env.API_URL}users/edit-user/${id}`,
+        `${env.API_URL}clients/edit-client/${id}`,
         data,
         {
           headers: {
@@ -95,21 +95,21 @@ export default function useUsers() {
         }
       );
       showNotification(response.data[1]);
-      navigate("/home/users");
+      navigate("/home/clients");
     } catch (error) {
       showNotification(error.response.data, "error");
     }
   };
 
   return {
-    addUser,
-    getUsers,
-    allUsers,
-    setAllUsers,
-    editUser,
-    disableUser,
-    getUserById,
-    user,
+    addClient,
+    getClients,
+    allClients,
+    setAllClients,
+    editClient,
+    disableClient,
+    getClientById,
+    client,
     isLoading,
   };
 }

@@ -12,29 +12,28 @@ import { useNavigate } from "react-router-dom";
 
 import AlertDialog from "../Dialog/AlertDialog";
 import { useState } from "react";
-import useUsers from "../../containers/Users/useUsers";
+import useClients from "../../containers/Clients/useClients";
 
-export default function User({ user, disableUser }) {
+export default function Client({ client, disableClient }) {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
 
-  const handlerDeleteUser = (id) => {
-    disableUser(id);
+  const handlerDeleteClient = (id) => {
+    disableClient(id);
     setOpen(false);
   };
 
-  console.log(user);
+  console.log(client);
   return (
     <TableRow
-      key={user.name}
+      key={client.name}
       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
     >
       <TableCell component="th" scope="row">
-        {user.name} {user.lastName}
+        {client.name} {client.lastName}
       </TableCell>
-      <TableCell align="left">{user.email}</TableCell>
-      <TableCell align="left">{user.cellphone}</TableCell>
-      <TableCell align="left">{user.userRole}</TableCell>
+      <TableCell align="left">{client.email}</TableCell>
+      <TableCell align="left">{client.cellphone}</TableCell>
       <TableCell align="left">
         <DeleteOutlineIcon
           onClick={() => setOpen(true)}
@@ -43,16 +42,16 @@ export default function User({ user, disableUser }) {
       </TableCell>
       <TableCell align="left">
         <EditIcon
-          onClick={() => navigate(`/edit-user/${user._id}`)}
+          onClick={() => navigate(`/edit-client/${client._id}`)}
           sx={{ cursor: "pointer" }}
         />
       </TableCell>
       <AlertDialog
         open={open}
         onClose={() => setOpen(false)}
-        context={"users"}
-        handlerAction={handlerDeleteUser}
-        objectId={user._id}
+        context={"clients"}
+        handlerAction={handlerDeleteClient}
+        objectId={client._id}
       />
     </TableRow>
   );

@@ -29,10 +29,12 @@ import { useNavigate } from "react-router-dom";
 import useUsers from "./useUsers";
 import { userValidations } from "./userValidations";
 import useNotistack from "../../components/Notistack/useNotistack";
+import { useParams } from "react-router-dom";
 
-const AddUser = () => {
+const EditProspect = () => {
   const userRoles = ["Admin", "Setter", "Closer"];
-  const { addUser, isLoading } = useUsers();
+  const { id } = useParams();
+  const { editUser, getUserById, user, isLoading } = useUsers();
   const [userInfo, setUserInfo] = useState({
     email: "",
     name: "",
@@ -58,10 +60,10 @@ const AddUser = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = userValidations(userInfo, "addUser");
+    const response = userValidations(userInfo);
 
     if (response.valid) {
-      addUser(userInfo, setErrors);
+      editUser(userInfo, id, setErrors);
     } else {
       setErrors(response);
     }
@@ -69,8 +71,26 @@ const AddUser = () => {
 
   useEffect(() => {
     handleSetErrors(errors);
-    console.log(errors);
   }, [errors]);
+
+  useEffect(() => {
+    getUserById(id);
+  }, []);
+
+  useEffect(() => {
+    setUserInfo({
+      ...userInfo,
+      email: user?.email,
+      name: user?.name,
+      lastName: user?.lastName,
+      cellphone: user?.cellphone,
+      userRole: user?.userRole,
+    });
+  }, [user]);
+
+  useEffect(() => {
+    console.log(userInfo);
+  }, [userInfo]);
 
   const navigate = useNavigate();
   return (
@@ -80,14 +100,14 @@ const AddUser = () => {
           <PastPageContainer>
             <BreadcumsContainer>
               <BreadcrumbsMui
-                title="Add user"
+                title="Edit user"
                 prev="Users"
                 path={"/home/users"}
               ></BreadcrumbsMui>
             </BreadcumsContainer>
           </PastPageContainer>
           <TitleContainer>
-            <Title>Add user</Title>
+            <Title>Edit user</Title>
           </TitleContainer>
         </PastPageDataContainerAndTitle>
         {/* <BoxMui
@@ -192,6 +212,7 @@ const AddUser = () => {
                 name="userRole"
                 error={errors[1]?.userRole}
                 variant="standard"
+                value={userInfo?.userRole}
               >
                 {userRoles.map((rol) => {
                   return <MenuItem value={rol}>{rol}</MenuItem>;
@@ -286,4 +307,4 @@ const AddUser = () => {
   );
 };
 
-export default AddUser;
+export default EditProspect;

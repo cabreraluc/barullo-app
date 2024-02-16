@@ -54,7 +54,7 @@ export default function Login() {
           <button className={styles.buttonRegister} onClick={HandleLoginUser}>
             Log In
           </button>
-          <span>You don't have an account?</span>
+          <span>I do not remember my password</span>
           <Link to="/register">
             <span> Click here</span>
           </Link>
