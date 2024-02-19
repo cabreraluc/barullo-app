@@ -29,6 +29,10 @@ import { useNavigate } from "react-router-dom";
 import useClients from "./useClients";
 import { clientValidations } from "./clientValidations";
 import useNotistack from "../../components/Notistack/useNotistack";
+import FormGroup from "@mui/material/FormGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+import Typography from "@mui/material/Typography";
 
 const AddClient = () => {
   const clientRoles = ["Admin", "Setter", "Closer"];
@@ -36,6 +40,7 @@ const AddClient = () => {
   const [clientInfo, setClientInfo] = useState({
     email: "",
     name: "",
+    bussinesName: "",
     lastName: "",
     cellphone: "",
     password: "",
@@ -45,6 +50,7 @@ const AddClient = () => {
     closer: "",
     setter: "",
     growthPartner: "",
+    comments: "",
   });
 
   const { showNotification } = useNotistack();
@@ -54,6 +60,19 @@ const AddClient = () => {
     const { value, name } = e.target;
     setClientInfo({ ...clientInfo, [name]: value });
   };
+
+  const onCheckChange = (e) => {
+    const { name } = e.target;
+    if (clientInfo[name] !== "checked") {
+      setClientInfo({ ...clientInfo, [name]: "checked" });
+    } else {
+      setClientInfo({ ...clientInfo, [name]: "" });
+    }
+  };
+
+  useEffect(() => {
+    console.log(clientInfo);
+  }, [clientInfo]);
 
   const handleSetErrors = (errors) => {
     errors[0]?.forEach((error) => {
@@ -95,28 +114,9 @@ const AddClient = () => {
             <Title>Add client</Title>
           </TitleContainer>
         </PastPageDataContainerAndTitle>
-        {/* <BoxMui
-          component="form"
-          noValidate
-          onSubmit={handleSubmit}
-          sx={{
-            width: "80%",
-            height: "450px",
-          }}
-        > */}
         <FormSectionsContainer>
           <LeftSectionContainer>
             <TextField
-              // InputLabelProps={{
-              //   style: { color: `${themeMui.palette.inputText.main}` },
-              // }}
-              // sx={{
-              //   input: {
-              //     color: `${themeMui.palette.inputText.main}`,
-              //   },
-              //   width: "497px",
-              //   "& .MuiInputLabel-root": { color: "#D3D6DA" },
-              // }}
               autoComplete="given-name"
               required
               id="firstName"
@@ -130,136 +130,6 @@ const AddClient = () => {
               value={clientInfo.name}
             />
             <TextField
-              // InputLabelProps={{
-              //   style: { color: `${themeMui.palette.inputText.main}` },
-              // }}
-              // sx={{
-              //   input: {
-              //     color: `${themeMui.palette.inputText.main}`,
-              //   },
-              //   width: "497px",
-              //   "& .MuiInputLabel-root": { color: "#D3D6DA" },
-              // }}
-              variant="standard"
-              required
-              fullWidth
-              id="cellphone"
-              label="Cellphone"
-              autoComplete="cellphone"
-              name="cellphone"
-              onChange={handleChange}
-              error={errors[1]?.cellphone}
-              value={clientInfo.cellphone}
-            />
-
-            <TextField
-              // InputLabelProps={{
-              //   style: { color: `${themeMui.palette.inputText.main}` },
-              // }}
-              // sx={{
-              //   input: {
-              //     color: `${themeMui.palette.inputText.main}`,
-              //   },
-              //   width: "497px",
-              //   "& .MuiInputLabel-root": { color: "#D3D6DA" },
-              // }}
-              required
-              fullWidth
-              label="Password"
-              variant="standard"
-              id="password"
-              autoComplete="new-password"
-              name="password"
-              onChange={handleChange}
-              error={errors[1]?.password}
-              value={clientInfo.password}
-              type="password"
-            />
-            <FormControl
-              sx={{
-                width: "100%",
-              }}
-            >
-              {/* <InputLabel id="rol-label">Rol</InputLabel>
-              <Select
-                MenuProps={{ disableScrollLock: true }}
-                // sx={{
-                //   input: {
-                //     color: `${themeMui.palette.inputText.main}`,
-                //   },
-                //   width: "497px",
-                // }}
-                // SelectDisplayProps={{
-                //   style: { color: `${themeMui.palette.inputText.main}` },
-                // }}
-                // labelId="rol-label"
-                onChange={handleChange}
-                name="clientRole"
-                error={errors[1]?.clientRole}
-                variant="standard"
-              >
-                {clientRoles.map((rol) => {
-                  return <MenuItem value={rol}>{rol}</MenuItem>;
-                })}
-              </Select> */}
-              <TextField
-                // InputLabelProps={{
-                //   style: { color: `${themeMui.palette.inputText.main}` },
-                // }}
-                // sx={{
-                //   input: {
-                //     color: `${themeMui.palette.inputText.main}`,
-                //   },
-                //   width: "497px",
-                //   "& .MuiInputLabel-root": { color: "#D3D6DA" },
-                // }}
-                variant="standard"
-                required
-                fullWidth
-                id="cellphone"
-                label="Total price"
-                autoComplete="cellphone"
-                name="cellphone"
-                onChange={handleChange}
-                error={errors[1]?.cellphone}
-                value={clientInfo.cellphone}
-              />
-              <TextField
-                // InputLabelProps={{
-                //   style: { color: `${themeMui.palette.inputText.main}` },
-                // }}
-                // sx={{
-                //   input: {
-                //     color: `${themeMui.palette.inputText.main}`,
-                //   },
-                //   width: "497px",
-                //   "& .MuiInputLabel-root": { color: "#D3D6DA" },
-                // }}
-                variant="standard"
-                required
-                fullWidth
-                id="cellphone"
-                label="Service"
-                autoComplete="cellphone"
-                name="cellphone"
-                onChange={handleChange}
-                error={errors[1]?.cellphone}
-                value={clientInfo.cellphone}
-              />
-            </FormControl>
-          </LeftSectionContainer>
-          <RightSectionContainer>
-            <TextField
-              // InputLabelProps={{
-              //   style: { color: `${themeMui.palette.inputText.main}` },
-              // }}
-              // sx={{
-              //   input: {
-              //     color: `${themeMui.palette.inputText.main}`,
-              //   },
-              //   width: "497px",
-              //   "& .MuiInputLabel-root": { color: "#D3D6DA" },
-              // }}
               required
               fullWidth
               label="Last name"
@@ -271,17 +141,21 @@ const AddClient = () => {
               error={errors[1]?.lastName}
               value={clientInfo.lastName}
             />
+
             <TextField
-              // InputLabelProps={{
-              //   style: { color: `${themeMui.palette.inputText.main}` },
-              // }}
-              // sx={{
-              //   input: {
-              //     color: `${themeMui.palette.inputText.main}`,
-              //   },
-              //   width: "497px",
-              //   "& .MuiInputLabel-root": { color: "#D3D6DA" },
-              // }}
+              autoComplete="bussines-name"
+              required
+              id="BussinesName"
+              label="Bussines name"
+              autoFocus
+              name="bussinesName"
+              variant="standard"
+              fullWidth
+              onChange={handleChange}
+              error={errors[1]?.bussinesName}
+              value={clientInfo.bussinesName}
+            />
+            <TextField
               autoComplete="given-email"
               required
               id="email"
@@ -294,17 +168,33 @@ const AddClient = () => {
               error={errors[1]?.email}
               value={clientInfo.email}
             />
+
             <TextField
-              // InputLabelProps={{
-              //   style: { color: `${themeMui.palette.inputText.main}` },
-              // }}
-              // sx={{
-              //   input: {
-              //     color: `${themeMui.palette.inputText.main}`,
-              //   },
-              //   width: "497px",
-              //   "& .MuiInputLabel-root": { color: "#D3D6DA" },
-              // }}
+              variant="standard"
+              required
+              fullWidth
+              id="cellphone"
+              label="Cellphone"
+              autoComplete="cellphone"
+              name="cellphone"
+              onChange={handleChange}
+              error={errors[1]?.cellphone}
+              value={clientInfo.cellphone}
+            />
+            <TextField
+              required
+              fullWidth
+              label="Password"
+              variant="standard"
+              id="password"
+              autoComplete="new-password"
+              name="password"
+              onChange={handleChange}
+              error={errors[1]?.password}
+              value={clientInfo.password}
+              type="password"
+            />
+            <TextField
               required
               fullWidth
               label="Repeat password"
@@ -317,31 +207,84 @@ const AddClient = () => {
               value={clientInfo.repeatPassword}
               type="password"
             />
+          </LeftSectionContainer>
+          <RightSectionContainer>
             <TextField
-              // InputLabelProps={{
-              //   style: { color: `${themeMui.palette.inputText.main}` },
-              // }}
-              // sx={{
-              //   input: {
-              //     color: `${themeMui.palette.inputText.main}`,
-              //   },
-              //   width: "497px",
-              //   "& .MuiInputLabel-root": { color: "#D3D6DA" },
-              // }}
               variant="standard"
               required
               fullWidth
-              id="cellphone"
-              label="Dues"
-              autoComplete="cellphone"
-              name="cellphone"
+              id="totalPayment"
+              label="Total payment"
+              autoComplete="totalPayment"
+              name="totalPayment"
               onChange={handleChange}
-              error={errors[1]?.cellphone}
-              value={clientInfo.cellphone}
+              error={errors[1]?.totalPayment}
+              value={clientInfo.totalPayment}
+            />
+            <TextField
+              variant="standard"
+              required
+              fullWidth
+              id="dues"
+              label="Dues"
+              autoComplete="dues"
+              name="dues"
+              onChange={handleChange}
+              error={errors[1]?.dues}
+              value={clientInfo.dues}
+            />
+
+            <FormGroup>
+              <Typography variant="overline" display="block" gutterBottom>
+                Select services
+              </Typography>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    name="closer"
+                    checked={clientInfo.closer}
+                    onChange={(e) => onCheckChange(e)}
+                    inputProps={{ "aria-label": "controlled" }}
+                  />
+                }
+                label="Closer"
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    name="setter"
+                    checked={clientInfo.setter}
+                    onChange={(e) => onCheckChange(e)}
+                    inputProps={{ "aria-label": "controlled" }}
+                  />
+                }
+                label="Setter"
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    name="growthPartner"
+                    checked={clientInfo.growthPartner}
+                    onChange={(e) => onCheckChange(e)}
+                    inputProps={{ "aria-label": "controlled" }}
+                  />
+                }
+                label="Growth partner"
+              />
+            </FormGroup>
+            <TextField
+              id="outlined-multiline-static"
+              label="Comments"
+              multiline
+              rows={6}
+              fullWidth
+              name="comments"
+              onChange={handleChange}
+              error={errors[1]?.comments}
+              value={clientInfo.comments}
             />
           </RightSectionContainer>
         </FormSectionsContainer>
-        {/* </BoxMui> */}
         <ActionButtonContainer>
           <ButtonsContainer>
             <ActionButton type="submit" disabled={isLoading ? true : false}>

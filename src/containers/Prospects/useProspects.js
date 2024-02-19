@@ -4,17 +4,17 @@ import { useState } from "react";
 import useNotistack from "../../components/Notistack/useNotistack";
 import { useNavigate } from "react-router-dom";
 
-export default function useUsers() {
+export default function useProspects() {
   const navigate = useNavigate();
   const { showNotification } = useNotistack();
-  const [allUsers, setAllUsers] = useState([]);
-  const [user, setUser] = useState({});
+  const [allProspects, setAllProspects] = useState([]);
+  const [prospect, setProspect] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  const addUser = async (data) => {
+  const addProspect = async (data) => {
     setIsLoading(true);
     try {
       const response = await axios.post(
-        `${env.API_URL}users/register-user`,
+        `${env.API_URL}prospects/register-prospect`,
         data,
         {
           headers: {
@@ -24,16 +24,16 @@ export default function useUsers() {
       );
 
       showNotification(response.data[1]);
-      navigate("/home/users");
+      navigate("/home/prospects");
     } catch (error) {
       showNotification(error.response.data, "error");
     }
   };
 
-  const getUsers = async () => {
+  const getProspects = async () => {
     try {
       setIsLoading(true);
-      const response = await axios.get(`${env.API_URL}users/`, {
+      const response = await axios.get(`${env.API_URL}prospects/`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -42,15 +42,15 @@ export default function useUsers() {
       console.log(response);
 
       if (response.data.length) {
-        setAllUsers(response.data);
+        setAllProspects(response.data);
       }
     } catch (error) {}
     setIsLoading(false);
   };
 
-  const getUserById = async (id) => {
+  const getProspectById = async (id) => {
     try {
-      const response = await axios.get(`${env.API_URL}/users/${id}`, {
+      const response = await axios.get(`${env.API_URL}/prospects/${id}`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -58,17 +58,17 @@ export default function useUsers() {
 
       if (response.data) {
         console.log(response.data);
-        setUser(response.data);
+        setProspect(response.data);
       }
     } catch (error) {
       showNotification(error, "error");
     }
   };
 
-  const disableUser = async (id) => {
+  const disableProspect = async (id) => {
     try {
       const response = await axios.post(
-        `${env.API_URL}users/disable-user/${id}`,
+        `${env.API_URL}prospects/disable-prospect/${id}`,
 
         {
           headers: {
@@ -76,17 +76,18 @@ export default function useUsers() {
           },
         }
       );
-      getUsers();
+
+      getProspects();
     } catch (error) {
       console.log(error);
     }
   };
 
-  const editUser = async (data, id, setErrors) => {
+  const editProspect = async (data, id, setErrors) => {
     setIsLoading(true);
     try {
       const response = await axios.put(
-        `${env.API_URL}users/edit-user/${id}`,
+        `${env.API_URL}prospects/edit-prospect/${id}`,
         data,
         {
           headers: {
@@ -95,21 +96,21 @@ export default function useUsers() {
         }
       );
       showNotification(response.data[1]);
-      navigate("/home/users");
+      navigate("/home/prospects");
     } catch (error) {
       showNotification(error.response.data, "error");
     }
   };
 
   return {
-    addUser,
-    getUsers,
-    allUsers,
-    setAllUsers,
-    editUser,
-    disableUser,
-    getUserById,
-    user,
+    addProspect,
+    getProspects,
+    allProspects,
+    setAllProspects,
+    editProspect,
+    disableProspect,
+    getProspectById,
+    prospect,
     isLoading,
   };
 }

@@ -11,6 +11,16 @@ const contextMap = {
     message: "¿Are you sure that you want to disable this user?",
     action: "DISABLE",
   },
+  clients: {
+    title: "Disable client",
+    message: "¿Are you sure that you want to disable this client?",
+    action: "DISABLE",
+  },
+  prospects: {
+    title: "Disable prospect",
+    message: "¿Are you sure that you want to disable this prospect?",
+    action: "DISABLE",
+  },
 };
 
 export default function AlertDialog({

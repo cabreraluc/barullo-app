@@ -76,6 +76,7 @@ export default function useClients() {
           },
         }
       );
+
       getClients();
     } catch (error) {
       console.log(error);

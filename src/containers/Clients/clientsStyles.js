@@ -67,7 +67,7 @@ export const AddClientContainer = styled.div`
 
 export const ClientsActionsContainer = styled.div`
   width: 100%;
-  height: 100%;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -117,12 +117,14 @@ export const TitleContainer = styled.div`
 
 export const FormContainertClientsAction = styled.form`
   width: 70%;
-  height: 90%;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  margin-top: 6rem;
+  margin-bottom: 4rem;
 `;
 
 export const FormSectionsContainer = styled.div`
@@ -139,7 +141,6 @@ export const LeftSectionContainer = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-
   gap: 25px;
 `;
 

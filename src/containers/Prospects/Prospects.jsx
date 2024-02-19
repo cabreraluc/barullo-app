@@ -1,48 +1,57 @@
 import {
-  UsersContainer,
-  UsersList,
+  ProspectsContainer,
+  ProspectsList,
   PanelRight,
   ButtonBar,
-} from "./usersStyles";
+} from "./prospectsStyles";
 import { useNavigate } from "react-router-dom";
-import useUsers from "./useUsers";
+import useProspects from "./useProspects";
 import { useEffect } from "react";
-import UsersTable from "../../components/Users/UsersTable";
+import ProspectsTable from "../../components/Prospects/ProspectsTable";
 import Loader from "../../componentsCss/Loader/Loader";
 import Searcher from "../../components/Searcher/Searcher";
-const values = [{ name: "Add User", path: "/add-user" }];
+const values = [{ name: "Add Prospect", path: "/add-prospect" }];
 
 const Prospects = () => {
   const navigate = useNavigate();
-  const { allUsers, getUsers, disableUser, isLoading, setAllUsers } =
-    useUsers();
+  const {
+    allProspects,
+    getProspects,
+    disableProspect,
+    isLoading,
+    setAllProspects,
+  } = useProspects();
 
   useEffect(() => {
-    getUsers();
+    getProspects();
   }, []);
 
   return (
-    <UsersContainer>
-      <UsersList>
+    <ProspectsContainer>
+      <ProspectsList>
         {isLoading ? (
           <Loader></Loader>
         ) : (
-          <UsersTable
-            allUsers={allUsers}
-            disableUser={disableUser}
+          <ProspectsTable
+            allProspects={allProspects}
+            disableProspect={disableProspect}
             isLoading={isLoading}
           />
         )}
-      </UsersList>
+      </ProspectsList>
       <PanelRight>
-        <Searcher list={allUsers} setList={setAllUsers} context={"users"} />
+        <Searcher
+          list={allProspects}
+          setList={setAllProspects}
+          context={"prospects"}
+        />
         {values.map((e) => (
           <ButtonBar onClick={e.path ? () => navigate(e.path) : null}>
             {e.name}
           </ButtonBar>
         ))}
       </PanelRight>
-    </UsersContainer>
+    </ProspectsContainer>
   );
 };
 

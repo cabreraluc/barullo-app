@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Box } from "@mui/material";
 
-export const UsersContainer = styled.div`
+export const ProspectsContainer = styled.div`
   display: flex;
   flex-direction: row;
 
@@ -9,7 +9,7 @@ export const UsersContainer = styled.div`
   width: 100%;
   height: 100%;
 `;
-export const UsersList = styled.div`
+export const ProspectsList = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -57,7 +57,7 @@ export const Searcher = styled.div`
   align-items: center;
 `;
 
-export const AddUserContainer = styled.div`
+export const AddProspectContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -65,9 +65,9 @@ export const AddUserContainer = styled.div`
   height: 100%;
 `;
 
-export const UsersActionsContainer = styled.div`
+export const ProspectsActionsContainer = styled.div`
   width: 100%;
-  height: 100%;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -115,14 +115,28 @@ export const TitleContainer = styled.div`
   align-items: center;
 `;
 
-export const FormContainertUsersAction = styled.form`
+export const FormContainertProspectsAction = styled.form`
   width: 70%;
-  height: 90%;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  margin-top: 6rem;
+  margin-bottom: 4rem;
+`;
+
+export const FormContainertProspectsActionDiv = styled.div`
+  width: 70%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  margin-top: 6rem;
+  margin-bottom: 4rem;
 `;
 
 export const FormSectionsContainer = styled.div`
@@ -131,15 +145,12 @@ export const FormSectionsContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  align-items: center;
-  margin-top: 4rem;
 `;
 export const LeftSectionContainer = styled.div`
   width: 45%;
   height: 100%;
   display: flex;
   flex-direction: column;
-
   gap: 25px;
 `;
 

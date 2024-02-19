@@ -11,16 +11,12 @@ export const clientValidations = (clientData, context) => {
     return [['The "Last name" field cannot be empty.'], { lastName: true }];
   }
 
-  if (clientData.cellphone === "") {
-    return [['The "Cellphone" field cannot be empty.'], { cellphone: true }];
+  if (clientData.bussinesName === "") {
+    return [
+      ['The "Bussines name" field cannot be empty.'],
+      { bussinesName: true },
+    ];
   }
-
-  if (clientData.cellphone !== "") {
-    if (!validateNum.test(clientData.cellphone)) {
-      return [["Invalid cellphone"], { cellphone: true }];
-    }
-  }
-
   if (clientData.email === "") {
     return [['The "Email" field cannot be empty.'], { email: true }];
   }
@@ -28,6 +24,15 @@ export const clientValidations = (clientData, context) => {
   if (clientData.email !== "") {
     if (!validateEmail.test(clientData.email)) {
       return [["Invalid email."], { email: true }];
+    }
+  }
+  if (clientData.cellphone === "") {
+    return [['The "Cellphone" field cannot be empty.'], { cellphone: true }];
+  }
+
+  if (clientData.cellphone !== "") {
+    if (!validateNum.test(clientData.cellphone)) {
+      return [["Invalid cellphone"], { cellphone: true }];
     }
   }
 
@@ -72,11 +77,25 @@ export const clientValidations = (clientData, context) => {
     clientData.repeatPassword !== "" &&
     clientData.password !== clientData.repeatPassword
   ) {
-    return [["The password¨s are diferents"], { password: true }];
+    return [["The passwords are diferents"], { password: true }];
   }
 
-  if (clientData.clientRole === "") {
-    return [["You must select a role."], { clientRole: true }];
+  if (clientData.totalPayment === "") {
+    return [
+      ['The "Total payment" field cannot be empty.'],
+      { totalPayment: true },
+    ];
+  }
+  if (clientData.dues === "") {
+    return [['The "Dues" field cannot be empty.'], { dues: true }];
+  }
+
+  if (
+    clientData.closer === "" &&
+    clientData.setter === "" &&
+    clientData.growthPartner === ""
+  ) {
+    return [["You must to select a service."], {}];
   }
 
   return { valid: true };

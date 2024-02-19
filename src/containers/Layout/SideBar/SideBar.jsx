@@ -13,9 +13,9 @@ const SideBar = () => {
   const value = [
     { name: "Statistics" },
     { name: "Calendar" },
-    { name: "Users" },
     { name: "Prospects" },
     { name: "Clients" },
+    { name: "Users" },
   ];
   const pathSplitted = pathname.split("/")[2];
 

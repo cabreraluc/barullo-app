@@ -9,32 +9,38 @@ import Paper from "@mui/material/Paper";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import EditIcon from "@mui/icons-material/Edit";
 import { useNavigate } from "react-router-dom";
-
 import AlertDialog from "../Dialog/AlertDialog";
 import { useState } from "react";
-import useClients from "../../containers/Clients/useClients";
+import useProspects from "../../containers/Prospects/useProspects";
 
-export default function Client({ client, disableClient }) {
+export default function Prospect({ prospect, disableProspect }) {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
 
-  const handlerDeleteClient = (id) => {
-    disableClient(id);
+  const handlerDeleteProspect = (id) => {
+    disableProspect(id);
     setOpen(false);
   };
 
-  console.log(client);
+  console.log(prospect);
   return (
     <TableRow
-      key={client.name}
+      key={prospect.name}
       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
     >
-      <TableCell component="th" scope="row">
-        {client.name} {client.lastName}
+      <TableCell
+        component="th"
+        scope="row"
+        onClick={() => navigate(`/prospect-details/${prospect._id}`)}
+        sx={{ cursor: "pointer" }}
+      >
+        {prospect.name} {prospect.lastName}
       </TableCell>
-      <TableCell align="left">{client.bussinesName}</TableCell>
-      <TableCell align="left">{client.email}</TableCell>
-      <TableCell align="left">{client.cellphone}</TableCell>
+      <TableCell align="left">{prospect.cellphone}</TableCell>
+      <TableCell align="left">{prospect.email}</TableCell>
+      <TableCell align="left">{prospect.interestLevel}</TableCell>
+      <TableCell align="left">{prospect.statusOfProspect}</TableCell>
+
       <TableCell align="left">
         <DeleteOutlineIcon
           onClick={() => setOpen(true)}
@@ -43,16 +49,16 @@ export default function Client({ client, disableClient }) {
       </TableCell>
       <TableCell align="left">
         <EditIcon
-          onClick={() => navigate(`/edit-client/${client._id}`)}
+          onClick={() => navigate(`/edit-prospect/${prospect._id}`)}
           sx={{ cursor: "pointer" }}
         />
       </TableCell>
       <AlertDialog
         open={open}
         onClose={() => setOpen(false)}
-        context={"clients"}
-        handlerAction={handlerDeleteClient}
-        objectId={client._id}
+        context={"prospects"}
+        handlerAction={handlerDeleteProspect}
+        objectId={prospect._id}
       />
     </TableRow>
   );

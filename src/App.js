@@ -10,6 +10,9 @@ import EditUser from "./containers/Users/EditUser";
 import AddUser from "./containers/Users/AddUser";
 import EditClient from "./containers/Clients/EditClient";
 import AddClient from "./containers/Clients/AddClient";
+import EditProspect from "./containers/Prospects/EditProspect";
+import AddProspect from "./containers/Prospects/AddProspect";
+import ProspectDetails from "./containers/Prospects/ProspectDetails";
 
 function App() {
   return (
@@ -25,6 +28,9 @@ function App() {
         <Route path="/add-user" element={<AddUser />} />
         <Route path="/edit-client/:id" element={<EditClient />} />
         <Route path="/add-client" element={<AddClient />} />
+        <Route path="/edit-prospect/:id" element={<EditProspect />} />
+        <Route path="/add-prospect" element={<AddProspect />} />
+        <Route path="/prospect-details/:id" element={<ProspectDetails />} />
       </Routes>
     </div>
   );
