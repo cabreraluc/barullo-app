@@ -286,11 +286,7 @@ const AddProspect = () => {
     }
   };
 
-  useEffect(() => {
-    console.log(prospectInfo);
-  }, [prospectInfo]);
-
-  const handleSetErrors = (errors) => {
+  const handleSetErrors = () => {
     errors[0]?.forEach((error) => {
       showNotification(error, "error");
     });
@@ -308,18 +304,13 @@ const AddProspect = () => {
   };
 
   useEffect(() => {
-    handleSetErrors(errors);
-    console.log(errors);
-  }, [errors]);
-
-  useEffect(() => {
     getClients();
     getUsers();
   }, []);
 
   useEffect(() => {
-    console.log(prospectInfo);
-  }, [prospectInfo]);
+    handleSetErrors(errors);
+  }, [errors]);
 
   const navigate = useNavigate();
   return (

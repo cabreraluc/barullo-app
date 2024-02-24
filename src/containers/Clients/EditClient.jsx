@@ -113,10 +113,6 @@ const EditClient = () => {
     });
   }, [client]);
 
-  useEffect(() => {
-    console.log(clientInfo);
-  }, [clientInfo]);
-
   const navigate = useNavigate();
   return (
     <ClientsActionsContainer>

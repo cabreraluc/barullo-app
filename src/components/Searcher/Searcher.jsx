@@ -31,10 +31,6 @@ const Searcher = ({ context, list, setList }) => {
     }
   }, [list]);
 
-  useEffect(() => {
-    console.log(listToFilter);
-  }, [listToFilter]);
-
   return (
     <SearcherContainer>
       <SearchIcon sx={{ color: "white", marginTop: 2, marginRight: 1 }} />

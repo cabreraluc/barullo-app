@@ -340,10 +340,6 @@ const EditProspect = () => {
   }, [prospect]);
 
   useEffect(() => {
-    console.log(prospectInfo);
-  }, [prospectInfo]);
-
-  useEffect(() => {
     getClients();
     getUsers();
   }, []);

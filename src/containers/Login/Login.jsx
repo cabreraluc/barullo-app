@@ -2,8 +2,10 @@ import { useState } from "react";
 import useLogin from "./useLogin";
 import styles from "../../componentsCss/RegisterAndLogin/RegisterAndLogin.module.css";
 import { Link } from "react-router-dom";
+import useNotistack from "../../components/Notistack/useNotistack";
 
 export default function Login() {
+  const { showNotification } = useNotistack();
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -12,12 +14,11 @@ export default function Login() {
 
   const handleChange = ({ value, name }) => {
     setData({ ...data, [name]: value });
-    console.log(value);
   };
 
   const HandleLoginUser = () => {
     if (data.email === "" || data.password === "") {
-      alert("Complete the data");
+      showNotification("Complete the data");
     } else {
       loginUser(data);
     }

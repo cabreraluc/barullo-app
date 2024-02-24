@@ -19,12 +19,18 @@ export default function useLogin() {
         }
       );
 
-      localStorage.setItem("user", JSON.stringify(userData));
+      localStorage.setItem("user", JSON.stringify(userData.data));
       handleRedirect("/home");
     } catch (error) {
       console.log(error);
       alert(error.response.data.error);
     }
   };
-  return { loginUser };
+
+  const logOut = async () => {
+    localStorage.clear("user");
+    handleRedirect("/login");
+  };
+
+  return { loginUser, logOut };
 }

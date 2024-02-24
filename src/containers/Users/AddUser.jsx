@@ -31,7 +31,7 @@ import { userValidations } from "./userValidations";
 import useNotistack from "../../components/Notistack/useNotistack";
 
 const AddUser = () => {
-  const userRoles = ["Admin", "Setter", "Closer"];
+  const roles = ["Admin", "Setter", "Closer"];
   const { addUser, isLoading } = useUsers();
   const [userInfo, setUserInfo] = useState({
     email: "",
@@ -39,7 +39,7 @@ const AddUser = () => {
     lastName: "",
     cellphone: "",
     password: "",
-    userRole: "",
+    role: "",
     repeatPassword: "",
   });
   const { showNotification } = useNotistack();
@@ -69,7 +69,6 @@ const AddUser = () => {
 
   useEffect(() => {
     handleSetErrors(errors);
-    console.log(errors);
   }, [errors]);
 
   const navigate = useNavigate();
@@ -189,11 +188,11 @@ const AddUser = () => {
                 // }}
                 // labelId="rol-label"
                 onChange={handleChange}
-                name="userRole"
-                error={errors[1]?.userRole}
+                name="role"
+                error={errors[1]?.role}
                 variant="standard"
               >
-                {userRoles.map((rol) => {
+                {roles.map((rol) => {
                   return <MenuItem value={rol}>{rol}</MenuItem>;
                 })}
               </Select>

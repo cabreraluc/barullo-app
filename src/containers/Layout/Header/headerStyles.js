@@ -24,6 +24,15 @@ export const UserButton = styled.button`
   color: white;
 `;
 
+export const LogOutButton = styled.button`
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  color: white;
+`;
+
+export const ButtonsContainer = styled.div``;
+
 export const LogoContainer = styled.button`
   height: 2rem;
   width: 5;

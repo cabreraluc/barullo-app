@@ -70,10 +70,6 @@ const AddClient = () => {
     }
   };
 
-  useEffect(() => {
-    console.log(clientInfo);
-  }, [clientInfo]);
-
   const handleSetErrors = (errors) => {
     errors[0]?.forEach((error) => {
       showNotification(error, "error");
@@ -93,7 +89,6 @@ const AddClient = () => {
 
   useEffect(() => {
     handleSetErrors(errors);
-    console.log(errors);
   }, [errors]);
 
   const navigate = useNavigate();
