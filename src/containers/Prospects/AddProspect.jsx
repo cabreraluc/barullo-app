@@ -33,6 +33,7 @@ import { Autocomplete } from "@mui/material";
 import useClients from "../Clients/useClients";
 import useUsers from "../Users/useUsers";
 import { createFilterOptions } from "@mui/material";
+import Button from "@mui/material/Button";
 const AddProspect = () => {
   const filter = createFilterOptions();
   const { getUsers, allUsers } = useUsers();
@@ -286,11 +287,7 @@ const AddProspect = () => {
     }
   };
 
-  useEffect(() => {
-    console.log(prospectInfo);
-  }, [prospectInfo]);
-
-  const handleSetErrors = (errors) => {
+  const handleSetErrors = () => {
     errors[0]?.forEach((error) => {
       showNotification(error, "error");
     });
@@ -308,18 +305,13 @@ const AddProspect = () => {
   };
 
   useEffect(() => {
-    handleSetErrors(errors);
-    console.log(errors);
-  }, [errors]);
-
-  useEffect(() => {
     getClients();
     getUsers();
   }, []);
 
   useEffect(() => {
-    console.log(prospectInfo);
-  }, [prospectInfo]);
+    handleSetErrors(errors);
+  }, [errors]);
 
   const navigate = useNavigate();
   return (
@@ -710,12 +702,19 @@ const AddProspect = () => {
         </FormSectionsContainer>
         <ActionButtonContainer>
           <ButtonsContainer>
-            <ActionButton type="submit" disabled={isLoading ? true : false}>
+            <Button
+              variant="outlined"
+              type="submit"
+              disabled={isLoading ? true : false}
+            >
               Create
-            </ActionButton>
-            <CancelActionButton onClick={() => navigate("/home/prospects")}>
+            </Button>
+            <Button
+              variant="outlined"
+              onClick={() => navigate("/home/prospects")}
+            >
               Cancel
-            </CancelActionButton>
+            </Button>
           </ButtonsContainer>
         </ActionButtonContainer>
       </FormContainertProspectsAction>

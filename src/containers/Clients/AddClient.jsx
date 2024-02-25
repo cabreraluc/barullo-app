@@ -33,6 +33,7 @@ import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 
 const AddClient = () => {
   const clientRoles = ["Admin", "Setter", "Closer"];
@@ -70,10 +71,6 @@ const AddClient = () => {
     }
   };
 
-  useEffect(() => {
-    console.log(clientInfo);
-  }, [clientInfo]);
-
   const handleSetErrors = (errors) => {
     errors[0]?.forEach((error) => {
       showNotification(error, "error");
@@ -93,7 +90,6 @@ const AddClient = () => {
 
   useEffect(() => {
     handleSetErrors(errors);
-    console.log(errors);
   }, [errors]);
 
   const navigate = useNavigate();
@@ -287,12 +283,19 @@ const AddClient = () => {
         </FormSectionsContainer>
         <ActionButtonContainer>
           <ButtonsContainer>
-            <ActionButton type="submit" disabled={isLoading ? true : false}>
+            <Button
+              variant="outlined"
+              type="submit"
+              disabled={isLoading ? true : false}
+            >
               Create
-            </ActionButton>
-            <CancelActionButton onClick={() => navigate("/home/clients")}>
+            </Button>
+            <Button
+              variant="outlined"
+              onClick={() => navigate("/home/clients")}
+            >
               Cancel
-            </CancelActionButton>
+            </Button>
           </ButtonsContainer>
         </ActionButtonContainer>
       </FormContainertClientsAction>

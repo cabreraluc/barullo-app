@@ -36,7 +36,6 @@ export default function AlertDialog({
 
   return (
     <div>
-      {console.log(objectId)}
       <Dialog
         open={open}
         onClose={onClose}

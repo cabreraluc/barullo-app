@@ -16,7 +16,6 @@ export default function Login() {
 
   const handleChange = ({ value, name }) => {
     setData({ ...data, [name]: value });
-    console.log(value);
   };
 
   const HandleRegisterUser = () => {

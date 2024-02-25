@@ -29,9 +29,10 @@ import { useNavigate } from "react-router-dom";
 import useUsers from "./useUsers";
 import { userValidations } from "./userValidations";
 import useNotistack from "../../components/Notistack/useNotistack";
+import Button from "@mui/material/Button";
 
 const AddUser = () => {
-  const userRoles = ["Admin", "Setter", "Closer"];
+  const roles = ["Admin", "Setter", "Closer"];
   const { addUser, isLoading } = useUsers();
   const [userInfo, setUserInfo] = useState({
     email: "",
@@ -39,21 +40,14 @@ const AddUser = () => {
     lastName: "",
     cellphone: "",
     password: "",
-    userRole: "",
+    role: "",
     repeatPassword: "",
   });
   const { showNotification } = useNotistack();
-  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     const { value, name } = e.target;
     setUserInfo({ ...userInfo, [name]: value });
-  };
-
-  const handleSetErrors = (errors) => {
-    errors[0]?.forEach((error) => {
-      showNotification(error, "error");
-    });
   };
 
   const handleSubmit = async (e) => {
@@ -66,10 +60,15 @@ const AddUser = () => {
       setErrors(response);
     }
   };
+  const [errors, setErrors] = useState({});
+  const handleSetErrors = (errors) => {
+    errors[0]?.forEach((error) => {
+      showNotification(error, "error");
+    });
+  };
 
   useEffect(() => {
     handleSetErrors(errors);
-    console.log(errors);
   }, [errors]);
 
   const navigate = useNavigate();
@@ -189,11 +188,11 @@ const AddUser = () => {
                 // }}
                 // labelId="rol-label"
                 onChange={handleChange}
-                name="userRole"
-                error={errors[1]?.userRole}
+                name="role"
+                error={errors[1]?.role}
                 variant="standard"
               >
-                {userRoles.map((rol) => {
+                {roles.map((rol) => {
                   return <MenuItem value={rol}>{rol}</MenuItem>;
                 })}
               </Select>
@@ -273,12 +272,16 @@ const AddUser = () => {
         {/* </BoxMui> */}
         <ActionButtonContainer>
           <ButtonsContainer>
-            <ActionButton type="submit" disabled={isLoading ? true : false}>
+            <Button
+              variant="outlined"
+              type="submit"
+              disabled={isLoading ? true : false}
+            >
               Create
-            </ActionButton>
-            <CancelActionButton onClick={() => navigate("/home/users")}>
+            </Button>
+            <Button variant="outlined" onClick={() => navigate("/home/users")}>
               Cancel
-            </CancelActionButton>
+            </Button>
           </ButtonsContainer>
         </ActionButtonContainer>
       </FormContainertUsersAction>

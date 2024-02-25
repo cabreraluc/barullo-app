@@ -22,7 +22,6 @@ export default function Prospect({ prospect, disableProspect }) {
     setOpen(false);
   };
 
-  console.log(prospect);
   return (
     <TableRow
       key={prospect.name}

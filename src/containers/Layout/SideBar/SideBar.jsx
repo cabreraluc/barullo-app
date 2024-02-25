@@ -6,22 +6,31 @@ import GroupAddIcon from "@mui/icons-material/GroupAdd";
 import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
+import useAuth from "../../Login/useAuth";
 
 const SideBar = () => {
+  const user = useAuth();
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const value = [
+  let value = [
     { name: "Statistics" },
     { name: "Calendar" },
     { name: "Prospects" },
     { name: "Clients" },
     { name: "Users" },
   ];
+
+  let filteredValue = value.filter((e) => {
+    if (user.role === "Closer" || user.role === "Setter") {
+      return e.name !== "Users";
+    } else return e.name;
+  });
+
   const pathSplitted = pathname.split("/")[2];
 
   return (
     <SideBarContainer>
-      {value.map((e) => (
+      {filteredValue.map((e) => (
         <ButtonBar
           style={
             pathSplitted === e.name.toLocaleLowerCase()

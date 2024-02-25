@@ -27,10 +27,6 @@ const ProspectDetails = () => {
     getProspectById(id);
   }, []);
 
-  useEffect(() => {
-    console.log(prospect);
-  }, [prospect]);
-
   return (
     <ProspectsActionsContainer>
       <FormContainertProspectsActionDiv>
@@ -229,7 +225,7 @@ const ProspectDetails = () => {
               autoComplete="user"
               name="user"
               disabled={true}
-              value={prospect?.user?.name + " " + prospect?.client?.lastName}
+              value={prospect?.user?.name + " " + prospect?.user?.lastName}
             />
             <TextField
               variant="standard"
