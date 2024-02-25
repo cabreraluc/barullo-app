@@ -26,25 +26,25 @@ export const PanelRight = styled.div`
   padding: 2rem;
   width: 20%;
   height: 90%;
-  background-color: black;
+  background-color: white;
   margin-left: 2rem;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  box-shadow: rgba(0, 0, 0, 0.16) -1px 0px 0px, rgba(0, 0, 0, 0.23) 0px 0px 0px;
 `;
 
 export const ButtonBar = styled.div`
   width: 80%;
   height: 3rem;
-  background-color: transparent;
+
   margin: 1rem 0rem;
   cursor: pointer;
-  color: white;
+  color: black;
 
   display: flex;
   justify-content: flex-start;
   align-items: center;
   margin-left: 1rem;
   .hover {
-    background-color: gray;
+    color: gray;
   }
 `;
 

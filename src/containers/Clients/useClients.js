@@ -11,6 +11,9 @@ export default function useClients() {
   const [allClients, setAllClients] = useState([]);
   const [client, setClient] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [page, setPage] = useState(1);
+  const [search, setSearch] = useState("undefined");
+  const [totalPages, setTotalPages] = useState(1);
   const addClient = async (data, setErrors) => {
     setIsLoading(true);
     try {
@@ -41,6 +44,24 @@ export default function useClients() {
       console.log(response);
 
       setAllClients(response);
+    } catch (error) {}
+    setIsLoading(false);
+  };
+
+  const getClientsPaginate = async (id, page, search) => {
+    try {
+      setIsLoading(true);
+
+      const response = await fetchFromApi(
+        `GET`,
+        `clients/paginate/?page=${page}&id=${id}&search=${search}`
+      );
+
+      console.log(response);
+
+      setAllClients(response.docs);
+      setTotalPages(response.totalPages);
+      setPage(response.page);
     } catch (error) {}
     setIsLoading(false);
   };
@@ -103,5 +124,11 @@ export default function useClients() {
     getClientById,
     client,
     isLoading,
+    getClientsPaginate,
+    setPage,
+    page,
+    totalPages,
+    search,
+    setSearch,
   };
 }

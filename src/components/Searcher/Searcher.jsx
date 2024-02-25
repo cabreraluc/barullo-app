@@ -2,8 +2,16 @@ import { SearcherContainer } from "./searcherStyles";
 import TextField from "@mui/material/TextField";
 import SearchIcon from "@mui/icons-material/Search";
 import { useState, useEffect } from "react";
+import RefreshIcon from "@mui/icons-material/Refresh";
 
-const Searcher = ({ context, list, setList }) => {
+const Searcher = ({
+  context,
+  list,
+  setList,
+  searchToGet,
+  setSearchToGet,
+  getFunction,
+}) => {
   const [listToFilter, setListToFilter] = useState([]);
   const [search, setSearch] = useState("");
 
@@ -16,10 +24,25 @@ const Searcher = ({ context, list, setList }) => {
       );
       setList(result);
     }
+    if (context === "clients") {
+      const { value } = e.target;
+      setSearch(value);
+      setSearchToGet(value);
+    }
   };
 
-  const handlerSearch = () => {
-    if (context === "users") {
+  const handlerRefresh = () => {
+    if (context === "clients") {
+      getFunction(null, 1, undefined);
+      setSearch("");
+      setSearchToGet("");
+    }
+  };
+
+  const handlerSearch = (e) => {
+    e.preventDefault();
+    if (context === "clients") {
+      getFunction(null, 1, searchToGet);
     }
   };
 
@@ -32,8 +55,18 @@ const Searcher = ({ context, list, setList }) => {
   }, [list]);
 
   return (
-    <SearcherContainer>
-      <SearchIcon sx={{ color: "white", marginTop: 2, marginRight: 1 }} />
+    <SearcherContainer onSubmit={(e) => handlerSearch(e)}>
+      {context === "users" ? null : (
+        <SearchIcon
+          sx={{
+            color: "black",
+            marginTop: 2,
+            marginRight: 1,
+            cursor: "pointer",
+          }}
+          type="submit"
+        />
+      )}
       <TextField
         onChange={(e) => handlerSearchChange(e)}
         value={search}
@@ -42,7 +75,7 @@ const Searcher = ({ context, list, setList }) => {
         variant="standard"
         sx={{
           input: {
-            color: `white`,
+            color: `black`,
           },
         }}
         InputLabelProps={{
@@ -51,6 +84,18 @@ const Searcher = ({ context, list, setList }) => {
           },
         }}
       />
+
+      {context === "users" ? null : (
+        <RefreshIcon
+          sx={{
+            color: "black",
+            marginTop: 2,
+            marginLeft: 1,
+            cursor: "pointer",
+          }}
+          onClick={handlerRefresh}
+        ></RefreshIcon>
+      )}
     </SearcherContainer>
   );
 };
