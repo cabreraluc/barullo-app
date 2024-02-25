@@ -167,7 +167,7 @@ export const ActionButtonContainer = styled.div`
   width: 100%;
   height: 3rem;
   display: flex;
-
+  margin: 1rem;
   justify-content: flex-end;
   align-items: center;
 `;

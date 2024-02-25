@@ -1,8 +1,12 @@
 import axios from "axios";
 import env from "../../env/env";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import useNotistack from "../../components/Notistack/useNotistack";
 
 export default function useLogin() {
+  const { showNotification } = useNotistack();
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const handleRedirect = (path) => {
     navigate(path);
@@ -23,7 +27,7 @@ export default function useLogin() {
       handleRedirect("/home");
     } catch (error) {
       console.log(error);
-      alert(error.response.data.error);
+      showNotification(error.response.data.error, "error");
     }
   };
 
@@ -32,5 +36,5 @@ export default function useLogin() {
     handleRedirect("/login");
   };
 
-  return { loginUser, logOut };
+  return { loginUser, logOut, isLoading };
 }

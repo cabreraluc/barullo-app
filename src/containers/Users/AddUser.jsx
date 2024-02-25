@@ -29,6 +29,7 @@ import { useNavigate } from "react-router-dom";
 import useUsers from "./useUsers";
 import { userValidations } from "./userValidations";
 import useNotistack from "../../components/Notistack/useNotistack";
+import Button from "@mui/material/Button";
 
 const AddUser = () => {
   const roles = ["Admin", "Setter", "Closer"];
@@ -43,17 +44,10 @@ const AddUser = () => {
     repeatPassword: "",
   });
   const { showNotification } = useNotistack();
-  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     const { value, name } = e.target;
     setUserInfo({ ...userInfo, [name]: value });
-  };
-
-  const handleSetErrors = (errors) => {
-    errors[0]?.forEach((error) => {
-      showNotification(error, "error");
-    });
   };
 
   const handleSubmit = async (e) => {
@@ -65,6 +59,12 @@ const AddUser = () => {
     } else {
       setErrors(response);
     }
+  };
+  const [errors, setErrors] = useState({});
+  const handleSetErrors = (errors) => {
+    errors[0]?.forEach((error) => {
+      showNotification(error, "error");
+    });
   };
 
   useEffect(() => {
@@ -272,12 +272,16 @@ const AddUser = () => {
         {/* </BoxMui> */}
         <ActionButtonContainer>
           <ButtonsContainer>
-            <ActionButton type="submit" disabled={isLoading ? true : false}>
+            <Button
+              variant="outlined"
+              type="submit"
+              disabled={isLoading ? true : false}
+            >
               Create
-            </ActionButton>
-            <CancelActionButton onClick={() => navigate("/home/users")}>
+            </Button>
+            <Button variant="outlined" onClick={() => navigate("/home/users")}>
               Cancel
-            </CancelActionButton>
+            </Button>
           </ButtonsContainer>
         </ActionButtonContainer>
       </FormContainertUsersAction>

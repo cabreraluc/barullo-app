@@ -127,7 +127,7 @@ export const FormContainertUsersAction = styled.form`
 
 export const FormSectionsContainer = styled.div`
   width: 90%;
-  height: 90%;
+  height: 50%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -156,7 +156,6 @@ export const ActionButtonContainer = styled.div`
   width: 100%;
   height: 3rem;
   display: flex;
-
   justify-content: flex-end;
   align-items: center;
 `;
@@ -165,7 +164,6 @@ export const ButtonsContainer = styled.div`
   width: 25%;
   height: 3rem;
   display: flex;
-
   justify-content: space-around;
   align-items: center;
 `;

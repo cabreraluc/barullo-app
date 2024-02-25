@@ -1,8 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useLogin from "./useLogin";
-import styles from "../../componentsCss/RegisterAndLogin/RegisterAndLogin.module.css";
-import { Link } from "react-router-dom";
 import useNotistack from "../../components/Notistack/useNotistack";
+import { TextField } from "@mui/material";
+import { ActionButton } from "../../components/Global/GlobalStyles";
+import {
+  LoginContainer,
+  LoginFormContainer,
+  TitleContainer,
+  Title,
+  LoginForm,
+  ButtonsContainer,
+} from "./loginStyles";
+
+import Button from "@mui/material/Button";
 
 export default function Login() {
   const { showNotification } = useNotistack();
@@ -10,57 +20,84 @@ export default function Login() {
     email: "",
     password: "",
   });
-  const { loginUser } = useLogin();
+  const { loginUser, isLoading } = useLogin();
 
-  const handleChange = ({ value, name }) => {
+  const handleChange = (e) => {
+    const { value, name } = e.target;
     setData({ ...data, [name]: value });
   };
 
-  const HandleLoginUser = () => {
+  const handleLoginUser = async (e) => {
+    e.preventDefault();
     if (data.email === "" || data.password === "") {
-      showNotification("Complete the data");
+      showNotification("Complete the fields.", "error");
     } else {
-      loginUser(data);
+      loginUser(data, setErrors);
     }
   };
 
-  return (
-    <div className={styles.container}>
-      <div className={styles.form}>
-        <div className={styles.title}>
-          <h1>Enter your Lejos email and password</h1>
-        </div>
-        <div className={styles.form_body}>
-          <div className={styles.formItem}>
-            <span>Email</span>
-            <input
-              type="text"
-              placeholder="Email"
-              name={"email"}
-              value={data.email}
-              onChange={(e) => handleChange(e.target)}
-            />
-          </div>
-          <div className={styles.formItem}>
-            <span>Password</span>
-            <input
-              type="text"
-              placeholder="Password"
-              name={"password"}
-              value={data.password}
-              onChange={(e) => handleChange(e.target)}
-            />
-          </div>
+  const [errors, setErrors] = useState({});
+  const handleSetErrors = (errors) => {
+    errors[0]?.forEach((error) => {
+      showNotification(error, "error");
+    });
+  };
 
-          <button className={styles.buttonRegister} onClick={HandleLoginUser}>
-            Log In
-          </button>
-          <span>I do not remember my password</span>
-          <Link to="/register">
-            <span> Click here</span>
-          </Link>
-        </div>
-      </div>
-    </div>
+  useEffect(() => {
+    handleSetErrors(errors);
+  }, [errors]);
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
+
+  return (
+    <LoginContainer>
+      <LoginFormContainer>
+        <TitleContainer>
+          <Title>Welcome to Lejo's</Title>
+        </TitleContainer>
+        <LoginForm onSubmit={(e) => handleLoginUser(e)} noValidate>
+          <TextField
+            autoComplete="given-email"
+            required
+            id="email"
+            label="Email"
+            autoFocus
+            name="email"
+            fullWidth
+            onChange={(e) => handleChange(e)}
+            error={errors[1]?.email}
+            value={data.email}
+            variant="outlined"
+            sx={{ marginBottom: "1rem" }}
+          />
+          <TextField
+            required
+            fullWidth
+            label="Password"
+            id="password"
+            autoComplete="new-password"
+            name="password"
+            onChange={(e) => handleChange(e)}
+            error={errors[1]?.password}
+            value={data.password}
+            type="password"
+            variant="outlined"
+            sx={{ marginBottom: "1rem" }}
+          />
+
+          <ButtonsContainer>
+            <Button
+              variant="contained"
+              type="submit"
+              disabled={isLoading ? true : false}
+            >
+              Login
+            </Button>
+          </ButtonsContainer>
+        </LoginForm>
+      </LoginFormContainer>
+    </LoginContainer>
   );
 }

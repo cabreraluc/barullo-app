@@ -30,6 +30,7 @@ import useUsers from "./useUsers";
 import { userValidations } from "./userValidations";
 import useNotistack from "../../components/Notistack/useNotistack";
 import { useParams } from "react-router-dom";
+import Button from "@mui/material/Button";
 
 const EditUser = () => {
   const roles = ["Admin", "Setter", "Closer"];
@@ -290,12 +291,16 @@ const EditUser = () => {
         {/* </BoxMui> */}
         <ActionButtonContainer>
           <ButtonsContainer>
-            <ActionButton type="submit" disabled={isLoading ? true : false}>
-              Create
-            </ActionButton>
-            <CancelActionButton onClick={() => navigate("/home/users")}>
+            <Button
+              variant="outlined"
+              type="submit"
+              disabled={isLoading ? true : false}
+            >
+              edit
+            </Button>
+            <Button variant="outlined" onClick={() => navigate("/home/users")}>
               Cancel
-            </CancelActionButton>
+            </Button>
           </ButtonsContainer>
         </ActionButtonContainer>
       </FormContainertUsersAction>
