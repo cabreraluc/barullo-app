@@ -27,6 +27,8 @@ const Prospects = () => {
     getProspectsPaginate,
     page,
     totalPages,
+    changeProspectStatus,
+    changeInterestLevel,
   } = useProspects();
 
   const user = useAuth();
@@ -42,9 +44,11 @@ const Prospects = () => {
           <Loader></Loader>
         ) : (
           <ProspectsTable
+            changeProspectStatus={changeProspectStatus}
             allProspects={allProspects}
             disableProspect={disableProspect}
             isLoading={isLoading}
+            changeInterestLevel={changeInterestLevel}
           />
         )}
         <Pagination

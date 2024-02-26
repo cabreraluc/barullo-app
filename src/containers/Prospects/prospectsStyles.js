@@ -15,7 +15,7 @@ export const ProspectsList = styled.div`
   justify-content: center;
   align-items: center;
 
-  width: 70%;
+  width: 75%;
   height: 90%;
   margin-left: 2rem;
 `;
@@ -24,7 +24,7 @@ export const PanelRight = styled.div`
   display: flex;
   flex-direction: column;
   padding: 2rem;
-  width: 20%;
+  width: 15%;
   height: 90%;
   background-color: white;
   margin-left: 2rem;
@@ -194,4 +194,12 @@ export const BoxMui = styled(Box)`
   box-shadow: 2px 4px 12px -2px rgba(0, 0, 0, 0.26);
   -webkit-box-shadow: 2px 4px 12px -2px rgba(0, 0, 0, 0.26);
   -moz-box-shadow: 2px 4px 12px -2px rgba(0, 0, 0, 0.26);
+`;
+
+export const RedesContainer = styled.div`
+  width: 40px;
+  margin-left: 2rem;
+  diplay: flex;
+  align-items: center;
+  justify-content: center;
 `;

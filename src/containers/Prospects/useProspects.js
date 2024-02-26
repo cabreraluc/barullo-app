@@ -98,6 +98,36 @@ export default function useProspects() {
     }
   };
 
+  const changeProspectStatus = async (id, status) => {
+    try {
+      const response = await fetchFromApi(
+        `PUT`,
+        `prospects/prospect-status/${id}?status=${status}`
+      );
+
+      getProspectsPaginate(user.id, page, search);
+
+      showNotification(response[0]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const changeInterestLevel = async (id, interest) => {
+    try {
+      const response = await fetchFromApi(
+        `PUT`,
+        `prospects/interest-level/${id}?interest=${interest}`
+      );
+
+      getProspectsPaginate(user.id, page, search);
+
+      showNotification(response[0]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const editProspect = async (data, id, setErrors) => {
     setIsLoading(true);
     try {
@@ -134,5 +164,7 @@ export default function useProspects() {
     totalPages,
     search,
     setSearch,
+    changeProspectStatus,
+    changeInterestLevel,
   };
 }

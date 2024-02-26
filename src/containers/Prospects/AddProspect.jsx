@@ -39,7 +39,7 @@ const AddProspect = () => {
   const { getUsers, allUsers } = useUsers();
   const { getClients, allClients } = useClients();
   const genderArray = ["Male", "Female", "Other"];
-  const interestArray = ["1", "2", "3", "4", "5"];
+  const interestArray = ["Very low", "Low", "Medium", "High", "Very high"];
   const allCountriesArray = [
     "Afghanistan",
     "Albania",
@@ -258,7 +258,7 @@ const AddProspect = () => {
     country: "",
     gender: "",
     genderComments: "",
-    interestLevel: "",
+    interestLevel: "medium",
     reasonForContact: "",
     occupation: "",
     instagram: "",
@@ -591,6 +591,7 @@ const AddProspect = () => {
                 name="interestLevel"
                 error={errors[1]?.interestLevel}
                 variant="standard"
+                value={prospectInfo.interestLevel}
               >
                 {interestArray.map((il) => {
                   return <MenuItem value={il}>{il}</MenuItem>;

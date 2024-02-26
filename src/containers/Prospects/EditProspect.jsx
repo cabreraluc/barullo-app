@@ -40,7 +40,7 @@ const EditProspect = () => {
   const { getUsers, allUsers } = useUsers();
   const { getClients, allClients } = useClients();
   const genderArray = ["Male", "Female", "Other"];
-  const interestArray = ["1", "2", "3", "4", "5"];
+  const interestArray = ["very low", "low", "medium", "high", "very high"];
   const allCountriesArray = [
     "Afghanistan",
     "Albania",
