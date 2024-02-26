@@ -258,7 +258,7 @@ const AddProspect = () => {
     country: "",
     gender: "",
     genderComments: "",
-    interestLevel: "medium",
+    interestLevel: "Medium",
     reasonForContact: "",
     occupation: "",
     instagram: "",
