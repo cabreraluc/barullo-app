@@ -15,7 +15,7 @@ export const ClientsList = styled.div`
   justify-content: center;
   align-items: center;
 
-  width: 70%;
+  width: 75%;
   height: 90%;
   margin-left: 2rem;
 `;
@@ -24,7 +24,7 @@ export const PanelRight = styled.div`
   display: flex;
   flex-direction: column;
   padding: 2rem;
-  width: 20%;
+  width: 15%;
   height: 90%;
   background-color: white;
   margin-left: 2rem;
