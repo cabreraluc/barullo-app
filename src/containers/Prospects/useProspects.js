@@ -4,6 +4,7 @@ import { useState } from "react";
 import useNotistack from "../../components/Notistack/useNotistack";
 import { useNavigate } from "react-router-dom";
 import fetchFromApi from "../../utils/fetchFromapi";
+import useAuth from "../../containers/Login/useAuth";
 
 export default function useProspects() {
   const navigate = useNavigate();
@@ -11,6 +12,11 @@ export default function useProspects() {
   const [allProspects, setAllProspects] = useState([]);
   const [prospect, setProspect] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [page, setPage] = useState(1);
+  const [search, setSearch] = useState("undefined");
+  const [totalPages, setTotalPages] = useState(1);
+  const user = useAuth();
+
   const addProspect = async (data, setErrors) => {
     setIsLoading(true);
     try {
@@ -43,6 +49,24 @@ export default function useProspects() {
     setIsLoading(false);
   };
 
+  const getProspectsPaginate = async (id, page, search) => {
+    try {
+      setIsLoading(true);
+
+      const response = await fetchFromApi(
+        `GET`,
+        `prospects/paginate/?page=${page}&id=${id}&search=${search}`
+      );
+
+      console.log(response);
+
+      setAllProspects(response.docs);
+      setTotalPages(response.totalPages);
+      setPage(response.page);
+    } catch (error) {}
+    setIsLoading(false);
+  };
+
   const getProspectById = async (id) => {
     try {
       const response = await fetchFromApi(`GET`, `/prospects/${id}`);
@@ -63,8 +87,11 @@ export default function useProspects() {
         `prospects/disable-prospect`,
         id
       );
-
-      getProspects();
+      if (allProspects.length === 1 && page !== 1) {
+        getProspectsPaginate(user.id, page - 1, search);
+      } else {
+        getProspectsPaginate(user.id, page, search);
+      }
       showNotification(response[0]);
     } catch (error) {
       console.log(error);
@@ -101,5 +128,11 @@ export default function useProspects() {
     getProspectById,
     prospect,
     isLoading,
+    getProspectsPaginate,
+    setPage,
+    page,
+    totalPages,
+    search,
+    setSearch,
   };
 }

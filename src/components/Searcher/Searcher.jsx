@@ -3,7 +3,7 @@ import TextField from "@mui/material/TextField";
 import SearchIcon from "@mui/icons-material/Search";
 import { useState, useEffect } from "react";
 import RefreshIcon from "@mui/icons-material/Refresh";
-
+import useAuth from "../../containers/Login/useAuth";
 const Searcher = ({
   context,
   list,
@@ -14,6 +14,7 @@ const Searcher = ({
 }) => {
   const [listToFilter, setListToFilter] = useState([]);
   const [search, setSearch] = useState("");
+  const { id } = useAuth();
 
   const handlerSearchChange = (e) => {
     if (context === "users") {
@@ -29,11 +30,23 @@ const Searcher = ({
       setSearch(value);
       setSearchToGet(value);
     }
+
+    if (context === "prospects") {
+      const { value } = e.target;
+      setSearch(value);
+      setSearchToGet(value);
+    }
   };
 
   const handlerRefresh = () => {
     if (context === "clients") {
       getFunction(null, 1, undefined);
+      setSearch("");
+      setSearchToGet("");
+    }
+
+    if (context === "prospects") {
+      getFunction(id, 1, undefined);
       setSearch("");
       setSearchToGet("");
     }
@@ -43,6 +56,20 @@ const Searcher = ({
     e.preventDefault();
     if (context === "clients") {
       getFunction(null, 1, searchToGet);
+    }
+
+    if (context === "prospects") {
+      getFunction(id, 1, searchToGet);
+    }
+  };
+
+  const handlerSearchButton = (e) => {
+    if (context === "clients") {
+      getFunction(null, 1, searchToGet);
+    }
+
+    if (context === "prospects") {
+      getFunction(id, 1, searchToGet);
     }
   };
 
@@ -65,6 +92,7 @@ const Searcher = ({
             cursor: "pointer",
           }}
           type="submit"
+          onClick={handlerSearchButton}
         />
       )}
       <TextField

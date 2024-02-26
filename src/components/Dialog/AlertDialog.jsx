@@ -4,6 +4,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import IconButton from "@mui/material/IconButton";
 import { BtnCancelDialog, BtnSaveDialog, Title } from "./alertDialogStyles.js";
+import { Button } from "@mui/material";
 
 const contextMap = {
   users: {
@@ -77,10 +78,8 @@ export default function AlertDialog({
               marginBottom: "2.2rem",
             }}
           >
-            <BtnCancelDialog onClick={() => onClose()}>CANCEL</BtnCancelDialog>
-            <BtnSaveDialog onClick={() => handlerAction(objectId)}>
-              {action}
-            </BtnSaveDialog>
+            <Button onClick={() => onClose()}>CANCEL</Button>
+            <Button onClick={() => handlerAction(objectId)}>{action}</Button>
           </div>
         </div>
       </Dialog>
