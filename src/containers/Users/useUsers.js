@@ -43,7 +43,7 @@ export default function useUsers() {
   };
 
   const getUserById = async (id) => {
-    console.log(id);
+    setIsLoading(true);
     try {
       const response = await fetchFromApi(`GET`, `users/${id}`);
 
@@ -54,6 +54,7 @@ export default function useUsers() {
     } catch (error) {
       showNotification(error, "error");
     }
+    setIsLoading(false);
   };
 
   const disableUser = async (id) => {

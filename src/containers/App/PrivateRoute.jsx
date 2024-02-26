@@ -51,9 +51,8 @@ const PrivateRoute = () => {
       "/home/clients",
     ],
     Client: [
-      "/add-prospect",
       `/prospect-details/${id}`,
-      `/edit-prospect/${id}`,
+
       "/home",
       "/home/statistics",
       "/home/calendar",

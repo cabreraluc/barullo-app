@@ -18,13 +18,18 @@ import { useNavigate } from "react-router-dom";
 import useProspects from "./useProspects";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import useAuth from "../Login/useAuth";
+import useUsers from "../Users/useUsers";
 const ProspectDetails = () => {
+  const { getUserById, user } = useUsers();
+  const userLocalStorage = useAuth();
   const navigate = useNavigate();
   const { id } = useParams();
   const { prospect, getProspectById } = useProspects();
 
   useEffect(() => {
     getProspectById(id);
+    getUserById(userLocalStorage.id);
   }, []);
 
   return (
@@ -45,10 +50,12 @@ const ProspectDetails = () => {
             {prospect.name ? (
               <Title>
                 {prospect.name} {prospect.lastName}{" "}
-                <EditIcon
-                  onClick={() => navigate(`/edit-prospect/${id}`)}
-                  sx={{ cursor: "pointer", marginLeft: ".3rem" }}
-                />
+                {user.role !== "Client" ? (
+                  <EditIcon
+                    onClick={() => navigate(`/edit-prospect/${id}`)}
+                    sx={{ cursor: "pointer", marginLeft: ".3rem" }}
+                  />
+                ) : null}
               </Title>
             ) : null}
           </TitleContainer>

@@ -34,6 +34,7 @@ export default function ProspectTable({
             <TableCell align="left">Interest level</TableCell>
             <TableCell align="left">Status</TableCell>
             <TableCell align="left">Social networks</TableCell>
+            <TableCell align="left">Country</TableCell>
             <TableCell sx={{ width: "1.5rem" }} align="left"></TableCell>
             <TableCell sx={{ width: "1.5rem" }} align="left"></TableCell>
           </TableRow>

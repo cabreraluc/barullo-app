@@ -12,7 +12,7 @@ import Loader from "../../componentsCss/Loader/Loader";
 import Searcher from "../../components/Searcher/Searcher";
 import Pagination from "../../components/Pagination/Paginate";
 import useAuth from "../Login/useAuth";
-const values = [{ name: "Add Prospect", path: "/add-prospect" }];
+import useUsers from "../Users/useUsers";
 
 const Prospects = () => {
   const navigate = useNavigate();
@@ -31,10 +31,11 @@ const Prospects = () => {
     changeInterestLevel,
   } = useProspects();
 
-  const user = useAuth();
-
+  const userLocalStorage = useAuth();
+  const { getUserById, user } = useUsers();
   useEffect(() => {
-    getProspectsPaginate(user.id, 1, search);
+    getProspectsPaginate(userLocalStorage.id, 1, search);
+    getUserById(userLocalStorage.id);
   }, []);
 
   return (
@@ -68,12 +69,11 @@ const Prospects = () => {
           setSearchToGet={setSearch}
           getFunction={getProspectsPaginate}
         />
-
-        {values.map((e) => (
-          <ButtonBar onClick={e.path ? () => navigate(e.path) : null}>
-            {e.name}
+        {user.role === "Client" ? null : user.role?.length ? (
+          <ButtonBar onClick={() => navigate("/add-prospect")}>
+            Add Prospect
           </ButtonBar>
-        ))}
+        ) : null}
       </PanelRight>
     </ProspectsContainer>
   );
