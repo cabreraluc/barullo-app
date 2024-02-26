@@ -4,6 +4,7 @@ import { useState } from "react";
 import useNotistack from "../../components/Notistack/useNotistack";
 import { useNavigate } from "react-router-dom";
 import fetchFromApi from "../../utils/fetchFromapi";
+import useAuth from "../Login/useAuth";
 
 export default function useClients() {
   const navigate = useNavigate();
@@ -14,6 +15,8 @@ export default function useClients() {
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("undefined");
   const [totalPages, setTotalPages] = useState(1);
+  const user = useAuth();
+
   const addClient = async (data, setErrors) => {
     setIsLoading(true);
     try {
@@ -86,7 +89,12 @@ export default function useClients() {
         id
       );
 
-      getClients();
+      if (allClients.length === 1 && page !== 1) {
+        getClientsPaginate(user.id, page - 1, search);
+      } else {
+        getClientsPaginate(user.id, page, search);
+      }
+
       showNotification(response[0]);
     } catch (error) {
       console.log(error);

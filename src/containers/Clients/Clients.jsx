@@ -50,6 +50,7 @@ const Clients = () => {
           totalPages={totalPages}
           handlerGetFunction={getClientsPaginate}
           context={"clients"}
+          search={search}
         />
       </ClientsList>
       <PanelRight>
