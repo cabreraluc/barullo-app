@@ -52,3 +52,49 @@ export const Title = styled.h1`
   margin-top: 1.3rem;
   margin-bottom: 1.2rem;
 `;
+
+export const AlertEditContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+`;
+
+export const AlertEditFormContainer = styled.div`
+  width: 25%;
+  height: 65%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+`;
+
+export const AlertEditTitleContainer = styled.div`
+  width: 100%;
+  display: flex;
+  margin-bottom: 3rem;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const AlertEditForm = styled.form`
+  width: 70%;
+  height: 40%;
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+`;
+
+export const ButtonsContainer = styled.div`
+  width: 25%;
+  height: 3rem;
+  display: flex;
+
+  justify-content: space-around;
+  align-items: center;
+`;
