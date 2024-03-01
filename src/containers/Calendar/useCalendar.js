@@ -11,11 +11,12 @@ export default function useClients() {
   const { showNotification } = useNotistack();
   const [allActivities, setAllActivities] = useState([]);
   const [activity, setActivity] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState("undefined");
+  const [activitiesOfDay, setActivitiesOfDay] = useState([]);
   const user = useAuth();
 
-  const addActivity = async (data) => {
+  const addActivity = async (data, setErrors) => {
     setIsLoading(true);
     try {
       const response = await fetchFromApi(
@@ -26,10 +27,11 @@ export default function useClients() {
       if (response) {
         getActivities();
         showNotification(response[1]);
+        getActivitiesOfDay(data.start);
       }
     } catch (error) {
       if (error.response.data.length) {
-        // setErrors(error.response.data);
+        setErrors(error.response.data);
       } else {
         showNotification(error.response.data.error, "error");
       }
@@ -46,6 +48,22 @@ export default function useClients() {
       console.log(response);
 
       setAllActivities(response);
+    } catch (error) {}
+    setIsLoading(false);
+  };
+
+  const getActivitiesOfDay = async (date) => {
+    try {
+      setIsLoading(true);
+
+      const response = await fetchFromApi(
+        `GET`,
+        `calendar/event-day?date=${date}`
+      );
+
+      console.log(response);
+
+      setActivitiesOfDay(response);
     } catch (error) {}
     setIsLoading(false);
   };
@@ -88,6 +106,7 @@ export default function useClients() {
       if (response) {
         showNotification(response[1]);
         getActivities();
+        getActivitiesOfDay(data.start);
       }
     } catch (error) {
       if (error.response.data.length) {
@@ -100,6 +119,9 @@ export default function useClients() {
   };
 
   return {
+    getActivitiesOfDay,
+    setActivitiesOfDay,
+    activitiesOfDay,
     addActivity,
     getActivities,
     allActivities,

@@ -15,19 +15,20 @@ import InputLabel from "@mui/material/InputLabel";
 import { AlertAddForm, ButtonsContainer } from "./calendarStyles";
 import useProspects from "../../containers/Prospects/useProspects";
 
-export default function AlertAddActivity({
+export default function AlertActivityOfDay({
   open,
   onClose,
   newActivity,
   setNewActivity,
   handleSubmit,
-  errors,
 }) {
   const { getProspects, allProspects } = useProspects();
+
   const handleChange = (e) => {
     const { value, name } = e.target;
     setNewActivity({ ...newActivity, [name]: value });
   };
+
   useEffect(() => {
     getProspects();
   }, []);
@@ -90,6 +91,16 @@ export default function AlertAddActivity({
             <AlertAddForm
               onSubmit={(e) => {
                 handleSubmit(e);
+
+                setNewActivity({
+                  title: "",
+                  prospect: "",
+                  details: "",
+                  start: "",
+                  end: "",
+                  allDay: "",
+                  id: "",
+                });
               }}
               noValidate
             >
@@ -102,8 +113,8 @@ export default function AlertAddActivity({
                 name="title"
                 fullWidth
                 onChange={(e) => handleChange(e)}
-                error={errors[1]?.title}
-                value={newActivity.title}
+                // error={errors[1]?.email}
+                value={newActivity?.title}
                 variant="outlined"
                 sx={{ marginBottom: "1rem" }}
               />
@@ -115,8 +126,8 @@ export default function AlertAddActivity({
                 fullWidth
                 name="details"
                 onChange={handleChange}
-                error={errors[1]?.details}
-                value={newActivity.details}
+                // error={errors[1]?.comments}
+                value={newActivity?.details}
                 sx={{ marginBottom: "1rem" }}
               />
               <FormControl
@@ -136,7 +147,7 @@ export default function AlertAddActivity({
                   // labelId="rol-label"
                   onChange={handleChange}
                   name="prospect"
-                  error={errors[1]?.prospect}
+                  // error={errors[1]?.role}
                   variant="standard"
                 >
                   {allProspects.map((prospect) => {

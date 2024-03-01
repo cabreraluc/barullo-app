@@ -49,3 +49,7 @@ b {
   max-width: 1100px;
   margin: 0 auto;
 }
+
+.selected {
+  background-color: #add8e6 !important;
+}

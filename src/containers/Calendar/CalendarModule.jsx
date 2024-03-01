@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { formatDate } from "@fullcalendar/core";
-import FullCalendar from "@fullcalendar/react";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import timeGridPlugin from "@fullcalendar/timegrid";
-import interactionPlugin from "@fullcalendar/interaction";
 import "./calendar.css";
 import {
   CalendarModuleContainer,
   CalendarModuleSubContainer,
-  CalendarContainer,
   ButtonBar,
   PanelRight,
-  TextCalendarEvent,
+  Title,
+  AlertAddTitleContainer,
 } from "./calendarStyles";
 import { useNavigate } from "react-router-dom";
 import useCalendar from "./useCalendar";
 import AlertActivityInfo from "./AlertActivityInfo";
 import AlertAddActivity from "./AlertAddActivity";
 import Calendar from "./Calendar";
+import ActivityDailyTable from "../../components/Calendar/ActivityDailyTable";
+import moment from "moment";
+import Loader from "../../componentsCss/Loader/Loader";
+import { calendarValidations } from "./calendarValidations";
+import useNotistack from "../../components/Notistack/useNotistack";
 
 // let eventGuid = 0;
 // let todayStr = new Date().toISOString().replace(/T.*$/, ""); // YYYY-MM-DD of today
@@ -32,10 +32,13 @@ const CalendarModule = () => {
     allActivities,
     getActivities,
     editActivity,
-    setAllActivities,
+    activitiesOfDay,
+    setActivitiesOfDay,
+    getActivitiesOfDay,
+    isLoading,
   } = useCalendar();
   const [weekendsVisible, setWeekendsVisible] = useState(true);
-  const [currentEvents, setCurrentEvents] = useState([]);
+  const [selectedDates, setSelectedDates] = useState([]);
   const [idOfActivity, setIdOfActivity] = useState("");
   const [newActivity, setNewActivity] = useState({
     title: "",
@@ -46,20 +49,48 @@ const CalendarModule = () => {
     allDay: "",
     id: "",
   });
+
+  const [errorsAdd, setErrorsAdd] = useState([]);
+  const [isInDayGrid, setIsInDayGrid] = useState(false);
   const [open, setOpen] = useState(false);
   const [openAdd, setOpenAdd] = useState(false);
+  const [addActivityQuestion, setAddActivityQuestion] = useState(false);
+  const [day, setDay] = useState();
   const values = [{ name: "Add Client", path: "/add-client" }];
   const navigate = useNavigate();
+  const { showNotification } = useNotistack();
 
   function handleWeekendsToggle() {
     setWeekendsVisible(!weekendsVisible);
   }
 
+  let selectedDatesEnter = null;
+
   function handleDateSelect(selectInfo) {
-    setOpenAdd(true);
+    let dates = [...selectedDates];
+    let dateStr = selectInfo.startStr;
+
+    // Si la fecha ya está seleccionada, la removemos de la lista
+    if (dates.includes(dateStr)) {
+      dates = dates.filter((date) => date !== dateStr);
+    } else {
+      // Si no está seleccionada, la agregamos a la lista
+      dates.push(dateStr);
+    }
+    if (!isInDayGrid) {
+      getActivitiesOfDay(selectInfo.start);
+    }
+
+    selectedDatesEnter = {
+      start: selectInfo.startStr,
+      end: selectInfo.endStr,
+    };
+
+    setSelectedDates(dates);
+    formatDateToDayState(selectInfo.start);
     let calendarApi = selectInfo.view.calendar;
 
-    calendarApi.unselect(); // clear date selection
+    // clear date selection
 
     setNewActivity({
       ...newActivity,
@@ -69,20 +100,67 @@ const CalendarModule = () => {
     });
   }
 
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Shift" && newActivity.start.length) {
+        setOpenAdd(true);
+        event.stopPropagation();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [newActivity]);
+
+  useEffect(() => {
+    if (addActivityQuestion) {
+      setOpenAdd(true);
+    }
+  }, [addActivityQuestion]);
+
   function handleEventClick(clickInfo) {
     setOpen(true);
     setIdOfActivity(clickInfo.event._def.extendedProps._id);
   }
 
   function handleEvents(events) {
-    console.log(events);
+    // console.log(events);
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addActivity(newActivity);
-    setOpenAdd(false);
+    const isValid = calendarValidations(newActivity);
+    if (isValid.valid) {
+      addActivity(newActivity, setErrorsAdd);
+      setOpenAdd(false);
+
+      setNewActivity({
+        title: "",
+        prospect: "",
+        details: "",
+        start: "",
+        end: "",
+        allDay: "",
+        id: "",
+      });
+    } else {
+      console.log(isValid);
+      setErrorsAdd(isValid);
+    }
   };
+
+  const handleSetErrors = (errors) => {
+    errors[0]?.forEach((error) => {
+      showNotification(error, "error");
+    });
+  };
+
+  useEffect(() => {
+    handleSetErrors(errorsAdd);
+  }, [errorsAdd]);
 
   const handleEventChange = (e) => {
     console.log(e);
@@ -94,47 +172,119 @@ const CalendarModule = () => {
       start: e?.event?._instance?.range?.start,
       end: e?.event?._instance?.range?.end,
     };
+    formatDateToDayState(data.start);
     editActivity(data, id);
-    console.log(id, "id");
-    console.log(data.start, data.end, "data");
   };
 
   useEffect(() => {
     getActivities();
+    getActivitiesOfDay(new Date().toISOString().replace(/T.*$/, "")); // YYYY-MM-DD of today);
   }, []);
+
+  const formatDateToDayState = (date) => {
+    let formattedDate = date.toISOString().slice(0, 10);
+    setDay(formattedDate);
+  };
+
+  const handleDateMessage = (date) => {
+    // let dateToFormat = new Date(date);
+
+    // let options = {
+    //   weekday: "long",
+    //   year: "numeric",
+    //   month: "long",
+    //   day: "numeric",
+    //   hour: "2-digit",
+    //   minute: "2-digit",
+    // };
+
+    // let message = dateToFormat.toLocaleString("en-US", options);
+    // return message;
+    const a = moment(date).format("D/M/YY, h:mm a");
+    return a;
+  };
 
   return (
     <CalendarModuleContainer>
-      <AlertActivityInfo
-        open={open}
-        onClose={() => setOpen(false)}
-        idOfActivity={idOfActivity}
-        getActivities={getActivities}
-      ></AlertActivityInfo>
-      <AlertAddActivity
-        newActivity={newActivity}
-        setNewActivity={setNewActivity}
-        open={openAdd}
-        onClose={() => setOpenAdd(false)}
-        handleSubmit={handleSubmit}
-      ></AlertAddActivity>
       <CalendarModuleSubContainer>
         <Calendar
+          getActivitiesOfDay={getActivitiesOfDay}
           allActivities={allActivities}
           handleWeekendsToggle={handleWeekendsToggle}
           handleDateSelect={handleDateSelect}
           handleEventClick={handleEventClick}
           handleEvents={handleEvents}
           handleEventChange={handleEventChange}
+          formatDateToDayState={formatDateToDayState}
+          handleDateMessage={handleDateMessage}
+          isInDayGrid={isInDayGrid}
+          setIsInDayGrid={setIsInDayGrid}
+          selectedDates={selectedDates}
         ></Calendar>
       </CalendarModuleSubContainer>
       <PanelRight>
-        {values.map((e) => (
-          <ButtonBar onClick={e.path ? () => navigate(e.path) : null}>
-            {e.name}
-          </ButtonBar>
-        ))}
+        <AlertAddTitleContainer>
+          <Title>{moment(day).format("DD/MM/YYYY dddd")}</Title>
+          <div
+            style={{
+              height: "5rem",
+            }}
+          >
+            {newActivity.start.length ? (
+              <h4
+                style={{
+                  cursor: "pointer",
+                  backgroundColor: "gray",
+                  color: "white",
+                  padding: "1rem",
+                  borderRadius: "10px",
+                }}
+                onClick={() => setAddActivityQuestion(true)}
+              >
+                Do you want to add an event at{" "}
+                {newActivity.allDay
+                  ? handleDateMessage(newActivity.start).slice(0, 6)
+                  : handleDateMessage(newActivity.start) +
+                    " " +
+                    "to " +
+                    handleDateMessage(newActivity.end)}
+                ? click this message or press Shift.
+              </h4>
+            ) : null}
+          </div>
+        </AlertAddTitleContainer>
+        {isLoading ? (
+          <Loader></Loader>
+        ) : (
+          <ActivityDailyTable
+            isLoading={isLoading}
+            onOpen={() => setOpen(true)}
+            setIdOfActivity={setIdOfActivity}
+            activitiesOfDay={activitiesOfDay}
+            // archiveActivity={archiveActivity}
+          ></ActivityDailyTable>
+        )}
       </PanelRight>
+
+      <AlertActivityInfo
+        open={open}
+        onClose={() => setOpen(false)}
+        idOfActivity={idOfActivity}
+        getActivities={getActivities}
+        setOpen={setOpen}
+      ></AlertActivityInfo>
+
+      <AlertAddActivity
+        newActivity={newActivity}
+        setNewActivity={setNewActivity}
+        open={openAdd}
+        onClose={() => {
+          setOpenAdd(false);
+          setAddActivityQuestion(false);
+        }}
+        handleSubmit={handleSubmit}
+        errors={errorsAdd}
+      ></AlertAddActivity>
     </CalendarModuleContainer>
   );
 };

@@ -1,4 +1,5 @@
 export const calendarValidations = (activityData) => {
+  console.log(activityData);
   if (activityData.prospect === "") {
     return [['The "Prospect" field cannot be empty.'], { name: true }];
   }

@@ -13,7 +13,7 @@ export const CalendarModuleSubContainer = styled.div`
   min-height: 100%;
   font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
   font-size: 14px;
-  width: 77%;
+  width: 60%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,17 +21,17 @@ export const CalendarModuleSubContainer = styled.div`
 
 export const CalendarContainer = styled.div`
   padding: 3em;
-  width: 80%;
+  width: 100%;
 `;
 
 export const PanelRight = styled.div`
   display: flex;
   flex-direction: column;
   padding: 2rem;
-  width: 15%;
-  height: 90%;
-  background-color: white;
+  width: 40%;
+  height: 91.15%;
   margin-left: 2rem;
+
   box-shadow: rgba(0, 0, 0, 0.16) -1px 0px 0px, rgba(0, 0, 0, 0.23) 0px 0px 0px;
 `;
 
@@ -78,6 +78,8 @@ export const AlertAddTitleContainer = styled.div`
   margin-bottom: 3rem;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  gap: 2rem;
 `;
 
 export const Title = styled.h1`
