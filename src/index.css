@@ -1,6 +1,6 @@
 * {
   margin: 0;
-  font-family: "Raleway", sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 #root,
 html,
@@ -9,6 +9,9 @@ body {
   width: 100%;
   margin: 0;
   padding: 0;
+  background-image: url("./backgroundImage.jpg");
+  background-size: cover; /* Ajusta el tamaño de la imagen para cubrir todo el contenedor */
+  background-position: center; /* Centra la imagen en el contenedor */
 }
 
 body.swal2-shown {

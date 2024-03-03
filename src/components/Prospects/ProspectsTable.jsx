@@ -23,7 +23,7 @@ export default function ProspectTable({
   return (
     <TableContainer
       component={Paper}
-      sx={{ height: "100%", boxShadow: "none" }}
+      sx={{ height: "100%", boxShadow: "none", backgroundColor: "transparent" }}
     >
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>

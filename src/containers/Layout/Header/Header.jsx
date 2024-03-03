@@ -5,40 +5,61 @@ import {
   UserButton,
   ButtonsContainer,
   LogOutButton,
+  BurgerMenuContainer,
 } from "./headerStyles";
 import useAuth from "../../Login/useAuth";
 import { useNavigate } from "react-router-dom";
 import useLogin from "../../Login/useLogin";
+import PersonIcon from "@mui/icons-material/Person";
+import LogoutIcon from "@mui/icons-material/Logout";
+import MenuIcon from "@mui/icons-material/Menu";
+import { useLocation } from "react-router-dom";
 
 export default function Header() {
+  const { pathname } = useLocation();
   const { logOut } = useLogin();
   const navigate = useNavigate();
   const user = useAuth();
   const handleRedirect = (path) => {
     navigate(path);
   };
+
   return (
     <HeaderContainer>
+      <BurgerMenuContainer>
+        <MenuIcon
+          sx={{ color: "black", cursor: "pointer", fontSize: "2.5rem" }}
+        ></MenuIcon>
+      </BurgerMenuContainer>
+      {/* 
       <LogoContainer
         onClick={
           user ? () => handleRedirect("/home") : () => handleRedirect("/")
         }
       >
-        Lejos
-      </LogoContainer>
+        Lejo's
+      </LogoContainer> */}
       <UserContainer>
         {user ? (
           <ButtonsContainer>
-            <UserButton onClick={() => handleRedirect("/profile")}>
+            <PersonIcon
+              sx={{ color: "black", cursor: "pointer" }}
+              onClick={() => handleRedirect("/profile")}
+            >
               Profile
-            </UserButton>
-            <LogOutButton onClick={() => logOut()}>Log out</LogOutButton>
+            </PersonIcon>
+            <LogoutIcon
+              sx={{ color: "black", cursor: "pointer" }}
+              onClick={() => logOut()}
+            >
+              Log out
+            </LogoutIcon>
           </ButtonsContainer>
-        ) : (
+        ) : !pathname === "/login" && !user ? (
           <UserButton onClick={() => handleRedirect("/login")}>
             Login
           </UserButton>
-        )}
+        ) : null}
       </UserContainer>
     </HeaderContainer>
   );

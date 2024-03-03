@@ -10,8 +10,13 @@ import {
   Title,
   LoginForm,
   ButtonsContainer,
+  LeftSection,
+  RightSection,
+  ButtonMUi,
+  CheckBoxContainer,
+  Overlay,
 } from "./loginStyles";
-
+import Checkbox from "@mui/material/Checkbox";
 import Button from "@mui/material/Button";
 
 export default function Login() {
@@ -20,6 +25,7 @@ export default function Login() {
     email: "",
     password: "",
   });
+  const [viewPassword, setViewPassword] = useState(false);
   const { loginUser, isLoading } = useLogin();
 
   const handleChange = (e) => {
@@ -35,6 +41,8 @@ export default function Login() {
       loginUser(data, setErrors);
     }
   };
+
+  const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
   const [errors, setErrors] = useState({});
   const handleSetErrors = (errors) => {
@@ -54,49 +62,61 @@ export default function Login() {
   return (
     <LoginContainer>
       <LoginFormContainer>
-        <TitleContainer>
-          <Title>Welcome to Lejo's</Title>
-        </TitleContainer>
-        <LoginForm onSubmit={(e) => handleLoginUser(e)} noValidate>
-          <TextField
-            autoComplete="given-email"
-            required
-            id="email"
-            label="Email"
-            autoFocus
-            name="email"
-            fullWidth
-            onChange={(e) => handleChange(e)}
-            error={errors[1]?.email}
-            value={data.email}
-            variant="outlined"
-            sx={{ marginBottom: "1rem" }}
-          />
-          <TextField
-            required
-            fullWidth
-            label="Password"
-            id="password"
-            autoComplete="new-password"
-            name="password"
-            onChange={(e) => handleChange(e)}
-            error={errors[1]?.password}
-            value={data.password}
-            type="password"
-            variant="outlined"
-            sx={{ marginBottom: "1rem" }}
-          />
+        <LeftSection>
+          <Overlay>
+            <>Welcome to Lejo's</>
+          </Overlay>
+        </LeftSection>
+        <RightSection>
+          <LoginForm onSubmit={(e) => handleLoginUser(e)} noValidate>
+            <TitleContainer>
+              <Title>Sign in</Title>
+            </TitleContainer>
+            <TextField
+              autoComplete="given-email"
+              required
+              id="email"
+              label="Email"
+              autoFocus
+              name="email"
+              fullWidth
+              onChange={(e) => handleChange(e)}
+              error={errors[1]?.email}
+              value={data.email}
+              variant="outlined"
+            />
+            <TextField
+              required
+              fullWidth
+              label="Password"
+              id="password"
+              autoComplete="new-password"
+              name="password"
+              onChange={(e) => handleChange(e)}
+              error={errors[1]?.password}
+              value={data.password}
+              type={viewPassword ? "text" : "password"}
+              variant="outlined"
+            />
+            <CheckBoxContainer>
+              <Checkbox
+                {...label}
+                onChange={() => setViewPassword(!viewPassword)}
+              />
+              <>Show password</>
+            </CheckBoxContainer>
 
-          <ButtonsContainer>
-            <Button
-              variant="contained"
-              type="submit"
-              disabled={isLoading ? true : false}
-            >
-              Login
-            </Button>
-          </ButtonsContainer>
-        </LoginForm>
+            <ButtonsContainer>
+              <ButtonMUi
+                variant="contained"
+                type="submit"
+                disabled={isLoading ? true : false}
+              >
+                Sign in
+              </ButtonMUi>
+            </ButtonsContainer>
+          </LoginForm>
+        </RightSection>
       </LoginFormContainer>
     </LoginContainer>
   );

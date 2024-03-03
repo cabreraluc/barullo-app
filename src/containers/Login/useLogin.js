@@ -24,7 +24,7 @@ export default function useLogin() {
       );
 
       localStorage.setItem("user", JSON.stringify(userData.data));
-      handleRedirect("/home");
+      handleRedirect("/home/calendar");
     } catch (error) {
       console.log(error);
       showNotification(error.response.data.error, "error");

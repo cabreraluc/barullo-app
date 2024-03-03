@@ -19,7 +19,7 @@ export default function ActivityDailyTable({
   return (
     <TableContainer
       component={Paper}
-      sx={{ height: "100%", boxShadow: "none" }}
+      sx={{ height: "100%", boxShadow: "none", backgroundColor: "transparent" }}
     >
       {!activitiesOfDay.length && !isLoading ? (
         <div

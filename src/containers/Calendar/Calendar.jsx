@@ -30,6 +30,34 @@ const Calendar = ({
     );
   }
 
+  useEffect(() => {
+    const calendarApi = calendarRef.current.getApi();
+
+    const handleResetButtonClick = () => {
+      const now = new Date(); // Obtener la fecha actual
+      calendarApi.gotoDate(now); // Ir al mes actual
+      calendarApi.changeView("dayGridMonth"); // Cambiar al modo de vista de mes
+    };
+
+    const headerToolbar = {
+      left: "prev,next today resetButton", // Agregar el botón personalizado a la izquierda de la barra de herramientas del encabezado
+      center: "title",
+      right: "dayGridMonth,timeGridWeek,timeGridDay",
+    };
+
+    calendarApi.setOption("headerToolbar", headerToolbar);
+    calendarApi.setOption("customButtons", {
+      resetButton: {
+        text: "Reset", // Texto del botón
+        click: handleResetButtonClick, // Manejador de clic del botón
+      },
+    });
+
+    return () => {
+      // Limpiar al desmontar el componente, si es necesario
+    };
+  }, []);
+
   return (
     <CalendarContainer>
       <FullCalendar

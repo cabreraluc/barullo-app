@@ -13,7 +13,7 @@ const ClientHead = ({ handleSelectAllOperations, checked }) => {
             key={t}
             sx={{
               fontWeight: "500",
-
+              backgroundColor: "transparent",
               width: `${t.width}`,
               fontSize: "14px",
               paddingLeft: `${t.paddingLeft}`,

@@ -231,25 +231,15 @@ const CalendarModule = () => {
             }}
           >
             {newActivity.start.length ? (
-              <h4
-                style={{
-                  cursor: "pointer",
-                  backgroundColor: "gray",
-                  color: "white",
-                  padding: "1rem",
-                  borderRadius: "10px",
-                }}
-                onClick={() => setAddActivityQuestion(true)}
-              >
-                Do you want to add an event at{" "}
-                {newActivity.allDay
-                  ? handleDateMessage(newActivity.start).slice(0, 6)
-                  : handleDateMessage(newActivity.start) +
-                    " " +
-                    "to " +
-                    handleDateMessage(newActivity.end)}
-                ? click this message or press Shift.
-              </h4>
+              <>
+                <div>
+                  <button>Add event at selected time</button>
+                </div>
+                <div>
+                  <h4>{handleDateMessage(newActivity.start)}</h4>
+                  <h4>{handleDateMessage(newActivity.end)}</h4>
+                </div>
+              </>
             ) : null}
           </div>
         </AlertAddTitleContainer>

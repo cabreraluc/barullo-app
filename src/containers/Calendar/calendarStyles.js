@@ -82,9 +82,7 @@ export const AlertAddTitleContainer = styled.div`
   gap: 2rem;
 `;
 
-export const Title = styled.h1`
-  font-family: "Raleway", sans-serif;
-`;
+export const Title = styled.h1``;
 
 export const AlertAddForm = styled.form`
   width: 70%;

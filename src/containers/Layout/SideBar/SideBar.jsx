@@ -1,4 +1,12 @@
-import { SideBarContainer, ButtonBar } from "./sideBarStyles";
+import {
+  SideBarContainer,
+  ButtonBar,
+  UserContainer,
+  UserPhoto,
+  UserName,
+  MenuContainer,
+  MenuTitle,
+} from "./sideBarStyles";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import GroupIcon from "@mui/icons-material/Group";
@@ -9,6 +17,7 @@ import { useState, useEffect } from "react";
 import useAuth from "../../Login/useAuth";
 import useUsers from "../../Users/useUsers";
 import Loader from "../../../componentsCss/Loader/Loader";
+import { Label } from "@mui/icons-material";
 
 const SideBar = () => {
   const userLocalStorage = useAuth();
@@ -16,8 +25,8 @@ const SideBar = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   let value = [
-    { name: "Statistics" },
     { name: "Calendar" },
+    { name: "Statistics" },
     { name: "Prospects" },
     { name: "Clients" },
     { name: "Users" },
@@ -41,35 +50,49 @@ const SideBar = () => {
 
   return (
     <SideBarContainer>
-      {isLoading ? (
-        <Loader></Loader>
-      ) : (
-        <>
-          {filteredValue.map((e) => (
-            <ButtonBar
-              style={
-                pathSplitted === e.name.toLocaleLowerCase()
-                  ? { color: "black" }
-                  : null
-              }
-              onClick={() => navigate(`/home/${e.name.toLocaleLowerCase()}`)}
-            >
-              {e.name === "Statistics" ? (
-                <BarChartIcon style={{ marginRight: "2rem" }} />
-              ) : e.name === "Calendar" ? (
-                <CalendarMonthIcon style={{ marginRight: "2rem" }} />
-              ) : e.name === "Users" ? (
-                <GroupIcon style={{ marginRight: "2rem" }} />
-              ) : e.name === "Prospects" ? (
-                <GroupAddIcon style={{ marginRight: "2rem" }} />
-              ) : e.name === "Clients" ? (
-                <WorkOutlineIcon style={{ marginRight: "2rem" }} />
-              ) : null}
-              {e.name}
-            </ButtonBar>
-          ))}
-        </>
-      )}
+      <UserContainer>
+        <UserPhoto></UserPhoto>
+        <UserName>
+          {user?.name ? user?.name + " " + user?.lastName : null}
+        </UserName>
+      </UserContainer>
+      <MenuContainer>
+        <MenuTitle>MENU</MenuTitle>
+        {isLoading ? (
+          <Loader></Loader>
+        ) : (
+          <>
+            {/* <RolContainer>
+          {
+            user.rol==="Client"?`Welcome`
+          }
+        </RolContainer> */}
+            {filteredValue.map((e) => (
+              <ButtonBar
+                style={
+                  pathSplitted === e.name.toLocaleLowerCase()
+                    ? { color: "black" }
+                    : null
+                }
+                onClick={() => navigate(`/home/${e.name.toLocaleLowerCase()}`)}
+              >
+                {e.name === "Calendar" ? (
+                  <CalendarMonthIcon style={{ marginRight: "1rem" }} />
+                ) : e.name === "Statistics" ? (
+                  <BarChartIcon style={{ marginRight: "1rem" }} />
+                ) : e.name === "Users" ? (
+                  <GroupIcon style={{ marginRight: "1rem" }} />
+                ) : e.name === "Prospects" ? (
+                  <GroupAddIcon style={{ marginRight: "1rem" }} />
+                ) : e.name === "Clients" ? (
+                  <WorkOutlineIcon style={{ marginRight: "1rem" }} />
+                ) : null}
+                {e.name}
+              </ButtonBar>
+            ))}
+          </>
+        )}
+      </MenuContainer>
     </SideBarContainer>
   );
 };

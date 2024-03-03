@@ -26,7 +26,7 @@ export const PanelRight = styled.div`
   padding: 2rem;
   width: 15%;
   height: 90%;
-  background-color: white;
+    background-color: "transparent",
   margin-left: 2rem;
   box-shadow: rgba(0, 0, 0, 0.16) -1px 0px 0px, rgba(0, 0, 0, 0.23) 0px 0px 0px;
 `;
