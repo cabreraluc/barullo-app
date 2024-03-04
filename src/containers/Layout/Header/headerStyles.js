@@ -2,10 +2,14 @@ import styled from "styled-components";
 
 export const HeaderContainer = styled.div`
   height: 4rem;
-  width: 100%;
+  width: 98%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: #2c3e50;
+  border-radius: 50px;
+  margin: 0 auto;
+  margin-top: 1rem;
 `;
 
 export const UserContainer = styled.div`
@@ -55,7 +59,7 @@ export const LogoContainer = styled.button`
   background-color: transparent;
   font-weight: 700;
   cursor: pointer;
-  color: white;
+  color: black;
   font-size: 2.5rem;
-  font-family: "Bodoni Moda", serif;
+  font-weight: 200;
 `;

@@ -8,6 +8,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import ActivityDailyHeadTable from "./ActivityDailyHeaderTable";
 import ActivityIndividual from "./ActivityIndividual";
+import { Title } from "../../containers/Calendar/calendarStyles";
 
 export default function ActivityDailyTable({
   activitiesOfDay,
@@ -30,7 +31,7 @@ export default function ActivityDailyTable({
             marginTop: "3rem",
           }}
         >
-          <h1>You dont have event to this day</h1>
+          <Title>You have no events for this day</Title>
         </div>
       ) : (
         <Table>

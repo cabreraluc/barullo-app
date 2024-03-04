@@ -45,25 +45,30 @@ export default function AlertDialog({
         maxWidth="xl"
         sx={{}}
       >
-        <div style={{ margin: "4rem 10rem" }}>
-          <IconButton
-            aria-label="close"
-            onClick={onClose}
-            sx={{
-              position: "absolute",
-              right: 30,
-              top: 25,
-              color: (theme) => theme.palette.grey[500],
-            }}
-          >
-            X
-          </IconButton>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description"></DialogContentText>
-          </DialogContent>
+        <div style={{ padding: "4rem 10rem" }}>
+          <div>
+            <IconButton
+              aria-label="close"
+              onClick={onClose}
+              sx={{
+                position: "absolute",
+                right: 30,
+                top: 25,
+                color: (theme) => theme.palette.grey[500],
+              }}
+            >
+              X
+            </IconButton>
 
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <Title>{title}</Title>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                padding: "3rem 0",
+              }}
+            >
+              <Title>{title}</Title>
+            </div>
           </div>
           <div style={{ display: "flex", justifyContent: "center" }}>
             <span style={{ fontSize: "16px", color: "rgb(56,71,100,0.55)" }}>

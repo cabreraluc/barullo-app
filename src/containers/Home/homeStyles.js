@@ -12,8 +12,8 @@ export const Screen = styled.div`
   display: flex;
   background-color: rgb(256, 256, 256, 0.8);
   width: 85%;
-  height: 85%;
-  margin-top: 2rem;
+  height: 90%;
+  margin-top: 1rem;
   margin-left: 1rem;
   margin-right: 1rem;
   border-radius: 1.3rem;

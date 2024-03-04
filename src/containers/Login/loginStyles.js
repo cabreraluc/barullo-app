@@ -21,6 +21,7 @@ export const LoginFormContainer = styled.div`
   justify-content: center;
 
   box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  border-radius: 30px 30px 30px 30px;
 `;
 
 export const LeftSection = styled.div`
@@ -35,6 +36,7 @@ export const LeftSection = styled.div`
   width: 50%;
 
   height: 100%;
+  border-radius: 30px 0px 0px 30px;
 `;
 export const RightSection = styled.div`
   display: flex;
@@ -43,6 +45,7 @@ export const RightSection = styled.div`
   width: 50%;
   height: 100%;
   background-color: white;
+  border-radius: 0px 30px 30px 0px;
 `;
 
 export const LoginForm = styled.form`
@@ -86,17 +89,16 @@ export const ButtonMUi = styled.button`
   width: 100%; // Ancho completo
   height: 100%; // Alto completo
   border: none;
-  
-  background-image: linear-gradient(to right top , #5fa6d2, #a3c9dc ); /* Tonos de celeste más apagados */
-  ); /* Puedes ajustar los tonos de celeste aquí */
-  color:white;
-  font-size: 1.2rem; 
-  font-weight:500;
-  cursor:pointer;
-  &:hover{
-    background-image: linear-gradient(to left bottom, #b2d8f0, #a3c9dc);
-    /* Tonos de celeste más apagados */
-    transition: background-image 0.3s ease;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
+    rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+  background-color: rgb(7, 121, 222);
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 20px;
+  &:hover {
+    background-color: rgb(7, 121, 222);
   }
 `;
 

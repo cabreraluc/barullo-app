@@ -15,9 +15,10 @@ export const ProspectsList = styled.div`
   justify-content: center;
   align-items: center;
 
-  width: 75%;
+  width: 90%;
   height: 90%;
   margin-left: 2rem;
+  margin-right: 2rem;
 `;
 
 export const PanelRight = styled.div`
@@ -116,26 +117,30 @@ export const TitleContainer = styled.div`
 `;
 
 export const FormContainertProspectsAction = styled.form`
-  width: 70%;
+  width: 90%;
   height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
-  margin-top: 6rem;
+  margin-top: 2rem;
+  background-color: rgb(256, 256, 256, 0.8);
+  border-radius: 15px;
   margin-bottom: 4rem;
 `;
 
 export const FormContainertProspectsActionDiv = styled.div`
-  width: 70%;
+  width: 90%;
   height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
-  margin-top: 6rem;
+  margin-top: 2rem;
+  background-color: rgb(256, 256, 256, 0.8);
+  border-radius: 15px;
   margin-bottom: 4rem;
 `;
 
@@ -147,7 +152,15 @@ export const FormSectionsContainer = styled.div`
   justify-content: space-around;
 `;
 export const LeftSectionContainer = styled.div`
-  width: 45%;
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+`;
+
+export const MidSection = styled.div`
+  width: 30%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -155,7 +168,7 @@ export const LeftSectionContainer = styled.div`
 `;
 
 export const RightSectionContainer = styled.div`
-  width: 45%;
+  width: 30%;
   height: 100%;
   display: flex;
   flex-direction: column;

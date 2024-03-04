@@ -7,6 +7,7 @@ import {
   PanelRight,
   Title,
   AlertAddTitleContainer,
+  AddEventButtonContainer,
 } from "./calendarStyles";
 import { useNavigate } from "react-router-dom";
 import useCalendar from "./useCalendar";
@@ -18,7 +19,7 @@ import moment from "moment";
 import Loader from "../../componentsCss/Loader/Loader";
 import { calendarValidations } from "./calendarValidations";
 import useNotistack from "../../components/Notistack/useNotistack";
-
+import InsertInvitationIcon from "@mui/icons-material/InsertInvitation";
 // let eventGuid = 0;
 // let todayStr = new Date().toISOString().replace(/T.*$/, ""); // YYYY-MM-DD of today
 
@@ -44,6 +45,7 @@ const CalendarModule = () => {
     title: "",
     prospect: "",
     details: "",
+    client: "",
     start: "",
     end: "",
     allDay: "",
@@ -65,6 +67,10 @@ const CalendarModule = () => {
   }
 
   let selectedDatesEnter = null;
+
+  useEffect(() => {
+    console.log(isInDayGrid);
+  }, [isInDayGrid]);
 
   function handleDateSelect(selectInfo) {
     let dates = [...selectedDates];
@@ -140,6 +146,7 @@ const CalendarModule = () => {
       setNewActivity({
         title: "",
         prospect: "",
+        client: "",
         details: "",
         start: "",
         end: "",
@@ -231,15 +238,16 @@ const CalendarModule = () => {
             }}
           >
             {newActivity.start.length ? (
-              <>
-                <div>
-                  <button>Add event at selected time</button>
-                </div>
-                <div>
-                  <h4>{handleDateMessage(newActivity.start)}</h4>
-                  <h4>{handleDateMessage(newActivity.end)}</h4>
-                </div>
-              </>
+              <AddEventButtonContainer onClick={() => setOpenAdd(true)}>
+                <InsertInvitationIcon
+                  sx={{ marginRight: "0.5rem" }}
+                ></InsertInvitationIcon>{" "}
+                <h4>
+                  Add event at {handleDateMessage(newActivity.start)}
+                  {" to "}
+                  {handleDateMessage(newActivity.end)}
+                </h4>
+              </AddEventButtonContainer>
             ) : null}
           </div>
         </AlertAddTitleContainer>

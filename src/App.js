@@ -16,13 +16,16 @@ import AddProspect from "./containers/Prospects/AddProspect";
 import ProspectDetails from "./containers/Prospects/ProspectDetails";
 import useAuth from "./containers/Login/useAuth";
 import PrivateRoute from "./containers/App/PrivateRoute";
+import Unauthorized from "./containers/Unauthorized/Unauthorized";
+import { useLocation } from "react-router-dom";
 
 function App() {
+  const { pathname } = useLocation();
   const user = useAuth();
 
   return (
     <div className="App">
-      <Header></Header>
+      {pathname === "/login" ? null : <Header />}
 
       <Routes>
         <Route
@@ -30,7 +33,7 @@ function App() {
           element={user ? <Navigate to="/home" /> : <Navigate to="/login" />}
         />
         <Route path="/login" element={<Login />} />
-        <Route path="/unauthorized" element={<h1>Unauthorized</h1>} />
+        <Route path="/unauthorized" element={<Unauthorized />} />
         <Route path="/" element={<Landing />} />
         <Route element={<PrivateRoute />}>
           <Route path="/home/*" element={<Home />} />

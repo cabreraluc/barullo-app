@@ -28,28 +28,28 @@ export default function Header() {
     <HeaderContainer>
       <BurgerMenuContainer>
         <MenuIcon
-          sx={{ color: "black", cursor: "pointer", fontSize: "2.5rem" }}
+          sx={{ color: "white", cursor: "pointer", fontSize: "2.5rem" }}
         ></MenuIcon>
       </BurgerMenuContainer>
-      {/* 
-      <LogoContainer
+
+      {/* <LogoContainer
         onClick={
           user ? () => handleRedirect("/home") : () => handleRedirect("/")
         }
       >
-        Lejo's
+        Lejo's Dashboard
       </LogoContainer> */}
       <UserContainer>
         {user ? (
           <ButtonsContainer>
             <PersonIcon
-              sx={{ color: "black", cursor: "pointer" }}
+              sx={{ color: "white", cursor: "pointer" }}
               onClick={() => handleRedirect("/profile")}
             >
               Profile
             </PersonIcon>
             <LogoutIcon
-              sx={{ color: "black", cursor: "pointer" }}
+              sx={{ color: "white", cursor: "pointer" }}
               onClick={() => logOut()}
             >
               Log out

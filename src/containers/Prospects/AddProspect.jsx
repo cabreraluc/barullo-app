@@ -13,6 +13,7 @@ import {
   PastPageContainer,
   ActionButtonContainer,
   ButtonsContainer,
+  MidSection,
 } from "./prospectsStyles";
 import {
   ActionButton,
@@ -350,6 +351,18 @@ const AddProspect = () => {
             />
 
             <TextField
+              fullWidth
+              label="Last name"
+              variant="standard"
+              id="lastname"
+              autoComplete="new-lastname"
+              name="lastName"
+              onChange={handleChange}
+              error={errors[1]?.lastName}
+              value={prospectInfo.lastName}
+            />
+
+            <TextField
               autoComplete="age"
               id="Age"
               label="Age"
@@ -374,6 +387,68 @@ const AddProspect = () => {
               value={prospectInfo.email}
             />
 
+            <TextField
+              variant="standard"
+              fullWidth
+              id="cellphone"
+              label="Cellphone"
+              autoComplete="cellphone"
+              name="cellphone"
+              onChange={handleChange}
+              error={errors[1]?.cellphone}
+              value={prospectInfo.cellphone}
+            />
+
+            <Autocomplete
+              value={prospectInfo.country}
+              onChange={(event, newValue) => {
+                setProspectInfo({
+                  ...prospectInfo,
+                  country: newValue,
+                });
+              }}
+              selectOnFocus
+              clearOnBlur
+              handleHomeEndKeys
+              id="free-solo-with-text-demo"
+              options={allCountriesArray}
+              getOptionLabel={(option) => {
+                if (typeof option === "string") {
+                  return option;
+                }
+
+                if (option.inputValue) {
+                  return option.inputValue;
+                }
+
+                return option;
+              }}
+              renderOption={(props, option) => <li {...props}>{option}</li>}
+              freeSolo
+              fullWidth
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  error={errors.country}
+                  label="Country"
+                  variant="standard"
+                />
+              )}
+            />
+
+            <TextField
+              variant="standard"
+              fullWidth
+              id="occupation"
+              label="Occupation"
+              autoComplete="occupation"
+              name="occupation"
+              onChange={handleChange}
+              error={errors[1]?.occupation}
+              value={prospectInfo.occupation}
+            />
+          </LeftSectionContainer>
+          <MidSection>
             <FormControl
               sx={{
                 width: "100%",
@@ -402,17 +477,16 @@ const AddProspect = () => {
                 })}
               </Select>
             </FormControl>
-
             <TextField
-              variant="standard"
+              id="outlined-multiline-static"
+              label="Gender comments..."
+              multiline
+              rows={2}
               fullWidth
-              id="occupation"
-              label="Occupation"
-              autoComplete="occupation"
-              name="occupation"
+              name="genderComments"
               onChange={handleChange}
-              error={errors[1]?.occupation}
-              value={prospectInfo.occupation}
+              error={errors[1]?.genderComments}
+              value={prospectInfo.genderComments}
             />
             <TextField
               variant="standard"
@@ -458,78 +532,8 @@ const AddProspect = () => {
               error={errors[1]?.tiktok}
               value={prospectInfo.tiktok}
             />
-          </LeftSectionContainer>
+          </MidSection>
           <RightSectionContainer>
-            <TextField
-              fullWidth
-              label="Last name"
-              variant="standard"
-              id="lastname"
-              autoComplete="new-lastname"
-              name="lastName"
-              onChange={handleChange}
-              error={errors[1]?.lastName}
-              value={prospectInfo.lastName}
-            />
-            <TextField
-              variant="standard"
-              fullWidth
-              id="cellphone"
-              label="Cellphone"
-              autoComplete="cellphone"
-              name="cellphone"
-              onChange={handleChange}
-              error={errors[1]?.cellphone}
-              value={prospectInfo.cellphone}
-            />
-            <Autocomplete
-              value={prospectInfo.country}
-              onChange={(event, newValue) => {
-                setProspectInfo({
-                  ...prospectInfo,
-                  country: newValue,
-                });
-              }}
-              selectOnFocus
-              clearOnBlur
-              handleHomeEndKeys
-              id="free-solo-with-text-demo"
-              options={allCountriesArray}
-              getOptionLabel={(option) => {
-                if (typeof option === "string") {
-                  return option;
-                }
-
-                if (option.inputValue) {
-                  return option.inputValue;
-                }
-
-                return option;
-              }}
-              renderOption={(props, option) => <li {...props}>{option}</li>}
-              freeSolo
-              fullWidth
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  error={errors.country}
-                  label="Country"
-                  variant="standard"
-                />
-              )}
-            />
-            <TextField
-              id="outlined-multiline-static"
-              label="Gender comments..."
-              multiline
-              rows={2}
-              fullWidth
-              name="genderComments"
-              onChange={handleChange}
-              error={errors[1]?.genderComments}
-              value={prospectInfo.genderComments}
-            />
-
             {/* <FormGroup>
               <Typography variant="overline" display="block" gutterBottom>
                 Select services

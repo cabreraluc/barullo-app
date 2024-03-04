@@ -45,12 +45,11 @@ export const BtnCancelDialog = styled.button`
   font-size: 11.8px;
 `;
 export const Title = styled.h1`
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-weight: 600;
   color: #384764;
   padding: 0 30px;
-  margin-top: 1.3rem;
-  margin-bottom: 1.2rem;
+  margin-left: 1.7rem;
 `;
 
 export const AlertEditContainer = styled.div`

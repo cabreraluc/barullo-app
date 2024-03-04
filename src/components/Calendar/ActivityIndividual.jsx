@@ -32,28 +32,32 @@ export default function ActivityIndividual({
           sx={{ cursor: "pointer" }}
           onClick={() => {
             onOpen();
-            setIdOfActivity(activity._id);
+            setIdOfActivity(activity?._id);
           }}
         >
-          {activity.title}
+          {activity?.title}
         </TableCell>
         <TableCell
           align="left"
           sx={{ cursor: "pointer" }}
-          onClick={() => navigate(`/prospect-details/${activity.prospect._id}`)}
+          onClick={() =>
+            navigate(`/prospect-details/${activity?.prospect?._id}`)
+          }
         >
-          {activity.prospect.name} {activity.prospect.lastName}
+          {activity?.prospect?.name} {activity?.prospect?.lastName}
         </TableCell>
         <TableCell component="th" scope="row">
-          {moment(activity.start).format("HH:mm")}hs
+          {moment(activity?.start).format("HH:mm")}hs
         </TableCell>
         <TableCell align="left">
-          {moment(activity.end).format("HH:mm")}hs
+          {moment(activity?.end).format("HH:mm")}hs
         </TableCell>
         <TableCell align="left">
-          {activity.prospect.client.bussinesName}
+          {activity.client
+            ? activity?.client?.bussinesName
+            : activity?.prospect?.client?.bussinesName}
         </TableCell>
-        <TableCell align="left">{activity.status}</TableCell>
+        <TableCell align="left">{activity?.status}</TableCell>
       </TableRow>
     </>
   );

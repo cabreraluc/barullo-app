@@ -12,8 +12,18 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
-import { AlertAddForm, ButtonsContainer } from "./calendarStyles";
+import {
+  AlertAddForm,
+  ButtonsContainer,
+  LeftSection,
+  RightSection,
+  InputContainer,
+} from "./calendarStyles";
 import useProspects from "../../containers/Prospects/useProspects";
+import CloseIcon from "@mui/icons-material/Close";
+import useClients from "../Clients/useClients";
+import { ChromePicker } from "react-color";
+import Typography from "@mui/material";
 
 export default function AlertAddActivity({
   open,
@@ -24,12 +34,15 @@ export default function AlertAddActivity({
   errors,
 }) {
   const { getProspects, allProspects } = useProspects();
+  const { getClients, allClients } = useClients();
   const handleChange = (e) => {
     const { value, name } = e.target;
     setNewActivity({ ...newActivity, [name]: value });
   };
+
   useEffect(() => {
     getProspects();
+    getClients();
   }, []);
 
   return (
@@ -40,9 +53,12 @@ export default function AlertAddActivity({
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
         maxWidth=""
-        sx={{}}
       >
-        <div style={{ margin: "4rem 10rem" }}>
+        <div
+          style={{
+            width: "50rem",
+          }}
+        >
           <IconButton
             aria-label="close"
             onClick={() => {
@@ -51,6 +67,7 @@ export default function AlertAddActivity({
                 prospect: "",
                 details: "",
                 start: "",
+                client: "",
                 end: "",
                 allDay: "",
                 id: "",
@@ -64,124 +81,162 @@ export default function AlertAddActivity({
               color: (theme) => theme.palette.grey[500],
             }}
           >
-            X
+            <CloseIcon></CloseIcon>
           </IconButton>
           <DialogContent>
             <DialogContentText id="alert-dialog-description"></DialogContentText>
           </DialogContent>
-
           <div
             style={{
               display: "flex",
-              justifyContent: "center",
-              marginBottom: "2rem",
+              justifyContent: "start",
               width: "100%",
             }}
           >
             <Title>Add event</Title>
           </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              width: "100%",
+
+          <AlertAddForm
+            onSubmit={(e) => {
+              handleSubmit(e);
             }}
+            noValidate
           >
-            <AlertAddForm
-              onSubmit={(e) => {
-                handleSubmit(e);
-              }}
-              noValidate
-            >
-              <TextField
-                autoComplete="title"
-                required
-                id="title"
-                label="Title"
-                autoFocus
-                name="title"
-                fullWidth
-                onChange={(e) => handleChange(e)}
-                error={errors[1]?.title}
-                value={newActivity.title}
-                variant="outlined"
-                sx={{ marginBottom: "1rem" }}
-              />
-              <TextField
-                id="outlined-multiline-static"
-                label="Details"
-                multiline
-                rows={6}
-                fullWidth
-                name="details"
-                onChange={handleChange}
-                error={errors[1]?.details}
-                value={newActivity.details}
-                sx={{ marginBottom: "1rem" }}
-              />
-              <FormControl
-                sx={{
-                  width: "25rem",
-                }}
-              >
-                <InputLabel id="rol-label">Pospect</InputLabel>
-                <Select
-                  MenuProps={{ disableScrollLock: true }}
+            <InputContainer>
+              <LeftSection>
+                <TextField
+                  autoComplete="title"
+                  required
+                  id="title"
+                  label="Title"
+                  autoFocus
+                  name="title"
+                  fullWidth
+                  onChange={(e) => handleChange(e)}
+                  error={errors[1]?.title}
+                  value={newActivity.title}
+                  variant="outlined"
+                />
+                <FormControl
                   sx={{
                     width: "100%",
                   }}
-                  // SelectDisplayProps={{
-                  //   style: { color: `${themeMui.palette.inputText.main}` },
-                  // }}
-                  // labelId="rol-label"
-                  onChange={handleChange}
-                  name="prospect"
-                  error={errors[1]?.prospect}
-                  variant="standard"
                 >
-                  {allProspects.map((prospect) => {
-                    return (
-                      <MenuItem value={prospect}>
-                        {prospect.name} {prospect.lastName}
-                      </MenuItem>
-                    );
-                  })}
-                </Select>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-around",
-                    marginTop: "3.7rem",
-                    marginBottom: "2.2rem",
+                  <InputLabel id="rol-label">Pospect</InputLabel>
+                  <Select
+                    MenuProps={{ disableScrollLock: true }}
+                    sx={{
+                      width: "100%",
+                    }}
+                    // SelectDisplayProps={{
+                    //   style: { color: `${themeMui.palette.inputText.main}` },
+                    // }}
+                    // labelId="rol-label"
+                    onChange={handleChange}
+                    name="prospect"
+                    error={errors[1]?.prospect}
+                    variant="standard"
+                  >
+                    {allProspects.map((prospect) => {
+                      return (
+                        <MenuItem value={prospect}>
+                          {prospect.name} {prospect.lastName}
+                        </MenuItem>
+                      );
+                    })}
+                  </Select>
+                </FormControl>
+              </LeftSection>
+
+              <RightSection>
+                <InputLabel
+                  sx={{
+                    width: "100%",
+                    height: "3.5rem",
                   }}
                 >
-                  <Button
-                    variant="contained"
-                    type="submit"
-                    //   disabled={isLoading ? true : false}
-                  >
-                    Create
-                  </Button>
-                  <Button
-                    onClick={() => {
-                      setNewActivity({
-                        title: "",
-                        prospect: "",
-                        details: "",
-                        start: "",
-                        end: "",
-                        allDay: "",
-                        id: "",
-                      });
-                      onClose();
+                  {newActivity.start + " to " + newActivity.end}
+                </InputLabel>
+                <FormControl
+                  sx={{
+                    width: "100%",
+                  }}
+                >
+                  <InputLabel id="rol-label">Client</InputLabel>
+                  <Select
+                    MenuProps={{ disableScrollLock: true }}
+                    sx={{
+                      width: "100%",
                     }}
+                    // SelectDisplayProps={{
+                    //   style: { color: `${themeMui.palette.inputText.main}` },
+                    // }}
+                    // labelId="rol-label"
+                    onChange={handleChange}
+                    name="client"
+                    error={errors[1]?.client}
+                    variant="standard"
                   >
-                    CANCEL
-                  </Button>
-                </div>
-              </FormControl>
-            </AlertAddForm>
-          </div>
+                    {allClients.map((client) => {
+                      return (
+                        <MenuItem value={client}>
+                          {client.bussinesName} - {client.name}{" "}
+                          {client.lastName}
+                        </MenuItem>
+                      );
+                    })}
+                  </Select>
+                </FormControl>
+              </RightSection>
+            </InputContainer>
+
+            <TextField
+              id="outlined-multiline-static"
+              label="Details"
+              multiline
+              rows={6}
+              fullWidth
+              name="details"
+              onChange={handleChange}
+              error={errors[1]?.details}
+              value={newActivity.details}
+              sx={{ marginTop: "1.5rem", width: "70%" }}
+            />
+            <div
+              style={{
+                display: "flex",
+                marginTop: "1.5rem",
+                justifyContent: "flex-end",
+                width: "80%",
+                gap: "20px",
+              }}
+            >
+              <Button
+                variant="contained"
+                type="submit"
+                //   disabled={isLoading ? true : false}
+              >
+                Create
+              </Button>
+              <Button
+                onClick={() => {
+                  setNewActivity({
+                    title: "",
+                    prospect: "",
+                    details: "",
+                    start: "",
+                    client: "",
+                    end: "",
+                    allDay: "",
+                    id: "",
+                  });
+                  onClose();
+                }}
+              >
+                CANCEL
+              </Button>
+            </div>
+          </AlertAddForm>
         </div>
       </Dialog>
     </div>

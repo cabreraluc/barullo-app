@@ -82,15 +82,16 @@ export const AlertAddTitleContainer = styled.div`
   gap: 2rem;
 `;
 
-export const Title = styled.h1``;
+export const Title = styled.h1`
+  font-weight: 400;
+`;
 
 export const AlertAddForm = styled.form`
-  width: 70%;
-  height: 40%;
   display: flex;
-  flex-direction: column;
-
+  justify-content: center;
   align-items: center;
+  padding: 3rem 0;
+  flex-direction: column;
 `;
 
 export const ButtonsContainer = styled.div`
@@ -103,3 +104,47 @@ export const ButtonsContainer = styled.div`
 `;
 
 export const TextCalendarEvent = styled.div``;
+
+export const AddEventButtonContainer = styled.div`
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 3rem;
+  background-color: #2c3e50;
+  color: white;
+  padding: 1rem;
+  border-radius: 30px;
+  cursor: pointer;
+  &:hover {
+    background-color: #354b60;
+    transition: 0.1s;
+  }
+`;
+
+export const LeftSection = styled.div`
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 45%;
+`;
+
+export const RightSection = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-direction: column;
+  width: 45%;
+`;
+
+export const InputContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  width: 90%;
+  height: 100%;
+`;

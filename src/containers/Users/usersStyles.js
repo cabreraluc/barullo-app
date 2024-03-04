@@ -15,9 +15,10 @@ export const UsersList = styled.div`
   justify-content: center;
   align-items: center;
 
-  width: 75%;
+  width: 85%;
   height: 90%;
   margin-left: 2rem;
+  margin-right: 2rem;
 `;
 
 export const PanelRight = styled.div`
@@ -123,6 +124,8 @@ export const FormContainertUsersAction = styled.form`
   justify-content: center;
   align-items: center;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  background-color: rgb(256, 256, 256, 0.8);
+  border-radius: 15px;
 `;
 
 export const FormSectionsContainer = styled.div`
