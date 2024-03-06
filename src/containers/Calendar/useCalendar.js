@@ -15,6 +15,16 @@ export default function useClients() {
   const [search, setSearch] = useState("undefined");
   const [activitiesOfDay, setActivitiesOfDay] = useState([]);
   const user = useAuth();
+  const [newActivity, setNewActivity] = useState({
+    title: "",
+    prospect: "",
+    details: "",
+    client: "",
+    start: "",
+    end: "",
+    allDay: "",
+    id: "",
+  });
 
   const addActivity = async (data, setErrors) => {
     setIsLoading(true);
@@ -39,33 +49,30 @@ export default function useClients() {
     }
   };
 
-  const getActivities = async () => {
+  const getActivities = async (clientId, prospectId) => {
+    setIsLoading(true);
     try {
-      setIsLoading(true);
-
-      const response = await fetchFromApi(`GET`, `calendar/`);
-
-      console.log(response);
+      const response = await fetchFromApi(
+        `GET`,
+        `calendar/get-all/${clientId}?prospect=${prospectId}`
+      );
 
       setAllActivities(response);
     } catch (error) {}
     setIsLoading(false);
   };
 
-  const getActivitiesOfDay = async (date) => {
+  const getActivitiesOfDay = async (date, clientId, prospectId) => {
+    setIsLoading(true);
     try {
-      setIsLoading(true);
-
       const response = await fetchFromApi(
         `GET`,
-        `calendar/event-day?date=${date}`
+        `calendar/event-day?date=${date}&client=${clientId}&prospect=${prospectId}`
       );
 
-      console.log(response);
-
       setActivitiesOfDay(response);
+      setIsLoading(false);
     } catch (error) {}
-    setIsLoading(false);
   };
 
   const getActivityById = async (id) => {
@@ -80,16 +87,17 @@ export default function useClients() {
     }
   };
 
-  const archiveActivity = async (id) => {
+  const archiveActivity = async (id, day) => {
     try {
       const response = await fetchFromApi(
-        `DELETE`,
-        `calendar/archive-activity`,
-        id
+        `POST`,
+        `calendar/archive-activity/${id}`
       );
-      getActivities();
-
-      showNotification(response[0]);
+      if (response) {
+        showNotification(response[0]);
+        getActivities();
+        getActivitiesOfDay(day);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -131,5 +139,7 @@ export default function useClients() {
     getActivityById,
     activity,
     isLoading,
+    newActivity,
+    setNewActivity,
   };
 }

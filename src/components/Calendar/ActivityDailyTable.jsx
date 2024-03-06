@@ -12,15 +12,23 @@ import { Title } from "../../containers/Calendar/calendarStyles";
 
 export default function ActivityDailyTable({
   activitiesOfDay,
-  archiveActivity,
+  handleArchiveActivity,
   onOpen,
   setIdOfActivity,
   isLoading,
+  setArchiveModalOpen,
+  archiveModalOpen,
 }) {
   return (
     <TableContainer
       component={Paper}
-      sx={{ height: "100%", boxShadow: "none", backgroundColor: "transparent" }}
+      sx={{
+        height: "100%",
+        width: "95%",
+        boxShadow: "none",
+        backgroundColor: "transparent",
+        padding: "0 1rem",
+      }}
     >
       {!activitiesOfDay.length && !isLoading ? (
         <div
@@ -31,7 +39,9 @@ export default function ActivityDailyTable({
             marginTop: "3rem",
           }}
         >
-          <Title>You have no events for this day</Title>
+          <Title style={{ color: "#26303b" }}>
+            You have no events for this day
+          </Title>
         </div>
       ) : (
         <Table>
@@ -41,8 +51,11 @@ export default function ActivityDailyTable({
               return (
                 <ActivityIndividual
                   activity={activity}
+                  handleArchiveActivity={handleArchiveActivity}
                   onOpen={onOpen}
                   setIdOfActivity={setIdOfActivity}
+                  setArchiveModalOpen={setArchiveModalOpen}
+                  archiveModalOpen={archiveModalOpen}
                 />
               );
             })}

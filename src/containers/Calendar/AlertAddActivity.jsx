@@ -18,6 +18,7 @@ import {
   LeftSection,
   RightSection,
   InputContainer,
+  DatesOfEvents,
 } from "./calendarStyles";
 import useProspects from "../../containers/Prospects/useProspects";
 import CloseIcon from "@mui/icons-material/Close";
@@ -108,7 +109,7 @@ export default function AlertAddActivity({
                   autoComplete="title"
                   required
                   id="title"
-                  label="Title"
+                  label="Title event"
                   autoFocus
                   name="title"
                   fullWidth
@@ -116,6 +117,24 @@ export default function AlertAddActivity({
                   error={errors[1]?.title}
                   value={newActivity.title}
                   variant="outlined"
+                  sx={{
+                    width: "100%",
+                    color: "white",
+                    ".MuiAutocomplete-clearIndicator": {
+                      color: "white",
+                    },
+
+                    "& .MuiAutocomplete-noOptions": {
+                      color: "white",
+                    },
+                    "& .MuiAutocomplete-input": {
+                      color: "white",
+                    },
+                    "& .MuiOutlinedInput-root": {
+                      borderRadius: "10px",
+                      border: "solid 1px white",
+                    },
+                  }}
                 />
                 <FormControl
                   sx={{
@@ -137,26 +156,33 @@ export default function AlertAddActivity({
                     error={errors[1]?.prospect}
                     variant="standard"
                   >
-                    {allProspects.map((prospect) => {
-                      return (
-                        <MenuItem value={prospect}>
-                          {prospect.name} {prospect.lastName}
-                        </MenuItem>
-                      );
-                    })}
+                    {newActivity?.client?.name?.length
+                      ? allProspects
+                          .filter((e) => {
+                            return e.client === newActivity.client._id;
+                          })
+                          .map((prospect) => {
+                            return (
+                              <MenuItem value={prospect}>
+                                {prospect.name} {prospect.lastName}
+                              </MenuItem>
+                            );
+                          })
+                      : allProspects.map((prospect) => {
+                          return (
+                            <MenuItem value={prospect}>
+                              {prospect.name} {prospect.lastName}
+                            </MenuItem>
+                          );
+                        })}
                   </Select>
                 </FormControl>
               </LeftSection>
 
               <RightSection>
-                <InputLabel
-                  sx={{
-                    width: "100%",
-                    height: "3.5rem",
-                  }}
-                >
-                  {newActivity.start + " to " + newActivity.end}
-                </InputLabel>
+                <DatesOfEvents>
+                  Date: {newActivity.start + " to " + newActivity.end}
+                </DatesOfEvents>
                 <FormControl
                   sx={{
                     width: "100%",
@@ -176,6 +202,12 @@ export default function AlertAddActivity({
                     name="client"
                     error={errors[1]?.client}
                     variant="standard"
+                    disabled={
+                      newActivity?.prospect?.name?.length &&
+                      newActivity?.client === ""
+                        ? true
+                        : false
+                    }
                   >
                     {allClients.map((client) => {
                       return (

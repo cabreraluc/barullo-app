@@ -9,18 +9,23 @@ import { Button } from "@mui/material";
 const contextMap = {
   users: {
     title: "Disable user",
-    message: "¿Are you sure that you want to disable this user?",
+    message: "Are you sure that you want to disable this user?",
     action: "DISABLE",
   },
   clients: {
     title: "Disable client",
-    message: "¿Are you sure that you want to disable this client?",
+    message: "Are you sure that you want to disable this client?",
     action: "DISABLE",
   },
   prospects: {
     title: "Disable prospect",
-    message: "¿Are you sure that you want to disable this prospect?",
+    message: "Are you sure that you want to disable this prospect?",
     action: "DISABLE",
+  },
+  calendar: {
+    title: "Archive event",
+    message: "Are you sure that you want to archive this event?",
+    action: "ARCHIVE",
   },
 };
 

@@ -8,11 +8,15 @@ import moment from "moment";
 import AlertActivityInfo from "../../containers/Calendar/AlertActivityOfDay";
 import AlertDialog from "../Dialog/AlertDialog";
 import { useState } from "react";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 export default function ActivityIndividual({
   activity,
   onOpen,
   setIdOfActivity,
+  handleArchiveActivity,
+  archiveModalOpen,
+  setArchiveModalOpen,
 }) {
   const navigate = useNavigate();
 
@@ -25,11 +29,13 @@ export default function ActivityIndividual({
     <>
       <TableRow
         key={activity._id}
-        sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+        sx={{
+          "&:last-child td, &:last-child th": { border: 0 },
+        }}
       >
         <TableCell
           align="left"
-          sx={{ cursor: "pointer" }}
+          sx={{ cursor: "pointer", color: "#505d6b" }}
           onClick={() => {
             onOpen();
             setIdOfActivity(activity?._id);
@@ -39,25 +45,41 @@ export default function ActivityIndividual({
         </TableCell>
         <TableCell
           align="left"
-          sx={{ cursor: "pointer" }}
+          sx={{ cursor: "pointer", color: "#505d6b" }}
           onClick={() =>
             navigate(`/prospect-details/${activity?.prospect?._id}`)
           }
         >
-          {activity?.prospect?.name} {activity?.prospect?.lastName}
+          {activity?.prospect?.name
+            ? activity?.prospect?.name + " " + activity?.prospect?.lastName
+            : "---"}
         </TableCell>
-        <TableCell component="th" scope="row">
+        <TableCell component="th" scope="row" style={{ color: "#505d6b" }}>
           {moment(activity?.start).format("HH:mm")}hs
         </TableCell>
-        <TableCell align="left">
+        <TableCell align="left" style={{ color: "#505d6b" }}>
           {moment(activity?.end).format("HH:mm")}hs
         </TableCell>
-        <TableCell align="left">
+        <TableCell align="left" style={{ color: "#505d6b" }}>
           {activity.client
             ? activity?.client?.bussinesName
-            : activity?.prospect?.client?.bussinesName}
+            : activity?.prospect?.client?.bussinesName
+            ? activity?.prospect?.client?.bussinesName
+            : "---"}
         </TableCell>
-        <TableCell align="left">{activity?.status}</TableCell>
+        <TableCell align="left">
+          <DeleteIcon
+            onClick={() => setArchiveModalOpen(true)}
+            sx={{ cursor: "pointer", color: "#505d6b" }}
+          ></DeleteIcon>
+        </TableCell>
+        <AlertDialog
+          open={archiveModalOpen}
+          onClose={() => setArchiveModalOpen(false)}
+          context={"calendar"}
+          handlerAction={handleArchiveActivity}
+          objectId={activity._id}
+        />
       </TableRow>
     </>
   );

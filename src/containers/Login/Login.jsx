@@ -55,10 +55,6 @@ export default function Login() {
     handleSetErrors(errors);
   }, [errors]);
 
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
-
   return (
     <LoginContainer>
       <LoginFormContainer>

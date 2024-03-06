@@ -4,12 +4,28 @@ import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Link from "@mui/material/Link";
 import { useNavigate } from "react-router-dom";
 
-const BreadcrumbsMui = ({ path, title, prev, secondTitle }) => {
+const BreadcrumbsMui = ({
+  path,
+  title,
+  prev,
+  secondTitle,
+  secondPrev,
+  secondPath,
+}) => {
   const navigate = useNavigate();
 
   return (
     <div role="presentation" style={{ cursor: "pointer" }}>
       <Breadcrumbs sx={{ fontSize: "14px" }} aria-label="breadcrumb">
+        {secondPrev ? (
+          <Link
+            underline="hover"
+            color="inherit"
+            onClick={() => navigate(secondPath)}
+          >
+            {secondPrev}
+          </Link>
+        ) : null}
         <Link underline="hover" color="inherit" onClick={() => navigate(path)}>
           {prev}
         </Link>

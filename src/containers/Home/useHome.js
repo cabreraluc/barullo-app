@@ -17,7 +17,6 @@ export default function useHome() {
       );
       setFavourites(response.data);
       setIsFavouritesLoading(false);
-      console.log(response);
     } catch (error) {}
   }
   function getCart(id) {

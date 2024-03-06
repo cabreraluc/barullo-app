@@ -14,6 +14,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import LogoutIcon from "@mui/icons-material/Logout";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useLocation } from "react-router-dom";
+import NotificationsIcon from "@mui/icons-material/Notifications";
 
 export default function Header() {
   const { pathname } = useLocation();
@@ -42,6 +43,9 @@ export default function Header() {
       <UserContainer>
         {user ? (
           <ButtonsContainer>
+            <NotificationsIcon sx={{ color: "white", cursor: "pointer" }}>
+              Profile
+            </NotificationsIcon>
             <PersonIcon
               sx={{ color: "white", cursor: "pointer" }}
               onClick={() => handleRedirect("/profile")}

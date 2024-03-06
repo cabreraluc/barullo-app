@@ -8,7 +8,13 @@ import {
   Title,
   AlertAddTitleContainer,
   AddEventButtonContainer,
+  FilterButtonsContainer,
+  HeaderPanelRight,
+  MenuTitle,
+  FiltersButtons,
+  SideBarBorder,
 } from "./calendarStyles";
+import { Autocomplete, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import useCalendar from "./useCalendar";
 import AlertActivityInfo from "./AlertActivityInfo";
@@ -20,6 +26,12 @@ import Loader from "../../componentsCss/Loader/Loader";
 import { calendarValidations } from "./calendarValidations";
 import useNotistack from "../../components/Notistack/useNotistack";
 import InsertInvitationIcon from "@mui/icons-material/InsertInvitation";
+import useClients from "../Clients/useClients";
+import AlertDialog from "../../components/Dialog/AlertDialog";
+import useProspects from "../Prospects/useProspects";
+import useUsers from "../Users/useUsers";
+import useAuth from "../Login/useAuth";
+
 // let eventGuid = 0;
 // let todayStr = new Date().toISOString().replace(/T.*$/, ""); // YYYY-MM-DD of today
 
@@ -34,28 +46,36 @@ const CalendarModule = () => {
     getActivities,
     editActivity,
     activitiesOfDay,
-    setActivitiesOfDay,
     getActivitiesOfDay,
+    archiveActivity,
     isLoading,
+    newActivity,
+    setNewActivity,
   } = useCalendar();
+  const { getClients, allClients } = useClients();
+  const { getProspects, allProspects } = useProspects();
+  const { getUserById, user } = useUsers();
+  const userLocalStorage = useAuth();
   const [weekendsVisible, setWeekendsVisible] = useState(true);
   const [selectedDates, setSelectedDates] = useState([]);
   const [idOfActivity, setIdOfActivity] = useState("");
-  const [newActivity, setNewActivity] = useState({
-    title: "",
-    prospect: "",
-    details: "",
-    client: "",
-    start: "",
-    end: "",
-    allDay: "",
-    id: "",
+
+  const [clientSelected, setClientSelected] = useState({
+    client: undefined,
+  });
+  const [prospectSelected, setProspectSelected] = useState({
+    prospect: undefined,
+  });
+  const [daySelected, setDaySelected] = useState({
+    start: undefined,
   });
 
   const [errorsAdd, setErrorsAdd] = useState([]);
   const [isInDayGrid, setIsInDayGrid] = useState(false);
+  const [isInWeekGrid, setIsInWeekGrid] = useState(false);
   const [open, setOpen] = useState(false);
   const [openAdd, setOpenAdd] = useState(false);
+  const [archiveModalOpen, setArchiveModalOpen] = useState(false);
   const [addActivityQuestion, setAddActivityQuestion] = useState(false);
   const [day, setDay] = useState();
   const values = [{ name: "Add Client", path: "/add-client" }];
@@ -67,10 +87,6 @@ const CalendarModule = () => {
   }
 
   let selectedDatesEnter = null;
-
-  useEffect(() => {
-    console.log(isInDayGrid);
-  }, [isInDayGrid]);
 
   function handleDateSelect(selectInfo) {
     let dates = [...selectedDates];
@@ -84,7 +100,25 @@ const CalendarModule = () => {
       dates.push(dateStr);
     }
     if (!isInDayGrid) {
-      getActivitiesOfDay(selectInfo.start);
+      setDaySelected({ start: dateStr });
+    }
+
+    if (isInDayGrid) {
+      setNewActivity({
+        ...newActivity,
+        start: selectInfo.startStr,
+        end: selectInfo.endStr,
+        allDay: selectInfo.allDay,
+      });
+    }
+
+    if (isInWeekGrid) {
+      setNewActivity({
+        ...newActivity,
+        start: selectInfo.startStr,
+        end: selectInfo.endStr,
+        allDay: selectInfo.allDay,
+      });
     }
 
     selectedDatesEnter = {
@@ -97,13 +131,6 @@ const CalendarModule = () => {
     let calendarApi = selectInfo.view.calendar;
 
     // clear date selection
-
-    setNewActivity({
-      ...newActivity,
-      start: selectInfo.startStr,
-      end: selectInfo.endStr,
-      allDay: selectInfo.allDay,
-    });
   }
 
   useEffect(() => {
@@ -154,7 +181,6 @@ const CalendarModule = () => {
         id: "",
       });
     } else {
-      console.log(isValid);
       setErrorsAdd(isValid);
     }
   };
@@ -170,7 +196,6 @@ const CalendarModule = () => {
   }, [errorsAdd]);
 
   const handleEventChange = (e) => {
-    console.log(e);
     const id = e?.event?._def?.extendedProps?._id;
 
     const data = {
@@ -184,8 +209,11 @@ const CalendarModule = () => {
   };
 
   useEffect(() => {
+    getClients();
     getActivities();
-    getActivitiesOfDay(new Date().toISOString().replace(/T.*$/, "")); // YYYY-MM-DD of today);
+    getActivitiesOfDay(new Date(), undefined); // YYYY-MM-DD of today);
+    getProspects();
+    getUserById(userLocalStorage.id);
   }, []);
 
   const formatDateToDayState = (date) => {
@@ -194,28 +222,33 @@ const CalendarModule = () => {
   };
 
   const handleDateMessage = (date) => {
-    // let dateToFormat = new Date(date);
-
-    // let options = {
-    //   weekday: "long",
-    //   year: "numeric",
-    //   month: "long",
-    //   day: "numeric",
-    //   hour: "2-digit",
-    //   minute: "2-digit",
-    // };
-
-    // let message = dateToFormat.toLocaleString("en-US", options);
-    // return message;
-    const a = moment(date).format("D/M/YY, h:mm a");
+    const a = moment(date).format("h:mm a");
     return a;
   };
+
+  useEffect(() => {
+    getActivities(clientSelected.client?._id, prospectSelected.prospect?._id);
+    getActivitiesOfDay(
+      daySelected.start,
+      clientSelected.client?._id,
+      prospectSelected.prospect?._id
+    );
+  }, [clientSelected, daySelected, prospectSelected]);
+
+  const handleArchiveActivity = (id) => {
+    archiveActivity(id, daySelected.start);
+
+    setArchiveModalOpen(false);
+  };
+
+  console.log(allActivities);
 
   return (
     <CalendarModuleContainer>
       <CalendarModuleSubContainer>
         <Calendar
-          getActivitiesOfDay={getActivitiesOfDay}
+          setDaySelected={setDaySelected}
+          clientSelected={clientSelected}
           allActivities={allActivities}
           handleWeekendsToggle={handleWeekendsToggle}
           handleDateSelect={handleDateSelect}
@@ -226,35 +259,208 @@ const CalendarModule = () => {
           handleDateMessage={handleDateMessage}
           isInDayGrid={isInDayGrid}
           setIsInDayGrid={setIsInDayGrid}
+          isInWeekGrid={isInWeekGrid}
+          setIsInWeekGrid={setIsInWeekGrid}
           selectedDates={selectedDates}
+          setClientSelected={setClientSelected}
+          setProspectSelected={setProspectSelected}
+          newActivity={newActivity}
+          setNewActivity={setNewActivity}
         ></Calendar>
       </CalendarModuleSubContainer>
       <PanelRight>
-        <AlertAddTitleContainer>
-          <Title>{moment(day).format("DD/MM/YYYY dddd")}</Title>
-          <div
-            style={{
-              height: "5rem",
-            }}
-          >
-            {newActivity.start.length ? (
-              <AddEventButtonContainer onClick={() => setOpenAdd(true)}>
-                <InsertInvitationIcon
-                  sx={{ marginRight: "0.5rem" }}
-                ></InsertInvitationIcon>{" "}
-                <h4>
-                  Add event at {handleDateMessage(newActivity.start)}
-                  {" to "}
-                  {handleDateMessage(newActivity.end)}
-                </h4>
-              </AddEventButtonContainer>
-            ) : null}
-          </div>
-        </AlertAddTitleContainer>
+        <HeaderPanelRight>
+          <AlertAddTitleContainer>
+            <Title>{moment(day).format("DD/MM/YYYY dddd")}</Title>
+            {/* <div style={{}}>
+              {newActivity.start.length ? (
+                <AddEventButtonContainer onClick={() => setOpenAdd(true)}>
+                  <InsertInvitationIcon
+                    sx={{ marginRight: "0.5rem" }}
+                  ></InsertInvitationIcon>{" "}
+                  <h4>
+                    Add event at {handleDateMessage(newActivity.start)}
+                    {" to "}
+                    {handleDateMessage(newActivity.end)}
+                  </h4>
+                </AddEventButtonContainer>
+              ) : (
+                "Select an date to add an event"
+              )}
+            </div> */}
+          </AlertAddTitleContainer>
+
+          <FilterButtonsContainer>
+            <FiltersButtons>
+              <Autocomplete
+                key={prospectSelected.prospect?._id}
+                value={prospectSelected.prospect}
+                onChange={(event, newValue) => {
+                  setProspectSelected({ prospect: newValue });
+                  if (newValue === null) {
+                    getActivitiesOfDay();
+                  }
+                }}
+                sx={{
+                  "& .MuiInput-underline:before": {
+                    borderBottomColor: "white", // Cambia el color del borde inferior aquí
+                  },
+                  "& .MuiInput-underline:hover:not(.Mui-disabled):before": {
+                    borderBottomColor: "white", // Cambia el color del borde inferior en el hover aquí
+                  },
+                  width: "40%",
+                  color: "white",
+                  ".MuiAutocomplete-clearIndicator": {
+                    color: "white",
+                  },
+
+                  "& .MuiAutocomplete-noOptions": {
+                    color: "white",
+                  },
+                  "& .MuiAutocomplete-input": {
+                    color: "white",
+                  },
+                  "& .MuiOutlinedInput-root": {
+                    borderRadius: "10px",
+                    border: "solid 1px white",
+                  },
+                }}
+                selectOnFocus
+                clearOnBlur
+                handleHomeEndKeys
+                id="free-solo-with-text-demo"
+                options={
+                  user.role === "Client"
+                    ? allProspects.filter((e) => {
+                        return e.client === user?._id;
+                      })
+                    : clientSelected?.client?.name.length
+                    ? allProspects.filter((e) => {
+                        return e.client === clientSelected?.client._id;
+                      })
+                    : allProspects
+                }
+                getOptionLabel={(option) => {
+                  if (typeof option === "string") {
+                    return option;
+                  }
+
+                  if (option.inputValue) {
+                    return option.inputValue;
+                  }
+
+                  return option.name + " " + option.lastName;
+                }}
+                renderOption={(props, option) => (
+                  <li {...props}>{option.name + " " + option.lastName}</li>
+                )}
+                freeSolo
+                fullWidth
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    label="Select prospect"
+                    variant="standard"
+                    InputLabelProps={{
+                      style: { color: "white" }, // Aquí puedes aplicar estilos al label
+                    }}
+                  />
+                )}
+              />
+
+              {user.name && user?.role !== "Client" ? (
+                <Autocomplete
+                  key={clientSelected.client?._id}
+                  value={clientSelected?.client?.bussinesName}
+                  onChange={(event, newValue) => {
+                    setClientSelected({ client: newValue });
+                    if (newValue === null) {
+                      getActivitiesOfDay(daySelected.start);
+                    }
+                  }}
+                  sx={{
+                    "& .MuiInput-underline:before": {
+                      borderBottomColor: "white", // Cambia el color del borde inferior aquí
+                    },
+                    "& .MuiInput-underline:hover:not(.Mui-disabled):before": {
+                      borderBottomColor: "white", // Cambia el color del borde inferior en el hover aquí
+                    },
+                    width: "40%",
+                    color: "white",
+                    ".MuiAutocomplete-clearIndicator": {
+                      color: "white",
+                    },
+
+                    "& .MuiAutocomplete-noOptions": {
+                      color: "white",
+                    },
+                    "& .MuiAutocomplete-input": {
+                      color: "white",
+                    },
+                    "& .MuiOutlinedInput-root": {
+                      borderRadius: "10px",
+                      border: "solid 1px white",
+                    },
+                  }}
+                  disabled={
+                    prospectSelected.prospect && !clientSelected?.client
+                      ? true
+                      : false
+                  }
+                  selectOnFocus
+                  clearOnBlur
+                  handleHomeEndKeys
+                  id="free-solo-with-text-demo"
+                  options={allClients}
+                  getOptionLabel={(option) => {
+                    if (typeof option === "string") {
+                      return option;
+                    }
+
+                    if (option.inputValue) {
+                      return option.inputValue;
+                    }
+
+                    return option.bussinesName;
+                  }}
+                  renderOption={(props, option) => (
+                    <li {...props}>
+                      {option.bussinesName}-
+                      {option.name + " " + option.lastName}
+                    </li>
+                  )}
+                  freeSolo
+                  fullWidth
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      label="Select client"
+                      variant="standard"
+                      InputLabelProps={{
+                        style: { color: "white" }, // Aquí puedes aplicar estilos al label
+                      }}
+                    />
+                  )}
+                />
+              ) : null}
+            </FiltersButtons>
+          </FilterButtonsContainer>
+        </HeaderPanelRight>
+        <MenuTitle
+          style={{
+            backgroundColor: "transparent",
+            justifyContent: "center",
+          }}
+        >
+          Events of day
+        </MenuTitle>
         {isLoading ? (
           <Loader></Loader>
         ) : (
           <ActivityDailyTable
+            archiveModalOpen={archiveModalOpen}
+            setArchiveModalOpen={setArchiveModalOpen}
+            handleArchiveActivity={handleArchiveActivity}
             isLoading={isLoading}
             onOpen={() => setOpen(true)}
             setIdOfActivity={setIdOfActivity}

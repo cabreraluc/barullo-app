@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const CalendarModuleContainer = styled.div`
   display: flex;
   min-height: 100%;
-  font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+
   font-size: 14px;
   width: 100%;
 `;
@@ -11,7 +11,7 @@ export const CalendarModuleContainer = styled.div`
 export const CalendarModuleSubContainer = styled.div`
   display: flex;
   min-height: 100%;
-  font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+
   font-size: 14px;
   width: 60%;
   display: flex;
@@ -27,9 +27,9 @@ export const CalendarContainer = styled.div`
 export const PanelRight = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 2rem;
+
   width: 40%;
-  height: 91.15%;
+  height: 100%;
   margin-left: 2rem;
 
   box-shadow: rgba(0, 0, 0, 0.16) -1px 0px 0px, rgba(0, 0, 0, 0.23) 0px 0px 0px;
@@ -75,7 +75,7 @@ export const AlertAddFormContainer = styled.div`
 export const AlertAddTitleContainer = styled.div`
   width: 100%;
   display: flex;
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -84,6 +84,8 @@ export const AlertAddTitleContainer = styled.div`
 
 export const Title = styled.h1`
   font-weight: 400;
+  margin-top: 2rem;
+  color: white;
 `;
 
 export const AlertAddForm = styled.form`
@@ -110,11 +112,11 @@ export const AddEventButtonContainer = styled.div`
 
   justify-content: center;
   align-items: center;
-  width: 100%;
   height: 3rem;
   background-color: #2c3e50;
   color: white;
   padding: 1rem;
+
   border-radius: 30px;
   cursor: pointer;
   &:hover {
@@ -147,4 +149,59 @@ export const InputContainer = styled.div`
   flex-direction: row;
   width: 90%;
   height: 100%;
+`;
+
+export const FilterButtonsContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 5rem;
+  margin: 1rem 0;
+  padding-bottom: 1rem;
+  width: 100%;
+`;
+export const FiltersButtons = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  gap: 26px;
+`;
+
+export const HeaderPanelRight = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  flex-direction: column;
+  background-color: #45596e;
+  border-radius: 0px 22px 0px 0px;
+  color: white;
+`;
+
+export const MenuTitle = styled.div`
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+  color: gray;
+  font-weight: 500;
+  font-size: 0.8rem;
+  padding: 1rem 0rem;
+`;
+
+export const SideBarBorder = styled.div`
+  width: 80%; /* Establece el ancho del borde al 80% */
+  height: 0rem;
+  border-bottom: 1px solid #cacaca; /* Establece el estilo del borde */
+`;
+
+export const DatesOfEvents = styled.div`
+  width: 100%; /* Establece el ancho del borde al 80% */
+  height: 3.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
 `;

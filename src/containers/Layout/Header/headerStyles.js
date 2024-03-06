@@ -39,7 +39,7 @@ export const ButtonsContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 5rem;
+  width: 7.5rem;
 `;
 
 export const BurgerMenuContainer = styled.div`

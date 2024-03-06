@@ -44,8 +44,6 @@ export default function useClients() {
 
       const response = await fetchFromApi(`GET`, `clients/`);
 
-      console.log(response);
-
       setAllClients(response);
     } catch (error) {}
     setIsLoading(false);
@@ -59,8 +57,6 @@ export default function useClients() {
         `GET`,
         `clients/paginate/?page=${page}&id=${id}&search=${search}`
       );
-
-      console.log(response);
 
       setAllClients(response.docs);
       setTotalPages(response.totalPages);
