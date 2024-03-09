@@ -95,7 +95,9 @@ export default function Prospect({
             MenuProps={{ disableScrollLock: true }}
             onChange={handleChangeInterestLevel}
             value={interestLevelState.interestLevel}
-            disabled={user.role === "Client" ? true : false}
+            disabled={
+              user.role !== "Client" && user?.role?.length ? false : true
+            }
             sx={{
               height: "2rem",
               width: "9rem",
@@ -113,7 +115,9 @@ export default function Prospect({
             MenuProps={{ disableScrollLock: true }}
             onChange={handleChange}
             value={statusOfProspect.status}
-            disabled={user.role === "Client" ? true : false}
+            disabled={
+              user.role !== "Client" && user?.role?.length ? false : true
+            }
             sx={{
               height: "2rem",
               width: "9rem",
@@ -180,31 +184,23 @@ export default function Prospect({
       <TableCell align="left">
         {prospect?.country?.length ? prospect.country : "---"}
       </TableCell>
-      {user.role === "Client" ? null : user.role?.length ? (
+      {user.role !== "Client" && user.role?.length ? (
         <TableCell align="left">
           <DeleteOutlineIcon
             onClick={() => setOpen(true)}
             sx={{ cursor: "pointer" }}
           />
         </TableCell>
-      ) : (
-        <TableCell align="left">
-          <Loader size={15}></Loader>
-        </TableCell>
-      )}
+      ) : null}
 
-      {user.role === "Client" ? null : user.role?.length ? (
+      {user.role !== "Client" && user?.role?.length ? (
         <TableCell align="left">
           <EditIcon
             onClick={() => navigate(`/edit-prospect/${prospect._id}`)}
             sx={{ cursor: "pointer" }}
           />
         </TableCell>
-      ) : (
-        <TableCell align="left">
-          <Loader size={15}></Loader>
-        </TableCell>
-      )}
+      ) : null}
       <AlertDialog
         open={open}
         onClose={() => setOpen(false)}

@@ -15,20 +15,16 @@ export default function ActivityIndividual({
   onOpen,
   setIdOfActivity,
   handleArchiveActivity,
-  archiveModalOpen,
-  setArchiveModalOpen,
+  user,
 }) {
   const navigate = useNavigate();
+  const [archiveModalOpen, setArchiveModalOpen] = useState(false);
 
-  //   const handlerDeleteUser = (id) => {
-  //     disableUser(id);
-  //     setOpen(false);
-  //   };
+  console.log(activity._id);
 
   return (
     <>
       <TableRow
-        key={activity._id}
         sx={{
           "&:last-child td, &:last-child th": { border: 0 },
         }}
@@ -55,10 +51,10 @@ export default function ActivityIndividual({
             : "---"}
         </TableCell>
         <TableCell component="th" scope="row" style={{ color: "#505d6b" }}>
-          {moment(activity?.start).format("HH:mm")}hs
+          {moment(activity?.start).format("DD/MM HH:mm")}hs
         </TableCell>
         <TableCell align="left" style={{ color: "#505d6b" }}>
-          {moment(activity?.end).format("HH:mm")}hs
+          {moment(activity?.end).format("DD/MM HH:mm")}hs
         </TableCell>
         <TableCell align="left" style={{ color: "#505d6b" }}>
           {activity.client
@@ -67,17 +63,22 @@ export default function ActivityIndividual({
             ? activity?.prospect?.client?.bussinesName
             : "---"}
         </TableCell>
-        <TableCell align="left">
-          <DeleteIcon
-            onClick={() => setArchiveModalOpen(true)}
-            sx={{ cursor: "pointer", color: "#505d6b" }}
-          ></DeleteIcon>
-        </TableCell>
+        {user.role !== "Client" ? (
+          <TableCell align="left">
+            <DeleteIcon
+              onClick={() => setArchiveModalOpen(true)}
+              sx={{ cursor: "pointer", color: "#505d6b" }}
+            ></DeleteIcon>
+          </TableCell>
+        ) : null}
         <AlertDialog
           open={archiveModalOpen}
           onClose={() => setArchiveModalOpen(false)}
           context={"calendar"}
-          handlerAction={handleArchiveActivity}
+          handlerAction={(e) => {
+            handleArchiveActivity(e);
+            setArchiveModalOpen(false);
+          }}
           objectId={activity._id}
         />
       </TableRow>

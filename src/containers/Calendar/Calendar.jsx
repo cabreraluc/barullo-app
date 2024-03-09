@@ -24,6 +24,11 @@ const Calendar = ({
   setNewActivity,
   isInWeekGrid,
   setIsInWeekGrid,
+  setSearch,
+  user,
+  setSwitcher,
+  setActivityStatus,
+  setPastActs,
 }) => {
   const [weekendsVisible, setWeekendsVisible] = useState(true);
   const calendarRef = useRef(null);
@@ -93,6 +98,7 @@ const Calendar = ({
               formatDateToDayState(new Date());
               setClientSelected({ client: undefined });
               setProspectSelected({ prospect: undefined });
+              setSearch("undefined");
               setIsInDayGrid(false);
               setIsInWeekGrid(false);
               setNewActivity({
@@ -105,6 +111,9 @@ const Calendar = ({
                 allDay: "",
                 id: "",
               });
+              setSwitcher(false);
+              setActivityStatus("ACTIVE");
+              setPastActs(false);
             },
           },
           customTodayButton: {
@@ -287,14 +296,15 @@ const Calendar = ({
       {newActivity.start.length &&
         cursorPosition?.x &&
         cursorPosition?.y &&
-        (isInDayGrid || isInWeekGrid) && (
+        (isInDayGrid || isInWeekGrid) &&
+        user.role !== "Client" && (
           <div
             style={{
               position: "absolute",
               top: cursorPosition.y,
               left: cursorPosition.x,
               zIndex: 1000,
-              backgroundColor: "purple",
+              backgroundColor: "rgb(7, 121, 222)",
               color: "white",
               borderRadius: "10px",
               padding: "0.5rem",

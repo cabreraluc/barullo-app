@@ -328,8 +328,6 @@ const AddProspect = () => {
                 title="Add prospect"
                 prev="Prospects"
                 path={"/home/prospects"}
-                secondPath={"/home/calendar"}
-                secondPrev="Calendar"
               ></BreadcrumbsMui>
             </BreadcumsContainer>
           </PastPageContainer>

@@ -1,19 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./calendar.css";
-import {
-  CalendarModuleContainer,
-  CalendarModuleSubContainer,
-  ButtonBar,
-  PanelRight,
-  Title,
-  AlertAddTitleContainer,
-  AddEventButtonContainer,
-  FilterButtonsContainer,
-  HeaderPanelRight,
-  MenuTitle,
-  FiltersButtons,
-  SideBarBorder,
-} from "./calendarStyles";
 import { Autocomplete, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import useCalendar from "./useCalendar";
@@ -31,7 +17,28 @@ import AlertDialog from "../../components/Dialog/AlertDialog";
 import useProspects from "../Prospects/useProspects";
 import useUsers from "../Users/useUsers";
 import useAuth from "../Login/useAuth";
-
+import Searcher from "../../components/Searcher/Searcher";
+import Switch from "../../components/Switch/Switch";
+import MenuItem from "@mui/material/MenuItem";
+import InputLabel from "@mui/material/InputLabel";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import {
+  CalendarModuleContainer,
+  CalendarModuleSubContainer,
+  ButtonBar,
+  PanelRight,
+  Title,
+  AlertAddTitleContainer,
+  AddEventButtonContainer,
+  FilterButtonsContainer,
+  HeaderPanelRight,
+  MenuTitle,
+  FiltersButtons,
+  SideBarBorder,
+  SearcherAndSwitchContainer,
+  SwitchesContainer,
+} from "./calendarStyles";
 // let eventGuid = 0;
 // let todayStr = new Date().toISOString().replace(/T.*$/, ""); // YYYY-MM-DD of today
 
@@ -51,6 +58,11 @@ const CalendarModule = () => {
     isLoading,
     newActivity,
     setNewActivity,
+    isLoadingDayAct,
+    setIsLoadingDayAct,
+    setAllActivities,
+    search,
+    setSearch,
   } = useCalendar();
   const { getClients, allClients } = useClients();
   const { getProspects, allProspects } = useProspects();
@@ -59,7 +71,16 @@ const CalendarModule = () => {
   const [weekendsVisible, setWeekendsVisible] = useState(true);
   const [selectedDates, setSelectedDates] = useState([]);
   const [idOfActivity, setIdOfActivity] = useState("");
-
+  const [switcher, setSwitcher] = useState(false);
+  const [activityStatus, setActivityStatus] = useState("ACTIVE");
+  const [pastActs, setPastActs] = useState(false);
+  const [errorsAdd, setErrorsAdd] = useState([]);
+  const [isInDayGrid, setIsInDayGrid] = useState(false);
+  const [isInWeekGrid, setIsInWeekGrid] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [openAdd, setOpenAdd] = useState(false);
+  const [addActivityQuestion, setAddActivityQuestion] = useState(false);
+  const [day, setDay] = useState();
   const [clientSelected, setClientSelected] = useState({
     client: undefined,
   });
@@ -70,14 +91,6 @@ const CalendarModule = () => {
     start: undefined,
   });
 
-  const [errorsAdd, setErrorsAdd] = useState([]);
-  const [isInDayGrid, setIsInDayGrid] = useState(false);
-  const [isInWeekGrid, setIsInWeekGrid] = useState(false);
-  const [open, setOpen] = useState(false);
-  const [openAdd, setOpenAdd] = useState(false);
-  const [archiveModalOpen, setArchiveModalOpen] = useState(false);
-  const [addActivityQuestion, setAddActivityQuestion] = useState(false);
-  const [day, setDay] = useState();
   const values = [{ name: "Add Client", path: "/add-client" }];
   const navigate = useNavigate();
   const { showNotification } = useNotistack();
@@ -101,6 +114,7 @@ const CalendarModule = () => {
     }
     if (!isInDayGrid) {
       setDaySelected({ start: dateStr });
+      setSwitcher(false);
     }
 
     if (isInDayGrid) {
@@ -135,7 +149,11 @@ const CalendarModule = () => {
 
   useEffect(() => {
     const handleKeyDown = (event) => {
-      if (event.key === "Shift" && newActivity.start.length) {
+      if (
+        event.key === "Shift" &&
+        newActivity.start.length &&
+        user.role !== "Client"
+      ) {
         setOpenAdd(true);
         event.stopPropagation();
       }
@@ -149,7 +167,7 @@ const CalendarModule = () => {
   }, [newActivity]);
 
   useEffect(() => {
-    if (addActivityQuestion) {
+    if (addActivityQuestion && user.role !== "Client") {
       setOpenAdd(true);
     }
   }, [addActivityQuestion]);
@@ -208,10 +226,24 @@ const CalendarModule = () => {
     editActivity(data, id);
   };
 
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const todayUTC = new Date(
+    Date.UTC(today.getFullYear(), today.getMonth(), today.getDate())
+  ).toISOString();
+
   useEffect(() => {
     getClients();
-    getActivities();
-    getActivitiesOfDay(new Date(), undefined); // YYYY-MM-DD of today);
+    getActivities(undefined, undefined, undefined, activityStatus, false);
+    getActivitiesOfDay(
+      todayUTC,
+      undefined,
+      undefined,
+      undefined,
+      false,
+      activityStatus,
+      false
+    ); // YYYY-MM-DD of today);
     getProspects();
     getUserById(userLocalStorage.id);
   }, []);
@@ -227,26 +259,44 @@ const CalendarModule = () => {
   };
 
   useEffect(() => {
-    getActivities(clientSelected.client?._id, prospectSelected.prospect?._id);
+    getActivities(
+      clientSelected.client?._id,
+      prospectSelected.prospect?._id,
+      search,
+      activityStatus,
+      pastActs
+    );
     getActivitiesOfDay(
       daySelected.start,
       clientSelected.client?._id,
-      prospectSelected.prospect?._id
+      prospectSelected.prospect?._id,
+      search,
+      switcher,
+      activityStatus,
+      pastActs
     );
-  }, [clientSelected, daySelected, prospectSelected]);
+  }, [
+    clientSelected,
+    daySelected,
+    prospectSelected,
+    switcher,
+    activityStatus,
+    pastActs,
+  ]);
+
+  useEffect(() => {
+    console.log(isLoadingDayAct);
+  }, [isLoadingDayAct]);
 
   const handleArchiveActivity = (id) => {
     archiveActivity(id, daySelected.start);
-
-    setArchiveModalOpen(false);
   };
-
-  console.log(allActivities);
 
   return (
     <CalendarModuleContainer>
       <CalendarModuleSubContainer>
         <Calendar
+          user={user}
           setDaySelected={setDaySelected}
           clientSelected={clientSelected}
           allActivities={allActivities}
@@ -266,6 +316,10 @@ const CalendarModule = () => {
           setProspectSelected={setProspectSelected}
           newActivity={newActivity}
           setNewActivity={setNewActivity}
+          setSearch={setSearch}
+          setSwitcher={setSwitcher}
+          setActivityStatus={setActivityStatus}
+          setPastActs={setPastActs}
         ></Calendar>
       </CalendarModuleSubContainer>
       <PanelRight>
@@ -289,57 +343,185 @@ const CalendarModule = () => {
               )}
             </div> */}
           </AlertAddTitleContainer>
+        </HeaderPanelRight>
 
-          <FilterButtonsContainer>
-            <FiltersButtons>
+        <SearcherAndSwitchContainer>
+          <Searcher
+            list={allActivities}
+            setList={setAllActivities}
+            context={"calendar"}
+            searchToGet={search}
+            setSearchToGet={setSearch}
+            resetFunction={() => {
+              getActivities(
+                clientSelected.client?._id,
+                prospectSelected.prospect?._id,
+                "undefined",
+
+                activityStatus,
+                pastActs
+              );
+              getActivitiesOfDay(
+                daySelected.start,
+                clientSelected.client?._id,
+                prospectSelected.prospect?._id,
+                "undefined",
+                switcher,
+                activityStatus,
+                pastActs
+              );
+            }}
+            getFunction={() => {
+              getActivities(
+                clientSelected.client?._id,
+                prospectSelected.prospect?._id,
+                search,
+                activityStatus,
+                pastActs
+              );
+              getActivitiesOfDay(
+                daySelected.start,
+                clientSelected.client?._id,
+                prospectSelected.prospect?._id,
+                search,
+                switcher,
+                activityStatus,
+                pastActs
+              );
+            }}
+          />
+        </SearcherAndSwitchContainer>
+
+        <FilterButtonsContainer>
+          <FiltersButtons>
+            <Autocomplete
+              key={prospectSelected.prospect?._id}
+              value={prospectSelected.prospect}
+              onChange={(event, newValue) => {
+                setProspectSelected({
+                  prospect: newValue !== null ? newValue : undefined,
+                });
+              }}
+              sx={{
+                "& .MuiInput-underline:before": {
+                  borderBottomColor: "black", // Cambia el color del borde inferior aquí
+                },
+                "& .MuiInput-underline:hover:not(.Mui-disabled):before": {
+                  borderBottomColor: "black", // Cambia el color del borde inferior en el hover aquí
+                },
+                width: "89%",
+                color: "black",
+                transition: "0.3s",
+                ".MuiAutocomplete-clearIndicator": {
+                  color: "black",
+                },
+
+                "& .MuiAutocomplete-noOptions": {
+                  color: "black",
+                },
+                "& .MuiAutocomplete-input": {
+                  color: "black",
+                },
+                "& .MuiOutlinedInput-root": {
+                  borderRadius: "30px",
+                },
+              }}
+              selectOnFocus
+              clearOnBlur
+              handleHomeEndKeys
+              id="free-solo-with-text-demo"
+              options={
+                user.role === "Closer" || user.role === "Setter"
+                  ? allProspects.filter((e) => {
+                      if (clientSelected?.client?.name?.length) {
+                        return (
+                          e.user === user?._id &&
+                          e.client === clientSelected?.client?._id
+                        );
+                      } else {
+                        return e.user === user?._id;
+                      }
+                    })
+                  : user.role === "Client"
+                  ? allProspects.filter((e) => {
+                      return e.client === user?._id;
+                    })
+                  : clientSelected?.client?.name.length
+                  ? allProspects.filter((e) => {
+                      return e.client === clientSelected?.client._id;
+                    })
+                  : allProspects
+              }
+              getOptionLabel={(option) => {
+                if (typeof option === "string") {
+                  return option;
+                }
+
+                if (option.inputValue) {
+                  return option.inputValue;
+                }
+
+                return option.name + " " + option.lastName;
+              }}
+              renderOption={(props, option) => (
+                <li {...props}>{option.name + " " + option.lastName}</li>
+              )}
+              freeSolo
+              fullWidth
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label="Select prospect"
+                  variant="standard"
+                  InputLabelProps={{
+                    style: { color: "gray" }, // Aquí puedes aplicar estilos al label
+                  }}
+                />
+              )}
+            />
+
+            {user.name && user?.role !== "Client" ? (
               <Autocomplete
-                key={prospectSelected.prospect?._id}
-                value={prospectSelected.prospect}
+                key={clientSelected.client?._id}
+                value={clientSelected?.client?.bussinesName}
                 onChange={(event, newValue) => {
-                  setProspectSelected({ prospect: newValue });
-                  if (newValue === null) {
-                    getActivitiesOfDay();
-                  }
+                  setClientSelected({
+                    client: newValue !== null ? newValue : undefined,
+                  });
                 }}
                 sx={{
                   "& .MuiInput-underline:before": {
-                    borderBottomColor: "white", // Cambia el color del borde inferior aquí
+                    borderBottomColor: "black", // Cambia el color del borde inferior aquí
                   },
                   "& .MuiInput-underline:hover:not(.Mui-disabled):before": {
-                    borderBottomColor: "white", // Cambia el color del borde inferior en el hover aquí
+                    borderBottomColor: "black", // Cambia el color del borde inferior en el hover aquí
                   },
-                  width: "40%",
-                  color: "white",
+                  width: "89%",
+                  color: "black",
                   ".MuiAutocomplete-clearIndicator": {
-                    color: "white",
+                    color: "black",
                   },
 
                   "& .MuiAutocomplete-noOptions": {
-                    color: "white",
+                    color: "black",
                   },
                   "& .MuiAutocomplete-input": {
-                    color: "white",
+                    color: "black",
                   },
                   "& .MuiOutlinedInput-root": {
-                    borderRadius: "10px",
-                    border: "solid 1px white",
+                    borderRadius: "30px",
                   },
                 }}
+                disabled={
+                  prospectSelected.prospect && !clientSelected?.client
+                    ? true
+                    : false
+                }
                 selectOnFocus
                 clearOnBlur
                 handleHomeEndKeys
                 id="free-solo-with-text-demo"
-                options={
-                  user.role === "Client"
-                    ? allProspects.filter((e) => {
-                        return e.client === user?._id;
-                      })
-                    : clientSelected?.client?.name.length
-                    ? allProspects.filter((e) => {
-                        return e.client === clientSelected?.client._id;
-                      })
-                    : allProspects
-                }
+                options={allClients}
                 getOptionLabel={(option) => {
                   if (typeof option === "string") {
                     return option;
@@ -349,125 +531,86 @@ const CalendarModule = () => {
                     return option.inputValue;
                   }
 
-                  return option.name + " " + option.lastName;
+                  return option.bussinesName;
                 }}
                 renderOption={(props, option) => (
-                  <li {...props}>{option.name + " " + option.lastName}</li>
+                  <li {...props}>
+                    {option.bussinesName}-{option.name + " " + option.lastName}
+                  </li>
                 )}
                 freeSolo
                 fullWidth
                 renderInput={(params) => (
                   <TextField
                     {...params}
-                    label="Select prospect"
+                    label={"Select client"}
                     variant="standard"
                     InputLabelProps={{
-                      style: { color: "white" }, // Aquí puedes aplicar estilos al label
+                      style: { color: "gray" }, // Aquí puedes aplicar estilos al label
                     }}
                   />
                 )}
               />
-
-              {user.name && user?.role !== "Client" ? (
-                <Autocomplete
-                  key={clientSelected.client?._id}
-                  value={clientSelected?.client?.bussinesName}
-                  onChange={(event, newValue) => {
-                    setClientSelected({ client: newValue });
-                    if (newValue === null) {
-                      getActivitiesOfDay(daySelected.start);
-                    }
-                  }}
-                  sx={{
-                    "& .MuiInput-underline:before": {
-                      borderBottomColor: "white", // Cambia el color del borde inferior aquí
-                    },
-                    "& .MuiInput-underline:hover:not(.Mui-disabled):before": {
-                      borderBottomColor: "white", // Cambia el color del borde inferior en el hover aquí
-                    },
-                    width: "40%",
-                    color: "white",
-                    ".MuiAutocomplete-clearIndicator": {
-                      color: "white",
-                    },
-
-                    "& .MuiAutocomplete-noOptions": {
-                      color: "white",
-                    },
-                    "& .MuiAutocomplete-input": {
-                      color: "white",
-                    },
-                    "& .MuiOutlinedInput-root": {
-                      borderRadius: "10px",
-                      border: "solid 1px white",
-                    },
-                  }}
-                  disabled={
-                    prospectSelected.prospect && !clientSelected?.client
-                      ? true
-                      : false
-                  }
-                  selectOnFocus
-                  clearOnBlur
-                  handleHomeEndKeys
-                  id="free-solo-with-text-demo"
-                  options={allClients}
-                  getOptionLabel={(option) => {
-                    if (typeof option === "string") {
-                      return option;
-                    }
-
-                    if (option.inputValue) {
-                      return option.inputValue;
-                    }
-
-                    return option.bussinesName;
-                  }}
-                  renderOption={(props, option) => (
-                    <li {...props}>
-                      {option.bussinesName}-
-                      {option.name + " " + option.lastName}
-                    </li>
-                  )}
-                  freeSolo
-                  fullWidth
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      label="Select client"
-                      variant="standard"
-                      InputLabelProps={{
-                        style: { color: "white" }, // Aquí puedes aplicar estilos al label
-                      }}
-                    />
-                  )}
-                />
-              ) : null}
-            </FiltersButtons>
-          </FilterButtonsContainer>
-        </HeaderPanelRight>
+            ) : null}
+            <FormControl
+              sx={{
+                width: "90%",
+              }}
+            >
+              <InputLabel sx={{ marginLeft: "-0.6rem" }}>Status</InputLabel>
+              <Select
+                MenuProps={{ disableScrollLock: true }}
+                onChange={(e) => setActivityStatus(e.target.value)}
+                name="role"
+                variant="standard"
+              >
+                {["ACTIVE", "ARCHIVED", "FINALIZED"].map((status) => {
+                  return <MenuItem value={status}>{status}</MenuItem>;
+                })}
+              </Select>
+            </FormControl>
+          </FiltersButtons>
+          <SwitchesContainer>
+            <Switch
+              leftText={"Past events"}
+              rightText={"Past events"}
+              state={pastActs}
+              setState={setPastActs}
+            ></Switch>
+            <Switch
+              leftText={"Event list"}
+              rightText={"All"}
+              state={switcher}
+              setState={setSwitcher}
+            ></Switch>
+          </SwitchesContainer>
+        </FilterButtonsContainer>
+        <SideBarBorder style={{ width: "100%" }}></SideBarBorder>
         <MenuTitle
           style={{
             backgroundColor: "transparent",
             justifyContent: "center",
           }}
         >
-          Events of day
+          {search === "undefined" ? "Events" : `Results of "${search}"`}
         </MenuTitle>
-        {isLoading ? (
-          <Loader></Loader>
-        ) : (
-          <ActivityDailyTable
-            archiveModalOpen={archiveModalOpen}
-            setArchiveModalOpen={setArchiveModalOpen}
-            handleArchiveActivity={handleArchiveActivity}
-            isLoading={isLoading}
-            onOpen={() => setOpen(true)}
-            setIdOfActivity={setIdOfActivity}
-            activitiesOfDay={activitiesOfDay}
-            // archiveActivity={archiveActivity}
-          ></ActivityDailyTable>
-        )}
+
+        <ActivityDailyTable
+          setSwitcher={setSwitcher}
+          switcher={switcher}
+          handleArchiveActivity={handleArchiveActivity}
+          isLoading={isLoading}
+          onOpen={() => setOpen(true)}
+          setIdOfActivity={setIdOfActivity}
+          activitiesOfDay={activitiesOfDay}
+          user={user}
+          search={search}
+          isLoadingDayAct={isLoadingDayAct}
+          // archivedActsState={archivedActsState}
+          // setArchivedActsState={setArchivedActsState}
+          // setPastActs={setPastActs}
+          // pastActs={pastActs}
+        ></ActivityDailyTable>
       </PanelRight>
 
       <AlertActivityInfo
@@ -476,6 +619,7 @@ const CalendarModule = () => {
         idOfActivity={idOfActivity}
         getActivities={getActivities}
         setOpen={setOpen}
+        user={user}
       ></AlertActivityInfo>
 
       <AlertAddActivity

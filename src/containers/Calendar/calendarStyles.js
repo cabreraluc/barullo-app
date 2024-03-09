@@ -75,17 +75,16 @@ export const AlertAddFormContainer = styled.div`
 export const AlertAddTitleContainer = styled.div`
   width: 100%;
   display: flex;
-  margin-bottom: 1rem;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 2rem;
+  height: 6rem;
 `;
 
 export const Title = styled.h1`
   font-weight: 400;
-  margin-top: 2rem;
-  color: white;
+
+  color: black;
 `;
 
 export const AlertAddForm = styled.form`
@@ -155,29 +154,29 @@ export const FilterButtonsContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
-  height: 5rem;
-  margin: 1rem 0;
-  padding-bottom: 1rem;
+  flex-direction: row;
+  height: 20%;
   width: 100%;
+  padding-bottom: 1rem;
 `;
 export const FiltersButtons = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: row;
-  width: 100%;
-  gap: 26px;
+  flex-direction: column;
+  width: 65%;
+  height: 100%;
 `;
 
 export const HeaderPanelRight = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   width: 100%;
   flex-direction: column;
-  background-color: #45596e;
+  background-color: transparent;
   border-radius: 0px 22px 0px 0px;
-  color: white;
+  color: black;
 `;
 
 export const MenuTitle = styled.div`
@@ -204,4 +203,26 @@ export const DatesOfEvents = styled.div`
   justify-content: center;
   align-items: center;
   font-size: 1.2rem;
+`;
+
+export const SearcherAndSwitchContainer = styled.div`
+  margin: 1rem 0;
+`;
+
+export const TableAndSwitchContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 45%;
+`;
+
+export const SwitchesContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35%;
+  flex-direction: row;
+  height: 50%;
+  gap: 15px;
+  padding-top: 1.5rem;
 `;

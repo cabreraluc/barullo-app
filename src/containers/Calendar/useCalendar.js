@@ -12,6 +12,7 @@ export default function useClients() {
   const [allActivities, setAllActivities] = useState([]);
   const [activity, setActivity] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingDayAct, setIsLoadingDayAct] = useState(true);
   const [search, setSearch] = useState("undefined");
   const [activitiesOfDay, setActivitiesOfDay] = useState([]);
   const user = useAuth();
@@ -49,12 +50,18 @@ export default function useClients() {
     }
   };
 
-  const getActivities = async (clientId, prospectId) => {
+  const getActivities = async (
+    clientId,
+    prospectId,
+    search,
+    activityStatus,
+    pastActs
+  ) => {
     setIsLoading(true);
     try {
       const response = await fetchFromApi(
         `GET`,
-        `calendar/get-all/${clientId}?prospect=${prospectId}`
+        `calendar/get-all/${clientId}?prospect=${prospectId}&search=${search}&status=${activityStatus}&past=${pastActs}`
       );
 
       setAllActivities(response);
@@ -62,17 +69,30 @@ export default function useClients() {
     setIsLoading(false);
   };
 
-  const getActivitiesOfDay = async (date, clientId, prospectId) => {
-    setIsLoading(true);
+  const getActivitiesOfDay = async (
+    date,
+    clientId,
+    prospectId,
+    search,
+    switcher,
+    status,
+    pastActs
+  ) => {
     try {
+      setIsLoadingDayAct(true);
       const response = await fetchFromApi(
         `GET`,
-        `calendar/event-day?date=${date}&client=${clientId}&prospect=${prospectId}`
+        `calendar/event-day?date=${date}&client=${clientId}&prospect=${prospectId}&search=${search}&switcher=${switcher}&status=${status}&past=${pastActs}`
       );
 
-      setActivitiesOfDay(response);
-      setIsLoading(false);
-    } catch (error) {}
+      if (response) {
+        setActivitiesOfDay(response);
+      }
+    } catch (error) {
+    } finally {
+      // Finalmente, establece isLoading en false, independientemente de si hay actividades o no
+      setIsLoadingDayAct(false);
+    }
   };
 
   const getActivityById = async (id) => {
@@ -141,5 +161,9 @@ export default function useClients() {
     isLoading,
     newActivity,
     setNewActivity,
+    isLoadingDayAct,
+    setIsLoadingDayAct,
+    setSearch,
+    search,
   };
 }

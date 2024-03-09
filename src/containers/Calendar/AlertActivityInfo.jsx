@@ -28,6 +28,7 @@ export default function AlertActivityInfo({
   open,
   onClose,
   idOfActivity,
+  user,
   getActivities,
   handleSetActualEventInfo,
 }) {
@@ -141,7 +142,7 @@ export default function AlertActivityInfo({
               }}
             >
               <Title>{!edit ? "Event info" : "Edit event"}</Title>
-              {edit ? null : (
+              {user.role !== "Client" ? (
                 <EditIcon
                   sx={{
                     cursor: "pointer",
@@ -150,7 +151,7 @@ export default function AlertActivityInfo({
                   }}
                   onClick={() => setEdit(true)}
                 ></EditIcon>
-              )}
+              ) : null}
             </div>
           </div>
           <div
@@ -309,7 +310,7 @@ export default function AlertActivityInfo({
                     </Button>
                     <Button
                       onClick={() => {
-                        onClose();
+                        setEdit(false);
                       }}
                     >
                       CANCEL
