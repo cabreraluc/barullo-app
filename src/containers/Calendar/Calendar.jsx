@@ -269,12 +269,14 @@ const Calendar = ({
         select={handleDateSelect}
         eventContent={renderEventContent} // custom render function
         eventClick={handleEventClick}
-        eventsSet={handleEvents} // called after events are initialized/added/changed/removed
+        eventsSet={(e) => console.log(e)} // called after events are initialized/added/changed/removed
         // eventAdd={function (e) {
         //   console.log(e);
         // }}
         dateClick={function (info) {
           handleSelection();
+
+          console.log(info);
           // Agrega esta función
           const clickTime = new Date().getTime();
           if (lastClickTime && clickTime - lastClickTime < 300) {
@@ -288,7 +290,9 @@ const Calendar = ({
           // let calendarApi = calendarRef.current.getApi();
           // calendarApi.changeView("timeGridDay", info.dateStr);
         }}
-        eventChange={(e) => handleEventChange(e)}
+        eventChange={(e) => {
+          handleEventChange(e);
+        }}
         // eventRemove={(e) => console.log(e)}
         timeZone="local"
       />

@@ -214,6 +214,7 @@ const CalendarModule = () => {
   }, [errorsAdd]);
 
   const handleEventChange = (e) => {
+    console.log(e);
     const id = e?.event?._def?.extendedProps?._id;
 
     const data = {
@@ -223,7 +224,17 @@ const CalendarModule = () => {
       end: e?.event?._instance?.range?.end,
     };
     formatDateToDayState(data.start);
-    editActivity(data, id);
+    editActivity(
+      data,
+      id,
+      undefined,
+      clientSelected.client?._id,
+      prospectSelected.prospect?._id,
+      search,
+      switcher,
+      activityStatus,
+      pastActs
+    );
   };
 
   const today = new Date();
@@ -283,10 +294,6 @@ const CalendarModule = () => {
     activityStatus,
     pastActs,
   ]);
-
-  useEffect(() => {
-    console.log(isLoadingDayAct);
-  }, [isLoadingDayAct]);
 
   const handleArchiveActivity = (id) => {
     archiveActivity(id, daySelected.start);
@@ -585,7 +592,6 @@ const CalendarModule = () => {
             ></Switch>
           </SwitchesContainer>
         </FilterButtonsContainer>
-        <SideBarBorder style={{ width: "100%" }}></SideBarBorder>
         <MenuTitle
           style={{
             backgroundColor: "transparent",

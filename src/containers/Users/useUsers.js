@@ -52,7 +52,12 @@ export default function useUsers() {
         setUser(response);
       }
     } catch (error) {
-      showNotification(error, "error");
+      if (error.request.status === 500) {
+        showNotification("Sesión expirada", "error");
+        navigate("/login");
+      } else {
+        showNotification(error, "error");
+      }
     }
     setIsLoading(false);
   };

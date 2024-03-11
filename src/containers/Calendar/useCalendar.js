@@ -123,7 +123,17 @@ export default function useClients() {
     }
   };
 
-  const editActivity = async (data, id, setErrors) => {
+  const editActivity = async (
+    data,
+    id,
+    setErrors,
+    clientId,
+    prospectId,
+    search,
+    switcher,
+    status,
+    pastActs
+  ) => {
     setIsLoading(true);
     try {
       const response = await fetchFromApi(
@@ -133,8 +143,16 @@ export default function useClients() {
       );
       if (response) {
         showNotification(response[1]);
-        getActivities();
-        getActivitiesOfDay(data.start);
+        getActivities(clientId, prospectId, search, status, pastActs);
+        getActivitiesOfDay(
+          data.start,
+          clientId,
+          prospectId,
+          search,
+          switcher,
+          status,
+          pastActs
+        );
       }
     } catch (error) {
       if (error.response.data.length) {
