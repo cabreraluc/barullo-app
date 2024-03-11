@@ -28,14 +28,11 @@ function App() {
       {pathname === "/login" ? null : <Header />}
 
       <Routes>
-        <Route
-          path="/"
-          element={user ? <Navigate to="/home" /> : <Navigate to="/login" />}
-        />
-        <Route path="/login" element={<Login />} />
-        <Route path="/unauthorized" element={<Unauthorized />} />
+        <Route path="/" element={<Navigate to="/" />} />
+        {/* <Route path="/login" element={<Login />} />
+        <Route path="/unauthorized" element={<Unauthorized />} /> */}
         <Route path="/" element={<Landing />} />
-        <Route element={<PrivateRoute />}>
+        {/* <Route element={<PrivateRoute />}>
           <Route path="/home/*" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/edit-user/:id" element={<EditUser />} />
@@ -45,7 +42,7 @@ function App() {
           <Route path="/edit-prospect/:id" element={<EditProspect />} />
           <Route path="/add-prospect" element={<AddProspect />} />
           <Route path="/prospect-details/:id" element={<ProspectDetails />} />
-        </Route>
+        </Route> */}
       </Routes>
     </div>
   );

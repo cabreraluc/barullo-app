@@ -1,65 +1,45 @@
 import styled from "styled-components";
 
 export const HeaderContainer = styled.div`
-  height: 4rem;
-  width: 98%;
+  width: 100%;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #2c3e50;
-  border-radius: 50px;
-  margin: 0 auto;
-  margin-top: 1rem;
+  justify-content: center;
+  flex-direction: row;
+  padding: 0.5rem 0.5rem;
 `;
 
 export const UserContainer = styled.div`
-  height: 2rem;
-  width: 5;
-  margin-right: 2rem;
-  display: flex;
   align-items: center;
-  font-family: Arial;
 `;
 
-export const UserButton = styled.button`
+export const LogoContainer = styled.div`
+  width: 92%;
+`;
+
+export const LogoImg = styled.img`
+  width: 100%;
+`;
+
+export const UserButton = styled.div`
   border: none;
   background-color: transparent;
   cursor: pointer;
-  color: white;
+  color: black;
 `;
 
 export const LogOutButton = styled.button`
   border: none;
   background-color: transparent;
   cursor: pointer;
-  color: white;
+  color: black;
 `;
 
-export const ButtonsContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 7.5rem;
-`;
+export const ButtonsContainer = styled.div``;
 
 export const BurgerMenuContainer = styled.div`
+  width: 8%;
+  height: 20px;
   display: flex;
   justify-content: center;
-  align-items: center;
-  width: 5rem;
-`;
-
-export const LogoContainer = styled.button`
-  height: 2rem;
-  width: 5;
-  margin-left: 2rem;
-  display: flex;
-  align-items: center;
-  border: none;
-  background-color: transparent;
-  font-weight: 700;
-  cursor: pointer;
-  color: black;
-  font-size: 2.5rem;
-  font-weight: 200;
+  alignt-items: center;
 `;
