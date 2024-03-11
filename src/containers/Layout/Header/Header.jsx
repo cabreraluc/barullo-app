@@ -19,6 +19,7 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import logoRed from "../../../logobarullo-red.png";
 import logoBlack from "../../../logobarullo-black.png";
 import { useEffect, useState } from "react";
+import DrawerContainer from "../Drawer/DrawerContainer";
 
 export default function Header() {
   const { pathname } = useLocation();
@@ -30,22 +31,35 @@ export default function Header() {
   };
 
   const [color, setColor] = useState(false);
+  const [stop, setStop] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => {
-      setColor(!color);
-    }, 300);
+    if (!stop) {
+      setTimeout(() => {
+        setColor(!color);
+      }, 300);
+    }
   }, [color]);
+
+  useEffect(() => {
+    setColor(!color);
+  }, [stop]);
 
   return (
     <HeaderContainer>
       <BurgerMenuContainer>
-        <ShortTextIcon
-          sx={{ color: "black", cursor: "pointer", fontSize: "2rem" }}
-        ></ShortTextIcon>
+        <DrawerContainer>
+          <ShortTextIcon
+            sx={{
+              color: "black",
+              cursor: "pointer",
+              fontSize: "clamp(32px, 5vw, 52px)",
+            }}
+          ></ShortTextIcon>
+        </DrawerContainer>
       </BurgerMenuContainer>
 
-      <LogoContainer onClick={() => setColor(!color)}>
+      <LogoContainer onClick={() => setStop(!stop)}>
         <LogoImg src={color ? logoRed : logoBlack}></LogoImg>
       </LogoContainer>
       {/* <UserContainer>

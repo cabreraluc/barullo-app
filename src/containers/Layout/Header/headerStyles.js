@@ -3,9 +3,10 @@ import styled from "styled-components";
 export const HeaderContainer = styled.div`
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: row;
   padding: 0.5rem 0.5rem;
+  background-color: white;
 `;
 
 export const UserContainer = styled.div`
@@ -13,11 +14,15 @@ export const UserContainer = styled.div`
 `;
 
 export const LogoContainer = styled.div`
-  width: 92%;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const LogoImg = styled.img`
-  width: 100%;
+  margin-right: 10%;
+  width: clamp(30rem, 35rem, 35rem);
 `;
 
 export const UserButton = styled.div`
@@ -37,9 +42,9 @@ export const LogOutButton = styled.button`
 export const ButtonsContainer = styled.div``;
 
 export const BurgerMenuContainer = styled.div`
-  width: 8%;
-  height: 20px;
+  width: 10%;
+
   display: flex;
-  justify-content: center;
+  justify-content: start;
   alignt-items: center;
 `;
