@@ -12,6 +12,7 @@ const NextEvents = () => {
             justifyContent: "center",
             alignItems: "center",
             height: "10%",
+            color: "white",
           }}
         >
           Next events

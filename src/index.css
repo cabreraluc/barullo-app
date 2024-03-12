@@ -10,10 +10,6 @@ body {
   width: 100%;
   margin: 0;
   padding: 0;
-  background-image: url(/src/fotoFiesta.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
 }
 
 body.swal2-shown {

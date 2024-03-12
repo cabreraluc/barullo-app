@@ -26,7 +26,10 @@ function App() {
   const [openSlider, setOpenSlider] = useState(false);
 
   return (
-    <div className="App">
+    <div
+      style={openSlider ? { marginLeft: "300px", transition: "0.23s" } : null}
+      className="App"
+    >
       <Header setOpenSlider={setOpenSlider} />
 
       <Routes>

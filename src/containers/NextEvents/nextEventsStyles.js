@@ -14,7 +14,7 @@ export const Card = styled.div`
   justify-content: space-around;
   align-items: center;
   width: 80vw;
-  height: 50%;
+  height: 55%;
   flex-direction: column;
   color: black;
   border-radius: 1rem;
