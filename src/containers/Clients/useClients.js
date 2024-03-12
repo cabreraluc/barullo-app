@@ -3,6 +3,8 @@ import env from "../../env/env";
 import { useState } from "react";
 import useNotistack from "../../components/Notistack/useNotistack";
 import { useNavigate } from "react-router-dom";
+import fetchFromApi from "../../utils/fetchFromapi";
+import useAuth from "../Login/useAuth";
 
 export default function useClients() {
   const navigate = useNavigate();
@@ -10,55 +12,65 @@ export default function useClients() {
   const [allClients, setAllClients] = useState([]);
   const [client, setClient] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  const addClient = async (data) => {
+  const [page, setPage] = useState(1);
+  const [search, setSearch] = useState("undefined");
+  const [totalPages, setTotalPages] = useState(1);
+  const user = useAuth();
+
+  const addClient = async (data, setErrors) => {
     setIsLoading(true);
     try {
-      const response = await axios.post(
-        `${env.API_URL}clients/register-client`,
-        data,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
+      const response = await fetchFromApi(
+        `POST`,
+        `clients/register-client`,
+        data
       );
 
-      showNotification(response.data[1]);
+      showNotification(response[1]);
       navigate("/home/clients");
     } catch (error) {
-      showNotification(error.response.data, "error");
+      if (error.response.data.length) {
+        setErrors(error.response.data);
+      } else {
+        showNotification(error.response.data.error, "error");
+      }
+      setIsLoading(false);
     }
   };
 
   const getClients = async () => {
     try {
       setIsLoading(true);
-      const response = await axios.get(`${env.API_URL}clients/`, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
 
-      console.log(response);
+      const response = await fetchFromApi(`GET`, `clients/`);
 
-      if (response.data.length) {
-        setAllClients(response.data);
-      }
+      setAllClients(response);
+    } catch (error) {}
+    setIsLoading(false);
+  };
+
+  const getClientsPaginate = async (id, page, search) => {
+    try {
+      setIsLoading(true);
+
+      const response = await fetchFromApi(
+        `GET`,
+        `clients/paginate/?page=${page}&id=${id}&search=${search}`
+      );
+
+      setAllClients(response.docs);
+      setTotalPages(response.totalPages);
+      setPage(response.page);
     } catch (error) {}
     setIsLoading(false);
   };
 
   const getClientById = async (id) => {
     try {
-      const response = await axios.get(`${env.API_URL}/clients/${id}`, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetchFromApi(`GET`, `/clients/${id}`);
 
-      if (response.data) {
-        console.log(response.data);
-        setClient(response.data);
+      if (response) {
+        setClient(response);
       }
     } catch (error) {
       showNotification(error, "error");
@@ -67,17 +79,19 @@ export default function useClients() {
 
   const disableClient = async (id) => {
     try {
-      const response = await axios.post(
-        `${env.API_URL}clients/disable-client/${id}`,
-
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
+      const response = await fetchFromApi(
+        `DELETE`,
+        `clients/disable-client`,
+        id
       );
 
-      getClients();
+      if (allClients.length === 1 && page !== 1) {
+        getClientsPaginate(user.id, page - 1, search);
+      } else {
+        getClientsPaginate(user.id, page, search);
+      }
+
+      showNotification(response[0]);
     } catch (error) {
       console.log(error);
     }
@@ -86,19 +100,21 @@ export default function useClients() {
   const editClient = async (data, id, setErrors) => {
     setIsLoading(true);
     try {
-      const response = await axios.put(
-        `${env.API_URL}clients/edit-client/${id}`,
-        data,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
+      const response = await fetchFromApi(
+        `PUT`,
+        `clients/edit-client/${id}`,
+        data
       );
-      showNotification(response.data[1]);
+
+      showNotification(response[1]);
       navigate("/home/clients");
     } catch (error) {
-      showNotification(error.response.data, "error");
+      if (error.response.data.length) {
+        setErrors(error.response.data);
+      } else {
+        showNotification(error.response.data.error, "error");
+      }
+      setIsLoading(false);
     }
   };
 
@@ -112,5 +128,11 @@ export default function useClients() {
     getClientById,
     client,
     isLoading,
+    getClientsPaginate,
+    setPage,
+    page,
+    totalPages,
+    search,
+    setSearch,
   };
 }

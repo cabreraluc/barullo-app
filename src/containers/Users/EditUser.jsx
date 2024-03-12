@@ -30,9 +30,10 @@ import useUsers from "./useUsers";
 import { userValidations } from "./userValidations";
 import useNotistack from "../../components/Notistack/useNotistack";
 import { useParams } from "react-router-dom";
+import Button from "@mui/material/Button";
 
 const EditUser = () => {
-  const userRoles = ["Admin", "Setter", "Closer"];
+  const roles = ["Admin", "Setter", "Closer"];
   const { id } = useParams();
   const { editUser, getUserById, user, isLoading } = useUsers();
   const [userInfo, setUserInfo] = useState({
@@ -41,7 +42,7 @@ const EditUser = () => {
     lastName: "",
     cellphone: "",
     password: "",
-    userRole: "",
+    role: "",
     repeatPassword: "",
   });
   const { showNotification } = useNotistack();
@@ -84,13 +85,9 @@ const EditUser = () => {
       name: user?.name,
       lastName: user?.lastName,
       cellphone: user?.cellphone,
-      userRole: user?.userRole,
+      role: user?.role,
     });
   }, [user]);
-
-  useEffect(() => {
-    console.log(userInfo);
-  }, [userInfo]);
 
   const navigate = useNavigate();
   return (
@@ -209,12 +206,12 @@ const EditUser = () => {
                 // }}
                 // labelId="rol-label"
                 onChange={handleChange}
-                name="userRole"
-                error={errors[1]?.userRole}
+                name="role"
+                error={errors[1]?.role}
                 variant="standard"
-                value={userInfo?.userRole}
+                value={userInfo?.role}
               >
-                {userRoles.map((rol) => {
+                {roles.map((rol) => {
                   return <MenuItem value={rol}>{rol}</MenuItem>;
                 })}
               </Select>
@@ -294,12 +291,16 @@ const EditUser = () => {
         {/* </BoxMui> */}
         <ActionButtonContainer>
           <ButtonsContainer>
-            <ActionButton type="submit" disabled={isLoading ? true : false}>
-              Create
-            </ActionButton>
-            <CancelActionButton onClick={() => navigate("/home/users")}>
+            <Button
+              variant="outlined"
+              type="submit"
+              disabled={isLoading ? true : false}
+            >
+              edit
+            </Button>
+            <Button variant="outlined" onClick={() => navigate("/home/users")}>
               Cancel
-            </CancelActionButton>
+            </Button>
           </ButtonsContainer>
         </ActionButtonContainer>
       </FormContainertUsersAction>

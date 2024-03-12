@@ -23,7 +23,6 @@ export default function Client({ client, disableClient }) {
     setOpen(false);
   };
 
-  console.log(client);
   return (
     <TableRow
       key={client.name}

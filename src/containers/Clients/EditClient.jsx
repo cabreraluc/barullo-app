@@ -34,6 +34,7 @@ import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 
 const EditClient = () => {
   const clientRoles = ["Admin", "Setter", "Closer"];
@@ -112,10 +113,6 @@ const EditClient = () => {
       comments: client?.comments,
     });
   }, [client]);
-
-  useEffect(() => {
-    console.log(clientInfo);
-  }, [clientInfo]);
 
   const navigate = useNavigate();
   return (
@@ -318,12 +315,19 @@ const EditClient = () => {
         {/* </BoxMui> */}
         <ActionButtonContainer>
           <ButtonsContainer>
-            <ActionButton type="submit" disabled={isLoading ? true : false}>
-              Create
-            </ActionButton>
-            <CancelActionButton onClick={() => navigate("/home/clients")}>
+            <Button
+              variant="outlined"
+              type="submit"
+              disabled={isLoading ? true : false}
+            >
+              Edit
+            </Button>
+            <Button
+              variant="outlined"
+              onClick={() => navigate("/home/clients")}
+            >
               Cancel
-            </CancelActionButton>
+            </Button>
           </ButtonsContainer>
         </ActionButtonContainer>
       </FormContainertClientsAction>

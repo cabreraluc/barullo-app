@@ -2,7 +2,7 @@ import * as React from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 
-export default function Loader() {
+export default function Loader({ size }) {
   return (
     <div
       style={{
@@ -14,7 +14,7 @@ export default function Loader() {
         alignItems: "center",
       }}
     >
-      <CircularProgress />
+      <CircularProgress size={size ? size : 40} />
     </div>
   );
 }

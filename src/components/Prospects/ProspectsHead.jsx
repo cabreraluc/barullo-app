@@ -15,6 +15,7 @@ const ProspectHead = ({ handleSelectAllOperations, checked }) => {
               fontWeight: "500",
 
               width: `${t.width}`,
+              backgroundColor: "transparent",
               fontSize: "14px",
               paddingLeft: `${t.paddingLeft}`,
               paddingRight: `${t.paddingRight}`,

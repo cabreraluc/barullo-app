@@ -1,39 +1,50 @@
 import styled from "styled-components";
 
 export const HeaderContainer = styled.div`
-  height: 4rem;
-  background-color: black;
   width: 100%;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  padding: 0.5rem 0.5rem;
+  background-color: white;
 `;
 
 export const UserContainer = styled.div`
-  height: 2rem;
-  width: 5;
-  margin-right: 2rem;
-  display: flex;
   align-items: center;
 `;
 
-export const UserButton = styled.button`
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-  color: white;
+export const LogoContainer = styled.div`
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
-export const LogoContainer = styled.button`
-  height: 2rem;
-  width: 5;
-  margin-left: 2rem;
-  display: flex;
-  align-items: center;
+export const LogoImg = styled.img`
+  margin-right: 10%;
+  width: clamp(30rem, 35rem, 35rem);
+`;
+
+export const UserButton = styled.div`
   border: none;
   background-color: transparent;
   cursor: pointer;
-  color: white;
-  font-family: "Bebas Neue", cursive;
-  font-size: 2rem;
+  color: black;
+`;
+
+export const LogOutButton = styled.button`
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  color: black;
+`;
+
+export const ButtonsContainer = styled.div``;
+
+export const BurgerMenuContainer = styled.div`
+  width: 10%;
+
+  display: flex;
+  justify-content: start;
+  alignt-items: center;
 `;

@@ -122,7 +122,7 @@ export const clientValidations = (clientData, context) => {
 //       alert: "",
 //       error: false,
 //     },
-//     userRole: {
+//     role: {
 //       alert: "",
 //       error: false,
 //     },
@@ -194,11 +194,11 @@ export const clientValidations = (clientData, context) => {
 //       },
 //     };
 //   }
-//   if (userData.userRole === "") {
+//   if (userData.role === "") {
 //     returnDataError = true;
 //     dataErrors = {
 //       ...dataErrors,
-//       userRole: {
+//       role: {
 //         alert: "Debe seleccionar un rol.",
 //         error: true,
 //       },

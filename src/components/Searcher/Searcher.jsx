@@ -2,10 +2,30 @@ import { SearcherContainer } from "./searcherStyles";
 import TextField from "@mui/material/TextField";
 import SearchIcon from "@mui/icons-material/Search";
 import { useState, useEffect } from "react";
-
-const Searcher = ({ context, list, setList }) => {
+import RefreshIcon from "@mui/icons-material/Refresh";
+import useAuth from "../../containers/Login/useAuth";
+const Searcher = ({
+  context,
+  list,
+  setList,
+  searchToGet,
+  setSearchToGet,
+  getFunction,
+  resetFunction,
+}) => {
   const [listToFilter, setListToFilter] = useState([]);
   const [search, setSearch] = useState("");
+  const { id } = useAuth();
+
+  useEffect(() => {
+    if (context === "calendar") {
+      if (searchToGet === "undefined") {
+        setSearch("");
+      } else {
+        setSearch(searchToGet);
+      }
+    }
+  }, [searchToGet]);
 
   const handlerSearchChange = (e) => {
     if (context === "users") {
@@ -16,10 +36,68 @@ const Searcher = ({ context, list, setList }) => {
       );
       setList(result);
     }
+    if (context === "clients") {
+      const { value } = e.target;
+      setSearch(value);
+      setSearchToGet(value);
+    }
+
+    if (context === "prospects") {
+      const { value } = e.target;
+      setSearch(value);
+      setSearchToGet(value);
+    }
+
+    if (context === "calendar") {
+      const { value } = e.target;
+
+      setSearchToGet(value);
+    }
   };
 
-  const handlerSearch = () => {
-    if (context === "users") {
+  const handlerRefresh = () => {
+    if (context === "clients") {
+      getFunction(null, 1, undefined);
+      setSearch("");
+      setSearchToGet("");
+    }
+
+    if (context === "prospects") {
+      getFunction(id, 1, undefined);
+      setSearch("");
+      setSearchToGet("");
+    }
+    if (context === "calendar") {
+      setSearchToGet("undefined");
+      resetFunction();
+    }
+  };
+
+  const handlerSearch = (e) => {
+    e.preventDefault();
+    if (context === "clients") {
+      getFunction(null, 1, searchToGet);
+    }
+
+    if (context === "prospects") {
+      getFunction(id, 1, searchToGet);
+    }
+    if (context === "calendar") {
+      getFunction();
+    }
+  };
+
+  const handlerSearchButton = (e) => {
+    if (context === "clients") {
+      getFunction(null, 1, searchToGet);
+    }
+
+    if (context === "prospects") {
+      getFunction(id, 1, searchToGet);
+    }
+
+    if (context === "calendar") {
+      getFunction();
     }
   };
 
@@ -31,22 +109,47 @@ const Searcher = ({ context, list, setList }) => {
     }
   }, [list]);
 
-  useEffect(() => {
-    console.log(listToFilter);
-  }, [listToFilter]);
-
   return (
-    <SearcherContainer>
-      <SearchIcon sx={{ color: "white", marginTop: 2, marginRight: 1 }} />
+    <SearcherContainer onSubmit={(e) => handlerSearch(e)}>
+      {context === "users" || context === "calendar" ? null : (
+        <SearchIcon
+          sx={{
+            color: `black`,
+            marginTop: 2,
+            marginRight: 1,
+            cursor: "pointer",
+          }}
+          type="submit"
+          onClick={handlerSearchButton}
+        />
+      )}
       <TextField
         onChange={(e) => handlerSearchChange(e)}
         value={search}
         id="standard-basic"
-        label="Search user..."
-        variant="standard"
+        label={
+          context === "users"
+            ? "Search user"
+            : context === "clients"
+            ? "Search client"
+            : context === "prospects"
+            ? "Search prospect"
+            : "Search event"
+        }
+        variant={context !== "calendar" ? "standard" : "outlined"}
         sx={{
+          width: context !== "calendar" ? null : "80%",
+          "& .MuiInput-underline:before": {
+            borderBottomColor: `black`, // Cambia el color del borde inferior aquí
+          },
+          "& .MuiInput-underline:hover:not(.Mui-disabled):before": {
+            borderBottomColor: `black`, // Cambia el color del borde inferior en el hover aquí
+          },
+          "& .MuiOutlinedInput-root": {
+            borderRadius: "30px",
+          },
           input: {
-            color: `white`,
+            color: `black`,
           },
         }}
         InputLabelProps={{
@@ -55,6 +158,27 @@ const Searcher = ({ context, list, setList }) => {
           },
         }}
       />
+
+      {context === "users" ? null : (
+        <RefreshIcon
+          sx={
+            context === "calendar"
+              ? {
+                  color: `black`,
+                  marginTop: 0,
+                  marginLeft: 1,
+                  cursor: "pointer",
+                }
+              : {
+                  color: `black`,
+                  marginTop: 2,
+                  marginLeft: 1,
+                  cursor: "pointer",
+                }
+          }
+          onClick={handlerRefresh}
+        ></RefreshIcon>
+      )}
     </SearcherContainer>
   );
 };

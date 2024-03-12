@@ -10,15 +10,27 @@ import { useEffect } from "react";
 import ClientsTable from "../../components/Clients/ClientsTable";
 import Loader from "../../componentsCss/Loader/Loader";
 import Searcher from "../../components/Searcher/Searcher";
+import Pagination from "../../components/Pagination/Paginate";
 const values = [{ name: "Add Client", path: "/add-client" }];
 
 const Clients = () => {
   const navigate = useNavigate();
-  const { allClients, getClients, disableClient, isLoading, setAllClients } =
-    useClients();
+  const {
+    allClients,
+    getClients,
+    disableClient,
+    isLoading,
+    setAllClients,
+    getClientsPaginate,
+    setPage,
+    page,
+    totalPages,
+    search,
+    setSearch,
+  } = useClients();
 
   useEffect(() => {
-    getClients();
+    getClientsPaginate(null, 1, search);
   }, []);
 
   return (
@@ -33,12 +45,22 @@ const Clients = () => {
             isLoading={isLoading}
           />
         )}
+        <Pagination
+          page={page}
+          totalPages={totalPages}
+          handlerGetFunction={getClientsPaginate}
+          context={"clients"}
+          search={search}
+        />
       </ClientsList>
       <PanelRight>
         <Searcher
           list={allClients}
           setList={setAllClients}
           context={"clients"}
+          searchToGet={search}
+          setSearchToGet={setSearch}
+          getFunction={getClientsPaginate}
         />
         {values.map((e) => (
           <ButtonBar onClick={e.path ? () => navigate(e.path) : null}>

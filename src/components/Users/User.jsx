@@ -23,7 +23,6 @@ export default function User({ user, disableUser }) {
     setOpen(false);
   };
 
-  console.log(user);
   return (
     <TableRow
       key={user.name}
@@ -34,7 +33,7 @@ export default function User({ user, disableUser }) {
       </TableCell>
       <TableCell align="left">{user.email}</TableCell>
       <TableCell align="left">{user.cellphone}</TableCell>
-      <TableCell align="left">{user.userRole}</TableCell>
+      <TableCell align="left">{user.role}</TableCell>
       <TableCell align="left">
         <DeleteOutlineIcon
           onClick={() => setOpen(true)}

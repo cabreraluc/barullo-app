@@ -14,11 +14,16 @@ import AlertDialog from "../Dialog/AlertDialog";
 import { useState } from "react";
 import useProspects from "../../containers/Prospects/useProspects";
 
-export default function ProspectTable({ allProspects, disableProspect }) {
+export default function ProspectTable({
+  allProspects,
+  disableProspect,
+  changeProspectStatus,
+  changeInterestLevel,
+}) {
   return (
     <TableContainer
       component={Paper}
-      sx={{ height: "100%", boxShadow: "none" }}
+      sx={{ height: "100%", boxShadow: "none", backgroundColor: "transparent" }}
     >
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
@@ -28,14 +33,20 @@ export default function ProspectTable({ allProspects, disableProspect }) {
             <TableCell align="left">Email</TableCell>
             <TableCell align="left">Interest level</TableCell>
             <TableCell align="left">Status</TableCell>
-
+            <TableCell align="left">Social networks</TableCell>
+            <TableCell align="left">Country</TableCell>
             <TableCell sx={{ width: "1.5rem" }} align="left"></TableCell>
             <TableCell sx={{ width: "1.5rem" }} align="left"></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {allProspects.map((prospect) => (
-            <Prospect disableProspect={disableProspect} prospect={prospect} />
+            <Prospect
+              changeInterestLevel={changeInterestLevel}
+              changeProspectStatus={changeProspectStatus}
+              disableProspect={disableProspect}
+              prospect={prospect}
+            />
           ))}
         </TableBody>
       </Table>

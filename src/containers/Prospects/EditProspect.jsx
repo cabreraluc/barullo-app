@@ -13,6 +13,7 @@ import {
   PastPageContainer,
   ActionButtonContainer,
   ButtonsContainer,
+  MidSection,
 } from "./prospectsStyles";
 import {
   ActionButton,
@@ -34,12 +35,13 @@ import { Autocomplete } from "@mui/material";
 import useClients from "../Clients/useClients";
 import useUsers from "../Users/useUsers";
 import { createFilterOptions } from "@mui/material";
+import Button from "@mui/material/Button";
 
 const EditProspect = () => {
   const { getUsers, allUsers } = useUsers();
   const { getClients, allClients } = useClients();
   const genderArray = ["Male", "Female", "Other"];
-  const interestArray = ["1", "2", "3", "4", "5"];
+  const interestArray = ["Very low", "Low", "Medium", "High", "Very high"];
   const allCountriesArray = [
     "Afghanistan",
     "Albania",
@@ -340,10 +342,6 @@ const EditProspect = () => {
   }, [prospect]);
 
   useEffect(() => {
-    console.log(prospectInfo);
-  }, [prospectInfo]);
-
-  useEffect(() => {
     getClients();
     getUsers();
   }, []);
@@ -385,6 +383,18 @@ const EditProspect = () => {
             />
 
             <TextField
+              fullWidth
+              label="Last name"
+              variant="standard"
+              id="lastname"
+              autoComplete="new-lastname"
+              name="lastName"
+              onChange={handleChange}
+              error={errors[1]?.lastName}
+              value={prospectInfo.lastName}
+            />
+
+            <TextField
               autoComplete="age"
               id="Age"
               label="Age"
@@ -396,6 +406,7 @@ const EditProspect = () => {
               error={errors[1]?.age}
               value={prospectInfo.age}
             />
+
             <TextField
               autoComplete="given-email"
               id="email"
@@ -407,105 +418,6 @@ const EditProspect = () => {
               onChange={handleChange}
               error={errors[1]?.email}
               value={prospectInfo.email}
-            />
-
-            <FormControl
-              sx={{
-                width: "100%",
-              }}
-            >
-              <InputLabel id="rol-label">Gender</InputLabel>
-              <Select
-                MenuProps={{ disableScrollLock: true }}
-                value={prospectInfo?.gender}
-                // sx={{
-                //   input: {
-                //     color: `${themeMui.palette.inputText.main}`,
-                //   },
-                //   width: "497px",
-                // }}
-                // SelectDisplayProps={{
-                //   style: { color: `${themeMui.palette.inputText.main}` },
-                // }}
-                // labelId="rol-label"
-                onChange={handleChange}
-                name="gender"
-                error={errors[1]?.gender}
-                variant="standard"
-              >
-                {genderArray.map((g) => {
-                  return <MenuItem value={g}>{g}</MenuItem>;
-                })}
-              </Select>
-            </FormControl>
-
-            <TextField
-              variant="standard"
-              fullWidth
-              id="occupation"
-              label="Occupation"
-              autoComplete="occupation"
-              name="occupation"
-              onChange={handleChange}
-              error={errors[1]?.occupation}
-              value={prospectInfo.occupation}
-            />
-            <TextField
-              variant="standard"
-              fullWidth
-              id="instagram"
-              label="Instagram"
-              autoComplete="instagram"
-              name="instagram"
-              onChange={handleChange}
-              error={errors[1]?.instagram}
-              value={prospectInfo.instagram}
-            />
-            <TextField
-              variant="standard"
-              fullWidth
-              id="linkedin"
-              label="Linkedin"
-              autoComplete="linkedin"
-              name="linkedin"
-              onChange={handleChange}
-              error={errors[1]?.linkedin}
-              value={prospectInfo.linkedin}
-            />
-            <TextField
-              variant="standard"
-              fullWidth
-              id="facebook"
-              label="Facebook"
-              autoComplete="facebook"
-              name="facebook"
-              onChange={handleChange}
-              error={errors[1]?.facebook}
-              value={prospectInfo.facebook}
-            />
-            <TextField
-              variant="standard"
-              fullWidth
-              id="tiktok"
-              label="Tiktok"
-              autoComplete="tiktok"
-              name="tiktok"
-              onChange={handleChange}
-              error={errors[1]?.tiktok}
-              value={prospectInfo.tiktok}
-            />
-          </LeftSectionContainer>
-          <RightSectionContainer>
-            <TextField
-              fullWidth
-              label="Last name"
-              variant="standard"
-              id="lastname"
-              autoComplete="new-lastname"
-              name="lastName"
-              onChange={handleChange}
-              error={errors[1]?.lastName}
-              value={prospectInfo.lastName}
             />
             <TextField
               variant="standard"
@@ -554,6 +466,50 @@ const EditProspect = () => {
                 />
               )}
             />
+
+            <TextField
+              variant="standard"
+              fullWidth
+              id="occupation"
+              label="Occupation"
+              autoComplete="occupation"
+              name="occupation"
+              onChange={handleChange}
+              error={errors[1]?.occupation}
+              value={prospectInfo.occupation}
+            />
+          </LeftSectionContainer>
+          <MidSection>
+            <FormControl
+              sx={{
+                width: "100%",
+              }}
+            >
+              <InputLabel id="rol-label">Gender</InputLabel>
+              <Select
+                MenuProps={{ disableScrollLock: true }}
+                value={prospectInfo?.gender}
+                // sx={{
+                //   input: {
+                //     color: `${themeMui.palette.inputText.main}`,
+                //   },
+                //   width: "497px",
+                // }}
+                // SelectDisplayProps={{
+                //   style: { color: `${themeMui.palette.inputText.main}` },
+                // }}
+                // labelId="rol-label"
+                onChange={handleChange}
+                name="gender"
+                error={errors[1]?.gender}
+                variant="standard"
+              >
+                {genderArray.map((g) => {
+                  return <MenuItem value={g}>{g}</MenuItem>;
+                })}
+              </Select>
+            </FormControl>
+
             <TextField
               id="outlined-multiline-static"
               label="Gender comments..."
@@ -566,6 +522,52 @@ const EditProspect = () => {
               value={prospectInfo.genderComments}
             />
 
+            <TextField
+              variant="standard"
+              fullWidth
+              id="instagram"
+              label="Instagram"
+              autoComplete="instagram"
+              name="instagram"
+              onChange={handleChange}
+              error={errors[1]?.instagram}
+              value={prospectInfo.instagram}
+            />
+            <TextField
+              variant="standard"
+              fullWidth
+              id="linkedin"
+              label="Linkedin"
+              autoComplete="linkedin"
+              name="linkedin"
+              onChange={handleChange}
+              error={errors[1]?.linkedin}
+              value={prospectInfo.linkedin}
+            />
+            <TextField
+              variant="standard"
+              fullWidth
+              id="facebook"
+              label="Facebook"
+              autoComplete="facebook"
+              name="facebook"
+              onChange={handleChange}
+              error={errors[1]?.facebook}
+              value={prospectInfo.facebook}
+            />
+            <TextField
+              variant="standard"
+              fullWidth
+              id="tiktok"
+              label="Tiktok"
+              autoComplete="tiktok"
+              name="tiktok"
+              onChange={handleChange}
+              error={errors[1]?.tiktok}
+              value={prospectInfo.tiktok}
+            />
+          </MidSection>
+          <RightSectionContainer>
             {/* <FormGroup>
               <Typography variant="overline" display="block" gutterBottom>
                 Select services
@@ -739,12 +741,19 @@ const EditProspect = () => {
         </FormSectionsContainer>
         <ActionButtonContainer>
           <ButtonsContainer>
-            <ActionButton type="submit" disabled={isLoading ? true : false}>
+            <Button
+              variant="outlined"
+              type="submit"
+              disabled={isLoading ? true : false}
+            >
               Edit
-            </ActionButton>
-            <CancelActionButton onClick={() => navigate("/home/prospects")}>
+            </Button>
+            <Button
+              variant="outlined"
+              onClick={() => navigate("/home/prospects")}
+            >
               Cancel
-            </CancelActionButton>
+            </Button>
           </ButtonsContainer>
         </ActionButtonContainer>
       </FormContainertProspectsAction>

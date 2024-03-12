@@ -15,36 +15,37 @@ export const ProspectsList = styled.div`
   justify-content: center;
   align-items: center;
 
-  width: 70%;
+  width: 90%;
   height: 90%;
   margin-left: 2rem;
+  margin-right: 2rem;
 `;
 
 export const PanelRight = styled.div`
   display: flex;
   flex-direction: column;
   padding: 2rem;
-  width: 20%;
+  width: 15%;
   height: 90%;
-  background-color: black;
+  background-color: transparent;
   margin-left: 2rem;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  box-shadow: rgba(0, 0, 0, 0.16) -1px 0px 0px, rgba(0, 0, 0, 0.23) 0px 0px 0px;
 `;
 
 export const ButtonBar = styled.div`
   width: 80%;
   height: 3rem;
-  background-color: transparent;
+
   margin: 1rem 0rem;
   cursor: pointer;
-  color: white;
+  color: black;
 
   display: flex;
   justify-content: flex-start;
   align-items: center;
   margin-left: 1rem;
   .hover {
-    background-color: gray;
+    color: gray;
   }
 `;
 
@@ -116,26 +117,30 @@ export const TitleContainer = styled.div`
 `;
 
 export const FormContainertProspectsAction = styled.form`
-  width: 70%;
+  width: 90%;
   height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
-  margin-top: 6rem;
+  margin-top: 2rem;
+  background-color: rgb(256, 256, 256, 0.8);
+  border-radius: 15px;
   margin-bottom: 4rem;
 `;
 
 export const FormContainertProspectsActionDiv = styled.div`
-  width: 70%;
+  width: 90%;
   height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
-  margin-top: 6rem;
+  margin-top: 2rem;
+  background-color: rgb(256, 256, 256, 0.8);
+  border-radius: 15px;
   margin-bottom: 4rem;
 `;
 
@@ -147,7 +152,15 @@ export const FormSectionsContainer = styled.div`
   justify-content: space-around;
 `;
 export const LeftSectionContainer = styled.div`
-  width: 45%;
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+`;
+
+export const MidSection = styled.div`
+  width: 30%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -155,7 +168,7 @@ export const LeftSectionContainer = styled.div`
 `;
 
 export const RightSectionContainer = styled.div`
-  width: 45%;
+  width: 30%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -167,7 +180,7 @@ export const ActionButtonContainer = styled.div`
   width: 100%;
   height: 3rem;
   display: flex;
-
+  margin: 1rem;
   justify-content: flex-end;
   align-items: center;
 `;
@@ -194,4 +207,12 @@ export const BoxMui = styled(Box)`
   box-shadow: 2px 4px 12px -2px rgba(0, 0, 0, 0.26);
   -webkit-box-shadow: 2px 4px 12px -2px rgba(0, 0, 0, 0.26);
   -moz-box-shadow: 2px 4px 12px -2px rgba(0, 0, 0, 0.26);
+`;
+
+export const RedesContainer = styled.div`
+  width: 40px;
+  margin-left: 2rem;
+  diplay: flex;
+  align-items: center;
+  justify-content: center;
 `;

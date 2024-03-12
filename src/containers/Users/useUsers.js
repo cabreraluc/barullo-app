@@ -3,6 +3,7 @@ import env from "../../env/env";
 import { useState } from "react";
 import useNotistack from "../../components/Notistack/useNotistack";
 import { useNavigate } from "react-router-dom";
+import fetchFromApi from "../../utils/fetchFromapi";
 
 export default function useUsers() {
   const navigate = useNavigate();
@@ -10,94 +11,80 @@ export default function useUsers() {
   const [allUsers, setAllUsers] = useState([]);
   const [user, setUser] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  const addUser = async (data) => {
+  const addUser = async (data, setErrors) => {
     setIsLoading(true);
     try {
-      const response = await axios.post(
-        `${env.API_URL}users/register-user`,
-        data,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await fetchFromApi(`POST`, `users/register-user`, data);
 
-      showNotification(response.data[1]);
+      showNotification(response[1]);
       navigate("/home/users");
     } catch (error) {
-      showNotification(error.response.data, "error");
+      console.log(error);
+      if (error.response.data.length) {
+        setErrors(error.response.data);
+      } else {
+        showNotification(error.response.data.error, "error");
+      }
+      setIsLoading(false);
     }
   };
 
   const getUsers = async () => {
     try {
       setIsLoading(true);
-      const response = await axios.get(`${env.API_URL}users/`, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+
+      const response = await fetchFromApi(`GET`, `users/`);
 
       console.log(response);
 
-      if (response.data.length) {
-        setAllUsers(response.data);
-      }
+      setAllUsers(response);
     } catch (error) {}
     setIsLoading(false);
   };
 
   const getUserById = async (id) => {
+    setIsLoading(true);
     try {
-      const response = await axios.get(`${env.API_URL}/users/${id}`, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetchFromApi(`GET`, `users/${id}`);
 
-      if (response.data) {
-        console.log(response.data);
-        setUser(response.data);
+      if (response) {
+        console.log(response);
+        setUser(response);
       }
     } catch (error) {
-      showNotification(error, "error");
+      if (error.request.status === 500) {
+        showNotification("Sesión expirada", "error");
+        navigate("/login");
+      } else {
+        showNotification(error, "error");
+      }
     }
+    setIsLoading(false);
   };
 
   const disableUser = async (id) => {
     try {
-      const response = await axios.post(
-        `${env.API_URL}users/disable-user/${id}`,
-
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await fetchFromApi(`DELETE`, `users/disable-user`, id);
       getUsers();
+      showNotification(response[0]);
     } catch (error) {
-      console.log(error);
+      showNotification(error.response.data.error, "error");
     }
   };
 
   const editUser = async (data, id, setErrors) => {
     setIsLoading(true);
     try {
-      const response = await axios.put(
-        `${env.API_URL}users/edit-user/${id}`,
-        data,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      showNotification(response.data[1]);
+      const response = await fetchFromApi(`PUT`, `users/edit-user/${id}`, data);
+      showNotification(response[1]);
       navigate("/home/users");
     } catch (error) {
-      showNotification(error.response.data, "error");
+      if (error.response.data.length) {
+        setErrors(error.response.data);
+      } else {
+        showNotification(error.response.data.error, "error");
+      }
+      setIsLoading(false);
     }
   };
 

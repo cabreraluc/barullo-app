@@ -1,8 +1,12 @@
 import axios from "axios";
 import env from "../../env/env";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import useNotistack from "../../components/Notistack/useNotistack";
 
 export default function useLogin() {
+  const { showNotification } = useNotistack();
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const handleRedirect = (path) => {
     navigate(path);
@@ -19,12 +23,18 @@ export default function useLogin() {
         }
       );
 
-      localStorage.setItem("user", JSON.stringify(userData));
-      handleRedirect("/home");
+      localStorage.setItem("user", JSON.stringify(userData.data));
+      handleRedirect("/home/calendar");
     } catch (error) {
       console.log(error);
-      alert(error.response.data.error);
+      showNotification(error.response.data.error, "error");
     }
   };
-  return { loginUser };
+
+  const logOut = async () => {
+    localStorage.clear("user");
+    handleRedirect("/login");
+  };
+
+  return { loginUser, logOut, isLoading };
 }

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import Prospects from "../Prospects/Prospects";
 import Statistics from "../Statistics/Statistics";
-import Calendar from "../Calendar/Calendar";
+import CalendarModule from "../Calendar/CalendarModule";
 import Users from "../Users/Users";
 import Clients from "../Clients/Clients";
 
@@ -19,7 +19,7 @@ export default function Home(props) {
       return <Statistics></Statistics>;
     }
     if (pathSplitted === "calendar") {
-      return <Calendar></Calendar>;
+      return <CalendarModule></CalendarModule>;
     }
     if (pathSplitted === "users") {
       return <Users></Users>;

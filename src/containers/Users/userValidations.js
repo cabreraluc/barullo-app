@@ -75,8 +75,8 @@ export const userValidations = (userData, context) => {
     return [["The password¨s are diferents"], { password: true }];
   }
 
-  if (userData.userRole === "") {
-    return [["You must select a role."], { userRole: true }];
+  if (userData.role === "") {
+    return [["You must select a role."], { role: true }];
   }
 
   return { valid: true };
@@ -103,7 +103,7 @@ export const userValidations = (userData, context) => {
 //       alert: "",
 //       error: false,
 //     },
-//     userRole: {
+//     role: {
 //       alert: "",
 //       error: false,
 //     },
@@ -175,11 +175,11 @@ export const userValidations = (userData, context) => {
 //       },
 //     };
 //   }
-//   if (userData.userRole === "") {
+//   if (userData.role === "") {
 //     returnDataError = true;
 //     dataErrors = {
 //       ...dataErrors,
-//       userRole: {
+//       role: {
 //         alert: "Debe seleccionar un rol.",
 //         error: true,
 //       },

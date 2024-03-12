@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-export const SearcherContainer = styled.div`
+export const SearcherContainer = styled.form`
   width: 100%;
-  height: 3rem;
+
   display: flex;
   flex-direction: row;
   justify-content: center;

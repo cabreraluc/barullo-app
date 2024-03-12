@@ -15,20 +15,21 @@ export const UsersList = styled.div`
   justify-content: center;
   align-items: center;
 
-  width: 70%;
+  width: 85%;
   height: 90%;
   margin-left: 2rem;
+  margin-right: 2rem;
 `;
 
 export const PanelRight = styled.div`
   display: flex;
   flex-direction: column;
   padding: 2rem;
-  width: 20%;
+  width: 15%;
   height: 90%;
-  background-color: black;
+    background-color: "transparent",
   margin-left: 2rem;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  box-shadow: rgba(0, 0, 0, 0.16) -1px 0px 0px, rgba(0, 0, 0, 0.23) 0px 0px 0px;
 `;
 
 export const ButtonBar = styled.div`
@@ -37,7 +38,7 @@ export const ButtonBar = styled.div`
   background-color: transparent;
   margin: 1rem 0rem;
   cursor: pointer;
-  color: white;
+  color: black;
 
   display: flex;
   justify-content: flex-start;
@@ -123,11 +124,13 @@ export const FormContainertUsersAction = styled.form`
   justify-content: center;
   align-items: center;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  background-color: rgb(256, 256, 256, 0.8);
+  border-radius: 15px;
 `;
 
 export const FormSectionsContainer = styled.div`
   width: 90%;
-  height: 90%;
+  height: 50%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -156,7 +159,6 @@ export const ActionButtonContainer = styled.div`
   width: 100%;
   height: 3rem;
   display: flex;
-
   justify-content: flex-end;
   align-items: center;
 `;
@@ -165,7 +167,6 @@ export const ButtonsContainer = styled.div`
   width: 25%;
   height: 3rem;
   display: flex;
-
   justify-content: space-around;
   align-items: center;
 `;

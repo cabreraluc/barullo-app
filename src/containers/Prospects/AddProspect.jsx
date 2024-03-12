@@ -13,6 +13,7 @@ import {
   PastPageContainer,
   ActionButtonContainer,
   ButtonsContainer,
+  MidSection,
 } from "./prospectsStyles";
 import {
   ActionButton,
@@ -33,12 +34,13 @@ import { Autocomplete } from "@mui/material";
 import useClients from "../Clients/useClients";
 import useUsers from "../Users/useUsers";
 import { createFilterOptions } from "@mui/material";
+import Button from "@mui/material/Button";
 const AddProspect = () => {
   const filter = createFilterOptions();
   const { getUsers, allUsers } = useUsers();
   const { getClients, allClients } = useClients();
   const genderArray = ["Male", "Female", "Other"];
-  const interestArray = ["1", "2", "3", "4", "5"];
+  const interestArray = ["Very low", "Low", "Medium", "High", "Very high"];
   const allCountriesArray = [
     "Afghanistan",
     "Albania",
@@ -257,7 +259,7 @@ const AddProspect = () => {
     country: "",
     gender: "",
     genderComments: "",
-    interestLevel: "",
+    interestLevel: "Medium",
     reasonForContact: "",
     occupation: "",
     instagram: "",
@@ -286,11 +288,7 @@ const AddProspect = () => {
     }
   };
 
-  useEffect(() => {
-    console.log(prospectInfo);
-  }, [prospectInfo]);
-
-  const handleSetErrors = (errors) => {
+  const handleSetErrors = () => {
     errors[0]?.forEach((error) => {
       showNotification(error, "error");
     });
@@ -308,18 +306,13 @@ const AddProspect = () => {
   };
 
   useEffect(() => {
-    handleSetErrors(errors);
-    console.log(errors);
-  }, [errors]);
-
-  useEffect(() => {
     getClients();
     getUsers();
   }, []);
 
   useEffect(() => {
-    console.log(prospectInfo);
-  }, [prospectInfo]);
+    handleSetErrors(errors);
+  }, [errors]);
 
   const navigate = useNavigate();
   return (
@@ -358,6 +351,18 @@ const AddProspect = () => {
             />
 
             <TextField
+              fullWidth
+              label="Last name"
+              variant="standard"
+              id="lastname"
+              autoComplete="new-lastname"
+              name="lastName"
+              onChange={handleChange}
+              error={errors[1]?.lastName}
+              value={prospectInfo.lastName}
+            />
+
+            <TextField
               autoComplete="age"
               id="Age"
               label="Age"
@@ -382,6 +387,68 @@ const AddProspect = () => {
               value={prospectInfo.email}
             />
 
+            <TextField
+              variant="standard"
+              fullWidth
+              id="cellphone"
+              label="Cellphone"
+              autoComplete="cellphone"
+              name="cellphone"
+              onChange={handleChange}
+              error={errors[1]?.cellphone}
+              value={prospectInfo.cellphone}
+            />
+
+            <Autocomplete
+              value={prospectInfo.country}
+              onChange={(event, newValue) => {
+                setProspectInfo({
+                  ...prospectInfo,
+                  country: newValue,
+                });
+              }}
+              selectOnFocus
+              clearOnBlur
+              handleHomeEndKeys
+              id="free-solo-with-text-demo"
+              options={allCountriesArray}
+              getOptionLabel={(option) => {
+                if (typeof option === "string") {
+                  return option;
+                }
+
+                if (option.inputValue) {
+                  return option.inputValue;
+                }
+
+                return option;
+              }}
+              renderOption={(props, option) => <li {...props}>{option}</li>}
+              freeSolo
+              fullWidth
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  error={errors.country}
+                  label="Country"
+                  variant="standard"
+                />
+              )}
+            />
+
+            <TextField
+              variant="standard"
+              fullWidth
+              id="occupation"
+              label="Occupation"
+              autoComplete="occupation"
+              name="occupation"
+              onChange={handleChange}
+              error={errors[1]?.occupation}
+              value={prospectInfo.occupation}
+            />
+          </LeftSectionContainer>
+          <MidSection>
             <FormControl
               sx={{
                 width: "100%",
@@ -410,17 +477,16 @@ const AddProspect = () => {
                 })}
               </Select>
             </FormControl>
-
             <TextField
-              variant="standard"
+              id="outlined-multiline-static"
+              label="Gender comments..."
+              multiline
+              rows={2}
               fullWidth
-              id="occupation"
-              label="Occupation"
-              autoComplete="occupation"
-              name="occupation"
+              name="genderComments"
               onChange={handleChange}
-              error={errors[1]?.occupation}
-              value={prospectInfo.occupation}
+              error={errors[1]?.genderComments}
+              value={prospectInfo.genderComments}
             />
             <TextField
               variant="standard"
@@ -466,78 +532,8 @@ const AddProspect = () => {
               error={errors[1]?.tiktok}
               value={prospectInfo.tiktok}
             />
-          </LeftSectionContainer>
+          </MidSection>
           <RightSectionContainer>
-            <TextField
-              fullWidth
-              label="Last name"
-              variant="standard"
-              id="lastname"
-              autoComplete="new-lastname"
-              name="lastName"
-              onChange={handleChange}
-              error={errors[1]?.lastName}
-              value={prospectInfo.lastName}
-            />
-            <TextField
-              variant="standard"
-              fullWidth
-              id="cellphone"
-              label="Cellphone"
-              autoComplete="cellphone"
-              name="cellphone"
-              onChange={handleChange}
-              error={errors[1]?.cellphone}
-              value={prospectInfo.cellphone}
-            />
-            <Autocomplete
-              value={prospectInfo.country}
-              onChange={(event, newValue) => {
-                setProspectInfo({
-                  ...prospectInfo,
-                  country: newValue,
-                });
-              }}
-              selectOnFocus
-              clearOnBlur
-              handleHomeEndKeys
-              id="free-solo-with-text-demo"
-              options={allCountriesArray}
-              getOptionLabel={(option) => {
-                if (typeof option === "string") {
-                  return option;
-                }
-
-                if (option.inputValue) {
-                  return option.inputValue;
-                }
-
-                return option;
-              }}
-              renderOption={(props, option) => <li {...props}>{option}</li>}
-              freeSolo
-              fullWidth
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  error={errors.country}
-                  label="Country"
-                  variant="standard"
-                />
-              )}
-            />
-            <TextField
-              id="outlined-multiline-static"
-              label="Gender comments..."
-              multiline
-              rows={2}
-              fullWidth
-              name="genderComments"
-              onChange={handleChange}
-              error={errors[1]?.genderComments}
-              value={prospectInfo.genderComments}
-            />
-
             {/* <FormGroup>
               <Typography variant="overline" display="block" gutterBottom>
                 Select services
@@ -599,6 +595,7 @@ const AddProspect = () => {
                 name="interestLevel"
                 error={errors[1]?.interestLevel}
                 variant="standard"
+                value={prospectInfo.interestLevel}
               >
                 {interestArray.map((il) => {
                   return <MenuItem value={il}>{il}</MenuItem>;
@@ -710,12 +707,19 @@ const AddProspect = () => {
         </FormSectionsContainer>
         <ActionButtonContainer>
           <ButtonsContainer>
-            <ActionButton type="submit" disabled={isLoading ? true : false}>
+            <Button
+              variant="outlined"
+              type="submit"
+              disabled={isLoading ? true : false}
+            >
               Create
-            </ActionButton>
-            <CancelActionButton onClick={() => navigate("/home/prospects")}>
+            </Button>
+            <Button
+              variant="outlined"
+              onClick={() => navigate("/home/prospects")}
+            >
               Cancel
-            </CancelActionButton>
+            </Button>
           </ButtonsContainer>
         </ActionButtonContainer>
       </FormContainertProspectsAction>
