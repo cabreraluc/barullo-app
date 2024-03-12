@@ -53,7 +53,7 @@ export default function Header() {
             sx={{
               color: "black",
               cursor: "pointer",
-              fontSize: "clamp(32px, 5vw, 52px)",
+              fontSize: "clamp(37px, 5vw, 52px)",
             }}
           ></ShortTextIcon>
         </DrawerContainer>

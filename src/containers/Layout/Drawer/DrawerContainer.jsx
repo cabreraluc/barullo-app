@@ -34,6 +34,8 @@ export default function DrawerContainer({ children }) {
     <Box
       sx={{
         width: anchor === "top" || anchor === "bottom" ? "auto" : 300,
+        backgroundColor: "black",
+        height: "100%",
       }}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
@@ -42,7 +44,7 @@ export default function DrawerContainer({ children }) {
       <List>
         {[
           "HOME",
-          "NEXT EVENT",
+          "NEXT EVENTS",
           "MERCH",
           "BARULLO AGENCY",
           "SE PARTE DE BARULLO",
@@ -62,14 +64,40 @@ export default function DrawerContainer({ children }) {
                 primary={text}
                 sx={{
                   textAlign: "start",
-                  color: "black",
+                  color: "white",
                 }}
               />
             </ListItemButton>
           </ListItem>
         ))}
       </List>
-      <Divider />
+      <Divider sx={{ borderColor: "gray" }} />
+      <List>
+        {["¿QUIENES SOMOS?", "¿QUE HACEMOS EN ESTE MUNDO?"].map(
+          (text, index) => (
+            <ListItem
+              key={text}
+              disablePadding
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                fontFamily: "Darker Grotesque, sans-serif",
+              }}
+            >
+              <ListItemButton>
+                <ListItemText
+                  primary={text}
+                  sx={{
+                    textAlign: "start",
+                    color: "white",
+                  }}
+                />
+              </ListItemButton>
+            </ListItem>
+          )
+        )}
+      </List>
     </Box>
   );
 

@@ -18,6 +18,7 @@ export const LogoContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 8px;
 `;
 
 export const LogoImg = styled.img`
