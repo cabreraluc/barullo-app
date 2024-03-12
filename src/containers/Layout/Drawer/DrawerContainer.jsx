@@ -11,7 +11,7 @@ import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 
-export default function DrawerContainer({ children }) {
+export default function DrawerContainer({ children, setOpenSlider }) {
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -20,6 +20,11 @@ export default function DrawerContainer({ children }) {
   });
 
   const toggleDrawer = (anchor, open) => (event) => {
+    if (open) {
+      setOpenSlider(true);
+    } else {
+      setOpenSlider(false);
+    }
     if (
       event.type === "keydown" &&
       (event.key === "Tab" || event.key === "Shift")
@@ -104,7 +109,9 @@ export default function DrawerContainer({ children }) {
   return (
     <div>
       <React.Fragment key={"left"}>
-        {React.cloneElement(children, { onClick: toggleDrawer("left", true) })}
+        {React.cloneElement(children, {
+          onClick: toggleDrawer("left", true),
+        })}
         <Drawer
           anchor={"left"}
           open={state["left"]}

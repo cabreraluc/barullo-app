@@ -21,7 +21,7 @@ import logoBlack from "../../../logobarullo-black.png";
 import { useEffect, useState } from "react";
 import DrawerContainer from "../Drawer/DrawerContainer";
 
-export default function Header() {
+export default function Header({ setOpenSlider }) {
   const { pathname } = useLocation();
   const { logOut } = useLogin();
   const navigate = useNavigate();
@@ -48,7 +48,7 @@ export default function Header() {
   return (
     <HeaderContainer>
       <BurgerMenuContainer>
-        <DrawerContainer>
+        <DrawerContainer setOpenSlider={setOpenSlider}>
           <ShortTextIcon
             sx={{
               color: "black",

@@ -18,20 +18,22 @@ import useAuth from "./containers/Login/useAuth";
 import PrivateRoute from "./containers/App/PrivateRoute";
 import Unauthorized from "./containers/Unauthorized/Unauthorized";
 import { useLocation } from "react-router-dom";
+import { useState } from "react";
 
 function App() {
   const { pathname } = useLocation();
   const user = useAuth();
+  const [openSlider, setOpenSlider] = useState(false);
 
   return (
     <div className="App">
-      <Header />
+      <Header setOpenSlider={setOpenSlider} />
 
       <Routes>
         <Route />
         {/* <Route path="/login" element={<Login />} />
         <Route path="/unauthorized" element={<Unauthorized />} /> */}
-        <Route path="/" element={<Landing />} />
+        <Route path="/" element={<Landing openSlider={openSlider} />} />
         {/* <Route element={<PrivateRoute />}>
           <Route path="/home/*" element={<Home />} />
           <Route path="/register" element={<Register />} />

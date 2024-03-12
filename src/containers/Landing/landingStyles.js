@@ -2,7 +2,7 @@ import styled from "styled-components";
 import fiestaImg from "../../fotoFiesta.jpg";
 
 export const FirstSectionContainer = styled.div`
-  background-color: transparent;
+  background-color: violet;
   height: 100vh;
-  width: 100%;
+  width: 100vw;
 `;
