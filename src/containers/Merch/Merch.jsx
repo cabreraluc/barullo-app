@@ -1,25 +1,21 @@
-import ImageEvents from "../../event1.webp";
-import ImageArtist from "../../artists.jpg";
-import { MerchContainer, Card } from "./merchStyles";
+import Merch1 from "../../merch1.png";
+import Merch2 from "../../merch2.png";
+import { MerchContainer, Card, Item, Container } from "./merchStyles";
 
 const Merch = () => {
   return (
     <MerchContainer>
       <Card>
-        <h1
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            height: "10%",
-            color: "white",
-          }}
-        >
-          Merch
-        </h1>
-        <img src={ImageArtist} alt="" style={{ height: "35%" }} />
-
-        <img src={ImageEvents} alt="" style={{ height: "35%" }} />
+        <Container>
+          <Item>
+            {" "}
+            <img style={{ height: "100%" }} src={Merch2} alt="" />
+          </Item>
+          <Item>
+            {" "}
+            <img style={{ height: "100%" }} src={Merch1} alt="" />
+          </Item>
+        </Container>
       </Card>
     </MerchContainer>
   );

@@ -57,6 +57,7 @@ export default function Header({ setOpenSlider, colorHeader }) {
                     color: "black",
                     cursor: "pointer",
                     fontSize: "clamp(37px, 5vw, 52px)",
+                    transition: "0.2s",
                   }
                 : {
                     color: "white",
