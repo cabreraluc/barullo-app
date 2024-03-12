@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
 export const HeaderContainer = styled.div`
-  width: 100%;
+  width: 96%;
   display: flex;
   justify-content: flex-start;
   flex-direction: row;
   padding: 0.5rem 0.5rem;
-  background-color: white;
+  background-color: transparent;
 `;
 
 export const UserContainer = styled.div`
@@ -22,6 +22,7 @@ export const LogoContainer = styled.div`
 
 export const LogoImg = styled.img`
   margin-right: 10%;
+
   width: clamp(30rem, 35rem, 35rem);
 `;
 
@@ -47,4 +48,5 @@ export const BurgerMenuContainer = styled.div`
   display: flex;
   justify-content: start;
   alignt-items: center;
+  z-index: 2;
 `;

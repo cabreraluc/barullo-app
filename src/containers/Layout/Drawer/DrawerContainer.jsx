@@ -32,36 +32,44 @@ export default function DrawerContainer({ children }) {
 
   const list = (anchor) => (
     <Box
-      sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
+      sx={{
+        width: anchor === "top" || anchor === "bottom" ? "auto" : 300,
+      }}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem key={text} disablePadding>
+        {[
+          "HOME",
+          "NEXT EVENT",
+          "MERCH",
+          "BARULLO AGENCY",
+          "SE PARTE DE BARULLO",
+        ].map((text, index) => (
+          <ListItem
+            key={text}
+            disablePadding
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              fontFamily: "Darker Grotesque, sans-serif",
+            }}
+          >
             <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText
+                primary={text}
+                sx={{
+                  textAlign: "start",
+                  color: "black",
+                }}
+              />
             </ListItemButton>
           </ListItem>
         ))}
       </List>
       <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
     </Box>
   );
 
@@ -80,3 +88,16 @@ export default function DrawerContainer({ children }) {
     </div>
   );
 }
+
+{
+  /* <List>
+{["All mail", "Trash", "Spam"].map((text, index) => (
+  <ListItem key={text} disablePadding>
+    <ListItemButton>
+      {/* <ListItemIcon></ListItemIcon> */
+}
+//       <ListItemText primary={text} sx={{ color: "black" }} />
+//     </ListItemButton>
+//   </ListItem>
+// ))}
+// </List>

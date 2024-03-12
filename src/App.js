@@ -25,10 +25,10 @@ function App() {
 
   return (
     <div className="App">
-      {pathname === "/login" ? null : <Header />}
+      <Header />
 
       <Routes>
-        <Route path="/" element={<Navigate to="/" />} />
+        <Route />
         {/* <Route path="/login" element={<Login />} />
         <Route path="/unauthorized" element={<Unauthorized />} /> */}
         <Route path="/" element={<Landing />} />
