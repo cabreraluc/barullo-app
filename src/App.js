@@ -24,6 +24,15 @@ function App() {
   const { pathname } = useLocation();
   const user = useAuth();
   const [openSlider, setOpenSlider] = useState(false);
+  const [colorHeader, setColorHeader] = useState("black");
+
+  const handleColorHeader = (event) => {
+    if (event.activeIndex === 1) {
+      setColorHeader("white");
+    } else {
+      setColorHeader("black");
+    }
+  };
 
   return (
     <div
@@ -34,13 +43,21 @@ function App() {
       }
       className="App"
     >
-      <Header setOpenSlider={setOpenSlider} />
+      <Header setOpenSlider={setOpenSlider} colorHeader={colorHeader} />
 
       <Routes>
         <Route />
         {/* <Route path="/login" element={<Login />} />
         <Route path="/unauthorized" element={<Unauthorized />} /> */}
-        <Route path="/" element={<Landing openSlider={openSlider} />} />
+        <Route
+          path="/"
+          element={
+            <Landing
+              handleColorHeader={handleColorHeader}
+              openSlider={openSlider}
+            />
+          }
+        />
         {/* <Route element={<PrivateRoute />}>
           <Route path="/home/*" element={<Home />} />
           <Route path="/register" element={<Register />} />

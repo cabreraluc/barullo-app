@@ -11,7 +11,7 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 
-const Landing = ({ openSlider }) => {
+const Landing = ({ openSlider, handleColorHeader }) => {
   const navigate = useNavigate();
 
   return (
@@ -26,7 +26,7 @@ const Landing = ({ openSlider }) => {
       direction={"vertical"}
       spaceBetween={50}
       slidesPerView={1}
-      onSlideChange={() => console.log("slide change")}
+      onSlideChange={(e) => handleColorHeader(e)}
       onSwiper={(swiper) => console.log(swiper)}
       scrollbar={{ draggable: true }}
       autoplay={{
@@ -48,7 +48,7 @@ const Landing = ({ openSlider }) => {
           }}
           spaceBetween={50}
           slidesPerView={1}
-          onSlideChange={() => console.log("slide change")}
+          onSlideChange={(e) => console.log("x")}
           onSwiper={(swiper) => console.log(swiper)}
           scrollbar={{ draggable: true }}
           navigation={true}

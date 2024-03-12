@@ -18,10 +18,11 @@ import { useLocation } from "react-router-dom";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import logoRed from "../../../logobarullo-red.png";
 import logoBlack from "../../../logobarullo-black.png";
+import logoWhite from "../../../logobarullo-white.png";
 import { useEffect, useState } from "react";
 import DrawerContainer from "../Drawer/DrawerContainer";
 
-export default function Header({ setOpenSlider }) {
+export default function Header({ setOpenSlider, colorHeader }) {
   const { pathname } = useLocation();
   const { logOut } = useLogin();
   const navigate = useNavigate();
@@ -50,11 +51,19 @@ export default function Header({ setOpenSlider }) {
       <BurgerMenuContainer>
         <DrawerContainer setOpenSlider={setOpenSlider}>
           <ShortTextIcon
-            sx={{
-              color: "black",
-              cursor: "pointer",
-              fontSize: "clamp(37px, 5vw, 52px)",
-            }}
+            sx={
+              colorHeader === "black"
+                ? {
+                    color: "black",
+                    cursor: "pointer",
+                    fontSize: "clamp(37px, 5vw, 52px)",
+                  }
+                : {
+                    color: "white",
+                    cursor: "pointer",
+                    fontSize: "clamp(37px, 5vw, 52px)",
+                  }
+            }
           ></ShortTextIcon>
         </DrawerContainer>
       </BurgerMenuContainer>
@@ -63,7 +72,9 @@ export default function Header({ setOpenSlider }) {
 
       // onClick={() => setStop(!stop)}
       >
-        <LogoImg src={logoBlack}></LogoImg>
+        <LogoImg
+          src={colorHeader === "black" ? logoBlack : logoWhite}
+        ></LogoImg>
       </LogoContainer>
       {/* <UserContainer>
         {user ? (
