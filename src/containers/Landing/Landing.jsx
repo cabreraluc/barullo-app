@@ -23,7 +23,7 @@ const Landing = ({ openSlider }) => {
       onSwiper={(swiper) => console.log(swiper)}
       scrollbar={{ draggable: true }}
       autoplay={{
-        delay: 5000,
+        delay: 9000,
         disableOnInteraction: true,
       }}
       pagination={{
