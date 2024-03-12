@@ -7,40 +7,38 @@ export const WhoAreUsContainer = styled.div`
   height: 100vh;
 `;
 
-export const Body = styled.div`
-  font-family: "Montserrat";
-  width: 70%;
-  justify-content: center;
+export const Card = styled.div`
   display: flex;
-  align-items: start;
-
-  margin-top: 1.2rem;
-  font-size: 0.85rem;
-  font-weight: 200;
-  height: 53%;
-  text-aling: center;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  flex-direction: column;
+  color: black;
 `;
-
 export const Title = styled.div`
   font-family: "Montserrat";
   width: 100%;
   justify-content: start;
   display: flex;
   align-items: end;
-
-  margin-left: 3rem;
-  font-size: 2.5rem;
+  width: 60%;
+  font-size: 4vh;
   font-weight: 400;
-  height: 30%;
+  height: 10%;
 `;
-
-export const Card = styled.div`
+export const Body = styled.div`
+  align-items: start;
+  justify-content: center;
+  font-family: "Montserrat";
+  width: 60%;
   display: flex;
-  align-items: center;
-  width: 100vw;
-  height: 100vh;
-  flex-direction: column;
-  color: black;
+
+  margin-top: 1.2rem;
+  font-size: 2vh;
+  font-weight: 200;
+  height: 53%;
+  text-aling: center;
 `;
 
 export const Icons = styled.div`

@@ -27,18 +27,20 @@ export const Container = styled.div`
   justify-content: center;
   align-items: end;
   background-color: rgb(0, 0, 0, 0.5);
-  height: 30%;
+  height: 20%;
   width: 100%;
   flex-direction: row;
+  padding: 1rem;
 `;
 
 export const LeftSection = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 40%;
+  width: 35%;
   flex-direction: column;
   height: 100%;
+  padding: 0.5rem;
 `;
 
 export const RightSection = styled.div`
@@ -46,26 +48,27 @@ export const RightSection = styled.div`
   justify-content: center;
   align-items: center;
   height: 100%;
-  width: 60%;
+  width: 55%;
   flex-direction: column;
   color: white;
-  font-size: 3vw;
+  font-size: 2vh;
+  padding: 0.5rem;
 `;
 
 export const Title = styled.div`
   display: flex;
-  justify-content: start;
+  justify-content: center;
   align-items: center;
   color: white;
   width: 100%;
-  font-size: 2rem;
+  font-size: 4vh;
   font-weight: 700;
   font-family: "Oswald", sans-serif;
 `;
 
 export const Body = styled.div`
   display: flex;
-  justify-content: start;
+  justify-content: center;
   align-items: center;
   width: 100%;
   font-weight: 400;
