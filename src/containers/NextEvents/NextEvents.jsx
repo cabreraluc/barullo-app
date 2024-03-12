@@ -1,39 +1,33 @@
 import ImageEvents from "../../event1.webp";
 import ImageArtist from "../../artists.jpg";
-import { NextEventsContainer, Card } from "./nextEventsStyles";
+import {
+  NextEventsContainer,
+  Card,
+  Body,
+  Title,
+  Container,
+  LeftSection,
+  RightSection,
+} from "./nextEventsStyles";
 
 const NextEvents = () => {
   return (
     <NextEventsContainer>
-      <Card>
-        <h1
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            height: "10%",
-            color: "white",
-          }}
-        >
-          Next events
-        </h1>
-        <img
-          src={ImageArtist}
-          alt=""
-          style={{
-            height: "35%",
-            filter: "sepia(1) hue-rotate(270deg) saturate(3) ",
-          }}
-        />
+      <Card image={ImageArtist}>
+        <Container>
+          <LeftSection>
+            <Title>El DOCTOR</Title>
 
-        <img
-          src={ImageEvents}
-          alt=""
-          style={{
-            height: "35%",
-            filter: "sepia(1) hue-rotate(90deg) saturate(3)",
-          }}
-        />
+            <Body>8 de abril 22hs</Body>
+            <Body>Monte Grande</Body>
+          </LeftSection>
+          <RightSection>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur
+            ipsa mollitia debitis nihil vel voluptatibus dolore necessitatibus.
+            Nihil accusantium, vel quos tenetur laudantium fugit sed odit? Rerum
+            cumque ut delectus.
+          </RightSection>
+        </Container>
       </Card>
     </NextEventsContainer>
   );
