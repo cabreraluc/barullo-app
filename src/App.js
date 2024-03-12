@@ -27,7 +27,11 @@ function App() {
 
   return (
     <div
-      style={openSlider ? { marginLeft: "300px", transition: "0.23s" } : null}
+      style={
+        openSlider
+          ? { marginLeft: "300px", transition: "0.23s" }
+          : { marginLeft: "0px", transition: "0.21s" }
+      }
       className="App"
     >
       <Header setOpenSlider={setOpenSlider} />
