@@ -6,7 +6,9 @@ export const HeaderContainer = styled.div`
   justify-content: flex-start;
   flex-direction: row;
   padding: 0.5rem 0.5rem;
-  background-color: transparent;
+  position: fixed;
+
+  z-index: 3;
 `;
 
 export const UserContainer = styled.div`

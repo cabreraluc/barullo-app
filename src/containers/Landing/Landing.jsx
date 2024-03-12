@@ -15,7 +15,13 @@ const Landing = ({ openSlider }) => {
 
   return (
     <Swiper
-      style={{ height: "100%", width: "100%" }}
+      style={{
+        height: "100%",
+        width: "100%",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
       direction={"vertical"}
       spaceBetween={50}
       slidesPerView={1}
@@ -26,24 +32,24 @@ const Landing = ({ openSlider }) => {
         delay: 9000,
         disableOnInteraction: true,
       }}
-      pagination={{
-        clickable: true,
-      }}
       navigation={true}
       modules={[Autoplay, Pagination, Navigation]}
     >
       <SwiperSlide>
         {" "}
         <Swiper
-          style={{ height: "100%", width: "100%" }}
+          style={{
+            height: "100%",
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
           spaceBetween={50}
           slidesPerView={1}
           onSlideChange={() => console.log("slide change")}
           onSwiper={(swiper) => console.log(swiper)}
           scrollbar={{ draggable: true }}
-          pagination={{
-            clickable: true,
-          }}
           navigation={true}
           modules={[Autoplay, Pagination, Navigation]}
         >
