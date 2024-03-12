@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const NextEventsContainer = styled.div`
+export const WhoAreUsContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-top: calc(15vh + 6vw);

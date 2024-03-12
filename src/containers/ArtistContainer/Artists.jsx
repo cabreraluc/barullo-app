@@ -1,22 +1,27 @@
+import ImageEvents from "../../event1.webp";
 import ImageArtist from "../../artists.jpg";
+import { ArtistsContainer, Card } from "./artistsStyles";
 
 const Artists = () => {
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <img
-        src={ImageArtist}
-        alt=""
-        style={{
-          width: "clamp(20rem, 60vw, 60vw)",
-        }}
-      />
-    </div>
+    <ArtistsContainer>
+      <Card>
+        <h1
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "10%",
+            color: "white",
+          }}
+        >
+          Artistas
+        </h1>
+        <img src={ImageArtist} alt="" style={{ height: "35%" }} />
+
+        <img src={ImageEvents} alt="" style={{ height: "35%" }} />
+      </Card>
+    </ArtistsContainer>
   );
 };
 

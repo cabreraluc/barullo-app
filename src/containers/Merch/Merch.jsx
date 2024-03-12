@@ -1,10 +1,10 @@
 import ImageEvents from "../../event1.webp";
 import ImageArtist from "../../artists.jpg";
-import { WhoAreUsContainer, Card } from "./whoAreUsStyles";
+import { MerchContainer, Card } from "./merchStyles";
 
-const NextEvents = () => {
+const Merch = () => {
   return (
-    <WhoAreUsContainer>
+    <MerchContainer>
       <Card>
         <h1
           style={{
@@ -15,14 +15,14 @@ const NextEvents = () => {
             color: "white",
           }}
         >
-          ¿Quienes somos?
+          Merch
         </h1>
         <img src={ImageArtist} alt="" style={{ height: "35%" }} />
 
         <img src={ImageEvents} alt="" style={{ height: "35%" }} />
       </Card>
-    </WhoAreUsContainer>
+    </MerchContainer>
   );
 };
 
-export default NextEvents;
+export default Merch;

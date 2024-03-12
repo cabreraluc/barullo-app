@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import WhoAreUs from "../WhoAreUs/WhoAreUs";
 import Artists from "../ArtistContainer/Artists";
+import Merch from "../Merch/Merch";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -62,13 +63,13 @@ const Landing = ({ openSlider }) => {
         </Swiper>
       </SwiperSlide>
       <SwiperSlide>
-        <NextEvents></NextEvents>;
+        <Artists></Artists>;
       </SwiperSlide>
       <SwiperSlide>
-        <NextEvents></NextEvents>
+        <Merch></Merch>
       </SwiperSlide>
       <SwiperSlide>
-        <NextEvents></NextEvents>;
+        <WhoAreUs></WhoAreUs>;
       </SwiperSlide>
     </Swiper>
   );
