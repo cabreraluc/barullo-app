@@ -17,9 +17,23 @@ const NextEvents = () => {
         >
           Next events
         </h1>
-        <img src={ImageArtist} alt="" style={{ height: "35%" }} />
+        <img
+          src={ImageArtist}
+          alt=""
+          style={{
+            height: "35%",
+            filter: "sepia(1) hue-rotate(270deg) saturate(3) ",
+          }}
+        />
 
-        <img src={ImageEvents} alt="" style={{ height: "35%" }} />
+        <img
+          src={ImageEvents}
+          alt=""
+          style={{
+            height: "35%",
+            filter: "sepia(1) hue-rotate(90deg) saturate(3)",
+          }}
+        />
       </Card>
     </NextEventsContainer>
   );

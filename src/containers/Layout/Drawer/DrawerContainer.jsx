@@ -10,6 +10,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
+import LogoVP from "../../../logoVerdePurple.png";
 
 export default function DrawerContainer({ children, setOpenSlider }) {
   const [state, setState] = React.useState({
@@ -102,6 +103,16 @@ export default function DrawerContainer({ children, setOpenSlider }) {
             </ListItem>
           )
         )}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            marginTop: "4rem",
+          }}
+        >
+          <img src={LogoVP} style={{ width: "50%" }} />
+        </div>
       </List>
     </Box>
   );

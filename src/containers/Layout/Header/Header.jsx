@@ -30,20 +30,20 @@ export default function Header({ setOpenSlider }) {
     navigate(path);
   };
 
-  const [color, setColor] = useState(false);
-  const [stop, setStop] = useState(false);
+  // const [color, setColor] = useState(false);
+  // const [stop, setStop] = useState(false);
 
-  useEffect(() => {
-    if (!stop) {
-      setTimeout(() => {
-        setColor(!color);
-      }, 300);
-    }
-  }, [color]);
+  // useEffect(() => {
+  //   if (!stop) {
+  //     setTimeout(() => {
+  //       setColor(!color);
+  //     }, 300);
+  //   }
+  // }, [color]);
 
-  useEffect(() => {
-    setColor(!color);
-  }, [stop]);
+  // useEffect(() => {
+  //   setColor(!color);
+  // }, [stop]);
 
   return (
     <HeaderContainer>
@@ -59,8 +59,11 @@ export default function Header({ setOpenSlider }) {
         </DrawerContainer>
       </BurgerMenuContainer>
 
-      <LogoContainer onClick={() => setStop(!stop)}>
-        <LogoImg src={color ? logoRed : logoBlack}></LogoImg>
+      <LogoContainer
+
+      // onClick={() => setStop(!stop)}
+      >
+        <LogoImg src={logoBlack}></LogoImg>
       </LogoContainer>
       {/* <UserContainer>
         {user ? (
