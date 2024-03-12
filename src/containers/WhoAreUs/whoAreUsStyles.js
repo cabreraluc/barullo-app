@@ -17,7 +17,7 @@ export const Body = styled.div`
   margin-top: 1.2rem;
   font-size: 0.85rem;
   font-weight: 200;
-  height: 57%;
+  height: 53%;
   text-aling: center;
 `;
 

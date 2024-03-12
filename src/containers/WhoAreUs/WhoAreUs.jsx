@@ -29,7 +29,7 @@ const NextEvents = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <InstagramIcon />
+            <InstagramIcon fontSize="large" />
           </a>
         </Icons>
       </Card>
