@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const NextEventsContainer = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: calc(15vh + 6vw);
+
   height: 100vh;
 `;
 export const Card = styled.div`
@@ -12,11 +12,11 @@ export const Card = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  width: 85vw;
-  height: 70%;
+  width: 100vw;
+  height: 100vh;
   flex-direction: column;
   color: black;
-  border-radius: 1rem;
+
   overflow: hidden;
 
   filter: sepia(1) hue-rotate(270deg);
