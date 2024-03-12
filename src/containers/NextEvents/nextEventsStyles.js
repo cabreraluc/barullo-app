@@ -30,7 +30,7 @@ export const Container = styled.div`
   height: 20%;
   width: 100%;
   flex-direction: row;
-  padding: 1rem;
+  padding: 2rem;
 `;
 
 export const LeftSection = styled.div`
