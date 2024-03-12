@@ -37,7 +37,7 @@ export const Card = styled.div`
   display: flex;
   align-items: center;
   width: 100vw;
-  height: 100%;
+  height: 100vh;
   flex-direction: column;
   color: black;
 `;
