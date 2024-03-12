@@ -9,15 +9,16 @@ export const WhoAreUsContainer = styled.div`
 
 export const Body = styled.div`
   font-family: "Montserrat";
-  width: 80%;
-  justify-content: start;
+  width: 70%;
+  justify-content: center;
   display: flex;
   align-items: start;
-  margin-left: 4rem;
+
   margin-top: 1.2rem;
   font-size: 0.85rem;
   font-weight: 200;
-  height: 50%;
+  height: 57%;
+  text-aling: center;
 `;
 
 export const Title = styled.div`
@@ -40,4 +41,11 @@ export const Card = styled.div`
   height: 100vh;
   flex-direction: column;
   color: black;
+`;
+
+export const Icons = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
 `;
