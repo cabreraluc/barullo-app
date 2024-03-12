@@ -10,7 +10,7 @@ const NextEvents = () => {
         style={{
           backgroundImage: `url(${ImageWe})`,
           backgroundRepeat: "no-repeat",
-          backgroundSize: "237%",
+          backgroundSize: "300%",
           backgroundPosition: "center",
         }}
       >
