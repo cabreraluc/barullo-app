@@ -40,11 +40,15 @@ const Landing = ({ openSlider, handleColorHeader }) => {
       spaceBetween={50}
       slidesPerView={1}
       onSlideChange={(e) => {
+        console.log(e, "V");
         handleColorHeader(e);
         if (e.activeIndex === 1 && swiper) {
           // Asume que el Swiper anidado está en el segundo slide (índice 1)
           swiper.params.autoplay.delay = 3000;
           swiper.autoplay.start();
+        } else {
+          swiper.autoplay.stop();
+          swiper.slideTo(0);
         }
       }}
       onSwiper={(swiper) => console.log(swiper)}
@@ -91,7 +95,9 @@ const Landing = ({ openSlider, handleColorHeader }) => {
           }}
           spaceBetween={50}
           slidesPerView={1}
-          onSlideChange={(e) => {}}
+          onSlideChange={(e) => {
+            console.log(e, "H");
+          }}
           onSwiper={(swiper) => {
             setSwiper(swiper);
             swiper.autoplay.stop(); // Detiene el autoplay al inicio
@@ -122,8 +128,7 @@ const Landing = ({ openSlider, handleColorHeader }) => {
                 "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur ipsa mollitia debitis nihil vel voluptatibus dolore necessitatibus. Nihil accusantium, vel quos tenetur laudantium fugit sed odit? Rerum cumque ut delectus"
               }
               image={artistImage2}
-              instagram={"gloster.psb"}
-              instagramLink={"https://www.instagram.com/gloster.psb/"}
+              name={"GLOSTER"}
               color={"violet"}
             ></Artists>
             ;
