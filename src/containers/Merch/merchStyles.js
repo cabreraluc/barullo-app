@@ -3,12 +3,12 @@ import styled from "styled-components";
 export const MerchContainer = styled.div`
   display: flex;
   justify-content: center;
-
   height: 100vh;
 `;
 // margin-top: calc(15vh + 6vw);
 export const Card = styled.div`
-  padding: 4rem 1rem;
+  padding: 0 1rem;
+  margin-top: 2rem;
   background-color: transparent;
   display: flex;
   justify-content: space-around;
@@ -24,7 +24,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  height: 90%;
   flex-direction: column;
 `;
 
