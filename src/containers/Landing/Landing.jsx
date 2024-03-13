@@ -8,6 +8,8 @@ import WhoAreUs from "../WhoAreUs/WhoAreUs";
 import Artists from "../ArtistContainer/Artists";
 import Merch from "../Merch/Merch";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import artistImage1 from "../../artist1.webp";
+import artistImage2 from "../../artist2.jpg";
 import "swiper/css";
 import "swiper/css/pagination";
 
@@ -30,7 +32,7 @@ const Landing = ({ openSlider, handleColorHeader }) => {
       onSwiper={(swiper) => console.log(swiper)}
       scrollbar={{ draggable: true }}
       autoplay={{
-        delay: 9000,
+        delay: 5000,
         disableOnInteraction: true,
       }}
       navigation={true}
@@ -63,7 +65,51 @@ const Landing = ({ openSlider, handleColorHeader }) => {
         </Swiper>
       </SwiperSlide>
       <SwiperSlide>
-        <Artists></Artists>;
+        <Swiper
+          style={{
+            height: "100%",
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+          spaceBetween={50}
+          slidesPerView={1}
+          onSlideChange={(e) => console.log("x")}
+          onSwiper={(swiper) => console.log(swiper)}
+          scrollbar={{ draggable: true }}
+          navigation={true}
+          autoplay={{
+            delay: 2200,
+            disableOnInteraction: true,
+          }}
+          modules={[Autoplay, Pagination, Navigation]}
+        >
+          <SwiperSlide>
+            <Artists
+              titles={["GLOSTER", "NEL"]}
+              body={
+                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur ipsa mollitia debitis nihil vel voluptatibus dolore necessitatibus. Nihil accusantium, vel quos tenetur laudantium fugit sed odit? Rerum cumque ut delectus"
+              }
+              image={artistImage1}
+              color={"green"}
+            ></Artists>
+            ;
+          </SwiperSlide>
+          <SwiperSlide>
+            <Artists
+              titles={["GLOSTER"]}
+              body={
+                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur ipsa mollitia debitis nihil vel voluptatibus dolore necessitatibus. Nihil accusantium, vel quos tenetur laudantium fugit sed odit? Rerum cumque ut delectus"
+              }
+              image={artistImage2}
+              instagram={"gloster.psb"}
+              instagramLink={"https://www.instagram.com/gloster.psb/"}
+              color={"violet"}
+            ></Artists>
+            ;
+          </SwiperSlide>
+        </Swiper>
       </SwiperSlide>
       <SwiperSlide>
         <Merch></Merch>
