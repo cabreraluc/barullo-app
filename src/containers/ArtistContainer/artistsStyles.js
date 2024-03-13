@@ -45,7 +45,7 @@ export const LeftSection = styled.div`
 
 export const RightSection = styled.div`
   display: flex;
-  justify-content: start;
+  justify-content: center;
   align-items: center;
   height: 100%;
   width: 55%;
