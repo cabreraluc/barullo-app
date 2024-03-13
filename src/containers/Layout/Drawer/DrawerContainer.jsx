@@ -114,10 +114,10 @@ export default function DrawerContainer({ children, setOpenSlider }) {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            marginTop: "5rem",
+            height: "3rem",
           }}
         >
-          <img src={LogoVP} style={{ width: "50%" }} />
+          <img src={LogoVP} style={{ width: "50%", height: "3rem" }} />
         </div>
         <div
           style={{
