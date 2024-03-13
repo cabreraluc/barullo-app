@@ -7,14 +7,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 const NextEvents = () => {
   return (
     <WhoAreUsContainer>
-      <Card
-        style={{
-          backgroundImage: `url(${ImageWe})`,
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "135vh",
-          backgroundPosition: "center",
-        }}
-      >
+      <Card image={ImageWe}>
         <Title>Sobre nosotros</Title>
         <Body>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium

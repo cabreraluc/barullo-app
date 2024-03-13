@@ -3,18 +3,22 @@ import styled from "styled-components";
 export const WhoAreUsContainer = styled.div`
   display: flex;
   justify-content: center;
-
-  height: 100vh;
+  background-color: red;
+  height: 100%;
 `;
 
 export const Card = styled.div`
+  background: ${({ image }) =>
+    `url(${image}) no-repeat center center/cover, rgba(0, 0, 0, 0.7)`};
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   width: 100vw;
   height: 100vh;
   flex-direction: column;
   color: black;
+
+  overflow: hidden;
 `;
 export const Title = styled.div`
   font-family: "Montserrat";
@@ -34,7 +38,6 @@ export const Body = styled.div`
   width: 60%;
   display: flex;
 
-  margin-top: 1.2rem;
   font-size: 2vh;
   font-weight: 200;
   height: 53%;
