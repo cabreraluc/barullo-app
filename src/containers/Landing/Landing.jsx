@@ -12,9 +12,20 @@ import artistImage1 from "../../artist1.webp";
 import artistImage2 from "../../artist2.jpg";
 import "swiper/css";
 import "swiper/css/pagination";
+import { useEffect, useState } from "react";
 
 const Landing = ({ openSlider, handleColorHeader }) => {
   const navigate = useNavigate();
+  const [swiper, setSwiper] = useState(null);
+  // useEffect(() => {
+  //   repeatFunction();
+  // }, []);
+
+  // const repeatFunction = () => {
+  //   setTimeout(() => {
+  //     setIsArtist(true);
+  //   }, 5000);
+  // };
 
   return (
     <Swiper
@@ -28,7 +39,14 @@ const Landing = ({ openSlider, handleColorHeader }) => {
       direction={"vertical"}
       spaceBetween={50}
       slidesPerView={1}
-      onSlideChange={(e) => handleColorHeader(e)}
+      onSlideChange={(e) => {
+        handleColorHeader(e);
+        if (e.activeIndex === 1 && swiper) {
+          // Asume que el Swiper anidado está en el segundo slide (índice 1)
+          swiper.params.autoplay.delay = 3000;
+          swiper.autoplay.start();
+        }
+      }}
       onSwiper={(swiper) => console.log(swiper)}
       scrollbar={{ draggable: true }}
       autoplay={{
@@ -38,7 +56,7 @@ const Landing = ({ openSlider, handleColorHeader }) => {
       navigation={true}
       modules={[Autoplay, Pagination, Navigation]}
     >
-      <SwiperSlide>
+      {/* <SwiperSlide>
         {" "}
         <Swiper
           style={{
@@ -58,11 +76,9 @@ const Landing = ({ openSlider, handleColorHeader }) => {
         >
           <SwiperSlide>
             <NextEvents></NextEvents>;
-          </SwiperSlide>
-          <SwiperSlide>
-            <NextEvents></NextEvents>;
-          </SwiperSlide>
-        </Swiper>
+          </SwiperSlide> */}
+      <SwiperSlide>
+        <NextEvents></NextEvents>;
       </SwiperSlide>
       <SwiperSlide>
         <Swiper
@@ -75,12 +91,15 @@ const Landing = ({ openSlider, handleColorHeader }) => {
           }}
           spaceBetween={50}
           slidesPerView={1}
-          onSlideChange={(e) => console.log("x")}
-          onSwiper={(swiper) => console.log(swiper)}
+          onSlideChange={(e) => {}}
+          onSwiper={(swiper) => {
+            setSwiper(swiper);
+            swiper.autoplay.stop(); // Detiene el autoplay al inicio
+          }}
           scrollbar={{ draggable: true }}
           navigation={true}
           autoplay={{
-            delay: 2500,
+            delay: 3000,
             disableOnInteraction: true,
           }}
           modules={[Autoplay, Pagination, Navigation]}
@@ -111,6 +130,7 @@ const Landing = ({ openSlider, handleColorHeader }) => {
           </SwiperSlide>
         </Swiper>
       </SwiperSlide>
+
       <SwiperSlide>
         <Merch></Merch>
       </SwiperSlide>
