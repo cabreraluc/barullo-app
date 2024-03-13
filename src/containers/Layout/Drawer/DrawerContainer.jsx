@@ -78,7 +78,12 @@ export default function DrawerContainer({ children, setOpenSlider }) {
         ))}
       </List>
       <Divider sx={{ borderColor: "gray" }} />
-      <List>
+      <List
+        style={{
+          height: "100%",
+          backgroundColor: "black",
+        }}
+      >
         {["¿QUIENES SOMOS?", "¿QUE HACEMOS EN ESTE MUNDO?"].map(
           (text, index) => (
             <ListItem
@@ -88,6 +93,7 @@ export default function DrawerContainer({ children, setOpenSlider }) {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
+
                 fontFamily: "Darker Grotesque, sans-serif",
               }}
             >
@@ -108,10 +114,21 @@ export default function DrawerContainer({ children, setOpenSlider }) {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            marginTop: "4rem",
+            marginTop: "5rem",
           }}
         >
           <img src={LogoVP} style={{ width: "50%" }} />
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <h4 style={{ color: "white", fontWeight: "200" }}>
+            Buenos Aires, Argentina
+          </h4>
         </div>
       </List>
     </Box>

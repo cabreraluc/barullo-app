@@ -38,7 +38,7 @@ function App() {
     <div
       style={
         openSlider
-          ? { marginLeft: "300px", transition: "0.23s" }
+          ? { marginLeft: "300px", transition: "0.23s", width: "100vw" }
           : { marginLeft: "0px", transition: "0.19s" }
       }
       className="App"
