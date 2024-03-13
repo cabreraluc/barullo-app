@@ -9,7 +9,7 @@ export const MerchContainer = styled.div`
 // margin-top: calc(15vh + 6vw);
 export const Card = styled.div`
   padding: 4rem 1rem;
-  background-color: white;
+  background-color: transparent;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -33,5 +33,5 @@ export const Item = styled.div`
   justify-content: center;
   align-items: center;
   height: 40%;
-  width: 50%;
+  width: 100%;
 `;
