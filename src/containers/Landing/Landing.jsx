@@ -80,7 +80,7 @@ const Landing = ({ openSlider, handleColorHeader }) => {
           scrollbar={{ draggable: true }}
           navigation={true}
           autoplay={{
-            delay: 2200,
+            delay: 2500,
             disableOnInteraction: true,
           }}
           modules={[Autoplay, Pagination, Navigation]}
