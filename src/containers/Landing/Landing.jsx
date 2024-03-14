@@ -10,6 +10,7 @@ import Merch from "../Merch/Merch";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import artistImage1 from "../../artist1.webp";
 import artistImage2 from "../../artist2.jpg";
+import artistImage3 from "../../artist3.jpg";
 import "swiper/css";
 import "swiper/css/pagination";
 import { useEffect, useState } from "react";
@@ -60,27 +61,6 @@ const Landing = ({ openSlider, handleColorHeader }) => {
       navigation={true}
       modules={[Autoplay, Pagination, Navigation]}
     >
-      {/* <SwiperSlide>
-        {" "}
-        <Swiper
-          style={{
-            height: "100%",
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-          spaceBetween={50}
-          slidesPerView={1}
-          onSlideChange={(e) => console.log("x")}
-          onSwiper={(swiper) => console.log(swiper)}
-          scrollbar={{ draggable: true }}
-          navigation={true}
-          modules={[Autoplay, Pagination, Navigation]}
-        >
-          <SwiperSlide>
-            <NextEvents></NextEvents>;
-          </SwiperSlide> */}
       <SwiperSlide>
         <NextEvents></NextEvents>;
       </SwiperSlide>
@@ -100,19 +80,17 @@ const Landing = ({ openSlider, handleColorHeader }) => {
           }}
           onSwiper={(swiper) => {
             setSwiper(swiper);
-            swiper.autoplay.stop(); // Detiene el autoplay al inicio
           }}
           scrollbar={{ draggable: true }}
           navigation={true}
           autoplay={{
-            delay: 3000,
             disableOnInteraction: true,
           }}
           modules={[Autoplay, Pagination, Navigation]}
         >
           <SwiperSlide>
             <Artists
-              titles={["GLOSTER", "NEL"]}
+              titles={["GLOSTER", "NEL", "ALIBVRGOS"]}
               body={
                 "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur ipsa mollitia debitis nihil vel voluptatibus dolore necessitatibus. Nihil accusantium, vel quos tenetur laudantium fugit sed odit? Rerum cumque ut delectus"
               }
@@ -130,6 +108,18 @@ const Landing = ({ openSlider, handleColorHeader }) => {
               image={artistImage2}
               name={"GLOSTER"}
               color={"violet"}
+            ></Artists>
+            ;
+          </SwiperSlide>
+          <SwiperSlide>
+            <Artists
+              titles={["ALIBVRGOS"]}
+              body={
+                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur ipsa mollitia debitis nihil vel voluptatibus dolore necessitatibus. Nihil accusantium, vel quos tenetur laudantium fugit sed odit? Rerum cumque ut delectus"
+              }
+              image={artistImage3}
+              name={"ALIBVRGOS"}
+              color={"green"}
             ></Artists>
             ;
           </SwiperSlide>
