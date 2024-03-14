@@ -38,7 +38,7 @@ const Landing = ({ openSlider, handleColorHeader }) => {
         alignItems: "center",
       }}
       direction={"vertical"}
-      spaceBetween={50}
+      spaceBetween={0}
       slidesPerView={1}
       onSlideChange={(e) => {
         console.log(e, "V");
@@ -73,7 +73,7 @@ const Landing = ({ openSlider, handleColorHeader }) => {
             justifyContent: "center",
             alignItems: "center",
           }}
-          spaceBetween={50}
+          spaceBetween={0}
           slidesPerView={1}
           onSlideChange={(e) => {
             console.log(e, "H");
@@ -83,9 +83,6 @@ const Landing = ({ openSlider, handleColorHeader }) => {
           }}
           scrollbar={{ draggable: true }}
           navigation={true}
-          autoplay={{
-            disableOnInteraction: true,
-          }}
           modules={[Autoplay, Pagination, Navigation]}
         >
           <SwiperSlide>

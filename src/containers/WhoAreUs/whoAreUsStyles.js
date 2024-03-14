@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const WhoAreUsContainer = styled.div`
   display: flex;
   justify-content: center;
-  background-color: red;
   height: 100%;
 `;
 
