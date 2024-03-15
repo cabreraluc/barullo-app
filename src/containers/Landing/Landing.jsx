@@ -10,7 +10,7 @@ import Merch from "../Merch/Merch";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import artistImage1 from "../../artist1.webp";
 import artistImage2 from "../../artist2.jpg";
-import artistImage3 from "../../artist3-2.jpg";
+import artistImage3 from "../../artist3.jpg";
 import "swiper/css";
 import "swiper/css/pagination";
 import { useEffect, useState } from "react";
@@ -46,6 +46,7 @@ const Landing = ({ openSlider, handleColorHeader }) => {
         if (e.activeIndex === 1 && swiper) {
           // Asume que el Swiper anidado está en el segundo slide (índice 1)
           swiper.params.autoplay.delay = 3000;
+
           swiper.autoplay.start();
         } else {
           swiper.autoplay.stop();

@@ -32,7 +32,7 @@ const Searcher = ({
       const { value } = e.target;
       setSearch(value);
       const result = listToFilter.filter((e) =>
-        e.name.toLowerCase().startsWith(value)
+        e.email.toLowerCase().startsWith(value)
       );
       setList(result);
     }

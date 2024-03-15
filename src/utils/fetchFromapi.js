@@ -4,7 +4,7 @@ import env from "../env/env";
 export default async function fetchFromApi(type, url, body) {
   const BASE_URL = env.API_URL;
 
-  const { token } = JSON.parse(localStorage.getItem("user"));
+  const { token } = JSON.parse(localStorage.getItem("user-barullo"));
 
   if (type === "GET") {
     const { data } = await axios.get(`${BASE_URL}${url}`, {

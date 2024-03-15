@@ -58,17 +58,15 @@ export default function Login() {
   return (
     <LoginContainer>
       <LoginFormContainer>
-        <LeftSection>
-          <Overlay>
-            <>Welcome to Lejo's</>
-          </Overlay>
-        </LeftSection>
         <RightSection>
           <LoginForm onSubmit={(e) => handleLoginUser(e)} noValidate>
             <TitleContainer>
               <Title>Sign in</Title>
             </TitleContainer>
             <TextField
+              sx={{
+                maxWidth: "25rem",
+              }}
               autoComplete="given-email"
               required
               id="email"
@@ -82,6 +80,9 @@ export default function Login() {
               variant="outlined"
             />
             <TextField
+              sx={{
+                maxWidth: "25rem",
+              }}
               required
               fullWidth
               label="Password"
@@ -94,7 +95,11 @@ export default function Login() {
               type={viewPassword ? "text" : "password"}
               variant="outlined"
             />
-            <CheckBoxContainer>
+            <CheckBoxContainer
+              style={{
+                maxWidth: "25rem",
+              }}
+            >
               <Checkbox
                 {...label}
                 onChange={() => setViewPassword(!viewPassword)}
@@ -102,7 +107,11 @@ export default function Login() {
               <>Show password</>
             </CheckBoxContainer>
 
-            <ButtonsContainer>
+            <ButtonsContainer
+              style={{
+                maxWidth: "25rem",
+              }}
+            >
               <ButtonMUi
                 variant="contained"
                 type="submit"

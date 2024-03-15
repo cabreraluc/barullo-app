@@ -2,23 +2,19 @@ import logo from "./logo.svg";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import { Navigate } from "react-router-dom";
-import Home from "./containers/Home/Home";
 import Login from "./containers/Login/Login";
-import Register from "./containers/Register/Register";
 import Landing from "./containers/Landing/Landing";
 import Header from "./containers/Layout/Header/Header";
-import EditUser from "./containers/Users/EditUser";
-import AddUser from "./containers/Users/AddUser";
-import EditClient from "./containers/Clients/EditClient";
-import AddClient from "./containers/Clients/AddClient";
-import EditProspect from "./containers/Prospects/EditProspect";
-import AddProspect from "./containers/Prospects/AddProspect";
-import ProspectDetails from "./containers/Prospects/ProspectDetails";
 import useAuth from "./containers/Login/useAuth";
 import PrivateRoute from "./containers/App/PrivateRoute";
 import Unauthorized from "./containers/Unauthorized/Unauthorized";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
+import AdminPanel from "./containers/AdminPanel/AdminPanel";
+import AddEvent from "./containers/EventsPanel/AddEvent";
+import EditEvent from "./containers/EventsPanel/EditEvent";
+import AddUser from "./containers/UsersPanel/AddUser";
+import EditUser from "./containers/UsersPanel/EditUser";
 
 function App() {
   const { pathname } = useLocation();
@@ -47,7 +43,7 @@ function App() {
 
       <Routes>
         <Route />
-        {/* <Route path="/login" element={<Login />} />
+        {/* 
         <Route path="/unauthorized" element={<Unauthorized />} /> */}
         <Route
           path="/"
@@ -58,6 +54,13 @@ function App() {
             />
           }
         />
+        <Route path="/login" element={<Login />} />
+        <Route path="/admin-panel" element={<AdminPanel />} />
+        <Route path="/add-event" element={<AddEvent />} />
+        <Route path="/edit-event" element={<EditEvent />} />
+        <Route path="/add-user" element={<AddUser />} />
+        <Route path="/edit-user/:id" element={<EditUser />} />
+
         {/* <Route element={<PrivateRoute />}>
           <Route path="/home/*" element={<Home />} />
           <Route path="/register" element={<Register />} />

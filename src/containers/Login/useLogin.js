@@ -23,8 +23,12 @@ export default function useLogin() {
         }
       );
 
-      localStorage.setItem("user", JSON.stringify(userData.data));
-      handleRedirect("/home/calendar");
+      localStorage.setItem("user-barullo", JSON.stringify(userData.data));
+      if (userData.data.role === "Admin") {
+        handleRedirect("/admin-panel");
+      } else {
+        handleRedirect("/");
+      }
     } catch (error) {
       console.log(error);
       showNotification(error.response.data.error, "error");

@@ -1,22 +1,26 @@
 import styled from "styled-components";
 
 export const HeaderContainer = styled.div`
-  width: 96%;
+  width: 100%;
   display: flex;
   justify-content: flex-start;
   flex-direction: row;
-  padding: 0.5rem 0.5rem;
+  padding: 0.5rem 0rem;
   position: fixed;
 
   z-index: 3;
 `;
 
 export const UserContainer = styled.div`
-  align-items: center;
+  display: flex;
+  justify-content: end;
+  align-items: start;
+
+  width: 10%;
 `;
 
 export const LogoContainer = styled.div`
-  width: 90%;
+  width: 80%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,8 +28,6 @@ export const LogoContainer = styled.div`
 `;
 
 export const LogoImg = styled.img`
-  margin-right: 10%;
-
   width: clamp(30rem, 35rem, 35rem);
 `;
 
@@ -47,7 +49,6 @@ export const ButtonsContainer = styled.div``;
 
 export const BurgerMenuContainer = styled.div`
   width: 10%;
-
   display: flex;
   justify-content: start;
   alignt-items: center;

@@ -11,7 +11,7 @@ import {
 import useAuth from "../../Login/useAuth";
 import { useNavigate } from "react-router-dom";
 import useLogin from "../../Login/useLogin";
-import PersonIcon from "@mui/icons-material/Person";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import LogoutIcon from "@mui/icons-material/Logout";
 import ShortTextIcon from "@mui/icons-material/ShortText";
 import { useLocation } from "react-router-dom";
@@ -30,22 +30,6 @@ export default function Header({ setOpenSlider, colorHeader }) {
   const handleRedirect = (path) => {
     navigate(path);
   };
-
-  // const [color, setColor] = useState(false);
-  // const [stop, setStop] = useState(false);
-
-  // useEffect(() => {
-  //   if (!stop) {
-  //     setTimeout(() => {
-  //       setColor(!color);
-  //     }, 300);
-  //   }
-  // }, [color]);
-
-  // useEffect(() => {
-  //   setColor(!color);
-  // }, [stop]);
-
   return (
     <HeaderContainer>
       <BurgerMenuContainer>
@@ -68,29 +52,56 @@ export default function Header({ setOpenSlider, colorHeader }) {
           ></ShortTextIcon>
         </DrawerContainer>
       </BurgerMenuContainer>
-
-      <LogoContainer
-
-      // onClick={() => setStop(!stop)}
-      >
-        <LogoImg
-          src={colorHeader === "black" ? logoBlack : logoWhite}
-        ></LogoImg>
+      <LogoContainer>
+        {pathname !== "/" ? null : (
+          <LogoImg
+            src={colorHeader === "black" ? logoBlack : logoWhite}
+          ></LogoImg>
+        )}
       </LogoContainer>
-      {/* <UserContainer>
-        {user ? (
-          <PersonIcon
-            sx={{ color: "black", cursor: "pointer" }}
+      <UserContainer>
+        {/* {user ? (
+          <AccountCircleIcon
+            sx={
+              colorHeader === "black"
+                ? {
+                    color: "black",
+                    cursor: "pointer",
+                    fontSize: "clamp(37px, 5vw, 52px)",
+                    transition: "0.2s",
+                  }
+                : {
+                    color: "white",
+                    cursor: "pointer",
+                    fontSize: "clamp(37px, 5vw, 52px)",
+                  }
+            }
             onClick={() => handleRedirect("/profile")}
           >
             Profile
-          </PersonIcon>
+          </AccountCircleIcon>
         ) : !pathname === "/login" && !user ? (
-          <UserButton onClick={() => handleRedirect("/login")}>
+          <UserButton
+            sx={
+              colorHeader === "black"
+                ? {
+                    color: "black",
+                    cursor: "pointer",
+                    fontSize: "clamp(37px, 5vw, 52px)",
+                    transition: "0.2s",
+                  }
+                : {
+                    color: "white",
+                    cursor: "pointer",
+                    fontSize: "clamp(37px, 5vw, 52px)",
+                  }
+            }
+            onClick={() => handleRedirect("/login")}
+          >
             Login
           </UserButton>
-        ) : null}
-      </UserContainer> */}
+        ) : null} */}
+      </UserContainer>
     </HeaderContainer>
   );
 }

@@ -4,7 +4,7 @@ import { Navigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
 import useAuth from "../Login/useAuth.js";
-import useUsers from "../Users/useUsers.js";
+import useUsers from "../UsersPanel/useUsers.js";
 
 const PrivateRoute = () => {
   const { id } = useParams();

@@ -1,28 +1,29 @@
-import {
-  UsersContainer,
-  UsersList,
-  PanelRight,
-  ButtonBar,
-} from "./usersStyles";
+import { UsersContainer, UsersList, ButtonContainer } from "./usersStyles";
 import { useNavigate } from "react-router-dom";
 import useUsers from "./useUsers";
 import { useEffect } from "react";
 import UsersTable from "../../components/Users/UsersTable";
 import Loader from "../../componentsCss/Loader/Loader";
 import Searcher from "../../components/Searcher/Searcher";
-const values = [{ name: "Add User", path: "/add-user" }];
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 
-const Users = () => {
-  const navigate = useNavigate();
-  const { allUsers, getUsers, disableUser, isLoading, setAllUsers } =
+const UsersPanel = () => {
+  const { isLoading, disableUser, getUsers, allUsers, setAllUsers } =
     useUsers();
-
+  const navigate = useNavigate();
   useEffect(() => {
     getUsers();
   }, []);
 
   return (
     <UsersContainer>
+      <ButtonContainer>
+        <AddCircleIcon
+          onClick={() => navigate("/add-user")}
+          fontSize="large"
+        ></AddCircleIcon>
+      </ButtonContainer>
+      <Searcher list={allUsers} setList={setAllUsers} context={"users"} />
       <UsersList>
         {isLoading ? (
           <Loader></Loader>
@@ -34,16 +35,8 @@ const Users = () => {
           />
         )}
       </UsersList>
-      <PanelRight>
-        <Searcher list={allUsers} setList={setAllUsers} context={"users"} />
-        {values.map((e) => (
-          <ButtonBar onClick={e.path ? () => navigate(e.path) : null}>
-            {e.name}
-          </ButtonBar>
-        ))}
-      </PanelRight>
     </UsersContainer>
   );
 };
 
-export default Users;
+export default UsersPanel;

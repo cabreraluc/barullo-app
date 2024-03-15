@@ -12,7 +12,6 @@ import { useNavigate } from "react-router-dom";
 
 import AlertDialog from "../Dialog/AlertDialog";
 import { useState } from "react";
-import useUsers from "../../containers/Users/useUsers";
 
 export default function User({ user, disableUser }) {
   const navigate = useNavigate();
@@ -28,11 +27,8 @@ export default function User({ user, disableUser }) {
       key={user.name}
       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
     >
-      <TableCell component="th" scope="row">
-        {user.name} {user.lastName}
-      </TableCell>
       <TableCell align="left">{user.email}</TableCell>
-      <TableCell align="left">{user.cellphone}</TableCell>
+
       <TableCell align="left">{user.role}</TableCell>
       <TableCell align="left">
         <DeleteOutlineIcon

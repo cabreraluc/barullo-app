@@ -48,8 +48,10 @@ export const Title = styled.h1`
   font-size: 1.5rem;
   font-weight: 600;
   color: #384764;
-  padding: 0 30px;
-  margin-left: 1.7rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const AlertEditContainer = styled.div`

@@ -12,20 +12,15 @@ const contextMap = {
     message: "Are you sure that you want to disable this user?",
     action: "DISABLE",
   },
-  clients: {
-    title: "Disable client",
-    message: "Are you sure that you want to disable this client?",
+  artists: {
+    title: "Disable artist",
+    message: "Are you sure that you want to disable this artist?",
     action: "DISABLE",
   },
-  prospects: {
-    title: "Disable prospect",
-    message: "Are you sure that you want to disable this prospect?",
+  events: {
+    title: "Disable event",
+    message: "Are you sure that you want to disable this event?",
     action: "DISABLE",
-  },
-  calendar: {
-    title: "Archive event",
-    message: "Are you sure that you want to archive this event?",
-    action: "ARCHIVE",
   },
 };
 
@@ -48,9 +43,16 @@ export default function AlertDialog({
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
         maxWidth="xl"
-        sx={{}}
       >
-        <div style={{ padding: "4rem 10rem" }}>
+        <div
+          style={{
+            padding: "5rem 5rem",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <div>
             <IconButton
               aria-label="close"
@@ -64,19 +66,32 @@ export default function AlertDialog({
             >
               X
             </IconButton>
-
-            <div
+          </div>
+          <div
+            style={{
+              display: "flex",
+              width: "100%",
+              justifyContent: "center",
+              alignItems: "center",
+              padding: "1.5rem 0rem",
+            }}
+          >
+            <Title>{title}</Title>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <span
               style={{
-                display: "flex",
-                justifyContent: "center",
-                padding: "3rem 0",
+                textAlign: "center",
+                fontSize: "16px",
+                color: "rgb(56,71,100,0.55)",
               }}
             >
-              <Title>{title}</Title>
-            </div>
-          </div>
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <span style={{ fontSize: "16px", color: "rgb(56,71,100,0.55)" }}>
               {message}
             </span>
           </div>
@@ -86,6 +101,7 @@ export default function AlertDialog({
               justifyContent: "center",
               marginTop: "3.7rem",
               marginBottom: "2.2rem",
+              gap: "1rem",
             }}
           >
             <Button onClick={() => onClose()}>CANCEL</Button>

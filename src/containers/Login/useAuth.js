@@ -1,5 +1,5 @@
 const useAuth = () => {
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = JSON.parse(localStorage.getItem("user-barullo"));
 
   return user;
 };

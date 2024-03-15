@@ -12,7 +12,6 @@ import { useNavigate } from "react-router-dom";
 import User from "./User";
 import AlertDialog from "../Dialog/AlertDialog";
 import { useState } from "react";
-import useUsers from "../../containers/Users/useUsers";
 
 export default function UsersTable({ allUsers, disableUser }) {
   return (
@@ -20,12 +19,10 @@ export default function UsersTable({ allUsers, disableUser }) {
       component={Paper}
       sx={{ height: "100%", boxShadow: "none", backgroundColor: "transparent" }}
     >
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+      <Table aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Name</TableCell>
             <TableCell align="left">Email</TableCell>
-            <TableCell align="left">Cellphone</TableCell>
             <TableCell align="left">Rol</TableCell>
             <TableCell sx={{ width: "1.5rem" }} align="left"></TableCell>
             <TableCell sx={{ width: "1.5rem" }} align="left"></TableCell>
