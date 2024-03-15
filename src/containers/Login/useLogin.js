@@ -31,7 +31,7 @@ export default function useLogin() {
       }
     } catch (error) {
       console.log(error);
-      showNotification(error.response.data.error, "error");
+      showNotification(error?.response?.data?.error, "error");
     }
   };
 
