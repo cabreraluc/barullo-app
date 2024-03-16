@@ -23,6 +23,8 @@ export default function useLogin() {
         }
       );
 
+      console.log(userData);
+
       localStorage.setItem("user-barullo", JSON.stringify(userData.data));
       if (userData.data.role === "Admin") {
         handleRedirect("/admin-panel");
@@ -36,7 +38,7 @@ export default function useLogin() {
   };
 
   const logOut = async () => {
-    localStorage.clear("user");
+    localStorage.clear("user-barullo");
     handleRedirect("/login");
   };
 

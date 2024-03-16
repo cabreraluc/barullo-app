@@ -54,9 +54,9 @@ export default function DrawerContainer({ children, setOpenSlider }) {
     setState({ ...state, [anchor]: open });
   };
 
-  useEffect(() => {
-    getUserById(userLocalStorage?.id);
-  }, []);
+  // useEffect(() => {
+  //   getUserById(userLocalStorage?.id);
+  // }, []);
 
   const list = (anchor) => (
     <Box
@@ -72,7 +72,7 @@ export default function DrawerContainer({ children, setOpenSlider }) {
       <List>
         {listArray
           .filter((e) => {
-            if (pathname === "/login" || user?.role?.length) {
+            if (pathname === "/login" || userLocalStorage?.role?.length) {
               return e.title !== "LOGIN";
             } else {
               return e;
@@ -135,7 +135,7 @@ export default function DrawerContainer({ children, setOpenSlider }) {
           )
         )}
 
-        {user.role === "Admin" ? (
+        {userLocalStorage?.role === "Admin" ? (
           <ListItem
             key={"1"}
             disablePadding
