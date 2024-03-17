@@ -101,7 +101,8 @@ const Landing = ({ openSlider, handleColorHeader }) => {
             <Artists
               titles={["GLOSTER"]}
               body={
-                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur ipsa mollitia debitis nihil vel voluptatibus dolore necessitatibus. Nihil accusantium, vel quos tenetur laudantium fugit sed odit? Rerum cumque ut delectus"
+                "Productor musical y baterista, oriundo de Monte Grande, especializado en el Hip Hop e incursionadose en la electrónica.
+Miembro activo de la PSB, Co-creador y DJ de BARULLO"
               }
               image={artistImage2}
               name={"GLOSTER"}
