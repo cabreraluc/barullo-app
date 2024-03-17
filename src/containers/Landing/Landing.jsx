@@ -100,10 +100,7 @@ const Landing = ({ openSlider, handleColorHeader }) => {
           <SwiperSlide>
             <Artists
               titles={["GLOSTER"]}
-              body={
-                "Productor musical y baterista, oriundo de Monte Grande, especializado en el Hip Hop e incursionadose en la electrónica.
-Miembro activo de la PSB, Co-creador y DJ de BARULLO"
-              }
+              body={"Productor musical y baterista, oriundo de Monte Grande, especializado en el Hip Hop e incursionadose en la electrónica. Miembro activo de la PSB, Co-creador y DJ de BARULLO"}
               image={artistImage2}
               name={"GLOSTER"}
               color={"violet"}
