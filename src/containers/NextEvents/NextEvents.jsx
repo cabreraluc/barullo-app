@@ -1,5 +1,6 @@
 import ImageEvents from "../../event1.webp";
 import ImageArtist from "../../artists.jpg";
+import nextEventsImg from "../utils/nextevents.jpg";
 import {
   NextEventsContainer,
   Card,
@@ -13,10 +14,10 @@ import {
 const NextEvents = () => {
   return (
     <NextEventsContainer>
-      <Card image={ImageArtist}>
+      <Card image={nextEventsImg}>
         <Container>
           <LeftSection>
-            <Title>El DOCTOR</Title>
+            <Title>BARULLO</Title>
 
             <Body>8 de abril 22hs</Body>
             <Body>Monte Grande</Body>
