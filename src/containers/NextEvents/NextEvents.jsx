@@ -1,6 +1,6 @@
 import ImageEvents from "../../event1.webp";
 import ImageArtist from "../../artists.jpg";
-import nextEventsImg from "../../nextevents.jpg";
+import NextEventsImg from "../../nextevents.jpg";
 import {
   NextEventsContainer,
   Card,
@@ -14,7 +14,7 @@ import {
 const NextEvents = () => {
   return (
     <NextEventsContainer>
-      <Card image={nextEventsImg}>
+      <Card image={NextEventsImg}>
         <Container>
           <LeftSection>
             <Title>BARULLO</Title>
