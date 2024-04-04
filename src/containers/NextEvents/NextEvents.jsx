@@ -1,6 +1,6 @@
 import ImageEvents from "../../event1.webp";
 import ImageArtist from "../../artists.jpg";
-import nextEventsImg from "../utils/nextevents.jpg";
+import nextEventsImg from "../../nextevents.jpg";
 import {
   NextEventsContainer,
   Card,
