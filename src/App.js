@@ -15,6 +15,8 @@ import AddEvent from "./containers/EventsPanel/AddEvent";
 import EditEvent from "./containers/EventsPanel/EditEvent";
 import AddUser from "./containers/UsersPanel/AddUser";
 import EditUser from "./containers/UsersPanel/EditUser";
+import AddArtist from "./containers/ArtistsPanel/AddArtist";
+import EditArtist from "./containers/ArtistsPanel/EditArtist";
 
 function App() {
   const { pathname } = useLocation();
@@ -43,8 +45,8 @@ function App() {
 
       <Routes>
         <Route />
-        {/* 
-        <Route path="/unauthorized" element={<Unauthorized />} /> */}
+
+        <Route path="/unauthorized" element={<Unauthorized />} />
         <Route
           path="/"
           element={
@@ -55,14 +57,17 @@ function App() {
           }
         />
         <Route path="/login" element={<Login />} />
-        <Route path="/admin-panel" element={<AdminPanel />} />
-        <Route path="/add-event" element={<AddEvent />} />
-        <Route path="/edit-event" element={<EditEvent />} />
-        <Route path="/add-user" element={<AddUser />} />
-        <Route path="/edit-user/:id" element={<EditUser />} />
 
-        {/* <Route element={<PrivateRoute />}>
-          <Route path="/home/*" element={<Home />} />
+        <Route element={<PrivateRoute />}>
+          <Route path="/admin-panel" element={<AdminPanel />} />
+          <Route path="/add-event" element={<AddEvent />} />
+          <Route path="/edit-event" element={<EditEvent />} />
+          <Route path="/add-user" element={<AddUser />} />
+          <Route path="/edit-user/:id" element={<EditUser />} />
+
+          <Route path="/add-artist" element={<AddArtist />} />
+          <Route path="/edit-artist/:id" element={<EditArtist />} />
+          {/* <Route path="/home/*" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/edit-user/:id" element={<EditUser />} />
           <Route path="/add-user" element={<AddUser />} />
@@ -70,8 +75,8 @@ function App() {
           <Route path="/add-client" element={<AddClient />} />
           <Route path="/edit-prospect/:id" element={<EditProspect />} />
           <Route path="/add-prospect" element={<AddProspect />} />
-          <Route path="/prospect-details/:id" element={<ProspectDetails />} />
-        </Route> */}
+          <Route path="/prospect-details/:id" element={<ProspectDetails />} /> */}
+        </Route>
       </Routes>
     </div>
   );

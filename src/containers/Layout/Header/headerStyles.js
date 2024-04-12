@@ -28,7 +28,7 @@ export const LogoContainer = styled.div`
 `;
 
 export const LogoImg = styled.img`
-  width: clamp(30rem, 35rem, 35rem);
+  width: clamp(15rem, 20rem, 20rem);
 `;
 
 export const UserButton = styled.div`

@@ -14,8 +14,10 @@ import artistImage3 from "../../artist3.jpg";
 import "swiper/css";
 import "swiper/css/pagination";
 import { useEffect, useState } from "react";
+import useArtists from "../ArtistsPanel/useArtists";
 
 const Landing = ({ openSlider, handleColorHeader }) => {
+  const { getArtists, allArtists } = useArtists();
   const navigate = useNavigate();
   const [swiper, setSwiper] = useState(null);
   // useEffect(() => {
@@ -27,6 +29,10 @@ const Landing = ({ openSlider, handleColorHeader }) => {
   //     setIsArtist(true);
   //   }, 5000);
   // };
+
+  useEffect(() => {
+    getArtists();
+  }, []);
 
   return (
     <Swiper
@@ -86,7 +92,7 @@ const Landing = ({ openSlider, handleColorHeader }) => {
           navigation={true}
           modules={[Autoplay, Pagination, Navigation]}
         >
-          <SwiperSlide>
+          {/* <SwiperSlide>
             <Artists
               titles={["GLOSTER", "NEL", "ALIBVRGOS"]}
               body={
@@ -100,25 +106,44 @@ const Landing = ({ openSlider, handleColorHeader }) => {
           <SwiperSlide>
             <Artists
               titles={["GLOSTER"]}
-              body={"Productor musical y baterista, oriundo de Monte Grande, especializado en el Hip Hop e incursionadose en la electrónica. Miembro activo de la PSB, Co-creador y DJ de BARULLO"}
+              body={
+                "Productor musical y baterista, oriundo de Monte Grande, especializado en el Hip Hop e incursionadose en la electrónica. Miembro activo de la PSB, Co-creador y DJ de BARULLO"
+              }
               image={artistImage2}
               name={"GLOSTER"}
               color={"violet"}
             ></Artists>
             ;
-          </SwiperSlide>
-          <SwiperSlide>
-            <Artists
-              titles={["ALIBVRGOS"]}
-              body={
-                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur ipsa mollitia debitis nihil vel voluptatibus dolore necessitatibus. Nihil accusantium, vel quos tenetur laudantium fugit sed odit? Rerum cumque ut delectus"
+          </SwiperSlide> */}
+
+          {allArtists.length ? (
+            allArtists.map((e, index) => {
+              if (e.status !== "active") {
+                e = { ...e, color: "black-white" };
+              } else {
+                if (Number.isInteger((index + 1) / 2)) {
+                  e = { ...e, color: "violet" };
+                } else {
+                  e = { ...e, color: "green" };
+                }
               }
-              image={artistImage3}
-              name={"ALIBVRGOS"}
-              color={"green"}
-            ></Artists>
-            ;
-          </SwiperSlide>
+
+              return (
+                <SwiperSlide>
+                  <Artists
+                    titles={[`${e.artistName}`]}
+                    body={e.shortDescription}
+                    image={e.primaryImage}
+                    name={e.artistName}
+                    color={e.color}
+                  ></Artists>
+                  ;
+                </SwiperSlide>
+              );
+            })
+          ) : (
+            <div>Vacio</div>
+          )}
         </Swiper>
       </SwiperSlide>
 

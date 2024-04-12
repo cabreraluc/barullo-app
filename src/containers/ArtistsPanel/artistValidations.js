@@ -1,85 +1,55 @@
-export const userValidations = (userData, context) => {
+export const artistValidations = (artistData, context) => {
   const validateEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
   const validateNum = /^[0-9]+$/;
   const validPassword = /(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,}$/;
 
-  if (userData.name === "") {
+  if (artistData.name === "") {
     return [['The "Name" field cannot be empty.'], { name: true }];
   }
 
-  if (userData.lastName === "") {
+  if (artistData.lastName === "") {
     return [['The "Last name" field cannot be empty.'], { lastName: true }];
   }
 
-  if (userData.cellphone === "") {
+  if (artistData.cellphone === "") {
     return [['The "Cellphone" field cannot be empty.'], { cellphone: true }];
   }
 
-  if (userData.cellphone !== "") {
-    if (!validateNum.test(userData.cellphone)) {
+  if (artistData.cellphone !== "") {
+    if (!validateNum.test(artistData.cellphone)) {
       return [["Invalid cellphone"], { cellphone: true }];
     }
-  }
 
-  if (userData.email === "") {
-    return [['The "Email" field cannot be empty.'], { email: true }];
-  }
-
-  if (userData.email !== "") {
-    if (!validateEmail.test(userData.email)) {
-      return [["Invalid email."], { email: true }];
-    }
-  }
-
-  if (context === "addUser") {
-    if (userData.password === "") {
-      return [['The "Password" field cannot be empty.'], { password: true }];
-    }
-
-    if (userData.repeatPassword === "") {
+    if (artistData.description === "") {
       return [
-        ['The "Repeat password" field cannot be empty.'],
-        { password: true },
+        ['The "Description" field cannot be empty.'],
+        { description: true },
       ];
     }
-  }
-  if (userData.password !== "" && !validPassword.test(userData.password)) {
-    return [
-      [
-        `The password must have at least 8 digits, a capital letter and a number.`,
-      ],
-      { password: true },
-    ];
-  }
 
-  if (userData.repeatPassword !== "") {
-    if (userData.password === "") {
-      return [['The "Password" field cannot be empty.'], { password: true }];
-    }
-  }
-
-  if (userData.password !== "") {
-    if (userData.repeatPassword === "") {
+    if (artistData.shortDescription === "") {
       return [
-        ['The "Repeat password" field cannot be empty.'],
-        { password: true },
+        ['The "Short description" field cannot be empty.'],
+        { description: true },
       ];
     }
-  }
 
-  if (
-    userData.password !== "" &&
-    userData.repeatPassword !== "" &&
-    userData.password !== userData.repeatPassword
-  ) {
-    return [["The password¨s are diferents"], { password: true }];
-  }
+    if (artistData.primaryImage === "") {
+      return [
+        ['The "Primary image" field cannot be empty.'],
+        { primaryImage: true },
+      ];
+    }
 
-  if (userData.role === "") {
-    return [["You must select a role."], { role: true }];
-  }
+    if (artistData.secondaryImage === "") {
+      return [
+        ['The "Secondary image" field cannot be empty.'],
+        { description: true },
+      ];
+    }
 
-  return { valid: true };
+    return { valid: true };
+  }
 };
 
 // import EditUser from "./EditUser";

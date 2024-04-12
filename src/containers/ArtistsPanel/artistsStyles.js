@@ -1,15 +1,15 @@
 import styled from "styled-components";
 import { Box } from "@mui/material";
 
-export const UsersContainer = styled.div`
+export const ArtistsContainer = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 
   align-items: center;
   width: 100%;
   height: 100%;
 `;
-export const UsersList = styled.div`
+export const ArtistsList = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -19,6 +19,7 @@ export const UsersList = styled.div`
   height: 90%;
   margin-left: 2rem;
   margin-right: 2rem;
+  margin-top: 3rem;
 `;
 
 export const PanelRight = styled.div`
@@ -58,7 +59,7 @@ export const Searcher = styled.div`
   align-items: center;
 `;
 
-export const AddUserContainer = styled.div`
+export const AddArtistContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -66,7 +67,7 @@ export const AddUserContainer = styled.div`
   height: 100%;
 `;
 
-export const UsersActionsContainer = styled.div`
+export const ArtistsActionsContainer = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
@@ -116,15 +117,14 @@ export const TitleContainer = styled.div`
   align-items: center;
 `;
 
-export const FormContainertUsersAction = styled.form`
-  width: 70%;
+export const FormContainertArtistsAction = styled.form`
+  width: 80%;
   height: 90%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
-  background-color: rgb(256, 256, 256, 0.8);
+  background-color: rgb(256, 256, 256);
   border-radius: 15px;
 `;
 
@@ -135,7 +135,7 @@ export const FormSectionsContainer = styled.div`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  margin-top: 4rem;
+  margin-top: 2rem;
 `;
 export const LeftSectionContainer = styled.div`
   width: 45%;
@@ -154,17 +154,27 @@ export const RightSectionContainer = styled.div`
 
   gap: 25px;
 `;
+export const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  width: 100%;
+  height: 2rem;
+  padding-right: 15%;
+`;
 
 export const ActionButtonContainer = styled.div`
   width: 100%;
+  max-width: 15rem;
   height: 3rem;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
+  margin-bottom: 2rem;
 `;
 
 export const ButtonsContainer = styled.div`
-  width: 25%;
+  width: 100%;
   height: 3rem;
   display: flex;
   justify-content: space-around;

@@ -1,16 +1,22 @@
 import axios from "axios";
 import env from "../env/env";
 
-export default async function fetchFromApi(type, url, body) {
+export default async function fetchFromApi(type, url, body, context) {
   const BASE_URL = env.API_URL;
 
-  const { token } = JSON.parse(localStorage.getItem("user-barullo"));
+  const tokenContainer = JSON.parse(localStorage.getItem("user-barullo"));
+  const token = tokenContainer ? tokenContainer.token : null;
 
   if (type === "GET") {
-    const { data } = await axios.get(`${BASE_URL}${url}`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    return data;
+    if (context === "artists") {
+      const { data } = await axios.get(`${BASE_URL}${url}`);
+      return data;
+    } else {
+      const { data } = await axios.get(`${BASE_URL}${url}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      return data;
+    }
   } else if (type === "POST") {
     const { data } = await axios.post(`${BASE_URL}${url}`, body, {
       headers: { Authorization: `Bearer ${token}` },

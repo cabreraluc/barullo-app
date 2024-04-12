@@ -1,49 +1,47 @@
-// import {
-//   UsersContainer,
-//   UsersList,
-//   PanelRight,
-//   ButtonBar,
-// } from "./usersStyles";
-// import { useNavigate } from "react-router-dom";
-// import useUsers from "./useUsers";
-// import { useEffect } from "react";
-// import UsersTable from "../../components/Users/UsersTable";
-// import Loader from "../../componentsCss/Loader/Loader";
-// import Searcher from "../../components/Searcher/Searcher";
-// const values = [{ name: "Add User", path: "/add-user" }];
+import {
+  ArtistsContainer,
+  ArtistsList,
+  PanelRight,
+  ButtonContainer,
+} from "./artistsStyles";
+import { useNavigate } from "react-router-dom";
+import useArtists from "./useArtists";
+import { useEffect } from "react";
+import ArtistsTable from "../../components/Artists/ArtistsTable";
+import Loader from "../../componentsCss/Loader/Loader";
+import Searcher from "../../components/Searcher/Searcher";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 
 const ArtistsPanel = () => {
-  // const navigate = useNavigate();
-  // const { allUsers, getUsers, disableUser, isLoading, setAllUsers } =
-  //   useUsers();
+  const navigate = useNavigate();
+  const { allArtists, getArtists, disableArtist, isLoading, setAllArtists } =
+    useArtists();
 
-  // useEffect(() => {
-  //   getUsers();
-  // }, []);
+  useEffect(() => {
+    getArtists();
+  }, []);
 
   return (
-    <div>Artist</div>
-    // <UsersContainer>
-    //   <UsersList>
-    //     {isLoading ? (
-    //       <Loader></Loader>
-    //     ) : (
-    //       <UsersTable
-    //         allUsers={allUsers}
-    //         disableUser={disableUser}
-    //         isLoading={isLoading}
-    //       />
-    //     )}
-    //   </UsersList>
-    //   <PanelRight>
-    //     <Searcher list={allUsers} setList={setAllUsers} context={"users"} />
-    //     {values.map((e) => (
-    //       <ButtonBar onClick={e.path ? () => navigate(e.path) : null}>
-    //         {e.name}
-    //       </ButtonBar>
-    //     ))}
-    //   </PanelRight>
-    // </UsersContainer>
+    <ArtistsContainer>
+      <ButtonContainer>
+        <AddCircleIcon
+          onClick={() => navigate("/add-artist")}
+          fontSize="large"
+        ></AddCircleIcon>
+      </ButtonContainer>
+      <Searcher list={allArtists} setList={setAllArtists} context={"artist"} />
+      <ArtistsList>
+        {isLoading ? (
+          <Loader></Loader>
+        ) : (
+          <ArtistsTable
+            allArtists={allArtists}
+            disableArtist={disableArtist}
+            isLoading={isLoading}
+          />
+        )}
+      </ArtistsList>
+    </ArtistsContainer>
   );
 };
 

@@ -6,7 +6,7 @@ const Unauthorized = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      navigate("/login");
+      navigate("/");
     }, 3000);
   }, []);
   return (

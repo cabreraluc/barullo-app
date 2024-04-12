@@ -12,52 +12,24 @@ const PrivateRoute = () => {
 
   const canAccess = {
     Admin: [
-      "/add-prospect",
-      `/prospect-details/${id}`,
-      "/add-client",
+      "/admin-panel",
+      `/add-event`,
+      "/edit-event",
       `/edit-prospect/${id}`,
-      "/home",
       `/add-user`,
-      `/edit-client/${id}`,
+      `/edit-artist/${id}`,
       `/edit-user/${id}`,
-      "/home/statistics",
-      "/home/calendar",
-      "/home/prospects",
-      "/home/users",
-      "/home/clients",
+      `/add-artist`,
     ],
-    Setter: [
-      "/add-prospect",
-      `/prospect-details/${id}`,
-      "/add-client",
-      `/edit-prospect/${id}`,
-      "/home",
-      `/edit-client/${id}`,
-      "/home/statistics",
-      "/home/calendar",
-      "/home/prospects",
-      "/home/clients",
-    ],
-    Closer: [
-      "/add-prospect",
-      `/prospect-details/${id}`,
-      "/add-client",
-      `/edit-prospect/${id}`,
-      "/home",
-      `/edit-client/${id}`,
-      "/home/statistics",
-      "/home/calendar",
-      "/home/prospects",
-      "/home/clients",
-    ],
-    Client: [
-      `/prospect-details/${id}`,
 
-      "/home",
-      "/home/statistics",
-      "/home/calendar",
-      "/home/prospects",
-    ],
+    // Client: [
+    //   `/prospect-details/${id}`,
+
+    //   "/home",
+    //   "/home/statistics",
+    //   "/home/calendar",
+    //   "/home/prospects",
+    // ],
   };
   const userFromLocalStorage = useAuth();
   const location = useLocation();
@@ -69,7 +41,7 @@ const PrivateRoute = () => {
   }, []);
 
   if (!user) {
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/" replace />;
   }
   if (
     canAccess[userFromLocalStorage?.role]?.some(

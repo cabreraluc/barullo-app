@@ -19,7 +19,8 @@ export const Card = styled.div`
 
   overflow: hidden;
 
-  filter: ${({ filter }) => `sepia(1) hue-rotate(${filter}deg)`};
+  filter: ${({ filter }) =>
+    filter === "" ? "grayscale(100%)" : `sepia(1) hue-rotate(${filter}deg)`};
 `;
 
 export const Container = styled.div`
@@ -50,8 +51,10 @@ export const RightSection = styled.div`
   height: 100%;
   width: 55%;
   flex-direction: column;
+  @media screen and (max-width: 767px) {
+    font-size: 12.5px;
+  }
   color: white;
-  font-size: 2vh;
   padding: 0.5rem;
 `;
 

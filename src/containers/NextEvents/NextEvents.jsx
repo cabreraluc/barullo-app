@@ -19,14 +19,11 @@ const NextEvents = () => {
           <LeftSection>
             <Title>BARULLO</Title>
 
-            <Body>8 de abril 22hs</Body>
-            <Body>Monte Grande</Body>
+            <Body>11/5 00:30hs</Body>
+            <Body>Secret location</Body>
           </LeftSection>
           <RightSection>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur
-            ipsa mollitia debitis nihil vel voluptatibus dolore necessitatibus.
-            Nihil accusantium, vel quos tenetur laudantium fugit sed odit? Rerum
-            cumque ut delectus.
+            <Body>Más Información</Body>
           </RightSection>
         </Container>
       </Card>

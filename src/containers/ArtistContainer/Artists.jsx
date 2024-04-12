@@ -13,7 +13,7 @@ import {
 } from "./artistsStyles";
 
 const Artists = ({ image, color, titles, body, name }) => {
-  let filter = color === "violet" ? "270" : "90";
+  let filter = color === "violet" ? "270" : color === "green" ? "90" : "";
 
   return (
     <ArtistsContainer>
@@ -41,27 +41,6 @@ const Artists = ({ image, color, titles, body, name }) => {
                 {`MORE OF ${name}`}
               </button>
             ) : null}
-            {/* {instagram?.length ? (
-              <Icons>
-                <a
-                  style={{
-                    color: "white",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                  href={instagramLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <InstagramIcon
-                    fontSize="medium"
-                    sx={{ marginRight: "0.4rem" }}
-                  />{" "}
-                  {instagram}
-                </a>
-              </Icons>
-            ) : null} */}
           </RightSection>
         </Container>
       </Card>
