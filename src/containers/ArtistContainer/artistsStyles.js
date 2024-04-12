@@ -55,8 +55,6 @@ export const RightSection = styled.div`
     font-size: 12.5px;
   }
   color: white;
-
-  background-color: black;
 `;
 
 export const Title = styled.div`
