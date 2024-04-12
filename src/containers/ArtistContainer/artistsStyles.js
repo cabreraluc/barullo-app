@@ -31,7 +31,7 @@ export const Container = styled.div`
   height: 20%;
   width: 100%;
   flex-direction: row;
-  padding: 3rem;
+  padding: 10%;
 `;
 
 export const LeftSection = styled.div`
@@ -55,7 +55,8 @@ export const RightSection = styled.div`
     font-size: 12.5px;
   }
   color: white;
-  padding: 0.5rem;
+
+  background-color: black;
 `;
 
 export const Title = styled.div`

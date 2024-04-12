@@ -29,7 +29,7 @@ const Artists = ({ image, color, titles, body, name }) => {
             {name?.length ? (
               <button
                 style={{
-                  marginTop: "1.3rem",
+                  marginTop: "10%",
                   backgroundColor: "transparent",
                   border: "none",
                   color: "white",
