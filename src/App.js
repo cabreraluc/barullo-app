@@ -17,6 +17,7 @@ import AddUser from "./containers/UsersPanel/AddUser";
 import EditUser from "./containers/UsersPanel/EditUser";
 import AddArtist from "./containers/ArtistsPanel/AddArtist";
 import EditArtist from "./containers/ArtistsPanel/EditArtist";
+import PaymentSection from "./containers/PaymentSection/PaymentSection";
 
 function App() {
   const { pathname } = useLocation();
@@ -57,6 +58,7 @@ function App() {
           }
         />
         <Route path="/login" element={<Login />} />
+        <Route path="/event-information" element={<PaymentSection />} />
 
         <Route element={<PrivateRoute />}>
           <Route path="/admin-panel" element={<AdminPanel />} />
@@ -67,6 +69,7 @@ function App() {
 
           <Route path="/add-artist" element={<AddArtist />} />
           <Route path="/edit-artist/:id" element={<EditArtist />} />
+
           {/* <Route path="/home/*" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/edit-user/:id" element={<EditUser />} />

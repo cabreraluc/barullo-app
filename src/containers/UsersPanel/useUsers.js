@@ -57,7 +57,8 @@ export default function useUsers() {
     } catch (error) {
       if (error?.request?.status === 500) {
         showNotification("Sesión expirada", "error");
-        navigate("/login");
+        localStorage.removeItem("user-barullo");
+        navigate("/");
       } else {
         showNotification(error, "error");
       }

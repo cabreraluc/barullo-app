@@ -10,8 +10,10 @@ import {
   LeftSection,
   RightSection,
 } from "./nextEventsStyles";
+import { useNavigate } from "react-router-dom";
 
 const NextEvents = () => {
+  const navigate = useNavigate();
   return (
     <NextEventsContainer>
       <Card image={NextEventsImg}>
@@ -23,7 +25,12 @@ const NextEvents = () => {
             <Body>Secret location</Body>
           </LeftSection>
           <RightSection>
-            <Body>Más Información</Body>
+            <Body
+              style={{ cursor: "pointer" }}
+              onClick={() => navigate("/event-information")}
+            >
+              Más Información
+            </Body>
           </RightSection>
         </Container>
       </Card>

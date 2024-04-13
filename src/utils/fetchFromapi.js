@@ -18,10 +18,15 @@ export default async function fetchFromApi(type, url, body, context) {
       return data;
     }
   } else if (type === "POST") {
-    const { data } = await axios.post(`${BASE_URL}${url}`, body, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    return data;
+    if (context === "buyTicket") {
+      const { data } = await axios.post(`${BASE_URL}${url}`, body);
+      return data;
+    } else {
+      const { data } = await axios.post(`${BASE_URL}${url}`, body, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      return data;
+    }
   } else if (type === "PUT") {
     const { data } = await axios.put(`${BASE_URL}${url}`, body, {
       headers: { Authorization: `Bearer ${token}` },
