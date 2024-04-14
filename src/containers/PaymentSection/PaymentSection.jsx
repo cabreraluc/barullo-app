@@ -2,7 +2,7 @@ import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import { useEffect, useState } from "react";
 import { Title, Time, Date, Promotion, Container } from "./paymentStyles";
 import fetchFromApi from "../../utils/fetchFromapi";
-initMercadoPago("TEST-156f766a-8e5e-4b32-970b-6488649a8a6c");
+initMercadoPago("APP_USR-d2507ba7-7653-4a45-9ae8-8a5a80411064");
 
 const PaymentSection = () => {
   const [sale, setSale] = useState(false);
