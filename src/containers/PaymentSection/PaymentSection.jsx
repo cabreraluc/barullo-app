@@ -2,7 +2,7 @@ import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import { useEffect, useState } from "react";
 import { Title, Time, Date, Promotion, Container } from "./paymentStyles";
 import fetchFromApi from "../../utils/fetchFromapi";
-initMercadoPago("APP_USR-d2507ba7-7653-4a45-9ae8-8a5a80411064");
+initMercadoPago("TEST-156f766a-8e5e-4b32-970b-6488649a8a6c");
 
 const PaymentSection = () => {
   const [sale, setSale] = useState(false);
@@ -12,7 +12,8 @@ const PaymentSection = () => {
     price: "",
     amount: 0,
     description: "",
-    completeName: "",
+    name: "",
+    lastName: "",
     email: "",
     cellphone: "",
   });
@@ -23,7 +24,7 @@ const PaymentSection = () => {
         return {
           ...orderData,
           quantity: "1",
-          price: "3000",
+          price: "100",
           amount: 1,
           description: "x1 tickets",
         };
@@ -33,7 +34,7 @@ const PaymentSection = () => {
         return {
           ...orderData,
           quantity: "1",
-          price: "4500",
+          price: "125",
           amount: 1,
           description: "x2 tickets",
         };
@@ -43,7 +44,7 @@ const PaymentSection = () => {
         return {
           ...orderData,
           quantity: "1",
-          price: "6000",
+          price: "150",
           amount: 1,
           description: "x3 tickets",
         };
@@ -98,19 +99,19 @@ const PaymentSection = () => {
           x3 Tickets $5500
         </Promotion>
         <input
-          name="completeName"
+          name="name"
           onChange={(e) => handleCompleteForm(e)}
-          placeholder="nombre y apellido"
+          placeholder="nombre"
+        ></input>
+        <input
+          name="lastName"
+          onChange={(e) => handleCompleteForm(e)}
+          placeholder="apellido"
         ></input>
         <input
           name="email"
           onChange={(e) => handleCompleteForm(e)}
           placeholder="email"
-        ></input>
-        <input
-          name="cellphone"
-          onChange={(e) => handleCompleteForm(e)}
-          placeholder="teléfono"
         ></input>
         <button onClick={handleCreatePreference}>COMPRAR</button>
 
