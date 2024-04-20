@@ -10,10 +10,10 @@ const NextEvents = () => {
       <Card image={ImageWe}>
         <Title>Sobre nosotros</Title>
         <Body>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium
-          quibusdam voluptatum a id commodi laborum enim in tempore ratione
-          molestias, iure quos nam recusa-ndae, optio repellendus unde? Minus,
-          laborum tempora!
+          A través de BARULLO buscamos romper la grieta de los géneros,
+          queriendo llegar a los escépticos de este mundo para que encuentren en
+          sí lo que realmente los hace bailar y disfrutar de todos los matices
+          de la electrónica.
         </Body>
         <Icons>
           <a

@@ -145,7 +145,7 @@ const PaymentSection = () => {
           <h1 style={{ fontSize: "3rem" }}>Barullo</h1>
         </Title>
         <Date>
-          <h2>11/5</h2>
+          <h2>24/5</h2>
         </Date>
         <Time>00:30hs</Time>
         <TandaTitle>

@@ -28,7 +28,7 @@ export const Container = styled.div`
   justify-content: end;
   align-items: center;
   background-color: rgb(0, 0, 0, 0.5);
-  height: ${({ open }) => (open === true ? "90%" : "none")};
+  height: ${({ open }) => (open === true ? "100%" : "none")};
   flex-direction: column;
   width: 100%;
   transition: height 0.5s ease-in-out;
@@ -128,7 +128,7 @@ export const IconsContainer = styled.div`
   text-align: center;
   align-items: center;
   height: 3rem;
-  width: 90%;
+  width: 100%;
   flex-direction: row;
   color: white;
 

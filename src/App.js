@@ -24,8 +24,7 @@ function App() {
   const user = useAuth();
   const [openSlider, setOpenSlider] = useState(false);
   const [colorHeader, setColorHeader] = useState("black");
-
-  console.log(pathname);
+  const [turnOffLogo, setTurnOffLogo] = useState(false);
 
   const handleColorHeader = (event) => {
     if (event.activeIndex === 1) {
@@ -56,7 +55,11 @@ function App() {
       }
       className="App"
     >
-      <Header setOpenSlider={setOpenSlider} colorHeader={colorHeader} />
+      <Header
+        setOpenSlider={setOpenSlider}
+        turnOffLogo={turnOffLogo}
+        colorHeader={colorHeader}
+      />
 
       <Routes>
         <Route />
@@ -66,6 +69,7 @@ function App() {
           path="/"
           element={
             <Landing
+              setTurnOffLogo={setTurnOffLogo}
               handleColorHeader={handleColorHeader}
               openSlider={openSlider}
             />

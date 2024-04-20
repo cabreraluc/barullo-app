@@ -40,9 +40,18 @@ const AddArtist = () => {
     cellphone: "",
     description: "",
     artistName: "",
+    secondaryArtistName: "",
     shortDescription: "",
     primaryImage: null,
     secondaryImage: null,
+    soundCloud: "",
+    instagram: "",
+    youtube: "",
+    spotify: "",
+    soundCloudSecondary: "",
+    instagramSecondary: "",
+    youtubeSecondary: "",
+    spotifySecondary: "",
   });
 
   const { showNotification } = useNotistack();
@@ -168,6 +177,18 @@ const AddArtist = () => {
               error={errors[1]?.artistName}
               value={artistInfo.artistName}
             />
+            <TextField
+              required
+              fullWidth
+              label="Second artist name "
+              variant="standard"
+              id="artistNameSecondary"
+              autoComplete="artistNameSecondary"
+              name="artistNameSecondary"
+              onChange={handleChange}
+              error={errors[1]?.artistNameSecondary}
+              value={artistInfo.artistNameSecondary}
+            />
 
             <TextField
               required
@@ -180,6 +201,58 @@ const AddArtist = () => {
               onChange={handleChange}
               error={errors[1]?.description}
               value={artistInfo.description}
+            />
+
+            <TextField
+              required
+              fullWidth
+              label="Sound Cloud"
+              variant="standard"
+              id="soundcloud"
+              autoComplete="soundcloud"
+              name="soundCloud"
+              onChange={handleChange}
+              error={errors[1]?.soundCloud}
+              value={artistInfo.soundCloud}
+            />
+
+            <TextField
+              required
+              fullWidth
+              label="Youtube"
+              variant="standard"
+              id="youtube"
+              autoComplete="youtube"
+              name="youtube"
+              onChange={handleChange}
+              error={errors[1]?.youtube}
+              value={artistInfo.youtube}
+            />
+
+            <TextField
+              required
+              fullWidth
+              label="Instagram"
+              variant="standard"
+              id="instagram"
+              autoComplete="instagram"
+              name="instagram"
+              onChange={handleChange}
+              error={errors[1]?.instagram}
+              value={artistInfo.instagram}
+            />
+
+            <TextField
+              required
+              fullWidth
+              label="Spotify"
+              variant="standard"
+              id="spotify"
+              autoComplete="spotify"
+              name="spotify"
+              onChange={handleChange}
+              error={errors[1]?.spotify}
+              value={artistInfo.spotify}
             />
 
             <TextField
@@ -234,6 +307,58 @@ const AddArtist = () => {
               onChange={handleChange}
               error={errors[1]?.shortDescription}
               value={artistInfo.shortDescription}
+            />
+
+            <TextField
+              required
+              fullWidth
+              label="Second Sound Cloud"
+              variant="standard"
+              id="soundCloudSecondary"
+              autoComplete="soundCloudSecondary"
+              name="soundCloudSecondary"
+              onChange={handleChange}
+              error={errors[1]?.soundCloudSecondary}
+              value={artistInfo.soundCloudSecondary}
+            />
+
+            <TextField
+              required
+              fullWidth
+              label="Second Youtube"
+              variant="standard"
+              id="youtubeSecondary"
+              autoComplete="youtubeSecondary"
+              name="youtubeSecondary"
+              onChange={handleChange}
+              error={errors[1]?.youtubeSecondary}
+              value={artistInfo.youtubeSecondary}
+            />
+
+            <TextField
+              required
+              fullWidth
+              label="Second Instagram"
+              variant="standard"
+              id="instagramSecondary"
+              autoComplete="instagramSecondary"
+              name="instagramSecondary"
+              onChange={handleChange}
+              error={errors[1]?.instagramSecondary}
+              value={artistInfo.instagramSecondary}
+            />
+
+            <TextField
+              required
+              fullWidth
+              label="Second spotify"
+              variant="standard"
+              id="spotifySecondary"
+              autoComplete="spotifySecondary"
+              name="spotifySecondary"
+              onChange={handleChange}
+              error={errors[1]?.spotifySecondary}
+              value={artistInfo.spotifySecondary}
             />
             <TextField
               autoComplete="secondary-image"

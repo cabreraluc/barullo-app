@@ -1,6 +1,4 @@
-import Header from "../Layout/Header/Header";
 import { useNavigate } from "react-router-dom";
-import { FirstSectionContainer } from "./landingStyles";
 import NextEvents from "../NextEvents/NextEvents";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -8,27 +6,16 @@ import WhoAreUs from "../WhoAreUs/WhoAreUs";
 import Artists from "../ArtistContainer/Artists";
 import Merch from "../Merch/Merch";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
-import artistImage1 from "../../artist1.webp";
-import artistImage2 from "../../artist2.jpg";
-import artistImage3 from "../../artist3.jpg";
 import "swiper/css";
 import "swiper/css/pagination";
 import { useEffect, useState } from "react";
 import useArtists from "../ArtistsPanel/useArtists";
 
-const Landing = ({ openSlider, handleColorHeader }) => {
+const Landing = ({ openSlider, handleColorHeader, setTurnOffLogo }) => {
   const { getArtists, allArtists } = useArtists();
   const navigate = useNavigate();
   const [swiper, setSwiper] = useState(null);
-  // useEffect(() => {
-  //   repeatFunction();
-  // }, []);
-
-  // const repeatFunction = () => {
-  //   setTimeout(() => {
-  //     setIsArtist(true);
-  //   }, 5000);
-  // };
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     getArtists();
@@ -47,6 +34,8 @@ const Landing = ({ openSlider, handleColorHeader }) => {
       spaceBetween={0}
       slidesPerView={1}
       onSlideChange={(e) => {
+        setTurnOffLogo(false);
+        setOpen(false);
         console.log(e, "V");
         handleColorHeader(e);
         if (e.activeIndex === 1 && swiper) {
@@ -81,7 +70,8 @@ const Landing = ({ openSlider, handleColorHeader }) => {
           spaceBetween={0}
           slidesPerView={1}
           onSlideChange={(e) => {
-            console.log(e, "H");
+            setTurnOffLogo(false);
+            setOpen(false);
           }}
           onSwiper={(swiper) => {
             setSwiper(swiper);
@@ -90,6 +80,7 @@ const Landing = ({ openSlider, handleColorHeader }) => {
           navigation={true}
           autoplay={{
             disableOnInteraction: true,
+            disable: !open,
             delay: 2500,
           }}
           modules={[Autoplay, Pagination, Navigation]}
@@ -109,13 +100,32 @@ const Landing = ({ openSlider, handleColorHeader }) => {
               return (
                 <SwiperSlide>
                   <Artists
-                    titles={[`${e.artistName}`]}
+                    setTurnOffLogo={setTurnOffLogo}
+                    titles={[
+                      `${e.artistName}${
+                        e.secondaryArtistName.length
+                          ? " & " + e.secondaryArtistName
+                          : ""
+                      }`,
+                    ]}
                     body={e.shortDescription}
                     description={e.description}
                     image={e.primaryImage}
+                    soundCloud={e.soundCloud}
+                    instagram={e.instagram}
+                    artistName={e.artistName}
+                    secondaryArtistName={e.secondaryArtistName}
+                    spotify={e.spotify}
+                    youtube={e.youtube}
+                    soundCloudSecondary={e.soundCloudSecondary}
+                    instagramSecondary={e.instagramSecondary}
+                    spotifySecondary={e.spotifySecondary}
+                    youtubeSecondary={e.youtubeSecondary}
                     secondaryImage={e.secondaryImage}
                     name={e.artistName}
                     color={e.color}
+                    open={open}
+                    setOpen={setOpen}
                   ></Artists>
                   ;
                 </SwiperSlide>

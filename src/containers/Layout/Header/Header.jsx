@@ -22,7 +22,7 @@ import logoWhite from "../../../logobarullo-white.png";
 import { useEffect, useState } from "react";
 import DrawerContainer from "../Drawer/DrawerContainer";
 
-export default function Header({ setOpenSlider, colorHeader }) {
+export default function Header({ setOpenSlider, colorHeader, turnOffLogo }) {
   const { pathname } = useLocation();
   const { logOut } = useLogin();
   const navigate = useNavigate();
@@ -30,7 +30,7 @@ export default function Header({ setOpenSlider, colorHeader }) {
   const handleRedirect = (path) => {
     navigate(path);
   };
-  return (
+  return !turnOffLogo ? (
     <HeaderContainer>
       <BurgerMenuContainer>
         <DrawerContainer setOpenSlider={setOpenSlider}>
@@ -59,49 +59,8 @@ export default function Header({ setOpenSlider, colorHeader }) {
           ></LogoImg>
         )}
       </LogoContainer>
-      <UserContainer>
-        {/* {user ? (
-          <AccountCircleIcon
-            sx={
-              colorHeader === "black"
-                ? {
-                    color: "black",
-                    cursor: "pointer",
-                    fontSize: "clamp(37px, 5vw, 52px)",
-                    transition: "0.2s",
-                  }
-                : {
-                    color: "white",
-                    cursor: "pointer",
-                    fontSize: "clamp(37px, 5vw, 52px)",
-                  }
-            }
-            onClick={() => handleRedirect("/profile")}
-          >
-            Profile
-          </AccountCircleIcon>
-        ) : !pathname === "/login" && !user ? (
-          <UserButton
-            sx={
-              colorHeader === "black"
-                ? {
-                    color: "black",
-                    cursor: "pointer",
-                    fontSize: "clamp(37px, 5vw, 52px)",
-                    transition: "0.2s",
-                  }
-                : {
-                    color: "white",
-                    cursor: "pointer",
-                    fontSize: "clamp(37px, 5vw, 52px)",
-                  }
-            }
-            onClick={() => handleRedirect("/login")}
-          >
-            Login
-          </UserButton>
-        ) : null} */}
-      </UserContainer>
+
+      <UserContainer></UserContainer>
     </HeaderContainer>
-  );
+  ) : null;
 }

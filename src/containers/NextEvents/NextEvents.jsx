@@ -22,7 +22,7 @@ const NextEvents = () => {
           <LeftSection>
             <Title>BARULLO</Title>
 
-            <Body>11/5 00:30hs</Body>
+            <Body>24/5 00:30hs</Body>
             <Body>Secret location</Body>
           </LeftSection>
           <RightSection>

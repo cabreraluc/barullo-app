@@ -130,7 +130,7 @@ export const FormContainertArtistsAction = styled.form`
 
 export const FormSectionsContainer = styled.div`
   width: 90%;
-  height: 50%;
+
   display: flex;
   flex-direction: row;
   justify-content: space-around;
