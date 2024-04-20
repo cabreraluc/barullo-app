@@ -174,11 +174,14 @@ export default function DrawerContainer({ children, setOpenSlider }) {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            flexDirection: "column",
+            gap: "1rem",
           }}
         >
           <h4 style={{ color: "white", fontWeight: "200" }}>
             Buenos Aires, Argentina
           </h4>
+          <h4 style={{ color: "white", fontWeight: "200" }}>Zona sur</h4>
         </div>
       </List>
     </Box>

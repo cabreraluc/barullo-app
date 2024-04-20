@@ -2,24 +2,18 @@ import {
   UserContainer,
   HeaderContainer,
   LogoContainer,
-  UserButton,
-  ButtonsContainer,
-  LogOutButton,
   BurgerMenuContainer,
   LogoImg,
 } from "./headerStyles";
 import useAuth from "../../Login/useAuth";
 import { useNavigate } from "react-router-dom";
 import useLogin from "../../Login/useLogin";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import LogoutIcon from "@mui/icons-material/Logout";
 import ShortTextIcon from "@mui/icons-material/ShortText";
 import { useLocation } from "react-router-dom";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import logoRed from "../../../logobarullo-red.png";
+
 import logoBlack from "../../../logobarullo-black.png";
 import logoWhite from "../../../logobarullo-white.png";
-import { useEffect, useState } from "react";
+
 import DrawerContainer from "../Drawer/DrawerContainer";
 
 export default function Header({ setOpenSlider, colorHeader, turnOffLogo }) {

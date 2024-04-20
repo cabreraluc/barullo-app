@@ -149,7 +149,7 @@ const PaymentSection = () => {
         </Date>
         <Time>00:30hs</Time>
         <TandaTitle>
-          <h2>PRIMERA TANDA:</h2>
+          <h2>PRIMERA TANDA</h2>
         </TandaTitle>
 
         <div
@@ -185,17 +185,6 @@ const PaymentSection = () => {
                 x1 Tickets $4500
               </Promotion>
             </div>
-            {sale ? (
-              <EditIcon
-                onClick={() => setSale(false)}
-                style={{
-                  position: "absolute",
-                  left: "12rem",
-                  bottom: "1rem",
-                  cursor: "pointer",
-                }}
-              />
-            ) : null}
           </div>
           <div
             style={
@@ -308,6 +297,32 @@ const PaymentSection = () => {
             customization={{ texts: { valueProp: "smart_option" } }}
           />
         ) : null}
+
+        {sale ? (
+          <button
+            onClick={() => setSale(false)}
+            style={{
+              color: "white",
+              backgroundColor: "transparent",
+              border: "1px solid white",
+              height: "2rem",
+              width: "7rem",
+              paddingLeft: "0.5rem",
+              marginTop: "1rem",
+              cursor: "pointer",
+            }}
+          >
+            Editar compra
+          </button>
+        ) : null}
+
+        <span
+          style={{ padding: "0 2rem", paddingTop: "4rem", textAlign: "center" }}
+        >
+          Al comprar la entrada se te enviara por email un código QR para
+          validar tu identidad en el evento, la dirección del evento sera
+          enviada en el mismo email.
+        </span>
       </Container>
     </div>
   );

@@ -1,5 +1,3 @@
-import ImageEvents from "../../event1.webp";
-import ImageArtist from "../../artists.jpg";
 import ImageWe from "../../WhoAreWe.jpg";
 import { WhoAreUsContainer, Card, Title, Body, Icons } from "./whoAreUsStyles";
 import InstagramIcon from "@mui/icons-material/Instagram";

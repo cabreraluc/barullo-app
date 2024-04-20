@@ -1,5 +1,3 @@
-import ImageEvents from "../../event1.webp";
-import ImageArtist from "../../artists.jpg";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import YouTubeIcon from "@mui/icons-material/YouTube";

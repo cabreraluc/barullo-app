@@ -1,5 +1,3 @@
-import ImageEvents from "../../event1.webp";
-import ImageArtist from "../../artists.jpg";
 import NextEventsImg from "../../nextevents.jpg";
 import {
   NextEventsContainer,
