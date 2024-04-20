@@ -235,7 +235,7 @@ const PaymentSection = () => {
           </div>
           {errors.ticket ? (
             <span style={{ color: "red", fontSize: "12px" }}>
-              Tenes que seleccionar un opción
+              Tenes que seleccionar una opción
             </span>
           ) : null}
         </div>

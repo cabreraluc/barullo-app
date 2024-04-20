@@ -25,13 +25,31 @@ export const Card = styled.div`
 
 export const Container = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: end;
+  justify-content: end;
+  align-items: center;
   background-color: rgb(0, 0, 0, 0.5);
-  height: 20%;
+  height: ${({ open }) => (open === true ? "90%" : "none")};
+  flex-direction: column;
   width: 100%;
-  flex-direction: row;
+  transition: height 0.5s ease-in-out;
+`;
+
+export const SubContainerClosed = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   padding: 5%;
+`;
+
+export const SubContainerOpened = styled.div`
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgb(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
 `;
 
 export const LeftSection = styled.div`
@@ -52,7 +70,7 @@ export const RightSection = styled.div`
   width: 55%;
   flex-direction: column;
   @media screen and (max-width: 767px) {
-    font-size: 10px;
+    font-size: 13px;
   }
   color: white;
 `;
@@ -87,3 +105,35 @@ export const Icons = styled.div`
   color: white;
   width: 100%;
 `;
+
+export const Description = styled.div`
+  display: flex;
+  justify-content: start;
+  text-align: center;
+  align-items: center;
+
+  width: 90%;
+  flex-direction: column;
+  @media screen and (max-width: 767px) {
+    font-size: 15px;
+  }
+
+  color: white;
+  margin-top: 1rem 0;
+`;
+
+export const IconsContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  height: 3rem;
+  width: 90%;
+  flex-direction: row;
+  color: white;
+
+  gap: 1rem;
+  margin: 1rem 0;
+`;
+
+export const Icon = styled.div``;

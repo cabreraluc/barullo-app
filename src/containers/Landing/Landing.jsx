@@ -50,9 +50,7 @@ const Landing = ({ openSlider, handleColorHeader }) => {
         console.log(e, "V");
         handleColorHeader(e);
         if (e.activeIndex === 1 && swiper) {
-          // Asume que el Swiper anidado está en el segundo slide (índice 1)
           swiper.params.autoplay.delay = 3000;
-
           swiper.autoplay.start();
         } else {
           swiper.autoplay.stop();
@@ -90,6 +88,10 @@ const Landing = ({ openSlider, handleColorHeader }) => {
           }}
           scrollbar={{ draggable: true }}
           navigation={true}
+          autoplay={{
+            disableOnInteraction: true,
+            delay: 2500,
+          }}
           modules={[Autoplay, Pagination, Navigation]}
         >
           {allArtists.length ? (
@@ -109,7 +111,9 @@ const Landing = ({ openSlider, handleColorHeader }) => {
                   <Artists
                     titles={[`${e.artistName}`]}
                     body={e.shortDescription}
+                    description={e.description}
                     image={e.primaryImage}
+                    secondaryImage={e.secondaryImage}
                     name={e.artistName}
                     color={e.color}
                   ></Artists>
@@ -118,7 +122,17 @@ const Landing = ({ openSlider, handleColorHeader }) => {
               );
             })
           ) : (
-            <div>Vacio</div>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                color: "white",
+                fontSize: "2rem",
+              }}
+            >
+              CARGANDO
+            </div>
           )}
         </Swiper>
       </SwiperSlide>

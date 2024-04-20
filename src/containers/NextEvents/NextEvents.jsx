@@ -9,6 +9,7 @@ import {
   Container,
   LeftSection,
   RightSection,
+  BuyTicketButton,
 } from "./nextEventsStyles";
 import { useNavigate } from "react-router-dom";
 
@@ -25,12 +26,12 @@ const NextEvents = () => {
             <Body>Secret location</Body>
           </LeftSection>
           <RightSection>
-            <Body
+            <BuyTicketButton
               style={{ cursor: "pointer" }}
               onClick={() => navigate("/event-information")}
             >
-              Más Información
-            </Body>
+              Compra tu Ticket
+            </BuyTicketButton>
           </RightSection>
         </Container>
       </Card>

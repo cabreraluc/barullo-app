@@ -76,4 +76,23 @@ export const Body = styled.div`
   color: white;
 `;
 
+export const BuyTicketButton = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  max-width: 20rem;
+  border-radius: 1rem;
+  padding: 0.8rem;
+  font-weight: 400;
+  font-family: "Oswald", sans-serif;
+  font-size: 1.2rem;
+  color: white;
+  border: 1px solid white;
+  :hover {
+    scale: 1.1;
+    transition: 0.2s;
+  }
+`;
+
 // margin-top: calc(15vh + 6vw);
