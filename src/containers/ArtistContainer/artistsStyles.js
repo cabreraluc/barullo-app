@@ -31,7 +31,7 @@ export const Container = styled.div`
   height: 20%;
   width: 100%;
   flex-direction: row;
-  padding: 10%;
+  padding: 5%;
 `;
 
 export const LeftSection = styled.div`
@@ -52,7 +52,7 @@ export const RightSection = styled.div`
   width: 55%;
   flex-direction: column;
   @media screen and (max-width: 767px) {
-    font-size: 12.5px;
+    font-size: 10px;
   }
   color: white;
 `;

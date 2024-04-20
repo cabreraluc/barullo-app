@@ -9,7 +9,7 @@ import useAuth from "./containers/Login/useAuth";
 import PrivateRoute from "./containers/App/PrivateRoute";
 import Unauthorized from "./containers/Unauthorized/Unauthorized";
 import { useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AdminPanel from "./containers/AdminPanel/AdminPanel";
 import AddEvent from "./containers/EventsPanel/AddEvent";
 import EditEvent from "./containers/EventsPanel/EditEvent";
@@ -25,6 +25,8 @@ function App() {
   const [openSlider, setOpenSlider] = useState(false);
   const [colorHeader, setColorHeader] = useState("black");
 
+  console.log(pathname);
+
   const handleColorHeader = (event) => {
     if (event.activeIndex === 1) {
       setColorHeader("white");
@@ -32,6 +34,18 @@ function App() {
       setColorHeader("black");
     }
   };
+
+  const colorHeadsByPath = () => {
+    if (pathname === "/event-information") {
+      setColorHeader("white");
+    } else if (pathname === "/") {
+      setColorHeader("black");
+    }
+  };
+
+  useEffect(() => {
+    colorHeadsByPath();
+  }, [pathname]);
 
   return (
     <div

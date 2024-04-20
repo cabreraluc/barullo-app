@@ -20,7 +20,7 @@ const Merch = () => {
               borderRadius: "20px",
             }}
           >
-            COMPRAR
+            PROXIMAMENTE
           </div>
           <Item>
             {" "}

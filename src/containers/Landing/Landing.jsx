@@ -92,30 +92,6 @@ const Landing = ({ openSlider, handleColorHeader }) => {
           navigation={true}
           modules={[Autoplay, Pagination, Navigation]}
         >
-          {/* <SwiperSlide>
-            <Artists
-              titles={["GLOSTER", "NEL", "ALIBVRGOS"]}
-              body={
-                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur ipsa mollitia debitis nihil vel voluptatibus dolore necessitatibus. Nihil accusantium, vel quos tenetur laudantium fugit sed odit? Rerum cumque ut delectus"
-              }
-              image={artistImage1}
-              color={"green"}
-            ></Artists>
-            ;
-          </SwiperSlide>
-          <SwiperSlide>
-            <Artists
-              titles={["GLOSTER"]}
-              body={
-                "Productor musical y baterista, oriundo de Monte Grande, especializado en el Hip Hop e incursionadose en la electrónica. Miembro activo de la PSB, Co-creador y DJ de BARULLO"
-              }
-              image={artistImage2}
-              name={"GLOSTER"}
-              color={"violet"}
-            ></Artists>
-            ;
-          </SwiperSlide> */}
-
           {allArtists.length ? (
             allArtists.map((e, index) => {
               if (e.status !== "active") {
