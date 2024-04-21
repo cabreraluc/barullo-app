@@ -37,7 +37,7 @@ const PaymentSection = () => {
           return {
             ...orderData,
             quantity: "1",
-            price: "10",
+            price: "4500",
             amount: 1,
             description: "x1 tickets",
           };
@@ -47,7 +47,7 @@ const PaymentSection = () => {
           return {
             ...orderData,
             quantity: "1",
-            price: "15",
+            price: "8000",
             amount: 1,
             description: "x2 tickets",
           };
@@ -57,7 +57,7 @@ const PaymentSection = () => {
           return {
             ...orderData,
             quantity: "1",
-            price: "20",
+            price: "18000",
             amount: 1,
             description: "x5 tickets",
           };
