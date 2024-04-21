@@ -15,12 +15,23 @@ const Landing = ({ openSlider, handleColorHeader, setTurnOffLogo }) => {
   const { getArtists, allArtists } = useArtists();
   const navigate = useNavigate();
   const [swiper, setSwiper] = useState(null);
+  const [swiperVertical, setSwiperVertical] = useState(null);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
     getArtists();
   }, []);
 
+  useEffect(() => {
+    if (open) {
+      swiper.autoplay.stop();
+      swiperVertical.autoplay.stop();
+    }
+  }, [open]);
+
+  const handleHorizontalTouchStart = () => {
+    swiperVertical.autoplay.stop();
+  };
   return (
     <Swiper
       style={{
@@ -46,7 +57,7 @@ const Landing = ({ openSlider, handleColorHeader, setTurnOffLogo }) => {
           swiper.slideTo(0);
         }
       }}
-      onSwiper={(swiper) => console.log(swiper)}
+      onSwiper={(swiper) => setSwiperVertical(swiper)}
       scrollbar={{ draggable: true }}
       autoplay={{
         delay: 5000,
@@ -67,11 +78,13 @@ const Landing = ({ openSlider, handleColorHeader, setTurnOffLogo }) => {
             justifyContent: "center",
             alignItems: "center",
           }}
+          onTouchStart={handleHorizontalTouchStart}
           spaceBetween={0}
           slidesPerView={1}
           onSlideChange={(e) => {
             setTurnOffLogo(false);
             setOpen(false);
+            console.log("cambio");
           }}
           onSwiper={(swiper) => {
             setSwiper(swiper);
@@ -80,7 +93,6 @@ const Landing = ({ openSlider, handleColorHeader, setTurnOffLogo }) => {
           navigation={true}
           autoplay={{
             disableOnInteraction: true,
-            disable: !open,
             delay: 2500,
           }}
           modules={[Autoplay, Pagination, Navigation]}

@@ -29,10 +29,10 @@ export default function DrawerContainer({ children, setOpenSlider }) {
   let listArray = [
     { title: "LOGIN", link: "/login" },
     { title: "HOME", link: "/" },
-    { title: "NEXT EVENTS", link: "a" },
-    { title: "MERCH", link: "a" },
-    { title: "BARULLO AGENCY", link: "a" },
-    { title: "SE PARTE DE BARULLO", link: "a" },
+    // { title: "NEXT EVENTS", link: "a" },
+    // { title: "MERCH", link: "a" },
+    // { title: "BARULLO AGENCY", link: "a" },
+    // { title: "SE PARTE DE BARULLO", link: "a" },
   ];
   const navigate = useNavigate();
 
@@ -109,7 +109,7 @@ export default function DrawerContainer({ children, setOpenSlider }) {
           backgroundColor: "black",
         }}
       >
-        {["¿QUIENES SOMOS?", "¿QUE HACEMOS EN ESTE MUNDO?"].map(
+        {/* {["¿QUIENES SOMOS?", "¿QUE HACEMOS EN ESTE MUNDO?"].map(
           (text, index) => (
             <ListItem
               key={text}
@@ -133,7 +133,7 @@ export default function DrawerContainer({ children, setOpenSlider }) {
               </ListItemButton>
             </ListItem>
           )
-        )}
+        )} */}
 
         {userLocalStorage?.role === "Admin" ? (
           <ListItem
