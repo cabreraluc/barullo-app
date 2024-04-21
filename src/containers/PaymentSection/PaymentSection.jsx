@@ -10,7 +10,7 @@ import {
 } from "./paymentStyles";
 import fetchFromApi from "../../utils/fetchFromapi";
 import EditIcon from "@mui/icons-material/Edit";
-initMercadoPago("APP_USR-d2507ba7-7653-4a45-9ae8-8a5a80411064");
+initMercadoPago("APP_USR-8976b44f-b237-46ed-9fd2-e1bd184e8fbf");
 
 const PaymentSection = () => {
   const [sale, setSale] = useState(false);
