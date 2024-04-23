@@ -20,6 +20,7 @@ const PrivateRoute = () => {
       `/edit-artist/${id}`,
       `/edit-user/${id}`,
       `/add-artist`,
+      "/scanner",
     ],
 
     // Client: [

@@ -156,6 +156,15 @@ export default function DrawerContainer({ children, setOpenSlider }) {
                 }}
               />
             </ListItemButton>
+            <ListItemButton onClick={() => navigate("/scanner")}>
+              <ListItemText
+                primary={"QR SCANNER"}
+                sx={{
+                  textAlign: "start",
+                  color: "white",
+                }}
+              />
+            </ListItemButton>
           </ListItem>
         ) : null}
 

@@ -18,6 +18,7 @@ import EditUser from "./containers/UsersPanel/EditUser";
 import AddArtist from "./containers/ArtistsPanel/AddArtist";
 import EditArtist from "./containers/ArtistsPanel/EditArtist";
 import PaymentSection from "./containers/PaymentSection/PaymentSection";
+import QRScanner from "./containers/QRScanner/QRScanner";
 
 function App() {
   const { pathname } = useLocation();
@@ -79,6 +80,7 @@ function App() {
         <Route path="/event-information" element={<PaymentSection />} />
 
         <Route element={<PrivateRoute />}>
+          <Route path="/scanner" element={<QRScanner />} />
           <Route path="/admin-panel" element={<AdminPanel />} />
           <Route path="/add-event" element={<AddEvent />} />
           <Route path="/edit-event" element={<EditEvent />} />
