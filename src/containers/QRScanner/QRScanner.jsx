@@ -19,7 +19,7 @@ const QRScanner = () => {
           if (response) {
             alert(JSON.stringify(response));
             alert(
-              `${response?.message} | Nombre:${response?.name} | Email:${response?.payment.email} | PASES:${response?.payment.description}`
+              `${response?.message} | Nombre:${response?.payment.name} | Email:${response?.payment.email} | PASES:${response?.payment.description}`
             );
           }
         } catch (error) {
