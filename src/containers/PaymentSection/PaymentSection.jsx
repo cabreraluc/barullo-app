@@ -62,6 +62,16 @@ const PaymentSection = () => {
             description: "x5 tickets",
           };
         });
+      } else if (e === "promo4") {
+        setOrderData((orderData) => {
+          return {
+            ...orderData,
+            quantity: "1",
+            price: "5",
+            amount: 1,
+            description: "x10 tickets",
+          };
+        });
       }
     }
   };
@@ -219,6 +229,24 @@ const PaymentSection = () => {
           >
             <Promotion onClick={() => handleSelectPromo("promo3")}>
               x5 Tickets $18000
+            </Promotion>
+          </div>
+          <div
+            style={
+              orderData.description === "x10 tickets"
+                ? {
+                    border: "solid 1px white",
+                    padding: "1rem",
+                    borderRadius: "10px",
+                  }
+                : {
+                    padding: "1rem",
+                    borderRadius: "10px",
+                  }
+            }
+          >
+            <Promotion onClick={() => handleSelectPromo("promo4")}>
+              x10 Tickets $30000
             </Promotion>
           </div>
           {errors.ticket ? (
