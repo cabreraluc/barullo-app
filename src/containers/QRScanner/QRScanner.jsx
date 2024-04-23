@@ -26,10 +26,7 @@ const QRScanner = () => {
           onError={handleError}
           onScan={() => {}}
           style={{ width: "100%" }}
-          constraints={{
-            audio: false,
-            video: { facingMode: "environment" },
-          }}
+          constraints={{ aspectRatio: 1, facingMode: { ideal: "environment" } }}
           key="environment"
         />
       )}
