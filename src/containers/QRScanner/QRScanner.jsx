@@ -17,7 +17,6 @@ const QRScanner = () => {
             `payment/get-payment-by-qr/${JSON.parse(data.text)._id}`
           );
           if (response) {
-            alert(JSON.stringify(response));
             alert(
               `${response?.message} | Nombre:${response?.payment.name} | Email:${response?.payment.email} | PASES:${response?.payment.description}`
             );
@@ -25,8 +24,6 @@ const QRScanner = () => {
         } catch (error) {
           console.log(error);
         }
-      } else {
-        alert("Estas escaneando cualquier gilada");
       }
     }
   };
