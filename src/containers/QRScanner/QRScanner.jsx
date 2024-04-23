@@ -8,22 +8,24 @@ const QRScanner = () => {
 
   const handleScan = async (data) => {
     if (data) {
-      setResult(JSON.parse(data.text));
-      setScanning(false);
-      try {
-        const response = await fetchFromApi(
-          `GET`,
-          `payment/get-payment-by-qr/${JSON.parse(data.text)._id}`
-        );
-        if (response) {
-          alert(
-            response?.message,
-            response?.payment.name,
-            response?.payment.email
+      if (JSON.parse(data.text)?._id.length) {
+        setResult(JSON.parse(data.text));
+        setScanning(false);
+        try {
+          const response = await fetchFromApi(
+            `GET`,
+            `payment/get-payment-by-qr/${JSON.parse(data.text)._id}`
           );
+          if (response) {
+            alert(
+              `${response?.message} | Nombre:${response?.name} | Email:${response?.payment.email} | PASES:${response?.payment.description}`
+            );
+          }
+        } catch (error) {
+          console.log(error);
         }
-      } catch (error) {
-        console.log(error);
+      } else {
+        alert("Estas escaneando cualquier gilada");
       }
     }
   };
@@ -37,12 +39,11 @@ const QRScanner = () => {
       <div
         style={{
           width: "100%",
-          backgroundColor: "red",
           display: "flex",
           justifyContent: "center",
         }}
       >
-        {!scanning && (
+        {!scanning ? (
           <button
             style={{
               padding: "1rem",
@@ -55,7 +56,7 @@ const QRScanner = () => {
           >
             ESCANEAR
           </button>
-        )}
+        ) : null}
       </div>
       {result && <span>{result._id}</span>}
       {scanning && (
