@@ -22,15 +22,6 @@ const PrivateRoute = () => {
       `/add-artist`,
       "/scanner",
     ],
-
-    // Client: [
-    //   `/prospect-details/${id}`,
-
-    //   "/home",
-    //   "/home/statistics",
-    //   "/home/calendar",
-    //   "/home/prospects",
-    // ],
   };
   const userFromLocalStorage = useAuth();
   const location = useLocation();

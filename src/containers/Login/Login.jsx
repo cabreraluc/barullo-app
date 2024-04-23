@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import useLogin from "./useLogin";
 import useNotistack from "../../components/Notistack/useNotistack";
 import { TextField } from "@mui/material";
-import { ActionButton } from "../../components/Global/GlobalStyles";
 import {
   LoginContainer,
   LoginFormContainer,
@@ -10,14 +9,11 @@ import {
   Title,
   LoginForm,
   ButtonsContainer,
-  LeftSection,
   RightSection,
   ButtonMUi,
   CheckBoxContainer,
-  Overlay,
 } from "./loginStyles";
 import Checkbox from "@mui/material/Checkbox";
-import Button from "@mui/material/Button";
 
 export default function Login() {
   const { showNotification } = useNotistack();

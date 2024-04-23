@@ -1,5 +1,4 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import {
   ArtistsActionsContainer,
@@ -14,16 +13,8 @@ import {
   ActionButtonContainer,
   ButtonsContainer,
 } from "./artistsStyles";
-import {
-  ActionButton,
-  CancelActionButton,
-  BreadcumsContainer,
-} from "../../components/Global/GlobalStyles";
+import { BreadcumsContainer } from "../../components/Global/GlobalStyles";
 import BreadcrumbsMui from "../../components/Breadcrumbs/Breadcrumbs";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import InputLabel from "@mui/material/InputLabel";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useArtists from "./useArtists";
@@ -32,7 +23,6 @@ import useNotistack from "../../components/Notistack/useNotistack";
 import Button from "@mui/material/Button";
 
 const AddArtist = () => {
-  const roles = ["Admin", "Member"];
   const { addArtist, isLoading, setIsLoading } = useArtists();
   const [artistInfo, setArtistInfo] = useState({
     name: "",
@@ -376,7 +366,6 @@ const AddArtist = () => {
             />
           </RightSectionContainer>
         </FormSectionsContainer>
-        {/* </BoxMui> */}
         <ActionButtonContainer>
           <ButtonsContainer>
             <Button

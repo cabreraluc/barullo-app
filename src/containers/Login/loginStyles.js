@@ -1,7 +1,4 @@
 import styled from "styled-components";
-import { Box } from "@mui/material";
-import loginimage from "./loginImage.jpeg";
-import Button from "@mui/material";
 
 export const LoginContainer = styled.div`
   display: flex;

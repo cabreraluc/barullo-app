@@ -1,5 +1,3 @@
-import axios from "axios";
-import env from "../../env/env";
 import { useState } from "react";
 import useNotistack from "../../components/Notistack/useNotistack";
 import { useNavigate } from "react-router-dom";
@@ -15,8 +13,6 @@ export default function useArtists() {
     setIsLoading(true);
     console.log(data);
     try {
-      // Agregar datos de texto al FormData
-
       const response = await fetchFromApi(
         `POST`,
         `artists/register-artist`,

@@ -1,6 +1,5 @@
 import { EventsContainer, EventsList, ButtonContainer } from "./eventsStyles";
 import { useNavigate } from "react-router-dom";
-// import { useEffect } from "react";
 import EventsTable from "../../components/Events/EventsTable";
 import Loader from "../../componentsCss/Loader/Loader";
 import Searcher from "../../components/Searcher/Searcher";
@@ -10,10 +9,6 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 const EventsPanel = () => {
   const navigate = useNavigate();
   const { isLoading, disableEvent } = useEvents();
-
-  // useEffect(() => {
-  //   getUsers();
-  // }, []);
 
   const allEvents = [
     { name: "la", date: "10/04/2011" },
@@ -41,9 +36,7 @@ const EventsPanel = () => {
           fontSize="large"
         ></AddCircleIcon>
       </ButtonContainer>
-      <Searcher
-      // list={allUsers} setList={setAllUsers} context={"users"}
-      />
+      <Searcher />
       <EventsList>
         {isLoading ? (
           <Loader></Loader>

@@ -1,11 +1,5 @@
-import {
-  PanelContainer,
-  BoxContainer,
-  Section,
-  ButtonsContainer,
-  Button,
-} from "./adminPanelStyles";
-import { useState, useEffect } from "react";
+import { PanelContainer, Section } from "./adminPanelStyles";
+import { useState } from "react";
 import ArtistsPanel from "../ArtistsPanel/ArtistsPanel";
 import UsersPanel from "../UsersPanel/UsersPanel";
 import EventsPanel from "../EventsPanel/EventsPanel";

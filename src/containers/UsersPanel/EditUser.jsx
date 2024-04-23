@@ -1,5 +1,4 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import {
   UsersActionsContainer,
@@ -14,11 +13,7 @@ import {
   ActionButtonContainer,
   ButtonsContainer,
 } from "./usersStyles";
-import {
-  ActionButton,
-  CancelActionButton,
-  BreadcumsContainer,
-} from "../../components/Global/GlobalStyles";
+import { BreadcumsContainer } from "../../components/Global/GlobalStyles";
 import BreadcrumbsMui from "../../components/Breadcrumbs/Breadcrumbs";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -107,28 +102,10 @@ const EditUser = () => {
             <Title>Edit user</Title>
           </TitleContainer>
         </PastPageDataContainerAndTitle>
-        {/* <BoxMui
-          component="form"
-          noValidate
-          onSubmit={handleSubmit}
-          sx={{
-            width: "80%",
-            height: "450px",
-          }}
-        > */}
+
         <FormSectionsContainer>
           <LeftSectionContainer>
             <TextField
-              // InputLabelProps={{
-              //   style: { color: `${themeMui.palette.inputText.main}` },
-              // }}
-              // sx={{
-              //   input: {
-              //     color: `${themeMui.palette.inputText.main}`,
-              //   },
-              //   width: "497px",
-              //   "& .MuiInputLabel-root": { color: "#D3D6DA" },
-              // }}
               autoComplete="given-name"
               required
               id="firstName"
@@ -142,16 +119,6 @@ const EditUser = () => {
               value={userInfo.name}
             />
             <TextField
-              // InputLabelProps={{
-              //   style: { color: `${themeMui.palette.inputText.main}` },
-              // }}
-              // sx={{
-              //   input: {
-              //     color: `${themeMui.palette.inputText.main}`,
-              //   },
-              //   width: "497px",
-              //   "& .MuiInputLabel-root": { color: "#D3D6DA" },
-              // }}
               variant="standard"
               required
               fullWidth
@@ -165,16 +132,6 @@ const EditUser = () => {
             />
 
             <TextField
-              // InputLabelProps={{
-              //   style: { color: `${themeMui.palette.inputText.main}` },
-              // }}
-              // sx={{
-              //   input: {
-              //     color: `${themeMui.palette.inputText.main}`,
-              //   },
-              //   width: "497px",
-              //   "& .MuiInputLabel-root": { color: "#D3D6DA" },
-              // }}
               required
               fullWidth
               label="Password"
@@ -195,16 +152,6 @@ const EditUser = () => {
               <InputLabel id="rol-label">Rol</InputLabel>
               <Select
                 MenuProps={{ disableScrollLock: true }}
-                // sx={{
-                //   input: {
-                //     color: `${themeMui.palette.inputText.main}`,
-                //   },
-                //   width: "497px",
-                // }}
-                // SelectDisplayProps={{
-                //   style: { color: `${themeMui.palette.inputText.main}` },
-                // }}
-                // labelId="rol-label"
                 onChange={handleChange}
                 name="role"
                 error={errors[1]?.role}
@@ -219,16 +166,6 @@ const EditUser = () => {
           </LeftSectionContainer>
           <RightSectionContainer>
             <TextField
-              // InputLabelProps={{
-              //   style: { color: `${themeMui.palette.inputText.main}` },
-              // }}
-              // sx={{
-              //   input: {
-              //     color: `${themeMui.palette.inputText.main}`,
-              //   },
-              //   width: "497px",
-              //   "& .MuiInputLabel-root": { color: "#D3D6DA" },
-              // }}
               required
               fullWidth
               label="Last name"
@@ -241,16 +178,6 @@ const EditUser = () => {
               value={userInfo.lastName}
             />
             <TextField
-              // InputLabelProps={{
-              //   style: { color: `${themeMui.palette.inputText.main}` },
-              // }}
-              // sx={{
-              //   input: {
-              //     color: `${themeMui.palette.inputText.main}`,
-              //   },
-              //   width: "497px",
-              //   "& .MuiInputLabel-root": { color: "#D3D6DA" },
-              // }}
               autoComplete="given-email"
               required
               id="email"
@@ -264,16 +191,6 @@ const EditUser = () => {
               value={userInfo.email}
             />
             <TextField
-              // InputLabelProps={{
-              //   style: { color: `${themeMui.palette.inputText.main}` },
-              // }}
-              // sx={{
-              //   input: {
-              //     color: `${themeMui.palette.inputText.main}`,
-              //   },
-              //   width: "497px",
-              //   "& .MuiInputLabel-root": { color: "#D3D6DA" },
-              // }}
               required
               fullWidth
               label="Repeat password"
@@ -288,7 +205,7 @@ const EditUser = () => {
             />
           </RightSectionContainer>
         </FormSectionsContainer>
-        {/* </BoxMui> */}
+
         <ActionButtonContainer>
           <ButtonsContainer>
             <Button

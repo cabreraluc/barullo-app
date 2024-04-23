@@ -1,5 +1,3 @@
-import axios from "axios";
-import env from "../../env/env";
 import { useState } from "react";
 import useNotistack from "../../components/Notistack/useNotistack";
 import { useNavigate } from "react-router-dom";

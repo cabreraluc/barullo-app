@@ -61,7 +61,6 @@ function App() {
         turnOffLogo={turnOffLogo}
         colorHeader={colorHeader}
       />
-
       <Routes>
         <Route />
 
@@ -78,7 +77,6 @@ function App() {
         />
         <Route path="/login" element={<Login />} />
         <Route path="/event-information" element={<PaymentSection />} />
-
         <Route element={<PrivateRoute />}>
           <Route path="/scanner" element={<QRScanner />} />
           <Route path="/admin-panel" element={<AdminPanel />} />
@@ -86,19 +84,8 @@ function App() {
           <Route path="/edit-event" element={<EditEvent />} />
           <Route path="/add-user" element={<AddUser />} />
           <Route path="/edit-user/:id" element={<EditUser />} />
-
           <Route path="/add-artist" element={<AddArtist />} />
           <Route path="/edit-artist/:id" element={<EditArtist />} />
-
-          {/* <Route path="/home/*" element={<Home />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/edit-user/:id" element={<EditUser />} />
-          <Route path="/add-user" element={<AddUser />} />
-          <Route path="/edit-client/:id" element={<EditClient />} />
-          <Route path="/add-client" element={<AddClient />} />
-          <Route path="/edit-prospect/:id" element={<EditProspect />} />
-          <Route path="/add-prospect" element={<AddProspect />} />
-          <Route path="/prospect-details/:id" element={<ProspectDetails />} /> */}
         </Route>
       </Routes>
     </div>
