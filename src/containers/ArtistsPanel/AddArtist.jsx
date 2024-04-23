@@ -57,8 +57,6 @@ const AddArtist = () => {
     const formData = new FormData();
     formData.append("image", artistInfo.primaryImage);
 
-    console.log(formData);
-
     const response = artistValidations(artistInfo, "addArtist");
 
     if (response.valid) {
@@ -79,7 +77,6 @@ const AddArtist = () => {
   }, [errors]);
 
   const uploadImage = async (e) => {
-    console.log(e);
     setIsLoading(true);
     const files = e.target.files[0];
     const data = new FormData();
@@ -97,10 +94,8 @@ const AddArtist = () => {
       }
     );
 
-    console.log(res);
     const imagen = await res.json();
     const fileURL = imagen.secure_url;
-    console.log(fileURL);
 
     if (e.target.name === "primaryImage") {
       setArtistInfo({
@@ -115,10 +110,6 @@ const AddArtist = () => {
     }
     setIsLoading(false);
   };
-
-  useEffect(() => {
-    console.log(artistInfo);
-  }, [artistInfo]);
 
   const navigate = useNavigate();
   return (

@@ -119,7 +119,6 @@ const PaymentSection = () => {
         );
 
         if (response) {
-          console.log(response);
           setSale(true);
           setPreferenceId(response.id);
         }

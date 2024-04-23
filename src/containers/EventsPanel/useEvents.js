@@ -35,8 +35,6 @@ export default function useEvents() {
 
       const response = await fetchFromApi(`GET`, `users/`);
 
-      console.log(response);
-
       setAllEvents(response);
     } catch (error) {}
     setIsLoading(false);
@@ -48,7 +46,6 @@ export default function useEvents() {
       const response = await fetchFromApi(`GET`, `users/${id}`);
 
       if (response) {
-        console.log(response);
         setEvent(response);
       }
     } catch (error) {

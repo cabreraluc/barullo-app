@@ -8,7 +8,6 @@ const QRScanner = () => {
   const handleScan = (data) => {
     if (data) {
       setResult(JSON.parse(data.text));
-      console.log(JSON.parse(data.text));
       setScanning(false);
     }
   };
@@ -27,6 +26,7 @@ const QRScanner = () => {
           onError={handleError}
           onScan={() => {}}
           style={{ width: "100%" }}
+          facingMode={"environment"}
         />
       )}
     </div>

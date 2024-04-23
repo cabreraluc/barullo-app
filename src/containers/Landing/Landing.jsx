@@ -47,7 +47,6 @@ const Landing = ({ openSlider, handleColorHeader, setTurnOffLogo }) => {
       onSlideChange={(e) => {
         setTurnOffLogo(false);
         setOpen(false);
-        console.log(e, "V");
         handleColorHeader(e);
         if (e.activeIndex === 1 && swiper) {
           swiper.params.autoplay.delay = 3000;
@@ -84,7 +83,6 @@ const Landing = ({ openSlider, handleColorHeader, setTurnOffLogo }) => {
           onSlideChange={(e) => {
             setTurnOffLogo(false);
             setOpen(false);
-            console.log("cambio");
           }}
           onSwiper={(swiper) => {
             setSwiper(swiper);

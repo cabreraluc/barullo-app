@@ -12,8 +12,6 @@ export default function useUsers() {
   const addUser = async (data, setErrors) => {
     setIsLoading(true);
 
-    console.log(data);
-
     try {
       const response = await fetchFromApi(`POST`, `users/register-user`, data);
 
@@ -36,8 +34,6 @@ export default function useUsers() {
 
       const response = await fetchFromApi(`GET`, `users/`);
 
-      console.log(response);
-
       setAllUsers(response);
     } catch (error) {}
     setIsLoading(false);
@@ -49,7 +45,6 @@ export default function useUsers() {
       const response = await fetchFromApi(`GET`, `users/${id}`);
 
       if (response) {
-        console.log(response);
         setUser(response);
       }
     } catch (error) {

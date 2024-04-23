@@ -20,8 +20,6 @@ export default function ActivityIndividual({
   const navigate = useNavigate();
   const [archiveModalOpen, setArchiveModalOpen] = useState(false);
 
-  console.log(activity._id);
-
   return (
     <>
       <TableRow

@@ -23,8 +23,6 @@ export default function useLogin() {
         }
       );
 
-      console.log(userData);
-
       localStorage.setItem("user-barullo", JSON.stringify(userData.data));
       if (userData.data.role === "Admin") {
         handleRedirect("/admin-panel");

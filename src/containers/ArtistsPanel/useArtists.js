@@ -11,7 +11,6 @@ export default function useArtists() {
   const [isLoading, setIsLoading] = useState(false);
   const addArtist = async (data, setErrors) => {
     setIsLoading(true);
-    console.log(data);
     try {
       const response = await fetchFromApi(
         `POST`,
@@ -19,7 +18,6 @@ export default function useArtists() {
         data
       );
 
-      console.log(response);
       showNotification(response.message);
       navigate("/admin-panel");
     } catch (error) {
@@ -38,8 +36,6 @@ export default function useArtists() {
       setIsLoading(true);
 
       const response = await fetchFromApi(`GET`, `artists/`, null, "artists");
-      console.log("artistas llamados");
-      console.log(response);
 
       const sortedArtists = response.sort((a, b) => {
         if (a.status === "active" && b.status !== "active") {
@@ -62,7 +58,6 @@ export default function useArtists() {
       const response = await fetchFromApi(`GET`, `artists/${id}`);
 
       if (response) {
-        console.log(response);
         setArtist(response);
       }
     } catch (error) {

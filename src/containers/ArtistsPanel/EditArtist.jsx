@@ -96,7 +96,6 @@ const EditArtist = () => {
   }, [artist]);
 
   const uploadImage = async (e) => {
-    console.log(e);
     setIsLoading(true);
     const files = e.target.files[0];
     const data = new FormData();
@@ -114,10 +113,8 @@ const EditArtist = () => {
       }
     );
 
-    console.log(res);
     const imagen = await res.json();
     const fileURL = imagen.secure_url;
-    console.log(fileURL);
 
     if (e.target.name === "primaryImage") {
       setArtistInfo({
