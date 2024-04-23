@@ -1,5 +1,5 @@
-import Merch1 from "../../merch1.png";
-import Merch2 from "../../merch2.png";
+import Merch1 from "../../merch1.JPG";
+import Merch2 from "../../merch2.JPG";
 import { MerchContainer, Card, Item, Container } from "./merchStyles";
 import Divider from "@mui/material/Divider";
 
@@ -16,8 +16,10 @@ const Merch = () => {
             style={{
               backgroundColor: "black",
               color: "white",
-              padding: "1rem",
-              borderRadius: "20px",
+              display: "flex",
+              width: "100%",
+              justifyContent: "center",
+              alignItems: "center",
             }}
           >
             PROXIMAMENTE

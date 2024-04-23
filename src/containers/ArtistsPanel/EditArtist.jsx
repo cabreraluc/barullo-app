@@ -35,7 +35,8 @@ import Button from "@mui/material/Button";
 const EditArtist = () => {
   const roles = ["Admin", "Setter", "Closer"];
   const { id } = useParams();
-  const { editArtist, getArtistById, artist, isLoading } = useArtists();
+  const { editArtist, getArtistById, artist, isLoading, setIsLoading } =
+    useArtists();
   const [artistInfo, setArtistInfo] = useState({
     name: "",
     lastName: "",
@@ -93,6 +94,44 @@ const EditArtist = () => {
       secondaryImage: artist?.secondaryImage,
     });
   }, [artist]);
+
+  const uploadImage = async (e) => {
+    console.log(e);
+    setIsLoading(true);
+    const files = e.target.files[0];
+    const data = new FormData();
+
+    data.append("file", files);
+    data.append("upload_preset", "artists_preset");
+    data.append("api_key", "327992413885574");
+
+    const res = await fetch(
+      "https://api.cloudinary.com/v1_1/dsdbscv2h/image/upload",
+
+      {
+        method: "POST",
+        body: data,
+      }
+    );
+
+    console.log(res);
+    const imagen = await res.json();
+    const fileURL = imagen.secure_url;
+    console.log(fileURL);
+
+    if (e.target.name === "primaryImage") {
+      setArtistInfo({
+        ...artistInfo,
+        primaryImage: fileURL,
+      });
+    } else {
+      setArtistInfo({
+        ...artistInfo,
+        secondaryImage: fileURL,
+      });
+    }
+    setIsLoading(false);
+  };
 
   const navigate = useNavigate();
   return (
@@ -164,9 +203,10 @@ const EditArtist = () => {
               name="primaryImage"
               variant="standard"
               fullWidth
-              onChange={handleChange}
+              onChange={uploadImage}
               error={errors[1]?.primaryImage}
-              value={artistInfo.primaryImage}
+              type="file"
+              accept="image/*"
             />
           </LeftSectionContainer>
           <RightSectionContainer>
@@ -216,9 +256,10 @@ const EditArtist = () => {
               name="secondaryImage"
               variant="standard"
               fullWidth
-              onChange={handleChange}
+              onChange={uploadImage}
               error={errors[1]?.secondaryImage}
-              value={artistInfo.secondaryImage}
+              type="file"
+              accept="image/*"
             />
           </RightSectionContainer>
         </FormSectionsContainer>
