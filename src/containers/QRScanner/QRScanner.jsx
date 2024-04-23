@@ -47,7 +47,7 @@ const QRScanner = () => {
           <button
             style={{
               padding: "1rem",
-              margin: "0 auto",
+              marginTop: "5rem",
             }}
             onClick={() => {
               setScanning(true);
