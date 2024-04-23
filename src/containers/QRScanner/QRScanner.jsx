@@ -33,24 +33,30 @@ const QRScanner = () => {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <button
+    <div style={{}}>
+      <div
         style={{
-          padding: "1rem",
-        }}
-        onClick={() => {
-          setScanning(true);
-          setResult(null);
+          width: "100%",
+          backgroundColor: "red",
+          display: "flex",
+          justifyContent: "center",
         }}
       >
-        ESCANEAR
-      </button>
+        {!scanning && (
+          <button
+            style={{
+              padding: "1rem",
+              margin: "0 auto",
+            }}
+            onClick={() => {
+              setScanning(true);
+              setResult(null);
+            }}
+          >
+            ESCANEAR
+          </button>
+        )}
+      </div>
       {result && <span>{result._id}</span>}
       {scanning && (
         <QrReader
