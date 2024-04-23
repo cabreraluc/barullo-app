@@ -231,7 +231,7 @@ const PaymentSection = () => {
               x5 Tickets $18000
             </Promotion>
           </div>
-          <div
+          {/* <div
             style={
               orderData.description === "x10 tickets"
                 ? {
@@ -248,7 +248,7 @@ const PaymentSection = () => {
             <Promotion onClick={() => handleSelectPromo("promo4")}>
               x10 Tickets $30000
             </Promotion>
-          </div>
+          </div> */}
           {errors.ticket ? (
             <span style={{ color: "red", fontSize: "12px" }}>
               Tenes que seleccionar una opción
