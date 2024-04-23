@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import NextEvents from "../NextEvents/NextEvents";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -8,12 +9,11 @@ import Merch from "../Merch/Merch";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import { useEffect, useState } from "react";
 import useArtists from "../ArtistsPanel/useArtists";
 
 const Landing = ({ openSlider, handleColorHeader, setTurnOffLogo }) => {
-  const { getArtists, allArtists } = useArtists();
   const navigate = useNavigate();
+  const { getArtists, allArtists } = useArtists();
   const [swiper, setSwiper] = useState(null);
   const [swiperVertical, setSwiperVertical] = useState(null);
   const [open, setOpen] = useState(false);
@@ -24,14 +24,15 @@ const Landing = ({ openSlider, handleColorHeader, setTurnOffLogo }) => {
 
   useEffect(() => {
     if (open) {
-      swiper.autoplay.stop();
-      swiperVertical.autoplay.stop();
+      swiper?.autoplay?.stop();
+      swiperVertical?.autoplay?.stop();
     }
-  }, [open]);
+  }, [open, swiper, swiperVertical]);
 
   const handleHorizontalTouchStart = () => {
-    swiperVertical.autoplay.stop();
+    swiperVertical?.autoplay?.stop();
   };
+
   return (
     <Swiper
       style={{
@@ -52,8 +53,8 @@ const Landing = ({ openSlider, handleColorHeader, setTurnOffLogo }) => {
           swiper.params.autoplay.delay = 3000;
           swiper.autoplay.start();
         } else {
-          swiper.autoplay.stop();
-          swiper.slideTo(0);
+          swiper?.autoplay?.stop();
+          swiper?.slideTo(0);
         }
       }}
       onSwiper={(swiper) => setSwiperVertical(swiper)}
@@ -66,7 +67,7 @@ const Landing = ({ openSlider, handleColorHeader, setTurnOffLogo }) => {
       modules={[Autoplay, Pagination, Navigation]}
     >
       <SwiperSlide>
-        <NextEvents></NextEvents>;
+        <NextEvents />
       </SwiperSlide>
       <SwiperSlide>
         <Swiper
@@ -84,9 +85,7 @@ const Landing = ({ openSlider, handleColorHeader, setTurnOffLogo }) => {
             setTurnOffLogo(false);
             setOpen(false);
           }}
-          onSwiper={(swiper) => {
-            setSwiper(swiper);
-          }}
+          onSwiper={(swiper) => setSwiper(swiper)}
           scrollbar={{ draggable: true }}
           navigation={true}
           autoplay={{
@@ -97,23 +96,19 @@ const Landing = ({ openSlider, handleColorHeader, setTurnOffLogo }) => {
         >
           {allArtists.length ? (
             allArtists.map((e, index) => {
-              if (e.status !== "active") {
-                e = { ...e, color: "black-white" };
-              } else {
-                if (Number.isInteger((index + 1) / 2)) {
-                  e = { ...e, color: "violet" };
-                } else {
-                  e = { ...e, color: "green" };
-                }
-              }
-
+              const color =
+                e.status !== "active"
+                  ? "black-white"
+                  : Number.isInteger((index + 1) / 2)
+                  ? "violet"
+                  : "green";
               return (
-                <SwiperSlide>
+                <SwiperSlide key={e._id}>
                   <Artists
                     setTurnOffLogo={setTurnOffLogo}
                     titles={[
                       `${e.artistName}${
-                        e.secondaryArtistName.length
+                        e.secondaryArtistName
                           ? " & " + e.secondaryArtistName
                           : ""
                       }`,
@@ -133,11 +128,10 @@ const Landing = ({ openSlider, handleColorHeader, setTurnOffLogo }) => {
                     youtubeSecondary={e.youtubeSecondary}
                     secondaryImage={e.secondaryImage}
                     name={e.artistName}
-                    color={e.color}
+                    color={color}
                     open={open}
                     setOpen={setOpen}
-                  ></Artists>
-                  ;
+                  />
                 </SwiperSlide>
               );
             })
@@ -158,10 +152,10 @@ const Landing = ({ openSlider, handleColorHeader, setTurnOffLogo }) => {
       </SwiperSlide>
 
       <SwiperSlide>
-        <Merch></Merch>
+        <Merch />
       </SwiperSlide>
       <SwiperSlide>
-        <WhoAreUs></WhoAreUs>;
+        <WhoAreUs />
       </SwiperSlide>
     </Swiper>
   );
