@@ -51,6 +51,7 @@ const QRScanner = () => {
             }}
             onClick={() => {
               setScanning(true);
+              alert("BOTON DE NMIERDA");
               setResult(null);
             }}
           >
