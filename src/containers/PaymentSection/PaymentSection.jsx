@@ -146,7 +146,7 @@ const PaymentSection = () => {
         <Date>
           <h2>24/5</h2>
         </Date>
-        <Time>00:30hs</Time>
+        <Time>00:00hs</Time>
         <TandaTitle>
           <h2>PRIMERA TANDA</h2>
         </TandaTitle>
