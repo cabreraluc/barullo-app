@@ -17,6 +17,7 @@ const QRScanner = () => {
             `payment/get-payment-by-qr/${JSON.parse(data.text)._id}`
           );
           if (response) {
+            alert(JSON.stringify(response));
             alert(
               `${response?.message} | Nombre:${response?.name} | Email:${response?.payment.email} | PASES:${response?.payment.description}`
             );
@@ -51,7 +52,6 @@ const QRScanner = () => {
             }}
             onClick={() => {
               setScanning(true);
-              alert("BOTON DE NMIERDA");
               setResult(null);
             }}
           >
