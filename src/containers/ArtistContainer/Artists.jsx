@@ -1,9 +1,9 @@
+import React, { useEffect } from "react";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import soundcloudIcon from "../../assets/images/soundcloud.svg";
 import spotifyIcon from "../../assets/images/spotify.svg";
-
 import {
   ArtistsContainer,
   Card,
@@ -16,7 +16,6 @@ import {
   Description,
   IconsContainer,
 } from "./artistsStyles";
-import { useEffect, useState } from "react";
 
 const Artists = ({
   image,
@@ -40,12 +39,52 @@ const Artists = ({
   secondaryArtistName,
   artistName,
 }) => {
-  let filter = color === "violet" ? "270" : color === "green" ? "90" : "";
+  const filter = color === "violet" ? "270" : color === "green" ? "90" : "";
+
   useEffect(() => {
     return () => {
       setOpen(false);
     };
   }, []);
+
+  const renderSocialIcons = (socialLinks) => {
+    return (
+      <IconsContainer>
+        {socialLinks.map(({ name, link }) =>
+          link ? (
+            <a
+              key={name}
+              href={link}
+              style={{ color: "white" }}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {name === "SoundCloud" && (
+                <img
+                  style={{ width: "2rem", height: "2rem" }}
+                  src={soundcloudIcon}
+                  alt="SoundCloud"
+                />
+              )}
+              {name === "Instagram" && (
+                <InstagramIcon style={{ width: "2rem", height: "2rem" }} />
+              )}
+              {name === "YouTube" && (
+                <YouTubeIcon style={{ width: "2rem", height: "2rem" }} />
+              )}
+              {name === "Spotify" && (
+                <img
+                  style={{ width: "2rem", height: "2rem" }}
+                  src={spotifyIcon}
+                  alt="Spotify"
+                />
+              )}
+            </a>
+          ) : null
+        )}
+      </IconsContainer>
+    );
+  };
 
   return (
     <ArtistsContainer>
@@ -54,13 +93,13 @@ const Artists = ({
           {!open ? (
             <SubContainerClosed>
               <LeftSection>
-                {titles.map((e) => {
-                  return <Title>{e}</Title>;
-                })}
+                {titles.map((title, index) => (
+                  <Title key={index}>{title}</Title>
+                ))}
               </LeftSection>
               <RightSection>
                 {body}
-                {name?.length ? (
+                {name?.length && (
                   <button
                     style={{
                       marginTop: "10%",
@@ -79,7 +118,7 @@ const Artists = ({
                   >
                     {`More of ${name}`}
                   </button>
-                ) : null}
+                )}
               </RightSection>
             </SubContainerClosed>
           ) : (
@@ -96,7 +135,6 @@ const Artists = ({
                   setTurnOffLogo(false);
                 }}
               />
-
               <img
                 style={{
                   width: "200px",
@@ -108,180 +146,36 @@ const Artists = ({
                 src={secondaryImage}
                 alt="photo"
               />
-              {titles.map((e) => {
-                return <Title>{e}</Title>;
-              })}
+              {titles.map((title, index) => (
+                <Title key={index}>{title}</Title>
+              ))}
               <Description>{description}</Description>
               {secondaryArtistName.length ? (
                 <div style={{ margin: "2rem" }}>
                   <Title style={{ fontSize: "1.5rem" }}>{artistName}</Title>
-
-                  <IconsContainer>
-                    {soundCloud.length && (
-                      <a
-                        href={soundCloud}
-                        style={{ color: "white" }}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <img
-                          style={{ width: "2rem", height: "2rem" }}
-                          src={soundcloudIcon}
-                        />
-                      </a>
-                    )}
-                    {instagram.length && (
-                      <a
-                        href={instagram}
-                        style={{ color: "white" }}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <InstagramIcon
-                          style={{ width: "2rem", height: "2rem" }}
-                        ></InstagramIcon>
-                      </a>
-                    )}
-                    {youtube.length && (
-                      <a
-                        href={youtube}
-                        style={{ color: "white" }}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <YouTubeIcon
-                          style={{ width: "2rem", height: "2rem" }}
-                        ></YouTubeIcon>
-                      </a>
-                    )}
-                    {spotify.length && (
-                      <a
-                        href={spotify}
-                        style={{ color: "white" }}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <img
-                          style={{ width: "2rem", height: "2rem" }}
-                          src={spotifyIcon}
-                          alt=""
-                        />
-                      </a>
-                    )}
-                  </IconsContainer>
-
+                  {renderSocialIcons([
+                    { name: "SoundCloud", link: soundCloud },
+                    { name: "Instagram", link: instagram },
+                    { name: "YouTube", link: youtube },
+                    { name: "Spotify", link: spotify },
+                  ])}
                   <Title style={{ fontSize: "1.5rem" }}>
                     {secondaryArtistName}
                   </Title>
-
-                  <IconsContainer>
-                    {soundCloudSecondary.length && (
-                      <a
-                        href={soundCloudSecondary}
-                        style={{ color: "white" }}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <img
-                          style={{ width: "2rem", height: "2rem" }}
-                          src={soundcloudIcon}
-                        />
-                      </a>
-                    )}
-                    {instagramSecondary.length && (
-                      <a
-                        href={instagramSecondary}
-                        style={{ color: "white" }}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <InstagramIcon
-                          style={{ width: "2rem", height: "2rem" }}
-                        ></InstagramIcon>
-                      </a>
-                    )}
-                    {youtubeSecondary.length && (
-                      <a
-                        href={youtubeSecondary}
-                        style={{ color: "white" }}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <YouTubeIcon
-                          style={{ width: "2rem", height: "2rem" }}
-                        ></YouTubeIcon>
-                      </a>
-                    )}
-                    {spotifySecondary.length && (
-                      <a
-                        href={spotifySecondary}
-                        style={{ color: "white" }}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <img
-                          style={{ width: "2rem", height: "2rem" }}
-                          src={spotifyIcon}
-                          alt=""
-                        />
-                      </a>
-                    )}
-                  </IconsContainer>
+                  {renderSocialIcons([
+                    { name: "SoundCloud", link: soundCloudSecondary },
+                    { name: "Instagram", link: instagramSecondary },
+                    { name: "YouTube", link: youtubeSecondary },
+                    { name: "Spotify", link: spotifySecondary },
+                  ])}
                 </div>
               ) : (
-                <IconsContainer>
-                  {soundCloud.length ? (
-                    <a
-                      href={soundCloud}
-                      style={{ color: "white" }}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <img
-                        style={{ width: "2rem", height: "2rem" }}
-                        src={soundcloudIcon}
-                      />
-                    </a>
-                  ) : null}
-                  {instagram.length ? (
-                    <a
-                      href={instagram}
-                      style={{ color: "white" }}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <InstagramIcon
-                        style={{ width: "2rem", height: "2rem" }}
-                      ></InstagramIcon>
-                    </a>
-                  ) : null}
-                  {youtube?.length ? (
-                    <a
-                      href={youtube}
-                      style={{ color: "white" }}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <YouTubeIcon
-                        style={{ width: "2rem", height: "2rem" }}
-                      ></YouTubeIcon>
-                    </a>
-                  ) : null}
-                  {spotify?.length ? (
-                    <a
-                      href={spotify}
-                      style={{ color: "white" }}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <img
-                        style={{ width: "2rem", height: "2rem" }}
-                        src={spotifyIcon}
-                        alt=""
-                      />
-                    </a>
-                  ) : null}
-                </IconsContainer>
+                renderSocialIcons([
+                  { name: "SoundCloud", link: soundCloud },
+                  { name: "Instagram", link: instagram },
+                  { name: "YouTube", link: youtube },
+                  { name: "Spotify", link: spotify },
+                ])
               )}
             </SubContainerOpened>
           )}

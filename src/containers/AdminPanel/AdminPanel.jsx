@@ -6,6 +6,7 @@ import EventsPanel from "../EventsPanel/EventsPanel";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
+import { sectionsAdminPanel } from "../../utils/constants";
 
 const AdminPanel = () => {
   const [selectedSection, setSelectedSection] = useState("eventos");
@@ -13,7 +14,6 @@ const AdminPanel = () => {
     setSelectedSection(s);
   };
 
-  const sections = ["eventos", "artistas", "usuarios"];
   return (
     <PanelContainer>
       <Section>
@@ -36,7 +36,7 @@ const AdminPanel = () => {
             onChange={(e) => handleSelectSection(e.target.value)}
             value={selectedSection}
           >
-            {sections.map((section) => {
+            {sectionsAdminPanel.map((section) => {
               return <MenuItem value={section}>{section}</MenuItem>;
             })}
           </Select>
