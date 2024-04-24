@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 import useArtists from "./useArtists";
 import { useEffect } from "react";
 import ArtistsTable from "../../components/Artists/ArtistsTable";
-import Loader from "../../componentsCss/Loader/Loader";
 import Searcher from "../../components/Searcher/Searcher";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 
@@ -32,7 +31,7 @@ const ArtistsPanel = () => {
       <Searcher list={allArtists} setList={setAllArtists} context={"artist"} />
       <ArtistsList>
         {isLoading ? (
-          <Loader></Loader>
+          <h1>Loading...</h1>
         ) : (
           <ArtistsTable
             allArtists={allArtists}

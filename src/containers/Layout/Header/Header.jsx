@@ -11,8 +11,8 @@ import useLogin from "../../Login/useLogin";
 import ShortTextIcon from "@mui/icons-material/ShortText";
 import { useLocation } from "react-router-dom";
 
-import logoBlack from "../../../logobarullo-black.png";
-import logoWhite from "../../../logobarullo-white.png";
+import logoBlack from "../../../assets/images/logobarullo-black.png";
+import logoWhite from "../../../assets/images/logobarullo-white.png";
 
 import DrawerContainer from "../Drawer/DrawerContainer";
 

@@ -1,4 +1,4 @@
-import NextEventsImg from "../../nextevents.jpg";
+import NextEventsImg from "../../assets/images/nextevents.jpg";
 import {
   NextEventsContainer,
   Card,

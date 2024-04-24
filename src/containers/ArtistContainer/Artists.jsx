@@ -1,8 +1,8 @@
 import InstagramIcon from "@mui/icons-material/Instagram";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import YouTubeIcon from "@mui/icons-material/YouTube";
-import soundcloudIcon from "../../soundcloud.svg";
-import spotifyIcon from "../../spotify.svg";
+import soundcloudIcon from "../../assets/images/soundcloud.svg";
+import spotifyIcon from "../../assets/images/spotify.svg";
 
 import {
   ArtistsContainer,

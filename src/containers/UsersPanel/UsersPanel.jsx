@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import useUsers from "./useUsers";
 import { useEffect } from "react";
 import UsersTable from "../../components/Users/UsersTable";
-import Loader from "../../componentsCss/Loader/Loader";
 import Searcher from "../../components/Searcher/Searcher";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 
@@ -26,7 +25,7 @@ const UsersPanel = () => {
       <Searcher list={allUsers} setList={setAllUsers} context={"users"} />
       <UsersList>
         {isLoading ? (
-          <Loader></Loader>
+          <h1>Loading...</h1>
         ) : (
           <UsersTable
             allUsers={allUsers}

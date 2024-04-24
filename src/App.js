@@ -1,7 +1,5 @@
-import logo from "./logo.svg";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import { Navigate } from "react-router-dom";
 import Login from "./containers/Login/Login";
 import Landing from "./containers/Landing/Landing";
 import Header from "./containers/Layout/Header/Header";

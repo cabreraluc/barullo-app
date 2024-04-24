@@ -1,5 +1,5 @@
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   Title,
   Time,
@@ -9,7 +9,6 @@ import {
   TandaTitle,
 } from "./paymentStyles";
 import fetchFromApi from "../../utils/fetchFromapi";
-import EditIcon from "@mui/icons-material/Edit";
 initMercadoPago("APP_USR-8976b44f-b237-46ed-9fd2-e1bd184e8fbf");
 
 const PaymentSection = () => {

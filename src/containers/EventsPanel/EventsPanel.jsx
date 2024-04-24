@@ -1,7 +1,6 @@
 import { EventsContainer, EventsList, ButtonContainer } from "./eventsStyles";
 import { useNavigate } from "react-router-dom";
 import EventsTable from "../../components/Events/EventsTable";
-import Loader from "../../componentsCss/Loader/Loader";
 import Searcher from "../../components/Searcher/Searcher";
 import useEvents from "./useEvents";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
@@ -39,7 +38,7 @@ const EventsPanel = () => {
       <Searcher />
       <EventsList>
         {isLoading ? (
-          <Loader></Loader>
+          <h1>Loading...</h1>
         ) : (
           <EventsTable
             allEvents={allEvents}

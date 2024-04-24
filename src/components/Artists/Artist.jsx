@@ -4,7 +4,6 @@ import TableRow from "@mui/material/TableRow";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import EditIcon from "@mui/icons-material/Edit";
 import { useNavigate } from "react-router-dom";
-
 import AlertDialog from "../Dialog/AlertDialog";
 import { useState } from "react";
 

@@ -6,7 +6,7 @@
 
 .App::before {
   content: "";
-  background-image: url(/src/fotoFiesta.jpg);
+  background-image: url(/src/assets/images/fotoFiesta.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   filter: grayscale(100%);

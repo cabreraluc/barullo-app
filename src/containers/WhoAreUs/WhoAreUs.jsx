@@ -1,4 +1,4 @@
-import ImageWe from "../../WhoAreWe.jpg";
+import ImageWe from "../../assets/images/WhoAreWe.jpg";
 import { WhoAreUsContainer, Card, Title, Body, Icons } from "./whoAreUsStyles";
 import InstagramIcon from "@mui/icons-material/Instagram";
 
