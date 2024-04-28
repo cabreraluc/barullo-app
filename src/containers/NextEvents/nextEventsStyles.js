@@ -4,7 +4,7 @@ export const NextEventsContainer = styled.div`
   display: flex;
   justify-content: center;
 
-  height: 100vh;
+  height: 100%;
 `;
 export const Card = styled.div`
   background: ${({ image }) =>
