@@ -1,18 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import NextEvents from "../NextEvents/NextEvents";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import WhoAreUs from "../WhoAreUs/WhoAreUs";
 import Artists from "../ArtistContainer/Artists";
 import Merch from "../Merch/Merch";
-import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import {
+  Autoplay,
+  Pagination,
+  Navigation,
+  EffectCoverflow,
+  Mousewheel,
+  EffectCreative,
+} from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import useArtists from "../ArtistsPanel/useArtists";
 
-const Landing = ({ openSlider, handleColorHeader, setTurnOffLogo }) => {
-  const navigate = useNavigate();
+const Landing = ({ handleColorHeader, setTurnOffLogo }) => {
   const { getArtists, allArtists } = useArtists();
   const [swiper, setSwiper] = useState(null);
   const [swiperVertical, setSwiperVertical] = useState(null);
@@ -64,7 +69,18 @@ const Landing = ({ openSlider, handleColorHeader, setTurnOffLogo }) => {
         disableOnInteraction: true,
       }}
       navigation={true}
-      modules={[Autoplay, Pagination, Navigation]}
+      modules={[Autoplay, Pagination, Navigation, EffectCreative, Mousewheel]}
+      effect={"creative"}
+      creativeEffect={{
+        prev: {
+          shadow: true,
+          translate: [0, 0, -400],
+        },
+        next: {
+          translate: [0, "100%", 0],
+        },
+      }}
+      mousewheel={true}
     >
       <SwiperSlide>
         <NextEvents />
@@ -92,7 +108,17 @@ const Landing = ({ openSlider, handleColorHeader, setTurnOffLogo }) => {
             disableOnInteraction: true,
             delay: 2500,
           }}
-          modules={[Autoplay, Pagination, Navigation]}
+          modules={[Autoplay, Pagination, Navigation, EffectCreative]}
+          effect={"creative"}
+          creativeEffect={{
+            prev: {
+              shadow: true,
+              translate: [0, 0, -400],
+            },
+            next: {
+              translate: ["100%", 0, 0],
+            },
+          }}
         >
           {allArtists.length ? (
             allArtists.map((e, index) => {
