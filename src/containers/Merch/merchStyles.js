@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const MerchContainer = styled.div`
   display: flex;
   justify-content: center;
-  height: 100%;
+  height: 100vh;
 `;
 // margin-top: calc(15vh + 6vw);
 export const Card = styled.div`
