@@ -40,13 +40,6 @@ const Landing = ({ handleColorHeader, setTurnOffLogo }) => {
 
   return (
     <Swiper
-      style={{
-        height: "100%",
-        width: "100%",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
       direction={"vertical"}
       spaceBetween={0}
       slidesPerView={1}
