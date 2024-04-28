@@ -1,153 +1,36 @@
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
-import { useState } from "react";
+import { useEffect } from "react";
 import {
+  PaymentSectionContainer,
   Title,
   Time,
   Date,
-  Promotion,
   Container,
   TandaTitle,
+  MensajeDeError,
+  BotonDeCompra,
+  MensajeDelFooter,
 } from "./paymentStyles";
-import fetchFromApi from "../../utils/fetchFromapi";
-initMercadoPago("APP_USR-8976b44f-b237-46ed-9fd2-e1bd184e8fbf");
+
+import usePayment from "./usePayment";
+import CuerpoDelFormularioComponente from "../../components/PaymentSection/CuerpoDelFormularioComponente";
 
 const PaymentSection = () => {
-  const [sale, setSale] = useState(false);
-  const [preferenceId, setPreferenceId] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState({
-    ticket: false,
-    name: false,
-    emali: false,
-  });
-  const [orderData, setOrderData] = useState({
-    quantity: "",
-    price: "",
-    amount: 0,
-    description: "",
-    name: "",
-    email: "",
-  });
-
-  const handleSelectPromo = (e) => {
-    if (!sale && !loading) {
-      if (e === "promo1") {
-        setOrderData((orderData) => {
-          return {
-            ...orderData,
-            quantity: "1",
-            price: "4500",
-            amount: 1,
-            description: "x1 tickets",
-          };
-        });
-      } else if (e === "promo2") {
-        setOrderData((orderData) => {
-          return {
-            ...orderData,
-            quantity: "1",
-            price: "8000",
-            amount: 1,
-            description: "x2 tickets",
-          };
-        });
-      } else if (e === "promo3") {
-        setOrderData((orderData) => {
-          return {
-            ...orderData,
-            quantity: "1",
-            price: "18000",
-            amount: 1,
-            description: "x5 tickets",
-          };
-        });
-      } else if (e === "promo4") {
-        setOrderData((orderData) => {
-          return {
-            ...orderData,
-            quantity: "1",
-            price: "5",
-            amount: 1,
-            description: "x10 tickets",
-          };
-        });
-      }
-    }
-  };
-
-  const handleCompleteForm = (e) => {
-    const { name, value } = e.target;
-
-    setOrderData((orderData) => {
-      return { ...orderData, [name]: value };
-    });
-  };
-
-  const handleCreatePreference = async () => {
-    let err = false;
-    if (orderData.quantity === "") {
-      setErrors((errors) => {
-        return { ...errors, ticket: true };
-      });
-      err = true;
-    } else {
-      setErrors((errors) => {
-        return { ...errors, ticket: false };
-      });
-    }
-
-    if (orderData.name === "") {
-      setErrors((errors) => {
-        return { ...errors, name: true };
-      });
-      err = true;
-    } else {
-      setErrors((errors) => {
-        return { ...errors, name: false };
-      });
-    }
-
-    if (orderData.email === "") {
-      setErrors((errors) => {
-        return { ...errors, email: true };
-      });
-      err = true;
-    } else {
-      setErrors((errors) => {
-        return { ...errors, email: false };
-      });
-    }
-
-    if (!err) {
-      setLoading(true);
-      try {
-        const response = await fetchFromApi(
-          `POST`,
-          `payment/create-preference`,
-          orderData
-        );
-
-        if (response) {
-          setSale(true);
-          setPreferenceId(response.id);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-      setLoading(false);
-    }
-  };
+  const {
+    sale,
+    setSale,
+    preferenceId,
+    loading,
+    errors,
+    orderData,
+    handleSelectPromo,
+    handleCompleteForm,
+    handleCreatePreference,
+  } = usePayment();
+  initMercadoPago("APP_USR-8976b44f-b237-46ed-9fd2-e1bd184e8fbf");
 
   return (
-    <div
-      style={{
-        backgroundColor: "transparent",
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        justifyContent: "center",
-      }}
-    >
+    <PaymentSectionContainer>
       <Container>
         <Title>
           <h1 style={{ fontSize: "3rem" }}>Barullo</h1>
@@ -160,161 +43,19 @@ const PaymentSection = () => {
           <h2>PRIMERA TANDA</h2>
         </TandaTitle>
 
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: "10px",
-            margin: "1rem 0",
-          }}
-        >
-          <div
-            style={{
-              position: "relative",
-            }}
-          >
-            <div
-              style={
-                orderData.description === "x1 tickets"
-                  ? {
-                      border: "solid 1px white",
-                      padding: "1rem",
-                      borderRadius: "10px",
-                    }
-                  : {
-                      padding: "1rem",
-                      borderRadius: "10px",
-                    }
-              }
-            >
-              <Promotion onClick={() => handleSelectPromo("promo1")}>
-                x1 Tickets $4500
-              </Promotion>
-            </div>
-          </div>
-          <div
-            style={
-              orderData.description === "x2 tickets"
-                ? {
-                    border: "solid 1px white",
-                    padding: "1rem",
-                    borderRadius: "10px",
-                  }
-                : {
-                    padding: "1rem",
-                    borderRadius: "10px",
-                  }
-            }
-          >
-            <Promotion onClick={() => handleSelectPromo("promo2")}>
-              x2 Tickets $8000
-            </Promotion>
-          </div>
-          <div
-            style={
-              orderData.description === "x5 tickets"
-                ? {
-                    border: "solid 1px white",
-                    padding: "1rem",
-                    borderRadius: "10px",
-                  }
-                : {
-                    padding: "1rem",
-                    borderRadius: "10px",
-                  }
-            }
-          >
-            <Promotion onClick={() => handleSelectPromo("promo3")}>
-              x5 Tickets $18000
-            </Promotion>
-          </div>
-          {/* <div
-            style={
-              orderData.description === "x10 tickets"
-                ? {
-                    border: "solid 1px white",
-                    padding: "1rem",
-                    borderRadius: "10px",
-                  }
-                : {
-                    padding: "1rem",
-                    borderRadius: "10px",
-                  }
-            }
-          >
-            <Promotion onClick={() => handleSelectPromo("promo4")}>
-              x10 Tickets $30000
-            </Promotion>
-          </div> */}
-          {errors.ticket ? (
-            <span style={{ color: "red", fontSize: "12px" }}>
-              Tenes que seleccionar una opción
-            </span>
-          ) : null}
-        </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flexDirection: "column",
-            gap: "10px",
-            margin: "1rem 0rem",
-          }}
-        >
-          <input
-            style={{
-              color: "white",
-              backgroundColor: "transparent",
-              border: "1px solid white",
-              height: "2rem",
-              paddingLeft: "0.5rem",
-              width: "13rem",
-            }}
-            name="name"
-            disabled={sale || loading ? true : false}
-            onChange={(e) => handleCompleteForm(e)}
-            placeholder="nombre..."
-          ></input>
-          <input
-            style={{
-              color: "white",
-              backgroundColor: "transparent",
-              border: "1px solid white",
-              height: "2rem",
-              paddingLeft: "0.5rem",
-              width: "13rem",
-            }}
-            disabled={sale || loading ? true : false}
-            name="email"
-            onChange={(e) => handleCompleteForm(e)}
-            placeholder="email..."
-          ></input>
-        </div>
-        {errors.email || errors.name ? (
-          <span style={{ color: "red", fontSize: "12px" }}>
-            Te falta completar el nombre o el email
-          </span>
-        ) : null}
+        <CuerpoDelFormularioComponente
+          handleSelectPromo={handleSelectPromo}
+          handleCompleteForm={handleCompleteForm}
+          errors={errors}
+          orderData={orderData}
+          loading={loading}
+          sale={sale}
+        />
+
         {!sale ? (
-          <button
-            style={{
-              color: "white",
-              backgroundColor: "transparent",
-              border: "1px solid white",
-              height: "2rem",
-              width: "7rem",
-              paddingLeft: "0.5rem",
-              marginTop: "1rem",
-              cursor: "pointer",
-            }}
-            onClick={handleCreatePreference}
-            disabled={loading}
-          >
+          <BotonDeCompra onClick={handleCreatePreference} disabled={loading}>
             {loading ? "CARGANDO..." : "COMPRAR"}
-          </button>
+          </BotonDeCompra>
         ) : null}
 
         {sale ? (
@@ -325,32 +66,18 @@ const PaymentSection = () => {
         ) : null}
 
         {sale ? (
-          <button
-            onClick={() => setSale(false)}
-            style={{
-              color: "white",
-              backgroundColor: "transparent",
-              border: "1px solid white",
-              height: "2rem",
-              width: "7rem",
-              paddingLeft: "0.5rem",
-              marginTop: "1rem",
-              cursor: "pointer",
-            }}
-          >
+          <BotonDeCompra onClick={() => setSale(false)}>
             Editar compra
-          </button>
+          </BotonDeCompra>
         ) : null}
 
-        <span
-          style={{ padding: "0 2rem", paddingTop: "4rem", textAlign: "center" }}
-        >
+        <MensajeDelFooter>
           Al comprar la entrada se te enviara por email un código QR para
           validar tu identidad en el evento, la dirección del evento sera
           enviada en el mismo email.
-        </span>
+        </MensajeDelFooter>
       </Container>
-    </div>
+    </PaymentSectionContainer>
   );
 };
 
