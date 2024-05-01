@@ -13,18 +13,6 @@ const EventsPanel = () => {
     { name: "la", date: "10/04/2011" },
     { name: "la", date: "10/04/2011" },
     { name: "la", date: "10/04/2011" },
-    { name: "la", date: "10/04/2011" },
-    { name: "la", date: "10/04/2011" },
-    { name: "la", date: "10/04/2011" },
-    { name: "la", date: "10/04/2011" },
-    { name: "la", date: "10/04/2011" },
-    { name: "la", date: "10/04/2011" },
-    { name: "la", date: "10/04/2011" },
-    { name: "la", date: "10/04/2011" },
-    { name: "la", date: "10/04/2011" },
-    { name: "la", date: "10/04/2011" },
-    { name: "la", date: "10/04/2011" },
-    { name: "la", date: "10/04/2011" },
   ];
 
   return (
