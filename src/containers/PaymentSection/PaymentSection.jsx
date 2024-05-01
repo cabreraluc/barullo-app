@@ -1,5 +1,4 @@
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
-import { useEffect } from "react";
 import {
   PaymentSectionContainer,
   Title,
@@ -7,7 +6,6 @@ import {
   Date,
   Container,
   TandaTitle,
-  MensajeDeError,
   BotonDeCompra,
   MensajeDelFooter,
 } from "./paymentStyles";
