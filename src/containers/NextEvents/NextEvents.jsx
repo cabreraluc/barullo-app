@@ -21,7 +21,7 @@ const NextEvents = () => {
             <Title>BARULLO</Title>
 
             <Body>24/5 00:00hs</Body>
-            <Body>Secret location</Body>
+            <Body>Lomas de Zamora</Body>
           </LeftSection>
           <RightSection>
             <BuyTicketButton
