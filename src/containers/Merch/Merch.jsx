@@ -1,5 +1,5 @@
-import Merch1 from "../../assets/images/merch1.JPG";
-import Merch2 from "../../assets/images/merch2.JPG";
+import Merch1 from "../../assets/images/merch1.jpg";
+import Merch2 from "../../assets/images/merch2.jpg";
 import { MerchContainer, Card, Item, Container } from "./merchStyles";
 
 const Merch = () => {
