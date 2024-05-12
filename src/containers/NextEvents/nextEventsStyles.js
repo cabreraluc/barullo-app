@@ -74,6 +74,7 @@ export const Body = styled.div`
   font-family: "Oswald", sans-serif;
   font-size: 1.2rem;
   color: white;
+  text-align: center;
 `;
 
 export const BuyTicketButton = styled.div`
@@ -84,15 +85,19 @@ export const BuyTicketButton = styled.div`
   max-width: 20rem;
   border-radius: 1rem;
   padding: 0.8rem;
-  font-weight: 400;
-  font-family: "Oswald", sans-serif;
-  font-size: 1.2rem;
   color: white;
   border: 1px solid white;
   :hover {
     scale: 1.1;
     transition: 0.2s;
   }
+`;
+
+export const ButtonText = styled.div`
+  font-weight: 400;
+  font-family: "Oswald", sans-serif;
+  font-size: 1.2rem;
+  text-align: center;
 `;
 
 // margin-top: calc(15vh + 6vw);
