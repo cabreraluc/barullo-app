@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   background-color: black;
-  height: 100%;
+  height: 100vh;
   width: 100%;
   color: white;
   display: flex;
@@ -14,7 +14,7 @@ export const Container = styled.div`
 export const PaymentSectionContainer = styled.div`
   background-color: transparent;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   display: flex;
   justify-content: center;
 `;
@@ -109,9 +109,14 @@ export const MensajeDelFooter = styled.span`
   padding: 0 2rem;
   padding-top: 4rem;
   text-align: center;
+  color: gray;
 `;
 
 export const MensajeDeError = styled.span`
   color: red;
   font-size: 12px;
+`;
+
+export const LogoPSB = styled.div`
+  margin: 2rem 0;
 `;

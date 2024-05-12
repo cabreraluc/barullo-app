@@ -47,10 +47,10 @@ const CuerpoDelFormularioComponente = ({
           return (
             <InputCargaDeInfo
               key={index}
-              name={elemento}
+              name={elemento.name}
               disabled={sale || loading ? true : false}
               onChange={(e) => handleCompleteForm(e)}
-              placeholder={`${elemento}...`}
+              placeholder={`${elemento.placeHolder}`}
             />
           );
         })}

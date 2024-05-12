@@ -7,4 +7,7 @@ export const BotonesPaymentSection = [
   // { text: "x10 Tickets $30000", promo: 4 },
 ];
 
-export const InputsDePaymentSection = ["name", "email"];
+export const InputsDePaymentSection = [
+  { name: "name", placeHolder: "Nombre completo" },
+  { name: "email", placeHolder: "Correo electrónico" },
+];

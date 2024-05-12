@@ -8,8 +8,10 @@ import {
   TandaTitle,
   BotonDeCompra,
   MensajeDelFooter,
+  LogoPSB,
 } from "./paymentStyles";
-
+import logo from "../../assets/images/logobarullo-white.png";
+import psbLogo from "../../assets/images/logoVerdePurple.png";
 import usePayment from "./usePayment";
 import CuerpoDelFormularioComponente from "../../components/PaymentSection/CuerpoDelFormularioComponente";
 
@@ -30,9 +32,8 @@ const PaymentSection = () => {
   return (
     <PaymentSectionContainer>
       <Container>
-        <Title>
-          <h1 style={{ fontSize: "3rem" }}>Barullo</h1>
-        </Title>
+        <img style={{ width: "20rem" }} src={logo} alt="barullo-logo" />
+
         <Date>
           <h2>24/5</h2>
         </Date>
@@ -70,10 +71,20 @@ const PaymentSection = () => {
         ) : null}
 
         <MensajeDelFooter>
-          Al comprar la entrada se te enviara por email un código QR para
-          validar tu identidad en el evento, la dirección del evento sera
-          enviada en el mismo email.
+          Al comprar la entrada se te enviará por email un código QR para
+          validar tu identidad en el evento, la dirección del evento será
+          enviada en el mismo email. Ante cualquier problema por favor
+          comunicate con los organizadores del evento.
         </MensajeDelFooter>
+        <LogoPSB>
+          <img
+            src={psbLogo}
+            alt="psb-logo"
+            style={{
+              width: "5rem",
+            }}
+          />
+        </LogoPSB>
       </Container>
     </PaymentSectionContainer>
   );
