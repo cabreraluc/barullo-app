@@ -16,7 +16,7 @@ const NextEvents = () => {
         <Icons>
           <a
             style={{ color: "white" }}
-            href={"https://www.instagram.com/barullo.inc/"}
+            href={"https://www.instagram.com/barullo.rave/"}
             target="_blank"
             rel="noopener noreferrer"
           >
