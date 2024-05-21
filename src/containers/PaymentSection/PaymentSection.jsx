@@ -53,7 +53,7 @@ const PaymentSection = () => {
           </Date>
         </DateSection>
         <TandaTitle>
-          <h2>PRIMERA TANDA</h2>
+          <h2>SEGUNDA TANDA</h2>
         </TandaTitle>
         <LogosSection>
           <img
