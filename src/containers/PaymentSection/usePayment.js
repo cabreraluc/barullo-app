@@ -27,7 +27,7 @@ const usePayment = () => {
             ...orderData,
             number: 1,
             quantity: "1",
-            price: "4500",
+            price: "5000",
             amount: 1,
             description: "x1 tickets",
           };
@@ -38,7 +38,7 @@ const usePayment = () => {
             ...orderData,
             number: 2,
             quantity: "1",
-            price: "8000",
+            price: "8500",
             amount: 1,
             description: "x2 tickets",
           };
@@ -49,7 +49,7 @@ const usePayment = () => {
             ...orderData,
             number: 3,
             quantity: "1",
-            price: "18000",
+            price: "18500",
             amount: 1,
             description: "x5 tickets",
           };
