@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import fetchFromApi from "../../utils/fetchFromapi";
 
 const usePayment = () => {
@@ -19,7 +19,39 @@ const usePayment = () => {
     email: "",
   });
 
-  const handleSelectPromo = (e) => {
+  // Suggested code may be subject to a license. Learn more: ~LicenseLog:3678236757.
+  useEffect(() => {
+    console.log(orderData);
+  }, [orderData]);
+
+  const handleSelectPromo = (e, estadoDeCodigoconDescuento) => {
+    let primeraOpcion = 5500;
+    let segundaOpcion = 9000;
+    let terceraOpcion = 20000;
+    let cuartaOpcion = 1;
+
+    if (
+      estadoDeCodigoconDescuento !== "-" &&
+      estadoDeCodigoconDescuento.label === "Validación exitosa"
+    ) {
+      primeraOpcion = Math.round(primeraOpcion * 0.7)
+        .toString()
+        .replace(".", "");
+      segundaOpcion = Math.round(segundaOpcion * 0.6)
+        .toString()
+        .replace(".", "");
+      terceraOpcion = Math.round(terceraOpcion * 0.5)
+        .toString()
+        .replace(".", "");
+
+      cuartaOpcion = cuartaOpcion.toString();
+    } else {
+      primeraOpcion = primeraOpcion.toString();
+      segundaOpcion = segundaOpcion.toString();
+      terceraOpcion = terceraOpcion.toString();
+      cuartaOpcion = cuartaOpcion.toString();
+    }
+
     if (!sale && !loading) {
       if (e === 1) {
         setOrderData((orderData) => {
@@ -27,7 +59,7 @@ const usePayment = () => {
             ...orderData,
             number: 1,
             quantity: "1",
-            price: "5500",
+            price: primeraOpcion,
             amount: 1,
             description: "x1 tickets",
           };
@@ -38,7 +70,7 @@ const usePayment = () => {
             ...orderData,
             number: 2,
             quantity: "1",
-            price: "9000",
+            price: segundaOpcion,
             amount: 1,
             description: "x2 tickets",
           };
@@ -49,7 +81,7 @@ const usePayment = () => {
             ...orderData,
             number: 3,
             quantity: "1",
-            price: "20000",
+            price: terceraOpcion,
             amount: 1,
             description: "x5 tickets",
           };

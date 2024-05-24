@@ -35,6 +35,29 @@ const PaymentSection = () => {
     handleCreatePreference,
   } = usePayment();
   initMercadoPago("APP_USR-8976b44f-b237-46ed-9fd2-e1bd184e8fbf");
+  const [codigoDeDescuento, setCodigoDeDescuento] = useState("");
+  const [estadoDeCodigoIngresado, setEstadoDeCodigoIntegrado] = useState("-");
+
+  const codigos = ["D8H6X", "59OPL", "E2TH9"];
+
+  const handleChangeCodigoDeDescuento = (e) => {
+    setCodigoDeDescuento(e.target.value);
+  };
+
+  const ValidarCodigoDeDescuento = () => {
+    if (codigos.includes(codigoDeDescuento)) {
+      setEstadoDeCodigoIntegrado({
+        label: "Validación exitosa",
+        color: "green",
+      });
+    } else {
+      if (codigoDeDescuento !== "") {
+        setEstadoDeCodigoIntegrado({ label: "Código invalido", color: "red" });
+      } else {
+        setEstadoDeCodigoIntegrado("-");
+      }
+    }
+  };
 
   return (
     <PaymentSectionContainer>
@@ -88,27 +111,87 @@ const PaymentSection = () => {
         </LogosSection>
         <div
           style={{
-            height: "20%",
+            minHeight: "300px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
           }}
         >
-          {!sale && (
-            <CuerpoDelFormularioComponente
-              handleSelectPromo={handleSelectPromo}
-              handleCompleteForm={handleCompleteForm}
-              errors={errors}
-              orderData={orderData}
-              loading={loading}
-              sale={sale}
-            />
-          )}
-          {sale ? (
-            <Wallet
-              initialization={{ preferenceId: preferenceId }}
-              customization={{ texts: { valueProp: "smart_option" } }}
-            />
-          ) : null}
-        </div>
+          <div
+            style={{
+              height: "20%",
+            }}
+          >
+            {orderData.price ? null : (
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  gap: "10px",
+                }}
+              >
+                <input
+                  type="text"
+                  value={codigoDeDescuento}
+                  onChange={handleChangeCodigoDeDescuento}
+                  placeholder="Ingresa tu código de descuento"
+                  style={{
+                    backgroundColor: "black",
+                    color: "white",
+                    border: "solid 1px white",
+                    padding: "1rem",
+                    width: "13rem",
+                    textAlign: "center",
+                    fontFamily: "Chakra Petch, sans-serif",
+                  }}
+                />
+                <button
+                  onClick={ValidarCodigoDeDescuento}
+                  style={{
+                    backgroundColor: "black",
+                    color: "white",
+                    border: "solid 1px white",
+                    padding: "0.4rem",
 
+                    textAlign: "center",
+                  }}
+                >
+                  Validar código
+                </button>
+                {estadoDeCodigoIngresado !== "-" && (
+                  <p
+                    style={{
+                      color: estadoDeCodigoIngresado.color,
+                      fontSize: "12px",
+                    }}
+                  >
+                    {estadoDeCodigoIngresado.label}
+                  </p>
+                )}
+              </div>
+            )}
+            {!sale && (
+              <CuerpoDelFormularioComponente
+                codigoDeDescuento={codigoDeDescuento}
+                estadoDeCodigoIngresado={estadoDeCodigoIngresado}
+                handleSelectPromo={handleSelectPromo}
+                handleCompleteForm={handleCompleteForm}
+                errors={errors}
+                orderData={orderData}
+                loading={loading}
+                sale={sale}
+                key={codigoDeDescuento}
+              />
+            )}
+            {sale ? (
+              <Wallet
+                initialization={{ preferenceId: preferenceId }}
+                customization={{ texts: { valueProp: "smart_option" } }}
+              />
+            ) : null}
+          </div>
+        </div>
         <div
           style={{
             display: "flex",

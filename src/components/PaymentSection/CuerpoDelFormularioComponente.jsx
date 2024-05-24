@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   ButtonsContainer,
   BotonDeTickets,
@@ -19,6 +20,8 @@ const CuerpoDelFormularioComponente = ({
   orderData,
   sale,
   loading,
+  estadoDeCodigoIngresado,
+  codigoDeDescuento,
 }) => {
   return (
     <div
@@ -28,8 +31,7 @@ const CuerpoDelFormularioComponente = ({
         alignItems: "center",
         justifyContent: "center",
         gap: "10px",
-
-        height: "100%",
+        margin: "2rem 0rem",
         width: "100%",
       }}
     >
@@ -38,14 +40,44 @@ const CuerpoDelFormularioComponente = ({
           {BotonesPaymentSection.map((item) => {
             return orderData?.number === item.promo ? (
               <BotonDeTicketsActive key={item.promo}>
-                <TextoDelBoton onClick={() => handleSelectPromo(item.promo)}>
-                  {item.text}
+                <TextoDelBoton
+                  onClick={() =>
+                    handleSelectPromo(item.promo, estadoDeCodigoIngresado)
+                  }
+                >
+                  {estadoDeCodigoIngresado !== "-" &&
+                  estadoDeCodigoIngresado.label === "Validación exitosa"
+                    ? item.text2
+                    : item.text}{" "}
+                  {estadoDeCodigoIngresado !== "-" &&
+                  estadoDeCodigoIngresado.label === "Validación exitosa"
+                    ? item.promo === 1
+                      ? "(-30%)"
+                      : item.promo === 2
+                      ? "(-40%)"
+                      : "(-50%)"
+                    : ""}
                 </TextoDelBoton>
               </BotonDeTicketsActive>
             ) : (
               <BotonDeTickets key={item.promo}>
-                <TextoDelBoton onClick={() => handleSelectPromo(item.promo)}>
-                  {item.text}
+                <TextoDelBoton
+                  onClick={() =>
+                    handleSelectPromo(item.promo, estadoDeCodigoIngresado)
+                  }
+                >
+                  {estadoDeCodigoIngresado !== "-" &&
+                  estadoDeCodigoIngresado.label === "Validación exitosa"
+                    ? item.text2
+                    : item.text}{" "}
+                  {estadoDeCodigoIngresado !== "-" &&
+                  estadoDeCodigoIngresado.label === "Validación exitosa"
+                    ? item.promo === 1
+                      ? "(-30%)"
+                      : item.promo === 2
+                      ? "(-40%)"
+                      : "(-50%)"
+                    : ""}
                 </TextoDelBoton>
               </BotonDeTickets>
             );

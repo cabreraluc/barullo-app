@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  height: 80%;
   width: 100%;
   color: white;
   display: flex;
@@ -12,10 +11,11 @@ export const Container = styled.div`
 export const PaymentSectionContainer = styled.div`
   background-color: black;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  
 `;
 
 export const Title = styled.div`
@@ -72,6 +72,7 @@ export const BotonDeTickets = styled.div`
 export const TextoDelBoton = styled.div`
   cursor: pointer;
   color: white;
+  font-family: Chakra Petch, sans-serif;
 `;
 
 export const TandaTitle = styled.div`
