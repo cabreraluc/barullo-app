@@ -18,8 +18,6 @@ export const Card = styled.div`
   color: black;
 
   overflow: hidden;
-
-  filter: sepia(1) hue-rotate(270deg);
 `;
 
 export const Container = styled.div`
@@ -58,9 +56,9 @@ export const Title = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: green;
   width: 100%;
-  font-size: 4vh;
+  font-size: 6vh;
   font-weight: 700;
   font-family: "Oswald", sans-serif;
 `;

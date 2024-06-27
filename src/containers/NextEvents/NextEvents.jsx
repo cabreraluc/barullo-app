@@ -20,9 +20,6 @@ const NextEvents = () => {
         <Container>
           <LeftSection>
             <Title>BARULLO</Title>
-
-            <Body>24/5 00:00hs</Body>
-            <Body>Lomas de Zamora</Body>
           </LeftSection>
           <RightSection>
             <BuyTicketButton
