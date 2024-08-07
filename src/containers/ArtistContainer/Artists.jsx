@@ -4,6 +4,8 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import soundcloudIcon from "../../assets/images/soundcloud.svg";
 import spotifyIcon from "../../assets/images/spotify.svg";
+import MusicPlayer from "./MusicPlayer";
+
 import {
   ArtistsContainer,
   Card,
@@ -38,6 +40,9 @@ const Artists = ({
   youtubeSecondary,
   secondaryArtistName,
   artistName,
+  audioRef,
+  setIsPlaying,
+  isPlaying,
 }) => {
   const filter = color === "violet" ? "270" : color === "green" ? "90" : "";
 
@@ -123,6 +128,11 @@ const Artists = ({
             </SubContainerClosed>
           ) : (
             <SubContainerOpened>
+              <MusicPlayer
+                audioRef={audioRef}
+                isPlaying={isPlaying}
+                setIsPlaying={setIsPlaying}
+              />
               <ArrowDropDownIcon
                 style={{
                   color: "white",

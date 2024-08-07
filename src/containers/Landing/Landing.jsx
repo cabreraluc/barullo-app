@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import NextEvents from "../NextEvents/NextEvents";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -10,14 +11,18 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import useArtists from "../ArtistsPanel/useArtists";
+import NextEventsImg from "../../assets/images/nextevents.jpg";
+import usImage from "../../assets/images/usImage.jpg";
+import usImage2 from "../../assets/images/usImage2.jpg";
 
 const Landing = ({ openSlider, handleColorHeader, setTurnOffLogo }) => {
-  const navigate = useNavigate();
+  const firstSectionImages = [usImage, usImage2];
   const { getArtists, allArtists } = useArtists();
   const [swiper, setSwiper] = useState(null);
   const [swiperVertical, setSwiperVertical] = useState(null);
   const [open, setOpen] = useState(false);
-
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef(null);
   useEffect(() => {
     getArtists();
   }, []);
@@ -67,7 +72,38 @@ const Landing = ({ openSlider, handleColorHeader, setTurnOffLogo }) => {
       modules={[Autoplay, Pagination, Navigation]}
     >
       <SwiperSlide>
-        <NextEvents />
+        <Swiper
+          style={{
+            height: "100%",
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+          onTouchStart={handleHorizontalTouchStart}
+          spaceBetween={0}
+          slidesPerView={1}
+          onSlideChange={(e) => {
+            setTurnOffLogo(false);
+            setOpen(false);
+          }}
+          onSwiper={(swiper) => setSwiper(swiper)}
+          scrollbar={{ draggable: true }}
+          navigation={true}
+          autoplay={{
+            disableOnInteraction: true,
+            delay: 2500,
+          }}
+          modules={[Autoplay, Pagination, Navigation]}
+        >
+          {firstSectionImages.map((img) => {
+            return (
+              <SwiperSlide>
+                <NextEvents img={img} />{" "}
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
       </SwiperSlide>
       <SwiperSlide>
         <Swiper
@@ -131,6 +167,9 @@ const Landing = ({ openSlider, handleColorHeader, setTurnOffLogo }) => {
                     color={color}
                     open={open}
                     setOpen={setOpen}
+                    setIsPlaying={setIsPlaying}
+                    isPlaying={isPlaying}
+                    audioRef={audioRef}
                   />
                 </SwiperSlide>
               );
