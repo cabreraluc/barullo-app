@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import NextEvents from "../NextEvents/NextEvents";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -23,6 +22,9 @@ const Landing = ({ openSlider, handleColorHeader, setTurnOffLogo }) => {
   const [open, setOpen] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(null);
+  const swiperVerticalRef = useRef(null);
+  const swiperHorizontalRef = useRef(null);
+
   useEffect(() => {
     getArtists();
   }, []);
@@ -38,6 +40,28 @@ const Landing = ({ openSlider, handleColorHeader, setTurnOffLogo }) => {
     swiperVertical?.autoplay?.stop();
   };
 
+  const handleVerticalSlideChange = (swiper) => {
+    setTurnOffLogo(false);
+    setOpen(false);
+    handleColorHeader(swiper);
+
+    // Reiniciar el carrusel horizontal cuando se desliza hacia abajo
+    if (
+      swiper.activeIndex > swiper.previousIndex &&
+      swiperHorizontalRef.current
+    ) {
+      swiperHorizontalRef.current.slideTo(0, 0);
+    }
+
+    if (swiper.activeIndex === 1 && swiperHorizontalRef.current) {
+      swiperHorizontalRef.current.params.autoplay.delay = 3000;
+      swiperHorizontalRef.current.autoplay.start();
+    } else {
+      swiperHorizontalRef.current?.autoplay?.stop();
+      swiperHorizontalRef.current?.slideTo(0);
+    }
+  };
+
   return (
     <Swiper
       style={{
@@ -50,19 +74,11 @@ const Landing = ({ openSlider, handleColorHeader, setTurnOffLogo }) => {
       direction={"vertical"}
       spaceBetween={0}
       slidesPerView={1}
-      onSlideChange={(e) => {
-        setTurnOffLogo(false);
-        setOpen(false);
-        handleColorHeader(e);
-        if (e.activeIndex === 1 && swiper) {
-          swiper.params.autoplay.delay = 3000;
-          swiper.autoplay.start();
-        } else {
-          swiper?.autoplay?.stop();
-          swiper?.slideTo(0);
-        }
+      onSlideChange={handleVerticalSlideChange}
+      onSwiper={(swiper) => {
+        setSwiperVertical(swiper);
+        swiperVerticalRef.current = swiper;
       }}
-      onSwiper={(swiper) => setSwiperVertical(swiper)}
       scrollbar={{ draggable: true }}
       autoplay={{
         delay: 5000,
@@ -87,7 +103,10 @@ const Landing = ({ openSlider, handleColorHeader, setTurnOffLogo }) => {
             setTurnOffLogo(false);
             setOpen(false);
           }}
-          onSwiper={(swiper) => setSwiper(swiper)}
+          onSwiper={(swiper) => {
+            setSwiper(swiper);
+            swiperHorizontalRef.current = swiper;
+          }}
           scrollbar={{ draggable: true }}
           navigation={true}
           autoplay={{
@@ -121,7 +140,10 @@ const Landing = ({ openSlider, handleColorHeader, setTurnOffLogo }) => {
             setTurnOffLogo(false);
             setOpen(false);
           }}
-          onSwiper={(swiper) => setSwiper(swiper)}
+          onSwiper={(swiper) => {
+            setSwiper(swiper);
+            swiperHorizontalRef.current = swiper;
+          }}
           scrollbar={{ draggable: true }}
           navigation={true}
           autoplay={{
