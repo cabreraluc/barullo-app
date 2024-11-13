@@ -49,7 +49,7 @@ export const Card = styled.div`
 
 export const Container = styled.div`
   display: flex;
-  justify-content: center;
+
   align-items: center;
   background-color: rgb(0, 0, 0, 0.5);
   height: 20%;
@@ -86,7 +86,7 @@ export const Title = styled.div`
   width: 100%;
   font-size: 3vh;
   font-weight: 500;
-  font-family: "Oswald", sans-serif;
+  font-family: Chakra Petch, sans-serif;
   text-align: center;
 `;
 
@@ -96,7 +96,7 @@ export const Body = styled.div`
   align-items: center;
   width: 100%;
   font-weight: 400;
-  font-family: "Oswald", sans-serif;
+  font-family: Chakra Petch, sans-serif;
   font-size: 1.2rem;
   color: white;
   text-align: center;
