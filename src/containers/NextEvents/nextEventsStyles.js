@@ -30,14 +30,20 @@ export const Card = styled.div`
 
   /* Aplica el filtro inicial */
   filter: hue-rotate(0deg);
-  animation: redFilterAnimation 5s infinite;
+  animation: redFilterAnimation 2s infinite;
 
   @keyframes redFilterAnimation {
     0% {
       filter: hue-rotate(0deg); /* Empieza sin color */
     }
+    25% {
+      filter: hue-rotate(90deg); /* Empieza sin color */
+    }
     50% {
       filter: hue-rotate(180deg); /* Cambia el color a rojo */
+    }
+    75% {
+      filter: hue-rotate(270); /* Cambia el color a rojo */
     }
     100% {
       filter: hue-rotate(360deg); /* Vuelve al color original */
@@ -49,10 +55,11 @@ export const Card = styled.div`
 
 export const Container = styled.div`
   display: flex;
-
+  justify-content: center;
   align-items: center;
   background-color: rgb(0, 0, 0, 0.5);
-  height: 20%;
+  margin-bottom: 2rem;
+  height: 15%;
   width: 100%;
   flex-direction: column;
 `;
@@ -82,11 +89,11 @@ export const Title = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: lightGray;
   width: 100%;
-  font-size: 3vh;
-  font-weight: 500;
-  font-family: Chakra Petch, sans-serif;
+  font-size: 1rem;
+  font-weight: 200;
+  font-family: "Montserrat";
   text-align: center;
 `;
 
@@ -95,8 +102,8 @@ export const Body = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  font-weight: 400;
-  font-family: Chakra Petch, sans-serif;
+  font-weight: 200;
+  font-family: "Montserrat";
   font-size: 1.2rem;
   color: white;
   text-align: center;
