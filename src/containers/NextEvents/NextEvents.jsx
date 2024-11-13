@@ -22,7 +22,7 @@ const NextEvents = ({ img }) => {
       <Card image={img}>
         <Container>
           {/* <LeftSection> */}
-          <Title> Mandanos un MD para comprar tu entrada</Title>
+          <Title> Reserva tu entrada en nuestra página de instagram</Title>
 
           <Body onClick={redirectToInstagram}>Click acá</Body>
           {/* <Body>Lomas de Zamora</Body> */}
