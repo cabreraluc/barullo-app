@@ -11,18 +11,22 @@ import {
 } from "./nextEventsStyles";
 import { useNavigate } from "react-router-dom";
 
+const redirectToInstagram = () => {
+  window.location.href = "https://www.instagram.com/barullo.rave/";
+};
+
 const NextEvents = ({ img }) => {
   const navigate = useNavigate();
   return (
     <NextEventsContainer>
       <Card image={img}>
         <Container>
-          <LeftSection>
-            <Title>PRÓXIMAMENTE</Title>
-            {/* 
-            <Body>24/5 00:00hs</Body>
-            <Body>Lomas de Zamora</Body> */}
-          </LeftSection>
+          {/* <LeftSection> */}
+          <Title> Mandanos un MD para comprar tu entrada</Title>
+
+          <Body onClick={redirectToInstagram}>Click acá</Body>
+          {/* <Body>Lomas de Zamora</Body> */}
+          {/* </LeftSection> */}
           {/* <RightSection>
             <BuyTicketButton
               style={{ cursor: "pointer" }}

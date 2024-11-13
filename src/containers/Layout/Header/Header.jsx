@@ -16,7 +16,12 @@ import logoWhite from "../../../assets/images/logobarullo-white.png";
 
 import DrawerContainer from "../Drawer/DrawerContainer";
 
-export default function Header({ setOpenSlider, colorHeader, turnOffLogo }) {
+export default function Header({
+  setOpenSlider,
+  colorHeader,
+  turnOffLogo,
+  setRedFilter,
+}) {
   const { pathname } = useLocation();
   const { logOut } = useLogin();
   const navigate = useNavigate();
@@ -24,6 +29,11 @@ export default function Header({ setOpenSlider, colorHeader, turnOffLogo }) {
   const handleRedirect = (path) => {
     navigate(path);
   };
+
+  const handleLogoClick = () => {
+    setRedFilter((prev) => !prev);
+  };
+
   return !turnOffLogo ? (
     <HeaderContainer>
       <BurgerMenuContainer>
@@ -46,7 +56,7 @@ export default function Header({ setOpenSlider, colorHeader, turnOffLogo }) {
           ></ShortTextIcon>
         </DrawerContainer>
       </BurgerMenuContainer>
-      <LogoContainer>
+      <LogoContainer onClick={handleLogoClick}>
         {pathname !== "/" ? null : (
           <LogoImg
             src={colorHeader === "black" ? logoBlack : logoWhite}

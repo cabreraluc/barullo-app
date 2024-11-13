@@ -13,9 +13,10 @@ import useArtists from "../ArtistsPanel/useArtists";
 import NextEventsImg from "../../assets/images/nextevents.jpg";
 import usImage from "../../assets/images/usImage.jpg";
 import usImage2 from "../../assets/images/usImage2.jpg";
+import flyer from "../../assets/images/flyer.jpg";
 
 const Landing = ({ openSlider, handleColorHeader, setTurnOffLogo }) => {
-  const firstSectionImages = [usImage, usImage2];
+  const firstSectionImages = [flyer];
   const { getArtists, allArtists } = useArtists();
   const [swiper, setSwiper] = useState(null);
   const [swiperVertical, setSwiperVertical] = useState(null);
@@ -124,93 +125,6 @@ const Landing = ({ openSlider, handleColorHeader, setTurnOffLogo }) => {
           })}
         </Swiper>
       </SwiperSlide>
-      <SwiperSlide>
-        <Swiper
-          style={{
-            height: "100%",
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-          onTouchStart={handleHorizontalTouchStart}
-          spaceBetween={0}
-          slidesPerView={1}
-          onSlideChange={(e) => {
-            setTurnOffLogo(false);
-            setOpen(false);
-          }}
-          onSwiper={(swiper) => {
-            setSwiper(swiper);
-            swiperHorizontalRef.current = swiper;
-          }}
-          scrollbar={{ draggable: true }}
-          navigation={true}
-          autoplay={{
-            disableOnInteraction: true,
-            delay: 2500,
-          }}
-          modules={[Autoplay, Pagination, Navigation]}
-        >
-          {allArtists.length ? (
-            allArtists.map((e, index) => {
-              const color =
-                e.status !== "active"
-                  ? "black-white"
-                  : Number.isInteger((index + 1) / 2)
-                  ? "violet"
-                  : "green";
-              return (
-                <SwiperSlide key={e._id}>
-                  <Artists
-                    setTurnOffLogo={setTurnOffLogo}
-                    titles={[
-                      `${e.artistName}${
-                        e.secondaryArtistName
-                          ? " & " + e.secondaryArtistName
-                          : ""
-                      }`,
-                    ]}
-                    body={e.shortDescription}
-                    description={e.description}
-                    image={e.primaryImage}
-                    soundCloud={e.soundCloud}
-                    instagram={e.instagram}
-                    artistName={e.artistName}
-                    secondaryArtistName={e.secondaryArtistName}
-                    spotify={e.spotify}
-                    youtube={e.youtube}
-                    soundCloudSecondary={e.soundCloudSecondary}
-                    instagramSecondary={e.instagramSecondary}
-                    spotifySecondary={e.spotifySecondary}
-                    youtubeSecondary={e.youtubeSecondary}
-                    secondaryImage={e.secondaryImage}
-                    name={e.artistName}
-                    color={color}
-                    open={open}
-                    setOpen={setOpen}
-                    setIsPlaying={setIsPlaying}
-                    isPlaying={isPlaying}
-                    audioRef={audioRef}
-                  />
-                </SwiperSlide>
-              );
-            })
-          ) : (
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "white",
-                fontSize: "2rem",
-              }}
-            >
-              CARGANDO
-            </div>
-          )}
-        </Swiper>
-      </SwiperSlide>
 
       <SwiperSlide>
         <Merch />
@@ -223,3 +137,91 @@ const Landing = ({ openSlider, handleColorHeader, setTurnOffLogo }) => {
 };
 
 export default Landing;
+
+// <SwiperSlide>
+// <Swiper
+//   style={{
+//     height: "100%",
+//     width: "100%",
+//     display: "flex",
+//     justifyContent: "center",
+//     alignItems: "center",
+//   }}
+//   onTouchStart={handleHorizontalTouchStart}
+//   spaceBetween={0}
+//   slidesPerView={1}
+//   onSlideChange={(e) => {
+//     setTurnOffLogo(false);
+//     setOpen(false);
+//   }}
+//   onSwiper={(swiper) => {
+//     setSwiper(swiper);
+//     swiperHorizontalRef.current = swiper;
+//   }}
+//   scrollbar={{ draggable: true }}
+//   navigation={true}
+//   autoplay={{
+//     disableOnInteraction: true,
+//     delay: 2500,
+//   }}
+//   modules={[Autoplay, Pagination, Navigation]}
+// >
+//   {allArtists.length ? (
+//     allArtists.map((e, index) => {
+//       const color =
+//         e.status !== "active"
+//           ? "black-white"
+//           : Number.isInteger((index + 1) / 2)
+//           ? "violet"
+//           : "green";
+//       return (
+//         <SwiperSlide key={e._id}>
+//           <Artists
+//             setTurnOffLogo={setTurnOffLogo}
+//             titles={[
+//               `${e.artistName}${
+//                 e.secondaryArtistName
+//                   ? " & " + e.secondaryArtistName
+//                   : ""
+//               }`,
+//             ]}
+//             body={e.shortDescription}
+//             description={e.description}
+//             image={e.primaryImage}
+//             soundCloud={e.soundCloud}
+//             instagram={e.instagram}
+//             artistName={e.artistName}
+//             secondaryArtistName={e.secondaryArtistName}
+//             spotify={e.spotify}
+//             youtube={e.youtube}
+//             soundCloudSecondary={e.soundCloudSecondary}
+//             instagramSecondary={e.instagramSecondary}
+//             spotifySecondary={e.spotifySecondary}
+//             youtubeSecondary={e.youtubeSecondary}
+//             secondaryImage={e.secondaryImage}
+//             name={e.artistName}
+//             color={color}
+//             open={open}
+//             setOpen={setOpen}
+//             setIsPlaying={setIsPlaying}
+//             isPlaying={isPlaying}
+//             audioRef={audioRef}
+//           />
+//         </SwiperSlide>
+//       );
+//     })
+//   ) : (
+//     <div
+//       style={{
+//         display: "flex",
+//         alignItems: "center",
+//         justifyContent: "center",
+//         color: "white",
+//         fontSize: "2rem",
+//       }}
+//     >
+//       CARGANDO
+//     </div>
+//   )}
+// </Swiper>
+// </SwiperSlide>

@@ -25,6 +25,7 @@ export const LogoContainer = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 8px;
+  cursor: pointer;
 `;
 
 export const LogoImg = styled.img`
