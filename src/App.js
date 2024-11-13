@@ -22,14 +22,15 @@ function App() {
   const { pathname } = useLocation();
   const user = useAuth();
   const [openSlider, setOpenSlider] = useState(false);
-  const [colorHeader, setColorHeader] = useState("black");
+  const [colorHeader, setColorHeader] = useState("white");
   const [turnOffLogo, setTurnOffLogo] = useState(false);
+  const [redFilter, setRedFilter] = useState(false);
 
   const handleColorHeader = (event) => {
-    if (event.activeIndex === 1) {
-      setColorHeader("white");
-    } else {
+    if (event.activeIndex === 2) {
       setColorHeader("black");
+    } else {
+      setColorHeader("white");
     }
   };
 
@@ -37,7 +38,7 @@ function App() {
     if (pathname === "/event-information") {
       setColorHeader("white");
     } else if (pathname === "/") {
-      setColorHeader("black");
+      setColorHeader("white");
     }
   };
 
@@ -47,17 +48,21 @@ function App() {
 
   return (
     <div
-      style={
-        openSlider
-          ? { marginLeft: "300px", transition: "0.23s", width: "100vw" }
-          : { marginLeft: "0px", transition: "0.19s" }
-      }
+      style={{
+        marginLeft: openSlider ? "300px" : "0px",
+        transition: openSlider ? "0.23s" : "0.19s",
+        width: "100vw",
+        filter: redFilter
+          ? "sepia(100%) saturate(300%) brightness(70%) hue-rotate(300deg)"
+          : "none",
+      }}
       className="App"
     >
       <Header
         setOpenSlider={setOpenSlider}
         turnOffLogo={turnOffLogo}
         colorHeader={colorHeader}
+        setRedFilter={setRedFilter}
       />
       <Routes>
         <Route />

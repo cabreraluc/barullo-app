@@ -1,4 +1,3 @@
-import NextEventsImg from "../../assets/images/nextevents.jpg";
 import {
   NextEventsContainer,
   Card,
@@ -12,26 +11,30 @@ import {
 } from "./nextEventsStyles";
 import { useNavigate } from "react-router-dom";
 
-const NextEvents = () => {
+const redirectToInstagram = () => {
+  window.location.href = "https://www.instagram.com/barullo.rave/";
+};
+
+const NextEvents = ({ img }) => {
   const navigate = useNavigate();
   return (
     <NextEventsContainer>
-      <Card image={NextEventsImg}>
+      <Card image={img}>
         <Container>
-          <LeftSection>
-            <Title>BARULLO</Title>
+          {/* <LeftSection> */}
+          <Title> Mandanos un MD para comprar tu entrada</Title>
 
-            <Body>24/5 00:00hs</Body>
-            <Body>Lomas de Zamora</Body>
-          </LeftSection>
-          <RightSection>
+          <Body onClick={redirectToInstagram}>Click acá</Body>
+          {/* <Body>Lomas de Zamora</Body> */}
+          {/* </LeftSection> */}
+          {/* <RightSection>
             <BuyTicketButton
               style={{ cursor: "pointer" }}
               onClick={() => navigate("/event-information")}
             >
               <ButtonText>Compra tu Ticket</ButtonText>
             </BuyTicketButton>
-          </RightSection>
+          </RightSection> */}
         </Container>
       </Card>
     </NextEventsContainer>
