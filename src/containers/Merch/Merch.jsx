@@ -18,6 +18,7 @@ const Merch = () => {
               width: "100%",
               justifyContent: "center",
               alignItems: "center",
+              fontFamily: "Oswald",
             }}
           >
             PROXIMAMENTE
