@@ -15,7 +15,6 @@ export const PaymentSectionContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  
 `;
 
 export const Title = styled.div`
@@ -30,7 +29,7 @@ export const Date = styled.div`
   align-items: center;
   justify-content: center;
   h2 {
-    font-family: Chakra Petch, sans-serif;
+    font-family: "Oswald";
   }
 `;
 export const Time = styled.div`
@@ -72,7 +71,7 @@ export const BotonDeTickets = styled.div`
 export const TextoDelBoton = styled.div`
   cursor: pointer;
   color: white;
-  font-family: Chakra Petch, sans-serif;
+  font-family: "Oswald";
 `;
 
 export const TandaTitle = styled.div`
@@ -82,7 +81,7 @@ export const TandaTitle = styled.div`
   justify-content: center;
   height: 5%;
   h2 {
-    font-family: Chakra Petch, sans-serif;
+    font-family: "Oswald";
   }
 `;
 

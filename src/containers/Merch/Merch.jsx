@@ -21,7 +21,7 @@ const Merch = () => {
               fontFamily: "Oswald",
             }}
           >
-            PROXIMAMENTE
+            PRÓXIMAMENTE
           </div>
           <Item>
             {" "}

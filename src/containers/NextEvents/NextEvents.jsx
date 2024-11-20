@@ -21,20 +21,19 @@ const NextEvents = ({ img }) => {
   return (
     <NextEventsContainer>
       <Card image={img}>
-        <SpaceshipLoader />
         <Container>
           <LeftSection>
-            <Title> Proximamente</Title>
+            <Title> Próximamente</Title>
 
             {/* <Body>Lomas de Zamora</Body> */}
           </LeftSection>
           <RightSection>
-            {/* <BuyTicketButton
+            <BuyTicketButton
               style={{ cursor: "pointer" }}
               onClick={() => navigate("/event-information")}
             >
               <ButtonText>Compra tu Ticket</ButtonText>
-            </BuyTicketButton> */}
+            </BuyTicketButton>
           </RightSection>
         </Container>
       </Card>

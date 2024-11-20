@@ -17,7 +17,7 @@ import flyer from "../../assets/images/flyer.jpg";
 import SpaceshipLoader from "../../components/Loader/SpaceshipLoader";
 
 const Landing = ({ openSlider, handleColorHeader, setTurnOffLogo }) => {
-  const firstSectionImages = [usImage, usImage2];
+  const firstSectionImages = [usImage];
   const { getArtists, allArtists } = useArtists();
   const [swiper, setSwiper] = useState(null);
   const [swiperVertical, setSwiperVertical] = useState(null);
