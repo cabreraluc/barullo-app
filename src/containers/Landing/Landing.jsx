@@ -103,7 +103,7 @@ const Landing = ({ openSlider, handleColorHeader, setTurnOffLogo }) => {
           slidesPerView={1}
           onSlideChange={(e) => {
             setTurnOffLogo(false);
-            setOpen(false);
+            // setOpen(false);
           }}
           onSwiper={(swiper) => {
             setSwiper(swiper);
@@ -139,7 +139,7 @@ const Landing = ({ openSlider, handleColorHeader, setTurnOffLogo }) => {
           spaceBetween={0}
           slidesPerView={1}
           onSlideChange={(e) => {
-            setTurnOffLogo(false);
+            // setTurnOffLogo(false);
             setOpen(false);
           }}
           onSwiper={(swiper) => {

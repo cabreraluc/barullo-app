@@ -118,7 +118,7 @@ const Artists = ({
                     }}
                     onClick={() => {
                       setOpen(true);
-                      setTurnOffLogo(true);
+                      // setTurnOffLogo(true);
                     }}
                   >
                     {`More of ${name}`}

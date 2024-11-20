@@ -7,7 +7,11 @@ export const HeaderContainer = styled.div`
   flex-direction: row;
   height: 10%;
   background-color: black;
-  z-index: 3;
+  z-index: 10;
+  position: sticky;
+  box-shadow: -1px 10px 12px -4px rgba(0, 0, 0, 0.82);
+  -webkit-box-shadow: -1px 10px 12px -4px rgba(0, 0, 0, 0.82);
+  -moz-box-shadow: -1px 10px 12px -4px rgba(0, 0, 0, 0.82);
 `;
 
 export const UserContainer = styled.div`

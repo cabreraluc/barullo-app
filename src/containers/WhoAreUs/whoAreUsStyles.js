@@ -20,7 +20,7 @@ export const Card = styled.div`
   overflow: hidden;
 `;
 export const Title = styled.div`
-  font-family: "Montserrat";
+  font-family: "Oswald";
   width: 100%;
   justify-content: start;
   display: flex;
@@ -33,12 +33,11 @@ export const Title = styled.div`
 export const Body = styled.div`
   align-items: start;
   justify-content: center;
-  font-family: "Montserrat";
   width: 60%;
   display: flex;
 
   font-size: 2vh;
-  font-weight: 200;
+  font-weight: 300;
   height: 53%;
   text-aling: center;
 `;
