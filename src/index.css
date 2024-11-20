@@ -6,12 +6,7 @@
 html,
 body {
   height: 100%;
-  overflow: hidden;
   width: 100%;
   margin: 0;
   padding: 0;
-}
-
-body.swal2-shown {
-  overflow: auto !important;
 }

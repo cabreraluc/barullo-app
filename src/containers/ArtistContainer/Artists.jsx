@@ -128,11 +128,11 @@ const Artists = ({
             </SubContainerClosed>
           ) : (
             <SubContainerOpened>
-              <MusicPlayer
+              {/* <MusicPlayer
                 audioRef={audioRef}
                 isPlaying={isPlaying}
                 setIsPlaying={setIsPlaying}
-              />
+              /> */}
               <ArrowDropDownIcon
                 style={{
                   color: "white",

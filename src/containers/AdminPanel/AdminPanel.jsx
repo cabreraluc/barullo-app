@@ -9,7 +9,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { sectionsAdminPanel } from "../../utils/constants";
 
 const AdminPanel = () => {
-  const [selectedSection, setSelectedSection] = useState("eventos");
+  const [selectedSection, setSelectedSection] = useState("Eventos");
   const handleSelectSection = (s) => {
     setSelectedSection(s);
   };
@@ -20,7 +20,7 @@ const AdminPanel = () => {
         <FormControl
           sx={{
             width: "100%",
-            height: "15vh",
+            height: "100%",
 
             display: "flex",
             justifyContent: "center",
@@ -31,20 +31,24 @@ const AdminPanel = () => {
             sx={{
               width: "10rem",
               height: "1.6rem",
+              fontFamily: "Oswald",
             }}
-            MenuProps={{ disableScrollLock: true }}
             onChange={(e) => handleSelectSection(e.target.value)}
             value={selectedSection}
           >
             {sectionsAdminPanel.map((section) => {
-              return <MenuItem value={section}>{section}</MenuItem>;
+              return (
+                <MenuItem sx={{ fontFamily: "Oswald" }} value={section}>
+                  {section}
+                </MenuItem>
+              );
             })}
           </Select>
         </FormControl>
       </Section>
-      {selectedSection === "eventos" ? (
+      {selectedSection === "Eventos" ? (
         <EventsPanel></EventsPanel>
-      ) : selectedSection === "artistas" ? (
+      ) : selectedSection === "Artistas" ? (
         <ArtistsPanel></ArtistsPanel>
       ) : (
         <UsersPanel></UsersPanel>

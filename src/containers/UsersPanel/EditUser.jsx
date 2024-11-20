@@ -151,7 +151,6 @@ const EditUser = () => {
             >
               <InputLabel id="rol-label">Rol</InputLabel>
               <Select
-                MenuProps={{ disableScrollLock: true }}
                 onChange={handleChange}
                 name="role"
                 error={errors[1]?.role}

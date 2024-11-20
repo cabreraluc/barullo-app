@@ -128,12 +128,12 @@ const Searcher = ({
         value={search}
         id="standard-basic"
         label={
-          context === "users"
-            ? "Search user"
-            : context === "clients"
-            ? "Search client"
-            : context === "prospects"
-            ? "Search prospect"
+          context === "artists"
+            ? "Buscar artista"
+            : context === "users"
+            ? "Buscar usuario"
+            : context === "events"
+            ? "Buscar evento"
             : "Search event"
         }
         variant={context !== "calendar" ? "standard" : "outlined"}

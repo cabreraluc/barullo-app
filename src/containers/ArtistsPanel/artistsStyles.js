@@ -4,10 +4,8 @@ import { Box } from "@mui/material";
 export const ArtistsContainer = styled.div`
   display: flex;
   flex-direction: column;
-
   align-items: center;
   width: 100%;
-  height: 100%;
 `;
 export const ArtistsList = styled.div`
   display: flex;
@@ -16,7 +14,7 @@ export const ArtistsList = styled.div`
   align-items: center;
 
   width: 85%;
-  height: 90%;
+
   margin-left: 2rem;
   margin-right: 2rem;
   margin-top: 3rem;

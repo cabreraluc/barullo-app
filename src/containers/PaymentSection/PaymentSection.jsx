@@ -20,7 +20,7 @@ import GlosterLogo from "../../assets/images/Gloster logo blanco.png";
 import trypLogo from "../../assets/images/trypUnit.png";
 import MartinaHLogo from "../../assets/images/MartinaHobelarLogo.png";
 import { useEffect, useState } from "react";
-
+import SpaceshipLoader from "../../components/Loader/SpaceshipLoader";
 const PaymentSection = () => {
   const {
     sale,
@@ -78,6 +78,7 @@ const PaymentSection = () => {
         <TandaTitle>
           <h2>SEGUNDA TANDA</h2>
         </TandaTitle>
+        <SpaceshipLoader />
         <LogosSection>
           <img
             style={{

@@ -17,13 +17,17 @@ export default function ArtistsTable({ allArtists, disableArtist }) {
   return (
     <TableContainer
       component={Paper}
-      sx={{ height: "100%", boxShadow: "none", backgroundColor: "transparent" }}
+      sx={{ boxShadow: "none", backgroundColor: "transparent" }}
     >
       <Table aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell align="left">Artist name</TableCell>
-            <TableCell align="left">Status</TableCell>
+            <TableCell sx={{ fontFamily: "Oswald" }} align="left">
+              Artist name
+            </TableCell>
+            <TableCell sx={{ fontFamily: "Oswald" }} align="left">
+              Status
+            </TableCell>
             <TableCell sx={{ width: "1.5rem" }} align="left"></TableCell>
             <TableCell sx={{ width: "1.5rem" }} align="left"></TableCell>
           </TableRow>
