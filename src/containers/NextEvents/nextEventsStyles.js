@@ -46,8 +46,6 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   background-color: rgb(0, 0, 0, 0.5);
-  margin-bottom: 2rem;
-  height: 15%;
   width: 100%;
   flex-direction: column;
 `;

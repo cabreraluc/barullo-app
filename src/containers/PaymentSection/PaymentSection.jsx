@@ -62,54 +62,13 @@ const PaymentSection = () => {
   return (
     <PaymentSectionContainer>
       <Container>
-        <img
-          src={logo}
-          style={{
-            width: "80vw",
-            maxWidth: "400px",
-          }}
-          alt=""
-        />
         <DateSection>
           <Date>
-            <h2>24/5 - 00:00hs</h2>
+            <h2>Fecha - Hora</h2>
           </Date>
         </DateSection>
-        <TandaTitle>
-          <h2>SEGUNDA TANDA</h2>
-        </TandaTitle>
-        <SpaceshipLoader />
-        <LogosSection>
-          <img
-            style={{
-              width: "25%",
-              maxWidth: "200px",
-            }}
-            src={GlosterLogo}
-          ></img>
-          <img
-            style={{
-              width: "25%",
-              maxWidth: "200px",
-            }}
-            src={trypLogo}
-          ></img>
-          <div
-            style={{
-              width: "25%",
-              maxWidth: "150px",
-              display: "flex",
-              justifyContent: "end",
-            }}
-          >
-            <img
-              style={{
-                width: "80%",
-              }}
-              src={MartinaHLogo}
-            ></img>
-          </div>
-        </LogosSection>
+        <TandaTitle>Tanda</TandaTitle>
+
         <div
           style={{
             minHeight: "300px",
@@ -131,46 +90,7 @@ const PaymentSection = () => {
                   alignItems: "center",
                   gap: "10px",
                 }}
-              >
-                <input
-                  type="text"
-                  value={codigoDeDescuento}
-                  onChange={handleChangeCodigoDeDescuento}
-                  placeholder="Ingresa tu código de descuento"
-                  style={{
-                    backgroundColor: "black",
-                    color: "white",
-                    border: "solid 1px white",
-                    padding: "1rem",
-                    width: "13rem",
-                    textAlign: "center",
-                    fontFamily: "Chakra Petch, sans-serif",
-                  }}
-                />
-                <button
-                  onClick={ValidarCodigoDeDescuento}
-                  style={{
-                    backgroundColor: "black",
-                    color: "white",
-                    border: "solid 1px white",
-                    padding: "0.4rem",
-
-                    textAlign: "center",
-                  }}
-                >
-                  Validar código
-                </button>
-                {estadoDeCodigoIngresado !== "-" && (
-                  <p
-                    style={{
-                      color: estadoDeCodigoIngresado.color,
-                      fontSize: "12px",
-                    }}
-                  >
-                    {estadoDeCodigoIngresado.label}
-                  </p>
-                )}
-              </div>
+              ></div>
             )}
             {!sale && (
               <CuerpoDelFormularioComponente

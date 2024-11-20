@@ -57,7 +57,7 @@ export default function Header({
         </DrawerContainer>
       </BurgerMenuContainer>
       <LogoContainer onClick={handleLogoClick}>
-        {pathname === "/" ? (
+        {pathname === "/" || pathname === "/event-information" ? (
           <LogoImg src={logoWhite}></LogoImg>
         ) : pathname === "/admin-panel" ? (
           <h1 style={{ color: "white", fontSize: "2rem" }}>Administración</h1>
