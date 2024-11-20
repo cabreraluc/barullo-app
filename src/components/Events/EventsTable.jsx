@@ -17,8 +17,10 @@ export default function UsersTable({ allEvents, disableEvent }) {
       <Table sx={{}} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Nombre</TableCell>
-            <TableCell align="left">Fecha</TableCell>
+            <TableCell sx={{ fontFamily: "Oswald" }}>Nombre</TableCell>
+            <TableCell sx={{ fontFamily: "Oswald" }} align="left">
+              Fecha
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

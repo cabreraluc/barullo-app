@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import ArtistsTable from "../../components/Artists/ArtistsTable";
 import Searcher from "../../components/Searcher/Searcher";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
+import SpaceshipLoader from "../../components/Loader/SpaceshipLoader";
 
 const ArtistsPanel = () => {
   const navigate = useNavigate();
@@ -28,18 +29,18 @@ const ArtistsPanel = () => {
           fontSize="large"
         ></AddCircleIcon>
       </ButtonContainer>
-      <Searcher list={allArtists} setList={setAllArtists} context={"artist"} />
-      <ArtistsList>
-        {isLoading ? (
-          <h1>Loading...</h1>
-        ) : (
+      <Searcher list={allArtists} setList={setAllArtists} context={"artists"} />
+      {isLoading ? (
+        <SpaceshipLoader />
+      ) : (
+        <ArtistsList>
           <ArtistsTable
             allArtists={allArtists}
             disableArtist={disableArtist}
             isLoading={isLoading}
           />
-        )}
-      </ArtistsList>
+        </ArtistsList>
+      )}
     </ArtistsContainer>
   );
 };

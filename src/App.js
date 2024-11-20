@@ -17,6 +17,7 @@ import AddArtist from "./containers/ArtistsPanel/AddArtist";
 import EditArtist from "./containers/ArtistsPanel/EditArtist";
 import PaymentSection from "./containers/PaymentSection/PaymentSection";
 import QRScanner from "./containers/QRScanner/QRScanner";
+import { height } from "@mui/system";
 
 function App() {
   const { pathname } = useLocation();
@@ -51,7 +52,6 @@ function App() {
       style={{
         marginLeft: openSlider ? "300px" : "0px",
         transition: openSlider ? "0.23s" : "0.19s",
-        width: "100vw",
         filter: redFilter
           ? "sepia(100%) saturate(300%) brightness(70%) hue-rotate(300deg)"
           : "none",
@@ -64,33 +64,33 @@ function App() {
         colorHeader={colorHeader}
         setRedFilter={setRedFilter}
       />
-      <Routes>
-        <Route />
-
-        <Route path="/unauthorized" element={<Unauthorized />} />
-        <Route
-          path="/"
-          element={
-            <Landing
-              setTurnOffLogo={setTurnOffLogo}
-              handleColorHeader={handleColorHeader}
-              openSlider={openSlider}
-            />
-          }
-        />
-        <Route path="/login" element={<Login />} />
-        <Route path="/event-information" element={<PaymentSection />} />
-        <Route element={<PrivateRoute />}>
-          <Route path="/scanner" element={<QRScanner />} />
-          <Route path="/admin-panel" element={<AdminPanel />} />
-          <Route path="/add-event" element={<AddEvent />} />
-          <Route path="/edit-event" element={<EditEvent />} />
-          <Route path="/add-user" element={<AddUser />} />
-          <Route path="/edit-user/:id" element={<EditUser />} />
-          <Route path="/add-artist" element={<AddArtist />} />
-          <Route path="/edit-artist/:id" element={<EditArtist />} />
-        </Route>
-      </Routes>
+      <div style={{ height: "90%" }}>
+        <Routes>
+          <Route path="/unauthorized" element={<Unauthorized />} />
+          <Route
+            path="/"
+            element={
+              <Landing
+                setTurnOffLogo={setTurnOffLogo}
+                handleColorHeader={handleColorHeader}
+                openSlider={openSlider}
+              />
+            }
+          />
+          <Route path="/login" element={<Login />} />
+          <Route path="/event-information" element={<PaymentSection />} />
+          <Route element={<PrivateRoute />}>
+            <Route path="/scanner" element={<QRScanner />} />
+            <Route path="/admin-panel" element={<AdminPanel />} />
+            <Route path="/add-event" element={<AddEvent />} />
+            <Route path="/edit-event" element={<EditEvent />} />
+            <Route path="/add-user" element={<AddUser />} />
+            <Route path="/edit-user/:id" element={<EditUser />} />
+            <Route path="/add-artist" element={<AddArtist />} />
+            <Route path="/edit-artist/:id" element={<EditArtist />} />
+          </Route>
+        </Routes>
+      </div>
     </div>
   );
 }

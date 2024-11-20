@@ -1,4 +1,4 @@
-export const sectionsAdminPanel = ["eventos", "artistas", "usuarios"];
+export const sectionsAdminPanel = ["Eventos", "Artistas", "Usuarios"];
 
 export const BotonesPaymentSection = [
   { text: "x1 Tickets $5.500", promo: 1, text2: "x1 Ticket $3.850" },

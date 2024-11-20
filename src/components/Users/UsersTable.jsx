@@ -22,8 +22,12 @@ export default function UsersTable({ allUsers, disableUser }) {
       <Table aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell align="left">Email</TableCell>
-            <TableCell align="left">Rol</TableCell>
+            <TableCell sx={{ fontFamily: "Oswald" }} align="left">
+              Email
+            </TableCell>
+            <TableCell sx={{ fontFamily: "Oswald" }} align="left">
+              Rol
+            </TableCell>
             <TableCell sx={{ width: "1.5rem" }} align="left"></TableCell>
             <TableCell sx={{ width: "1.5rem" }} align="left"></TableCell>
           </TableRow>

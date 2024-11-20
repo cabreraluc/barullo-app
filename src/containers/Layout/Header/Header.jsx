@@ -57,11 +57,11 @@ export default function Header({
         </DrawerContainer>
       </BurgerMenuContainer>
       <LogoContainer onClick={handleLogoClick}>
-        {pathname !== "/" ? null : (
-          <LogoImg
-            src={colorHeader === "black" ? logoBlack : logoWhite}
-          ></LogoImg>
-        )}
+        {pathname === "/" ? (
+          <LogoImg src={logoWhite}></LogoImg>
+        ) : pathname === "/admin-panel" ? (
+          <h1 style={{ color: "white", fontSize: "2rem" }}>Administración</h1>
+        ) : null}
       </LogoContainer>
 
       <UserContainer></UserContainer>

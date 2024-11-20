@@ -45,6 +45,8 @@ export default function useArtists() {
         }
         return 0;
       });
+
+      console.log(sortedArtists);
       setAllArtists(sortedArtists);
     } catch (error) {
       console.log(error);

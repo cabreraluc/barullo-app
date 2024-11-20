@@ -48,7 +48,7 @@ export const TitleContainer = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-family: "Montserrat", sans-serif;
+  font-family: "Oswald", sans-serif;
   font-size: 2.5rem;
   font-weight: 400;
 `;
@@ -80,6 +80,7 @@ export const ButtonMUi = styled.button`
   font-weight: 500;
   cursor: pointer;
   border-radius: 20px;
+
   &:hover {
     background-color: black;
   }

@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import UsersTable from "../../components/Users/UsersTable";
 import Searcher from "../../components/Searcher/Searcher";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
+import SpaceshipLoader from "../../components/Loader/SpaceshipLoader";
 
 const UsersPanel = () => {
   const { isLoading, disableUser, getUsers, allUsers, setAllUsers } =
@@ -23,17 +24,17 @@ const UsersPanel = () => {
         ></AddCircleIcon>
       </ButtonContainer>
       <Searcher list={allUsers} setList={setAllUsers} context={"users"} />
-      <UsersList>
-        {isLoading ? (
-          <h1>Loading...</h1>
-        ) : (
+      {isLoading ? (
+        <SpaceshipLoader />
+      ) : (
+        <UsersList>
           <UsersTable
             allUsers={allUsers}
             disableUser={disableUser}
             isLoading={isLoading}
           />
-        )}
-      </UsersList>
+        </UsersList>
+      )}
     </UsersContainer>
   );
 };

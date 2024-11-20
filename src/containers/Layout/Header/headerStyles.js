@@ -5,9 +5,8 @@ export const HeaderContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   flex-direction: row;
-  padding: 0.5rem 0rem;
-  position: fixed;
-
+  height: 10%;
+  background-color: black;
   z-index: 3;
 `;
 

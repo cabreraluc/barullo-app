@@ -4,7 +4,7 @@ export const PanelContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: start;
-  padding-top: 10%;
+  padding-top: 2rem;
   width: 100%;
   height: 100%;
   flex-direction: column;
@@ -28,7 +28,7 @@ export const Section = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 6vh;
+
   background-color: transparent;
 `;
 
