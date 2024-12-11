@@ -48,6 +48,7 @@ export const Container = styled.div`
   background-color: rgb(0, 0, 0, 0.5);
   width: 100%;
   flex-direction: column;
+  padding: 2rem;
 `;
 
 export const LeftSection = styled.div`
@@ -79,7 +80,6 @@ export const Title = styled.div`
   width: 100%;
   font-size: 2rem;
   font-weight: 400;
-  font-family: "Oswald", sans-serif;
   text-align: center;
 `;
 
@@ -100,21 +100,15 @@ export const BuyTicketButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 60%;
+  width: 80%;
+  background-color: black;
+  font-family: "Oswald", sans-serif;
   max-width: 20rem;
-  border-radius: 1rem;
   padding: 0.8rem;
-  color: white;
-  border: 1px solid white;
-  :hover {
-    scale: 1.1;
-    transition: 0.2s;
-  }
 `;
 
 export const ButtonText = styled.div`
   font-weight: 400;
-  font-family: "Oswald", sans-serif;
   font-size: 1.2rem;
   text-align: center;
 `;

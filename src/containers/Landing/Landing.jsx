@@ -15,6 +15,7 @@ import usImage from "../../assets/images/usImage.jpg";
 import usImage2 from "../../assets/images/usImage2.jpg";
 import flyer from "../../assets/images/flyer.jpg";
 import SpaceshipLoader from "../../components/Loader/SpaceshipLoader";
+import { CircularProgress } from "@mui/material";
 
 const Landing = ({ openSlider, handleColorHeader, setTurnOffLogo }) => {
   const firstSectionImages = [usImage];
@@ -199,7 +200,9 @@ const Landing = ({ openSlider, handleColorHeader, setTurnOffLogo }) => {
               );
             })
           ) : (
-            <SpaceshipLoader></SpaceshipLoader>
+            <div className="flex w-[100vw] h-[100vh] items-center jusitify-center">
+              <CircularProgress color="secondary" />
+            </div>
           )}
         </Swiper>
       </SwiperSlide>

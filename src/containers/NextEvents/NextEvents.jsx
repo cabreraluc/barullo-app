@@ -15,6 +15,7 @@ import SpaceshipLoader from "../../components/Loader/SpaceshipLoader";
 const redirectToInstagram = () => {
   window.location.href = "https://www.instagram.com/barullo.rave/";
 };
+const predefinedMessage = "Hola, quiero asistir al evento!";
 
 const NextEvents = ({ img }) => {
   const navigate = useNavigate();
@@ -22,17 +23,19 @@ const NextEvents = ({ img }) => {
     <NextEventsContainer>
       <Card image={img}>
         <Container>
-          <LeftSection>
-            <Title> Próximamente</Title>
-
-            {/* <Body>Lomas de Zamora</Body> */}
-          </LeftSection>
+          <LeftSection></LeftSection>
           <RightSection>
-            <BuyTicketButton
-              style={{ cursor: "pointer" }}
-              onClick={() => navigate("/event-information")}
-            >
-              <ButtonText>Compra tu Ticket</ButtonText>
+            <BuyTicketButton>
+              <ButtonText
+                style={{ cursor: "pointer" }}
+                onClick={() =>
+                  (window.location.href = `https://ig.me/m/barullo.rave/?text=${encodeURIComponent(
+                    predefinedMessage
+                  )}`)
+                }
+              >
+                Envianos un DM para comprar tu entrada
+              </ButtonText>
             </BuyTicketButton>
           </RightSection>
         </Container>
