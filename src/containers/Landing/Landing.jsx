@@ -11,14 +11,15 @@ import "swiper/css";
 import "swiper/css/pagination";
 import useArtists from "../ArtistsPanel/useArtists";
 import NextEventsImg from "../../assets/images/nextevents.jpg";
-import usImage from "../../assets/images/usImage.jpg";
-import usImage2 from "../../assets/images/usImage2.jpg";
+import usImage from "../../assets/images/ne1.jpg";
+import usImage2 from "../../assets/images/ne2.jpg";
+import usImage3 from "../../assets/images/ne3.jpg";
 import flyer from "../../assets/images/flyer.jpg";
 import SpaceshipLoader from "../../components/Loader/SpaceshipLoader";
 import { CircularProgress } from "@mui/material";
 
 const Landing = ({ openSlider, handleColorHeader, setTurnOffLogo }) => {
-  const firstSectionImages = [usImage];
+  const firstSectionImages = [usImage2, usImage, usImage3];
   const { getArtists, allArtists } = useArtists();
   const [swiper, setSwiper] = useState(null);
   const [swiperVertical, setSwiperVertical] = useState(null);

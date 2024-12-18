@@ -48,14 +48,14 @@ export const Container = styled.div`
   background-color: rgb(0, 0, 0, 0.5);
   width: 100%;
   flex-direction: column;
-  padding: 2rem;
+  padding: 1rem;
 `;
 
 export const LeftSection = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 35%;
+  width: 100%;
   flex-direction: column;
   height: 100%;
   padding: 0.5rem;
@@ -66,10 +66,14 @@ export const RightSection = styled.div`
   justify-content: center;
   align-items: center;
   height: 100%;
-  width: 55%;
   flex-direction: column;
   color: white;
   font-size: 2vh;
+  font-family: "Oswald";
+  background-color: rgb(0, 0, 0, 0.5);
+  border: solid 1px;
+  padding: 0.5rem;
+  border-radius: 1rem;
 `;
 
 export const Title = styled.div`
@@ -78,9 +82,10 @@ export const Title = styled.div`
   align-items: center;
   color: lightGray;
   width: 100%;
-  font-size: 2rem;
+  font-size: 14px;
   font-weight: 400;
   text-align: center;
+  font-family: "Oswald";
 `;
 
 export const Body = styled.div`
@@ -89,7 +94,7 @@ export const Body = styled.div`
   align-items: center;
   width: 100%;
   font-weight: 200;
-  font-family: "Montserrat";
+  font-family: "Oswald";
   font-size: 1.2rem;
   color: white;
   text-align: center;
@@ -101,16 +106,15 @@ export const BuyTicketButton = styled.div`
   justify-content: center;
   align-items: center;
   width: 80%;
-  background-color: black;
-  font-family: "Oswald", sans-serif;
+  font-family: "Oswald";
   max-width: 20rem;
-  padding: 0.8rem;
 `;
 
 export const ButtonText = styled.div`
   font-weight: 400;
   font-size: 1.2rem;
   text-align: center;
+  font-family: "Oswald";
 `;
 
 // margin-top: calc(15vh + 6vw);

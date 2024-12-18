@@ -23,19 +23,21 @@ const NextEvents = ({ img }) => {
     <NextEventsContainer>
       <Card image={img}>
         <Container>
-          <LeftSection></LeftSection>
-          <RightSection>
+          <LeftSection>
+            <Title>Sábado 21 | 01:00hs</Title>
+            <Title>La pulpería - Monte Grande</Title>
+          </LeftSection>
+          <RightSection
+            style={{ cursor: "pointer" }}
+            onClick={() =>
+              (window.location.href = `https://ig.me/m/barullo.rave/?text=${encodeURIComponent(
+                predefinedMessage
+              )}`)
+            }
+          >
+            Envianos un DM para comprar tu entrada
             <BuyTicketButton>
-              <ButtonText
-                style={{ cursor: "pointer" }}
-                onClick={() =>
-                  (window.location.href = `https://ig.me/m/barullo.rave/?text=${encodeURIComponent(
-                    predefinedMessage
-                  )}`)
-                }
-              >
-                Envianos un DM para comprar tu entrada
-              </ButtonText>
+              <ButtonText>click acá</ButtonText>
             </BuyTicketButton>
           </RightSection>
         </Container>
