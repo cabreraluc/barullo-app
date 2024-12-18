@@ -70,7 +70,7 @@ export const RightSection = styled.div`
   width: 55%;
   flex-direction: column;
   @media screen and (max-width: 767px) {
-    font-size: 13px;
+    font-size: 1.5vh;
   }
   color: white;
 `;
@@ -114,8 +114,9 @@ export const Description = styled.div`
 
   width: 90%;
   flex-direction: column;
+  font-size: 15px;
   @media screen and (max-width: 767px) {
-    font-size: 15px;
+    font-size: 1.5vh;
   }
 
   color: white;
