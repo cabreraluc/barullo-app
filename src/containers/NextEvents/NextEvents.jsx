@@ -24,7 +24,7 @@ const NextEvents = ({ img }) => {
       <Card image={img}>
         <Container>
           <LeftSection>
-            <Title>Sábado 21 | 01:00hs</Title>
+            <Title>Sábado 18 | 01:00hs</Title>
             <Title>La pulpería - Monte Grande</Title>
           </LeftSection>
           <RightSection
