@@ -212,7 +212,7 @@ const EditUser = () => {
               type="submit"
               disabled={isLoading ? true : false}
             >
-              edit
+              Edit
             </Button>
             <Button variant="outlined" onClick={() => navigate("/admin-panel")}>
               Cancel

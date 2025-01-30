@@ -18,6 +18,22 @@ import flyer from "../../assets/images/flyer.jpg";
 import SpaceshipLoader from "../../components/Loader/SpaceshipLoader";
 import { CircularProgress } from "@mui/material";
 
+const Loader = () => {
+  return (
+    <div
+      style={{
+        display: "flex",
+        width: "100%",
+        alignItems: "center",
+        justifyContent: "center",
+        height: "100%",
+      }}
+    >
+      <CircularProgress color="secondary" />
+    </div>
+  );
+};
+
 const Landing = ({ openSlider, handleColorHeader, setTurnOffLogo }) => {
   const firstSectionImages = [usImage2, usImage, usImage3];
   const { getArtists, allArtists } = useArtists();
@@ -129,83 +145,82 @@ const Landing = ({ openSlider, handleColorHeader, setTurnOffLogo }) => {
         </Swiper>
       </SwiperSlide>
       <SwiperSlide>
-        <Swiper
-          style={{
-            height: "100%",
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-          onTouchStart={handleHorizontalTouchStart}
-          spaceBetween={0}
-          slidesPerView={1}
-          onSlideChange={(e) => {
-            // setTurnOffLogo(false);
-            setOpen(false);
-          }}
-          onSwiper={(swiper) => {
-            setSwiper(swiper);
-            swiperHorizontalRef.current = swiper;
-          }}
-          scrollbar={{ draggable: true }}
-          navigation={true}
-          autoplay={{
-            disableOnInteraction: true,
-            delay: 2500,
-          }}
-          modules={[Autoplay, Pagination, Navigation]}
-        >
-          {allArtists.length ? (
-            allArtists.map((e, index) => {
-              const color =
-                e.status !== "active"
-                  ? "black-white"
-                  : Number.isInteger((index + 1) / 2)
-                  ? "violet"
-                  : "green";
-              return (
-                <SwiperSlide key={e._id}>
-                  <Artists
-                    setTurnOffLogo={setTurnOffLogo}
-                    titles={[
-                      `${e.artistName}${
-                        e.secondaryArtistName
-                          ? " & " + e.secondaryArtistName
-                          : ""
-                      }`,
-                    ]}
-                    body={e.shortDescription}
-                    description={e.description}
-                    image={e.primaryImage}
-                    soundCloud={e.soundCloud}
-                    instagram={e.instagram}
-                    artistName={e.artistName}
-                    secondaryArtistName={e.secondaryArtistName}
-                    spotify={e.spotify}
-                    youtube={e.youtube}
-                    soundCloudSecondary={e.soundCloudSecondary}
-                    instagramSecondary={e.instagramSecondary}
-                    spotifySecondary={e.spotifySecondary}
-                    youtubeSecondary={e.youtubeSecondary}
-                    secondaryImage={e.secondaryImage}
-                    name={e.artistName}
-                    color={color}
-                    open={open}
-                    setOpen={setOpen}
-                    setIsPlaying={setIsPlaying}
-                    isPlaying={isPlaying}
-                    audioRef={audioRef}
-                  />
-                </SwiperSlide>
-              );
-            })
-          ) : (
-            <div className="flex w-[100vw] h-[100vh] items-center jusitify-center">
-              <CircularProgress color="secondary" />
-            </div>
-          )}
-        </Swiper>
+        {allArtists.length ? (
+          <Swiper
+            style={{
+              height: "100%",
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+            onTouchStart={handleHorizontalTouchStart}
+            spaceBetween={0}
+            slidesPerView={1}
+            onSlideChange={(e) => {
+              // setTurnOffLogo(false);
+              setOpen(false);
+            }}
+            onSwiper={(swiper) => {
+              setSwiper(swiper);
+              swiperHorizontalRef.current = swiper;
+            }}
+            scrollbar={{ draggable: true }}
+            navigation={true}
+            autoplay={{
+              disableOnInteraction: true,
+              delay: 2500,
+            }}
+            modules={[Autoplay, Pagination, Navigation]}
+          >
+            {allArtists.length &&
+              allArtists.map((e, index) => {
+                const color =
+                  e.status !== "active"
+                    ? "black-white"
+                    : Number.isInteger((index + 1) / 2)
+                    ? "violet"
+                    : "green";
+                return (
+                  <SwiperSlide key={e._id}>
+                    <Artists
+                      setTurnOffLogo={setTurnOffLogo}
+                      titles={[
+                        `${e.artistName}${
+                          e.secondaryArtistName
+                            ? " & " + e.secondaryArtistName
+                            : ""
+                        }`,
+                      ]}
+                      body={e.shortDescription}
+                      description={e.description}
+                      image={e.primaryImage}
+                      soundCloud={e.soundCloud}
+                      instagram={e.instagram}
+                      artistName={e.artistName}
+                      secondaryArtistName={e.secondaryArtistName}
+                      spotify={e.spotify}
+                      youtube={e.youtube}
+                      soundCloudSecondary={e.soundCloudSecondary}
+                      instagramSecondary={e.instagramSecondary}
+                      spotifySecondary={e.spotifySecondary}
+                      youtubeSecondary={e.youtubeSecondary}
+                      secondaryImage={e.secondaryImage}
+                      name={e.artistName}
+                      color={color}
+                      open={open}
+                      setOpen={setOpen}
+                      setIsPlaying={setIsPlaying}
+                      isPlaying={isPlaying}
+                      audioRef={audioRef}
+                    />
+                  </SwiperSlide>
+                );
+              })}
+          </Swiper>
+        ) : (
+          <Loader />
+        )}
       </SwiperSlide>
 
       <SwiperSlide>
