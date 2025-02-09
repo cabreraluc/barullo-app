@@ -24,8 +24,8 @@ const NextEvents = ({ img }) => {
       <Card image={img}>
         <Container>
           <LeftSection>
-            <Title>Sábado 18 | 01:00hs</Title>
-            <Title>La pulpería - Monte Grande</Title>
+            <Title>Viernes 21 | 01:00hs</Title>
+            <Title>VOX - CABA</Title>
           </LeftSection>
           <RightSection
             style={{ cursor: "pointer" }}

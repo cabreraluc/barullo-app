@@ -43,6 +43,7 @@ const Artists = ({
   audioRef,
   setIsPlaying,
   isPlaying,
+  eventDate,
 }) => {
   const filter = color === "violet" ? "270" : color === "green" ? "90" : "";
 
@@ -101,6 +102,13 @@ const Artists = ({
                 {titles.map((title, index) => (
                   <Title key={index}>{title}</Title>
                 ))}
+                <Title
+                  style={{
+                    fontSize: "13px",
+                  }}
+                >
+                  {eventDate?.length ? eventDate : null}
+                </Title>
               </LeftSection>
               <RightSection>
                 {body}

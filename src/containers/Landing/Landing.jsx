@@ -213,6 +213,7 @@ const Landing = ({ openSlider, handleColorHeader, setTurnOffLogo }) => {
                       setIsPlaying={setIsPlaying}
                       isPlaying={isPlaying}
                       audioRef={audioRef}
+                      eventDate={e.eventDate}
                     />
                   </SwiperSlide>
                 );

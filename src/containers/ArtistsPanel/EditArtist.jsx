@@ -46,6 +46,7 @@ const EditArtist = () => {
     shortDescription: "",
     primaryImage: "",
     secondaryImage: "",
+    eventDate: "",
   });
   const { showNotification } = useNotistack();
   const [errors, setErrors] = useState({});
@@ -92,6 +93,7 @@ const EditArtist = () => {
       shortDescription: artist?.shortDescription,
       primaryImage: artist?.primaryImage,
       secondaryImage: artist?.secondaryImage,
+      eventDate: artist?.eventDate,
     });
   }, [artist]);
 
@@ -129,6 +131,10 @@ const EditArtist = () => {
     }
     setIsLoading(false);
   };
+
+  useEffect(() => {
+    console.log(artistInfo);
+  }, [artistInfo]);
 
   const navigate = useNavigate();
   return (
@@ -258,6 +264,18 @@ const EditArtist = () => {
               type="file"
               accept="image/*"
             />
+            <TextField
+              autoComplete="eventDate"
+              required
+              id="eventDate"
+              label="Event date"
+              autoFocus
+              name="eventDate"
+              variant="standard"
+              fullWidth
+              onChange={handleChange}
+              error={errors[1]?.eventDate}
+            />
           </RightSectionContainer>
         </FormSectionsContainer>
         <ActionButtonContainer>
@@ -267,7 +285,7 @@ const EditArtist = () => {
               type="submit"
               disabled={isLoading ? true : false}
             >
-              edit
+              Edit
             </Button>
             <Button variant="outlined" onClick={() => navigate("/admin-panel")}>
               Cancel

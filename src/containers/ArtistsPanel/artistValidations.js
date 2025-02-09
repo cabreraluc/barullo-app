@@ -48,6 +48,13 @@ export const artistValidations = (artistData, context) => {
       ];
     }
 
+    if (artistData.eventDate === "") {
+      return [
+        ['The "Event date" field cannot be empty.'],
+        { description: true },
+      ];
+    }
+
     return { valid: true };
   }
 };

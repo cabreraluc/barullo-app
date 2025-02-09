@@ -42,6 +42,7 @@ const AddArtist = () => {
     instagramSecondary: "",
     youtubeSecondary: "",
     spotifySecondary: "",
+    eventDate: "",
   });
 
   const { showNotification } = useNotistack();
@@ -249,6 +250,19 @@ const AddArtist = () => {
               error={errors[1]?.primaryImage}
               type="file"
               accept="image/*"
+            />
+
+            <TextField
+              autoComplete="eventDate"
+              required
+              id="eventDate"
+              label="Event date"
+              autoFocus
+              name="eventDate"
+              variant="standard"
+              fullWidth
+              onChange={handleChange}
+              error={errors[1]?.eventDate}
             />
           </LeftSectionContainer>
           <RightSectionContainer>
