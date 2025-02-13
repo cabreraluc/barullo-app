@@ -77,7 +77,8 @@ const NextEvents = ({ img }) => {
                   cursor: "pointer",
                 }}
                 onClick={() =>
-                  (window.location.href = "https://www.instagram.com/vox.b.a/")
+                  (window.location.href =
+                    "https://www.instagram.com/barullo.rave/")
                 }
               />
               <Title
