@@ -16,7 +16,7 @@ export const Card = styled.div`
   flex-direction: column;
   color: black;
 
-  width: 100%;
+  width: 90%;
 
   /* Aplica el filtro inicial */
   /* filter: hue-rotate(0deg);
@@ -51,6 +51,7 @@ export const Container = styled.div`
   gap: 1rem;
   flex-direction: column;
   padding: 1rem;
+  box-shadow: inset 0 0 50px 30px black;
 `;
 
 export const LeftSection = styled.div`

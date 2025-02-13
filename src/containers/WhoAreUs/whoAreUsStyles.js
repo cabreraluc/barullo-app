@@ -16,6 +16,7 @@ export const Card = styled.div`
   height: 100vh;
   flex-direction: column;
   color: black;
+  box-shadow: inset 0 0 50px 15px black;
 
   overflow: hidden;
 `;

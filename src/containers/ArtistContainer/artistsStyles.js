@@ -12,11 +12,11 @@ export const Card = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  width: 100vw;
+  width: 95vw;
   height: 100%;
   flex-direction: column;
   color: black;
-
+  box-shadow: inset 0 0 25px 20px black;
   overflow: hidden;
 
   filter: ${({ filter }) =>
