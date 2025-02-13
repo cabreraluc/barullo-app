@@ -51,7 +51,7 @@ export const Container = styled.div`
   gap: 1rem;
   flex-direction: column;
   padding: 1rem;
-  box-shadow: inset 0 0 50px 30px black;
+  box-shadow: inset 0 0 30px 15px black;
 `;
 
 export const LeftSection = styled.div`

@@ -16,7 +16,7 @@ export const Card = styled.div`
   height: 100%;
   flex-direction: column;
   color: black;
-  box-shadow: inset 0 0 25px 20px black;
+  box-shadow: inset 0 0 30px 15px black;
   overflow: hidden;
 
   filter: ${({ filter }) =>
