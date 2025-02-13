@@ -31,31 +31,64 @@ const NextEvents = ({ img }) => {
           <Title>Viernes 21/02 VOX</Title>
           <Title>Hipólito Yrigoyen 968 CABA</Title>
           <Title> Entrada en puerta | Free hasta las 01:00hs</Title>
-
-          {/* <LeftSection> */}
-          {/* <img src={Vox} alt="" /> */}
-
-          {/* </LeftSection> */}
-          <Instagram
-            sx={{
-              color: "white",
-              fontSize: "2rem",
-              cursor: "pointer",
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              gap: "2rem",
             }}
-            onClick={() =>
-              (window.location.href = "https://www.instagram.com/vox.b.a/")
-            }
-            // style={{ cursor: "pointer" }}
-            // onClick={() =>
-            //   (window.location.href = `https://ig.me/m/barullo.rave/?text=${encodeURIComponent(
-            //     predefinedMessage
-            //   )}`)
-            // }
-          />
-          {/* Entradas en puerta */}
-          {/* <BuyTicketButton>
-              <ButtonText>click acá</ButtonText>
-            </BuyTicketButton> */}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <Instagram
+                sx={{
+                  fontSize: "2rem",
+                  cursor: "pointer",
+                  color: "purple",
+                }}
+                onClick={() =>
+                  (window.location.href = "https://www.instagram.com/vox.b.a/")
+                }
+              />
+              <Title
+                style={{
+                  color: "purple",
+                }}
+              >
+                VOX
+              </Title>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <Instagram
+                sx={{
+                  color: "green",
+                  fontSize: "2rem",
+                  cursor: "pointer",
+                }}
+                onClick={() =>
+                  (window.location.href = "https://www.instagram.com/vox.b.a/")
+                }
+              />
+              <Title
+                style={{
+                  color: "green",
+                }}
+              >
+                BARULLO
+              </Title>
+            </div>
+          </div>
         </Container>
       </Card>
     </NextEventsContainer>
