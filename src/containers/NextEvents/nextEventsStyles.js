@@ -47,6 +47,8 @@ export const Container = styled.div`
   align-items: center;
   background-color: rgb(0, 0, 0, 0.5);
   width: 100%;
+  height: 100%;
+  gap: 1rem;
   flex-direction: column;
   padding: 1rem;
 `;
@@ -83,7 +85,7 @@ export const Title = styled.div`
   color: lightGray;
   width: 100%;
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 500;
   text-align: center;
   font-family: "Oswald";
 `;

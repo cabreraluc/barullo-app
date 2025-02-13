@@ -11,6 +11,9 @@ import {
 } from "./nextEventsStyles";
 import { useNavigate } from "react-router-dom";
 import SpaceshipLoader from "../../components/Loader/SpaceshipLoader";
+import Vox from "../../assets/images/vox.png";
+import BarulloLogo from "../../assets/images/logobarullo-white.png";
+import { Instagram } from "@mui/icons-material";
 
 const redirectToInstagram = () => {
   window.location.href = "https://www.instagram.com/barullo.rave/";
@@ -23,23 +26,36 @@ const NextEvents = ({ img }) => {
     <NextEventsContainer>
       <Card image={img}>
         <Container>
-          <LeftSection>
-            <Title>Viernes 21 | 01:00hs</Title>
-            <Title>VOX - CABA</Title>
-          </LeftSection>
-          <RightSection
-            style={{ cursor: "pointer" }}
+          {/* <LeftSection></LeftSection> */}
+          <img src={Vox} alt="" />
+          <Title>Viernes 21/02 VOX</Title>
+          <Title>Hipólito Yrigoyen 968 CABA</Title>
+          <Title> Entrada en puerta | Free hasta las 01:00hs</Title>
+
+          {/* <LeftSection> */}
+          {/* <img src={Vox} alt="" /> */}
+
+          {/* </LeftSection> */}
+          <Instagram
+            sx={{
+              color: "white",
+              fontSize: "2rem",
+              cursor: "pointer",
+            }}
             onClick={() =>
-              (window.location.href = `https://ig.me/m/barullo.rave/?text=${encodeURIComponent(
-                predefinedMessage
-              )}`)
+              (window.location.href = "https://www.instagram.com/vox.b.a/")
             }
-          >
-            Envianos un DM para comprar tu entrada
-            <BuyTicketButton>
+            // style={{ cursor: "pointer" }}
+            // onClick={() =>
+            //   (window.location.href = `https://ig.me/m/barullo.rave/?text=${encodeURIComponent(
+            //     predefinedMessage
+            //   )}`)
+            // }
+          />
+          {/* Entradas en puerta */}
+          {/* <BuyTicketButton>
               <ButtonText>click acá</ButtonText>
-            </BuyTicketButton>
-          </RightSection>
+            </BuyTicketButton> */}
         </Container>
       </Card>
     </NextEventsContainer>
