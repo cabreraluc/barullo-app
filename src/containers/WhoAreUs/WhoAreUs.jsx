@@ -1,6 +1,8 @@
 import ImageWe from "../../assets/images/WhoAreWe.jpg";
 import { WhoAreUsContainer, Card, Title, Body, Icons } from "./whoAreUsStyles";
 import InstagramIcon from "@mui/icons-material/Instagram";
+import YouTubeIcon from "@mui/icons-material/YouTube";
+import { FaSoundcloud } from "react-icons/fa";
 
 const NextEvents = () => {
   return (
@@ -16,11 +18,27 @@ const NextEvents = () => {
         <Icons>
           <a
             style={{ color: "white" }}
+            href={"https://on.soundcloud.com/uF6v8qNpeoSeDadV7"}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaSoundcloud size="40" />
+          </a>
+          <a
+            style={{ color: "white" }}
             href={"https://www.instagram.com/barullo.rave/"}
             target="_blank"
             rel="noopener noreferrer"
           >
             <InstagramIcon fontSize="large" />
+          </a>
+          <a
+            style={{ color: "white" }}
+            href={"https://www.youtube.com/@Barullo_rave"}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <YouTubeIcon fontSize="large" />
           </a>
         </Icons>
       </Card>

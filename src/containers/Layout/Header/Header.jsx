@@ -56,7 +56,7 @@ export default function Header({
           ></ShortTextIcon>
         </DrawerContainer>
       </BurgerMenuContainer>
-      <LogoContainer onClick={handleLogoClick}>
+      <LogoContainer>
         {pathname === "/" || pathname === "/event-information" ? (
           <LogoImg src={logoWhite}></LogoImg>
         ) : pathname === "/admin-panel" ? (

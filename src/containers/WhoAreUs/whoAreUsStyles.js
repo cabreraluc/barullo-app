@@ -48,4 +48,6 @@ export const Icons = styled.div`
   align-items: center;
   justify-content: center;
   color: white;
+  gap: 1rem;
+  padding: 1rem;
 `;

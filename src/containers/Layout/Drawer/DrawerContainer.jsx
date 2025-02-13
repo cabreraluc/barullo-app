@@ -16,6 +16,11 @@ import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import useAuth from "../../Login/useAuth";
 import useUsers from "../../UsersPanel/useUsers";
+
+import InstagramIcon from "@mui/icons-material/Instagram";
+import YouTubeIcon from "@mui/icons-material/YouTube";
+import { FaSoundcloud } from "react-icons/fa";
+
 export default function DrawerContainer({ children, setOpenSlider }) {
   const { pathname } = useLocation();
   const { getUserById, user } = useUsers();
@@ -171,9 +176,45 @@ export default function DrawerContainer({ children, setOpenSlider }) {
         <div
           style={{
             display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "end",
+            gap: "1rem",
+            height: "auto",
+            marginTop: "40vh",
+          }}
+        >
+          <a
+            style={{ color: "gray" }}
+            href={"https://on.soundcloud.com/uF6v8qNpeoSeDadV7"}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaSoundcloud size="20" />
+          </a>
+          <a
+            style={{ color: "gray" }}
+            href={"https://www.instagram.com/barullo.rave/"}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <InstagramIcon fontSize="medium" />
+          </a>
+          <a
+            style={{ color: "gray" }}
+            href={"https://www.youtube.com/@Barullo_rave"}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <YouTubeIcon fontSize="medium" />
+          </a>
+        </div>
+        <div
+          style={{
+            display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            height: "10rem",
+            height: "5rem",
           }}
         >
           <img src={LogoVP} style={{ width: "50%", height: "3rem" }} />
