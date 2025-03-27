@@ -50,7 +50,7 @@ export const Container = styled.div`
   width: 100%;
   gap: 1rem;
   flex-direction: column;
-  padding: 1rem;
+  padding: 3rem 1rem;
 `;
 
 export const LeftSection = styled.div`
