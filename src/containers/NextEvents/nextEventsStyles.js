@@ -6,6 +6,7 @@ export const NextEventsContainer = styled.div`
   height: 100%;
 `;
 export const Card = styled.div`
+  box-shadow: inset 0 0 30px 9px black;
   background: ${({ image }) => `url(${image})`};
   background-size: cover;
   background-position: center; /* Centra la imagen */
@@ -45,13 +46,11 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(0, 0, 0, 0.5);
+  background-color: rgb(0, 0, 0, 0.35);
   width: 100%;
-  height: 100%;
   gap: 1rem;
   flex-direction: column;
   padding: 1rem;
-  box-shadow: inset 0 0 30px 15px black;
 `;
 
 export const LeftSection = styled.div`
@@ -85,7 +84,7 @@ export const Title = styled.div`
   align-items: center;
   color: lightGray;
   width: 100%;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 500;
   text-align: center;
   font-family: "Oswald";
