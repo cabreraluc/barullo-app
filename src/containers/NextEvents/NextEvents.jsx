@@ -19,7 +19,7 @@ const NextEvents = ({ img }) => {
           <Body>28/03 La Pulpería | Dardo Rocha 396 - Monte Grande</Body>
           <Body>Entrada en puerta $5000</Body>
           <Title style={{ cursor: "pointer" }} onClick={redirectToInstagram}>
-            FREE POR LISTA HASTA LAS 02:00 CLICK ACÁ
+            FREE POR LISTA HASTA LAS 03:00 CLICK ACÁ
           </Title>
         </Container>
       </Card>
