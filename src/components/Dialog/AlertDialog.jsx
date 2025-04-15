@@ -6,25 +6,32 @@ import IconButton from "@mui/material/IconButton";
 import { BtnCancelDialog, BtnSaveDialog, Title } from "./alertDialogStyles.js";
 import { Button } from "@mui/material";
 
-const contextMap = {
-  users: {
-    title: "Disable user",
-    message: "Are you sure that you want to disable this user?",
-    action: "DISABLE",
-  },
-  artists: {
-    title: "Disable artist",
-    message: "Are you sure that you want to disable this artist?",
-    action: "DISABLE",
-  },
-  events: {
-    title: "Disable event",
-    message: "Are you sure that you want to disable this event?",
-    action: "DISABLE",
-  },
+const contextMap = (context, status) => {
+  const map = {
+    users: {
+      title: "Disable user",
+      message: "Are you sure that you want to disable this user?",
+      action: "DISABLE",
+    },
+    artists: {
+      title: status === "active" ? "Desactivar artista" : "Activar artista",
+      message:
+        status === "active"
+          ? "¿Estas segúro que deseas desactivar este artista?"
+          : "¿Estás seguro que deseas activar este artista?",
+      action: status === "active" ? "DESACTIVAR" : "ACTIVAR",
+    },
+    events: {
+      title: "Disable event",
+      message: "Are you sure that you want to disable this event?",
+      action: "DISABLE",
+    },
+  };
+  return map[context];
 };
 
 export default function AlertDialog({
+  status,
   handlerAction,
   page,
   objectId,
@@ -33,7 +40,7 @@ export default function AlertDialog({
   onClose,
   object,
 }) {
-  const { title, message, action } = contextMap[context];
+  const { title, message, action } = contextMap(context, status);
 
   return (
     <div>

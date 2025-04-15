@@ -10,30 +10,10 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import useArtists from "../ArtistsPanel/useArtists";
-import NextEventsImg from "../../assets/images/nextevents.jpg";
 import usImage from "../../assets/images/ne031.jpg";
 import usImage2 from "../../assets/images/ne036.jpg";
 import usImage3 from "../../assets/images/ne033.jpg";
-
-import flyer from "../../assets/images/flyer.jpg";
-import SpaceshipLoader from "../../components/Loader/SpaceshipLoader";
-import { CircularProgress } from "@mui/material";
-
-const Loader = () => {
-  return (
-    <div
-      style={{
-        display: "flex",
-        width: "100%",
-        alignItems: "center",
-        justifyContent: "center",
-        height: "100%",
-      }}
-    >
-      <CircularProgress color="secondary" />
-    </div>
-  );
-};
+import LoaderSpin from "../../components/Loader/LoaderSpin";
 
 const Landing = ({ openSlider, handleColorHeader, setTurnOffLogo }) => {
   const firstSectionImages = [usImage2, usImage, usImage3];
@@ -221,7 +201,7 @@ const Landing = ({ openSlider, handleColorHeader, setTurnOffLogo }) => {
               })}
           </Swiper>
         ) : (
-          <Loader />
+          <LoaderSpin />
         )}
       </SwiperSlide>
 

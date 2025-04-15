@@ -4,8 +4,7 @@ import EventsTable from "../../components/Events/EventsTable";
 import Searcher from "../../components/Searcher/Searcher";
 import useEvents from "./useEvents";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import SpaceshipLoader from "../../components/Loader/SpaceshipLoader";
-
+import LoaderSpin from "../../components/Loader/LoaderSpin";
 const EventsPanel = () => {
   const navigate = useNavigate();
   const { isLoading, disableEvent } = useEvents();
@@ -26,7 +25,7 @@ const EventsPanel = () => {
       </ButtonContainer>
       <Searcher context={"events"} />
       {isLoading ? (
-        <SpaceshipLoader />
+        <LoaderSpin />
       ) : (
         <EventsList>
           <EventsTable

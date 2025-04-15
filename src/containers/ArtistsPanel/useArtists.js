@@ -46,7 +46,6 @@ export default function useArtists() {
         return 0;
       });
 
-      console.log(sortedArtists);
       setAllArtists(sortedArtists);
     } catch (error) {
       console.log(error);
@@ -73,12 +72,11 @@ export default function useArtists() {
     setIsLoading(false);
   };
 
-  const disableArtist = async (id) => {
+  const disableOrActiveArtist = async (id) => {
     try {
       const response = await fetchFromApi(
-        `DELETE`,
-        `artists/disable-artist`,
-        id
+        `PUT`,
+        `artists/disable-or-active-artist/` + id
       );
       getArtists();
       showNotification(response[0]);
@@ -113,7 +111,7 @@ export default function useArtists() {
     allArtists,
     setAllArtists,
     editArtist,
-    disableArtist,
+    disableOrActiveArtist,
     getArtistById,
     artist,
     isLoading,

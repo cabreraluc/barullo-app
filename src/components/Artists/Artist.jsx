@@ -1,18 +1,17 @@
 import * as React from "react";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import EditIcon from "@mui/icons-material/Edit";
 import { useNavigate } from "react-router-dom";
 import AlertDialog from "../Dialog/AlertDialog";
 import { useState } from "react";
 
-export default function Artist({ artist, disableArtist }) {
+export default function Artist({ artist, disableOrActiveArtist }) {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
 
-  const handlerDeleteArtist = (id) => {
-    disableArtist(id);
+  const handlerDisableOrActiveArtist = (id) => {
+    disableOrActiveArtist(id);
     setOpen(false);
   };
 
@@ -25,11 +24,13 @@ export default function Artist({ artist, disableArtist }) {
 
       <TableCell align="left">{artist.status}</TableCell>
       <TableCell align="left">
-        <DeleteOutlineIcon
-          onClick={() => setOpen(true)}
-          sx={{ cursor: "pointer" }}
-        />
+        {artist.status === "active" ? (
+          <button onClick={() => setOpen(true)}>Desactivar</button>
+        ) : (
+          <button onClick={() => setOpen(true)}>Activar</button>
+        )}
       </TableCell>
+
       <TableCell align="left">
         <EditIcon
           onClick={() => navigate(`/edit-artist/${artist._id}`)}
@@ -37,10 +38,11 @@ export default function Artist({ artist, disableArtist }) {
         />
       </TableCell>
       <AlertDialog
+        status={artist.status}
         open={open}
         onClose={() => setOpen(false)}
         context={"artists"}
-        handlerAction={handlerDeleteArtist}
+        handlerAction={handlerDisableOrActiveArtist}
         objectId={artist._id}
       />
     </TableRow>

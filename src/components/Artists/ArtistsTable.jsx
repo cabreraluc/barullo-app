@@ -6,18 +6,13 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import EditIcon from "@mui/icons-material/Edit";
-import { useNavigate } from "react-router-dom";
 import Artist from "./Artist";
-import AlertDialog from "../Dialog/AlertDialog";
-import { useState } from "react";
 
-export default function ArtistsTable({ allArtists, disableArtist }) {
+export default function ArtistsTable({ allArtists, disableOrActiveArtist }) {
   return (
     <TableContainer
       component={Paper}
-      sx={{ boxShadow: "none", backgroundColor: "transparent" }}
+      sx={{ height: "100%", boxShadow: "none", backgroundColor: "transparent" }}
     >
       <Table aria-label="simple table">
         <TableHead>
@@ -33,8 +28,12 @@ export default function ArtistsTable({ allArtists, disableArtist }) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {allArtists.map((artist) => (
-            <Artist disableArtist={disableArtist} artist={artist} />
+          {allArtists.map((artist, index) => (
+            <Artist
+              key={index}
+              disableOrActiveArtist={disableOrActiveArtist}
+              artist={artist}
+            />
           ))}
         </TableBody>
       </Table>

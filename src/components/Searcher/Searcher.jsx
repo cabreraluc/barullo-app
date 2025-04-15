@@ -36,22 +36,13 @@ const Searcher = ({
       );
       setList(result);
     }
-    if (context === "clients") {
+    if (context === "artists") {
       const { value } = e.target;
       setSearch(value);
-      setSearchToGet(value);
-    }
-
-    if (context === "prospects") {
-      const { value } = e.target;
-      setSearch(value);
-      setSearchToGet(value);
-    }
-
-    if (context === "calendar") {
-      const { value } = e.target;
-
-      setSearchToGet(value);
+      const result = listToFilter.filter((e) =>
+        e.artistName.toLowerCase().startsWith(value)
+      );
+      setList(result);
     }
   };
 
@@ -102,7 +93,7 @@ const Searcher = ({
   };
 
   useEffect(() => {
-    if (context === "users") {
+    if (context === "users" || context === "artists") {
       if (!listToFilter.length) {
         setListToFilter(list);
       }
@@ -111,18 +102,6 @@ const Searcher = ({
 
   return (
     <SearcherContainer onSubmit={(e) => handlerSearch(e)}>
-      {context === "users" || context === "calendar" ? null : (
-        <SearchIcon
-          sx={{
-            color: `black`,
-            marginTop: 2,
-            marginRight: 1,
-            cursor: "pointer",
-          }}
-          type="submit"
-          onClick={handlerSearchButton}
-        />
-      )}
       <TextField
         onChange={(e) => handlerSearchChange(e)}
         value={search}
@@ -159,26 +138,7 @@ const Searcher = ({
         }}
       />
 
-      {context === "users" ? null : (
-        <RefreshIcon
-          sx={
-            context === "calendar"
-              ? {
-                  color: `black`,
-                  marginTop: 0,
-                  marginLeft: 1,
-                  cursor: "pointer",
-                }
-              : {
-                  color: `black`,
-                  marginTop: 2,
-                  marginLeft: 1,
-                  cursor: "pointer",
-                }
-          }
-          onClick={handlerRefresh}
-        ></RefreshIcon>
-      )}
+      <RefreshIcon onClick={handlerRefresh}></RefreshIcon>
     </SearcherContainer>
   );
 };
