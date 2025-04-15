@@ -28,7 +28,6 @@ export const Section = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-
   background-color: transparent;
 `;
 

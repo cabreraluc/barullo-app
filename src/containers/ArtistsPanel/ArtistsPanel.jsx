@@ -10,12 +10,17 @@ import { useEffect } from "react";
 import ArtistsTable from "../../components/Artists/ArtistsTable";
 import Searcher from "../../components/Searcher/Searcher";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import SpaceshipLoader from "../../components/Loader/SpaceshipLoader";
+import LoaderSpin from "../../components/Loader/LoaderSpin";
 
 const ArtistsPanel = () => {
   const navigate = useNavigate();
-  const { allArtists, getArtists, disableArtist, isLoading, setAllArtists } =
-    useArtists();
+  const {
+    allArtists,
+    getArtists,
+    disableOrActiveArtist,
+    isLoading,
+    setAllArtists,
+  } = useArtists();
 
   useEffect(() => {
     getArtists();
@@ -31,12 +36,12 @@ const ArtistsPanel = () => {
       </ButtonContainer>
       <Searcher list={allArtists} setList={setAllArtists} context={"artists"} />
       {isLoading ? (
-        <SpaceshipLoader />
+        <LoaderSpin />
       ) : (
         <ArtistsList>
           <ArtistsTable
             allArtists={allArtists}
-            disableArtist={disableArtist}
+            disableOrActiveArtist={disableOrActiveArtist}
             isLoading={isLoading}
           />
         </ArtistsList>

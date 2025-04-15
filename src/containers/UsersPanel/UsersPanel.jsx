@@ -6,6 +6,7 @@ import UsersTable from "../../components/Users/UsersTable";
 import Searcher from "../../components/Searcher/Searcher";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import SpaceshipLoader from "../../components/Loader/SpaceshipLoader";
+import LoaderSpin from "../../components/Loader/LoaderSpin";
 
 const UsersPanel = () => {
   const { isLoading, disableUser, getUsers, allUsers, setAllUsers } =
@@ -25,7 +26,7 @@ const UsersPanel = () => {
       </ButtonContainer>
       <Searcher list={allUsers} setList={setAllUsers} context={"users"} />
       {isLoading ? (
-        <SpaceshipLoader />
+        <LoaderSpin />
       ) : (
         <UsersList>
           <UsersTable

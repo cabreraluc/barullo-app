@@ -14,16 +14,8 @@ import {
   ActionButtonContainer,
   ButtonsContainer,
 } from "./artistsStyles";
-import {
-  ActionButton,
-  CancelActionButton,
-  BreadcumsContainer,
-} from "../../components/Global/GlobalStyles";
+import { BreadcumsContainer } from "../../components/Global/GlobalStyles";
 import BreadcrumbsMui from "../../components/Breadcrumbs/Breadcrumbs";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import InputLabel from "@mui/material/InputLabel";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useArtists from "./useArtists";
@@ -31,9 +23,9 @@ import { artistValidations } from "./artistValidations";
 import useNotistack from "../../components/Notistack/useNotistack";
 import { useParams } from "react-router-dom";
 import Button from "@mui/material/Button";
+import InputFile from "../../components/InputFile/InputFile";
 
 const EditArtist = () => {
-  const roles = ["Admin", "Setter", "Closer"];
   const { id } = useParams();
   const { editArtist, getArtistById, artist, isLoading, setIsLoading } =
     useArtists();
@@ -47,6 +39,11 @@ const EditArtist = () => {
     primaryImage: "",
     secondaryImage: "",
     eventDate: "",
+    youtube: "",
+    spotify: "",
+    instagram: "",
+    soundCloud: "",
+    organization: "",
   });
   const { showNotification } = useNotistack();
   const [errors, setErrors] = useState({});
@@ -94,6 +91,11 @@ const EditArtist = () => {
       primaryImage: artist?.primaryImage,
       secondaryImage: artist?.secondaryImage,
       eventDate: artist?.eventDate,
+      youtube: artist?.youtube,
+      instagram: artist?.instagram,
+      spotify: artist?.spotify,
+      soundCloud: artist?.soundCloud,
+      organization: artist?.organization,
     });
   }, [artist]);
 
@@ -161,7 +163,7 @@ const EditArtist = () => {
               autoComplete="given-name"
               required
               id="firstName"
-              label="Name"
+              label="Nombre"
               autoFocus
               name="name"
               variant="standard"
@@ -174,7 +176,7 @@ const EditArtist = () => {
             <TextField
               required
               fullWidth
-              label="Artist name"
+              label="Nombre artistico"
               variant="standard"
               id="artistName"
               autoComplete="artistName"
@@ -183,11 +185,10 @@ const EditArtist = () => {
               error={errors[1]?.artistName}
               value={artistInfo.artistName}
             />
-
             <TextField
               required
               fullWidth
-              label="Description"
+              label="Descripción"
               variant="standard"
               id="description"
               autoComplete="description"
@@ -198,25 +199,62 @@ const EditArtist = () => {
             />
 
             <TextField
-              autoComplete="primaryImage"
               required
-              id="primaryImage"
-              label="Primary image"
-              autoFocus
-              name="primaryImage"
-              variant="standard"
               fullWidth
-              onChange={uploadImage}
-              error={errors[1]?.primaryImage}
-              type="file"
-              accept="image/*"
+              label="Sound Cloud"
+              variant="standard"
+              id="soundcloud"
+              autoComplete="soundcloud"
+              name="soundCloud"
+              onChange={handleChange}
+              error={errors[1]?.soundCloud}
+              value={artistInfo.soundCloud}
+            />
+
+            <TextField
+              required
+              fullWidth
+              label="Youtube"
+              variant="standard"
+              id="youtube"
+              autoComplete="youtube"
+              name="youtube"
+              onChange={handleChange}
+              error={errors[1]?.youtube}
+              value={artistInfo.youtube}
+            />
+
+            <TextField
+              required
+              fullWidth
+              label="Instagram"
+              variant="standard"
+              id="instagram"
+              autoComplete="instagram"
+              name="instagram"
+              onChange={handleChange}
+              error={errors[1]?.instagram}
+              value={artistInfo.instagram}
+            />
+
+            <TextField
+              required
+              fullWidth
+              label="Spotify"
+              variant="standard"
+              id="spotify"
+              autoComplete="spotify"
+              name="spotify"
+              onChange={handleChange}
+              error={errors[1]?.spotify}
+              value={artistInfo.spotify}
             />
           </LeftSectionContainer>
           <RightSectionContainer>
             <TextField
               required
               fullWidth
-              label="Last name"
+              label="Apellido"
               variant="standard"
               id="lastname"
               autoComplete="new-lastname"
@@ -230,18 +268,30 @@ const EditArtist = () => {
               required
               fullWidth
               id="cellphone"
-              label="Cellphone"
+              label="Número telefónico"
               autoComplete="cellphone"
               name="cellphone"
               onChange={handleChange}
               error={errors[1]?.cellphone}
               value={artistInfo.cellphone}
             />
+            <TextField
+              required
+              fullWidth
+              label="Organización"
+              variant="standard"
+              id="organization"
+              autoComplete="organization"
+              name="organization"
+              onChange={handleChange}
+              error={errors[1]?.organization}
+              value={artistInfo.organization}
+            />
 
             <TextField
               required
               fullWidth
-              label="Short Description"
+              label="Descripción corta"
               variant="standard"
               id="short-description"
               autoComplete="short-description"
@@ -251,30 +301,46 @@ const EditArtist = () => {
               value={artistInfo.shortDescription}
             />
             <TextField
-              autoComplete="secondary-image"
-              required
-              id="secondaryImage"
-              label="Secondary image"
-              autoFocus
-              name="secondaryImage"
-              variant="standard"
-              fullWidth
-              onChange={uploadImage}
-              error={errors[1]?.secondaryImage}
-              type="file"
-              accept="image/*"
-            />
-            <TextField
               autoComplete="eventDate"
               required
               id="eventDate"
-              label="Event date"
+              label="Fecha de evento"
               autoFocus
               name="eventDate"
               variant="standard"
               fullWidth
               onChange={handleChange}
               error={errors[1]?.eventDate}
+              value={artistInfo.eventDate}
+            />
+
+            <InputFile
+              autoComplete="primaryImage"
+              required={true}
+              id="primaryImage"
+              autoFocus={true}
+              name="primaryImage"
+              variant="standard"
+              fullWidth={true}
+              onChange={uploadImage}
+              error={errors[1]?.primaryImage}
+              type="file"
+              accept="image/*"
+              label={"Imágen primaria"}
+            />
+            <InputFile
+              autoComplete="secondaryImage"
+              required={true}
+              id="secondaryImage"
+              autoFocus={true}
+              name="secondaryImage"
+              variant="standard"
+              fullWidth={true}
+              onChange={uploadImage}
+              error={errors[1]?.primaryImage}
+              type="file"
+              accept="image/*"
+              label={"Imágen secundaria"}
             />
           </RightSectionContainer>
         </FormSectionsContainer>

@@ -21,6 +21,7 @@ import useArtists from "./useArtists";
 import { artistValidations } from "./artistValidations";
 import useNotistack from "../../components/Notistack/useNotistack";
 import Button from "@mui/material/Button";
+import InputFile from "../../components/InputFile/InputFile";
 
 const AddArtist = () => {
   const { addArtist, isLoading, setIsLoading } = useArtists();
@@ -28,6 +29,7 @@ const AddArtist = () => {
     name: "",
     lastName: "",
     cellphone: "",
+    organization: "",
     description: "",
     artistName: "",
     secondaryArtistName: "",
@@ -38,10 +40,6 @@ const AddArtist = () => {
     instagram: "",
     youtube: "",
     spotify: "",
-    soundCloudSecondary: "",
-    instagramSecondary: "",
-    youtubeSecondary: "",
-    spotifySecondary: "",
     eventDate: "",
   });
 
@@ -137,7 +135,7 @@ const AddArtist = () => {
               autoComplete="given-name"
               required
               id="firstName"
-              label="Name"
+              label="Nombre"
               autoFocus
               name="name"
               variant="standard"
@@ -150,7 +148,7 @@ const AddArtist = () => {
             <TextField
               required
               fullWidth
-              label="Artist name"
+              label="Nombre artistico"
               variant="standard"
               id="artistName"
               autoComplete="artistName"
@@ -162,20 +160,7 @@ const AddArtist = () => {
             <TextField
               required
               fullWidth
-              label="Second artist name "
-              variant="standard"
-              id="artistNameSecondary"
-              autoComplete="artistNameSecondary"
-              name="artistNameSecondary"
-              onChange={handleChange}
-              error={errors[1]?.artistNameSecondary}
-              value={artistInfo.artistNameSecondary}
-            />
-
-            <TextField
-              required
-              fullWidth
-              label="Description"
+              label="Descripción"
               variant="standard"
               id="description"
               autoComplete="description"
@@ -236,40 +221,12 @@ const AddArtist = () => {
               error={errors[1]?.spotify}
               value={artistInfo.spotify}
             />
-
-            <TextField
-              autoComplete="primaryImage"
-              required
-              id="primaryImage"
-              label="Primary image"
-              autoFocus
-              name="primaryImage"
-              variant="standard"
-              fullWidth
-              onChange={uploadImage}
-              error={errors[1]?.primaryImage}
-              type="file"
-              accept="image/*"
-            />
-
-            <TextField
-              autoComplete="eventDate"
-              required
-              id="eventDate"
-              label="Event date"
-              autoFocus
-              name="eventDate"
-              variant="standard"
-              fullWidth
-              onChange={handleChange}
-              error={errors[1]?.eventDate}
-            />
           </LeftSectionContainer>
           <RightSectionContainer>
             <TextField
               required
               fullWidth
-              label="Last name"
+              label="Apellido"
               variant="standard"
               id="lastname"
               autoComplete="new-lastname"
@@ -283,18 +240,30 @@ const AddArtist = () => {
               required
               fullWidth
               id="cellphone"
-              label="Cellphone"
+              label="Número telefónico"
               autoComplete="cellphone"
               name="cellphone"
               onChange={handleChange}
               error={errors[1]?.cellphone}
               value={artistInfo.cellphone}
             />
+            <TextField
+              required
+              fullWidth
+              label="Organización"
+              variant="standard"
+              id="organization"
+              autoComplete="organization"
+              name="organization"
+              onChange={handleChange}
+              error={errors[1]?.organization}
+              value={artistInfo.organization}
+            />
 
             <TextField
               required
               fullWidth
-              label="Short Description"
+              label="Descripción corta"
               variant="standard"
               id="short-description"
               autoComplete="short-description"
@@ -303,71 +272,46 @@ const AddArtist = () => {
               error={errors[1]?.shortDescription}
               value={artistInfo.shortDescription}
             />
-
             <TextField
+              autoComplete="eventDate"
               required
-              fullWidth
-              label="Second Sound Cloud"
-              variant="standard"
-              id="soundCloudSecondary"
-              autoComplete="soundCloudSecondary"
-              name="soundCloudSecondary"
-              onChange={handleChange}
-              error={errors[1]?.soundCloudSecondary}
-              value={artistInfo.soundCloudSecondary}
-            />
-
-            <TextField
-              required
-              fullWidth
-              label="Second Youtube"
-              variant="standard"
-              id="youtubeSecondary"
-              autoComplete="youtubeSecondary"
-              name="youtubeSecondary"
-              onChange={handleChange}
-              error={errors[1]?.youtubeSecondary}
-              value={artistInfo.youtubeSecondary}
-            />
-
-            <TextField
-              required
-              fullWidth
-              label="Second Instagram"
-              variant="standard"
-              id="instagramSecondary"
-              autoComplete="instagramSecondary"
-              name="instagramSecondary"
-              onChange={handleChange}
-              error={errors[1]?.instagramSecondary}
-              value={artistInfo.instagramSecondary}
-            />
-
-            <TextField
-              required
-              fullWidth
-              label="Second spotify"
-              variant="standard"
-              id="spotifySecondary"
-              autoComplete="spotifySecondary"
-              name="spotifySecondary"
-              onChange={handleChange}
-              error={errors[1]?.spotifySecondary}
-              value={artistInfo.spotifySecondary}
-            />
-            <TextField
-              autoComplete="secondary-image"
-              required
-              id="secondaryImage"
-              label="Secondary image"
+              id="eventDate"
+              label="Fecha de evento"
               autoFocus
-              name="secondaryImage"
+              name="eventDate"
               variant="standard"
               fullWidth
+              onChange={handleChange}
+              error={errors[1]?.eventDate}
+            />
+
+            <InputFile
+              autoComplete="primaryImage"
+              required={true}
+              id="primaryImage"
+              autoFocus={true}
+              name="primaryImage"
+              variant="standard"
+              fullWidth={true}
               onChange={uploadImage}
-              error={errors[1]?.secondaryImage}
+              error={errors[1]?.primaryImage}
               type="file"
               accept="image/*"
+              label={"Imágen primaria"}
+            />
+            <InputFile
+              autoComplete="secondaryImage"
+              required={true}
+              id="secondaryImage"
+              autoFocus={true}
+              name="secondaryImage"
+              variant="standard"
+              fullWidth={true}
+              onChange={uploadImage}
+              error={errors[1]?.primaryImage}
+              type="file"
+              accept="image/*"
+              label={"Imágen secundaria"}
             />
           </RightSectionContainer>
         </FormSectionsContainer>

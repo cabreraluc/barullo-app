@@ -55,6 +55,13 @@ export const artistValidations = (artistData, context) => {
       ];
     }
 
+    if (artistData.organization === "") {
+      return [
+        ['The "Organization" field cannot be empty.'],
+        { lastName: true },
+      ];
+    }
+
     return { valid: true };
   }
 };

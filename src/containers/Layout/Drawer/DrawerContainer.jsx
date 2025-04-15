@@ -13,10 +13,8 @@ import MailIcon from "@mui/icons-material/Mail";
 import LogoVP from "../../../assets/images/logoVerdePurple.png";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
 import useAuth from "../../Login/useAuth";
 import useUsers from "../../UsersPanel/useUsers";
-
 import InstagramIcon from "@mui/icons-material/Instagram";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import { FaSoundcloud } from "react-icons/fa";
