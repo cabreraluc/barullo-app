@@ -5,7 +5,8 @@ import YouTubeIcon from "@mui/icons-material/YouTube";
 import soundcloudIcon from "../../assets/images/soundcloud.svg";
 import spotifyIcon from "../../assets/images/spotify.svg";
 import MusicPlayer from "./MusicPlayer";
-
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import SectionTitle from "../../components/SectionTitle/SectionTitle";
 import {
   ArtistsContainer,
   Card,
@@ -17,12 +18,16 @@ import {
   SubContainerOpened,
   Description,
   IconsContainer,
+  ShortDescription,
+  ButtonMoreOf,
 } from "./artistsStyles";
+
+import { motion, AnimatePresence } from "framer-motion";
 
 const Artists = ({
   image,
   color,
-  titles,
+  title,
   body,
   name,
   description,
@@ -44,6 +49,9 @@ const Artists = ({
   setIsPlaying,
   isPlaying,
   eventDate,
+  organization,
+  status,
+  b2b,
 }) => {
   const filter = color === "violet" ? "270" : color === "green" ? "90" : "";
 
@@ -95,47 +103,109 @@ const Artists = ({
   return (
     <ArtistsContainer>
       <Card image={image} filter={filter}>
+        {!open && status === "active" && (
+          <SectionTitle top={"PRÓXIMOS"} title={"ARTISTAS"} />
+        )}
+        {!open && status === "disabled" && (
+          <SectionTitle top={"ÚLTIMOS"} title={"ARTISTAS"} />
+        )}
         <Container open={open}>
           {!open ? (
             <SubContainerClosed>
               <LeftSection>
-                {titles.map((title, index) => (
-                  <Title key={index}>{title}</Title>
-                ))}
                 <Title
                   style={{
-                    fontSize: "13px",
+                    fontSize: "11px",
+                    fontFamily: "sans-serif",
+                    marginLeft: "0.8rem",
                   }}
                 >
                   {eventDate?.length ? eventDate : null}
                 </Title>
+                <Title
+                  style={{
+                    marginLeft: "0.8rem",
+                    color:
+                      status === "active"
+                        ? color !== "green"
+                          ? "violet"
+                          : "lime"
+                        : "white",
+                  }}
+                >
+                  {title}
+                </Title>
+
+                <Title
+                  style={{
+                    fontSize: "17px",
+                    color:
+                      status === "active"
+                        ? color !== "green"
+                          ? "violet"
+                          : "lime"
+                        : "white",
+                  }}
+                >
+                  {organization && "RESIDENTE DE " + organization.toUpperCase()}
+                </Title>
+                {b2b && (
+                  <Title
+                    style={{
+                      color: color === "green" ? "violet" : "lime",
+                      fontSize: "1.5rem",
+                    }}
+                  >
+                    B2B {b2b}
+                  </Title>
+                )}
               </LeftSection>
               <RightSection>
-                {body}
+                <ShortDescription>{body}</ShortDescription>
                 {name?.length && (
-                  <button
+                  <ButtonMoreOf
                     style={{
-                      marginTop: "10%",
                       backgroundColor: "transparent",
                       border: "none",
                       color: "white",
                       fontWeight: "400",
-                      fontSize: "1rem",
-                      fontFamily: "Oswald, sans-serif",
+                      fontSize: "15px",
+                      fontFamily: "sans-serif",
                       cursor: "pointer",
+                      display: "flex",
+                      flexDirection: "row",
+                      textDecoration: "underline",
                     }}
                     onClick={() => {
                       setOpen(true);
                       // setTurnOffLogo(true);
                     }}
                   >
-                    {`More of ${name}`}
-                  </button>
+                    <PlayArrowIcon
+                      style={{
+                        fontSize: "2.5rem",
+                      }}
+                    ></PlayArrowIcon>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                      }}
+                    >
+                      <span>MORE OF</span>
+                      <span>{` ${name}`}</span>
+                    </div>
+                  </ButtonMoreOf>
                 )}
               </RightSection>
             </SubContainerClosed>
           ) : (
-            <SubContainerOpened>
+            <SubContainerOpened
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 50 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+            >
               {/* <MusicPlayer
                 audioRef={audioRef}
                 isPlaying={isPlaying}
@@ -164,9 +234,8 @@ const Artists = ({
                 src={secondaryImage}
                 alt="photo"
               />
-              {titles.map((title, index) => (
-                <Title key={index}>{title}</Title>
-              ))}
+
+              <Title>{title}</Title>
               <Description>{description}</Description>
               {secondaryArtistName.length ? (
                 <div style={{ margin: "2rem" }}>

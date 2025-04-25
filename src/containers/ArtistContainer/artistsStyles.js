@@ -1,37 +1,52 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 export const ArtistsContainer = styled.div`
   display: flex;
   justify-content: center;
-  height: 100%;
+  height: 100vh;
 `;
 
 export const Card = styled.div`
-  background: ${({ image }) =>
-    `url(${image}) no-repeat center center/cover, rgba(0, 0, 0, 0.7)`};
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  width: 95vw;
-  height: 100%;
-  flex-direction: column;
-  color: black;
-  box-shadow: inset 0 0 30px 15px black;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1;
+  color: white;
+  box-shadow: inset 0 0 30px 7px black;
 
-  filter: ${({ filter }) =>
-    filter === "" ? "grayscale(100%)" : `sepia(1) hue-rotate(${filter}deg)`};
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: ${({ image }) => `url(${image}) no-repeat center center/cover`};
+    filter: ${({ filter }) =>
+      filter === ""
+        ? "grayscale(100%)"
+        : `sepia(1) hue-rotate(${filter * 1}deg)`};
+    z-index: 0;
+  }
 `;
 
 export const Container = styled.div`
   display: flex;
   justify-content: end;
   align-items: center;
-  background-color: rgb(0, 0, 0, 0.5);
+  background-color: rgb(0, 0, 0, 0.7);
   height: ${({ open }) => (open === true ? "100%" : "none")};
   flex-direction: column;
   width: 100%;
   transition: height 0.5s ease-in-out;
+
+  color: white;
+  position: relative;
+  z-index: 1;
+  padding: 1rem;
 `;
 
 export const SubContainerClosed = styled.div`
@@ -42,30 +57,38 @@ export const SubContainerClosed = styled.div`
   padding: 5%;
 `;
 
-export const SubContainerOpened = styled.div`
+export const SubContainerOpened = styled(motion.div)`
   display: flex;
   justify-content: start;
   align-items: center;
   flex-direction: column;
   background-color: rgb(0, 0, 0, 0.5);
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  padding-top: 2rem;
 `;
 
 export const LeftSection = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
-  width: 35%;
+  align-items: start;
+  gap: 0rem;
   flex-direction: column;
   height: 100%;
+  width: 60%;
   padding: 0.5rem;
+  line-height: 1;
+  margin-left: 1rem;
+  @media (min-width: 1200px) {
+    align-items: center;
+  }
 `;
 
 export const RightSection = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: end;
+  margin-right: 2rem;
   height: 100%;
   width: 55%;
   flex-direction: column;
@@ -73,16 +96,16 @@ export const RightSection = styled.div`
     font-size: 1.5vh;
   }
   color: white;
+
+  @media (min-width: 1200px) {
+    align-items: center;
+  }
 `;
 
-export const Title = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+export const Title = styled.span`
   color: white;
-  width: 100%;
   font-size: 4vh;
-  font-weight: 700;
+  font-weight: 400;
   font-family: "Oswald", sans-serif;
 `;
 
@@ -135,6 +158,29 @@ export const IconsContainer = styled.div`
 
   gap: 1rem;
   margin: 1rem 0;
+`;
+
+export const ShortDescription = styled.div`
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+  width: 100%;
+  height: auto;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+
+  @media (min-width: 1200px) {
+    display: flex;
+  }
+`;
+
+export const ButtonMoreOf = styled.button`
+  @media (min-width: 1200px) {
+    margin-top: 2rem;
+  }
 `;
 
 export const Icon = styled.div``;

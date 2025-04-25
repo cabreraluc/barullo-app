@@ -23,16 +23,12 @@ function App() {
   const { pathname } = useLocation();
   const user = useAuth();
   const [openSlider, setOpenSlider] = useState(false);
-  const [colorHeader, setColorHeader] = useState("white");
+  const [colorHeader, setColorHeader] = useState("transparent");
   const [turnOffLogo, setTurnOffLogo] = useState(false);
   const [redFilter, setRedFilter] = useState(false);
 
   const handleColorHeader = (event) => {
-    if (event.activeIndex === 2) {
-      setColorHeader("black");
-    } else {
-      setColorHeader("white");
-    }
+    setColorHeader("white");
   };
 
   const colorHeadsByPath = () => {
@@ -50,6 +46,7 @@ function App() {
   return (
     <div
       style={{
+        height: "100vh",
         marginLeft: openSlider ? "300px" : "0px",
         transition: openSlider ? "0.23s" : "0.19s",
         filter: redFilter
@@ -58,13 +55,12 @@ function App() {
       }}
       className="App"
     >
-      <Header
-        setOpenSlider={setOpenSlider}
-        turnOffLogo={turnOffLogo}
-        colorHeader={colorHeader}
-        setRedFilter={setRedFilter}
-      />
-      <div style={{ height: "90%" }}>
+      <div style={{ height: "100vh" }}>
+        <Header
+          setOpenSlider={setOpenSlider}
+          turnOffLogo={turnOffLogo}
+          setRedFilter={setRedFilter}
+        />
         <Routes>
           <Route path="/unauthorized" element={<Unauthorized />} />
           <Route
