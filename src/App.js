@@ -54,7 +54,7 @@ function App() {
       }}
       className="App"
     >
-      <div style={{ height: "100vh" }}>
+      <div style={{ height: "100%" }}>
         <Header
           setOpenSlider={setOpenSlider}
           turnOffLogo={turnOffLogo}
