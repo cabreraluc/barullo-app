@@ -4,15 +4,15 @@ import {
   LogoContainer,
   BurgerMenuContainer,
   LogoImg,
+  RefBMCS,
 } from "./headerStyles";
 import useAuth from "../../Login/useAuth";
 import { useNavigate } from "react-router-dom";
 import useLogin from "../../Login/useLogin";
 import ShortTextIcon from "@mui/icons-material/ShortText";
 import { useLocation } from "react-router-dom";
-
+import bmncsLogo from "../../../assets/images/bmncsLogo.jpeg";
 import logoBlack from "../../../assets/images/logobarullo-black.png";
-import logoWhite from "../../../assets/images/logobarullo-white.png";
 
 import DrawerContainer from "../Drawer/DrawerContainer";
 
@@ -32,6 +32,10 @@ export default function Header({
 
   const handleLogoClick = () => {
     setRedFilter((prev) => !prev);
+  };
+
+  const redirect = () => {
+    window.open("https://www.linkedin.com/company/brilliantmaniacs/", "_blank");
   };
 
   return !turnOffLogo ? (
@@ -56,15 +60,33 @@ export default function Header({
           ></ShortTextIcon>
         </DrawerContainer>
       </BurgerMenuContainer>
-      <LogoContainer>
+      {/* <LogoContainer>
         {pathname === "/" || pathname === "/event-information" ? (
           <LogoImg src={logoWhite}></LogoImg>
         ) : pathname === "/admin-panel" ? (
           <h1 style={{ color: "white", fontSize: "2rem" }}>Administración</h1>
         ) : null}
-      </LogoContainer>
-
-      <UserContainer></UserContainer>
+        <div
+          style={{
+            display: "flex",
+            gap: "5px",
+            justifyContent: "center",
+            width: "100%",
+          }}
+          onClick={redirect}
+        >
+          <RefBMCS>POWERED BY BRILLIANTS MANIACS</RefBMCS>
+          <img
+            src={bmncsLogo}
+            style={{
+              width: "1rem",
+              height: "1rem",
+              borderRadius: "1rem",
+              marginTop: "1px",
+            }}
+          />
+        </div>
+      </LogoContainer> */}
     </HeaderContainer>
   ) : null;
 }

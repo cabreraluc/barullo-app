@@ -21,7 +21,6 @@ import { FaSoundcloud } from "react-icons/fa";
 
 export default function DrawerContainer({ children, setOpenSlider }) {
   const { pathname } = useLocation();
-  const { getUserById, user } = useUsers();
 
   const [state, setState] = React.useState({
     top: false,
@@ -56,10 +55,6 @@ export default function DrawerContainer({ children, setOpenSlider }) {
 
     setState({ ...state, [anchor]: open });
   };
-
-  // useEffect(() => {
-  //   getUserById(userLocalStorage?.id);
-  // }, []);
 
   const list = (anchor) => (
     <Box

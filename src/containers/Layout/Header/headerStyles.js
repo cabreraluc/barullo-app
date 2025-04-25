@@ -2,16 +2,11 @@ import styled from "styled-components";
 
 export const HeaderContainer = styled.div`
   width: 100%;
-  display: flex;
+  position: absolute;
   justify-content: flex-start;
   flex-direction: row;
-  height: 10%;
-  background-color: black;
   z-index: 10;
-  position: sticky;
-  box-shadow: -1px 10px 12px -4px rgba(0, 0, 0, 0.82);
-  -webkit-box-shadow: -1px 10px 12px -4px rgba(0, 0, 0, 0.82);
-  -moz-box-shadow: -1px 10px 12px -4px rgba(0, 0, 0, 0.82);
+  background-color: transparent;
 `;
 
 export const UserContainer = styled.div`
@@ -22,17 +17,11 @@ export const UserContainer = styled.div`
   width: 10%;
 `;
 
-export const LogoContainer = styled.div`
-  width: 80%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 8px;
-  cursor: pointer;
-`;
-
-export const LogoImg = styled.img`
-  width: clamp(15rem, 20rem, 20rem);
+export const RefBMCS = styled.h4`
+  color: white;
+  font-size: 10px;
+  font-family: "Oswald";
+  font-weight: 200;
 `;
 
 export const UserButton = styled.div`

@@ -14,7 +14,7 @@ import usImage from "../../assets/images/ne031.jpg";
 import usImage2 from "../../assets/images/ne036.jpg";
 import usImage3 from "../../assets/images/ne033.jpg";
 import LoaderSpin from "../../components/Loader/LoaderSpin";
-
+import Main from "../Main/Main";
 const Landing = ({ openSlider, handleColorHeader, setTurnOffLogo }) => {
   const firstSectionImages = [usImage2, usImage, usImage3];
   const { getArtists, allArtists } = useArtists();
@@ -116,13 +116,42 @@ const Landing = ({ openSlider, handleColorHeader, setTurnOffLogo }) => {
           }}
           modules={[Autoplay, Pagination, Navigation]}
         >
-          {firstSectionImages.map((img) => {
-            return (
-              <SwiperSlide>
-                <NextEvents img={img} />{" "}
-              </SwiperSlide>
-            );
-          })}
+          <SwiperSlide>
+            <Main img={usImage} />{" "}
+          </SwiperSlide>
+        </Swiper>
+      </SwiperSlide>
+      <SwiperSlide>
+        <Swiper
+          style={{
+            height: "100%",
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+          onTouchStart={handleHorizontalTouchStart}
+          spaceBetween={0}
+          slidesPerView={1}
+          onSlideChange={(e) => {
+            setTurnOffLogo(false);
+            // setOpen(false);
+          }}
+          onSwiper={(swiper) => {
+            setSwiper(swiper);
+            swiperHorizontalRef.current = swiper;
+          }}
+          scrollbar={{ draggable: true }}
+          navigation={true}
+          autoplay={{
+            disableOnInteraction: true,
+            delay: 2500,
+          }}
+          modules={[Autoplay, Pagination, Navigation]}
+        >
+          <SwiperSlide>
+            <NextEvents img={usImage2} />{" "}
+          </SwiperSlide>
         </Swiper>
       </SwiperSlide>
       <SwiperSlide>
@@ -166,13 +195,7 @@ const Landing = ({ openSlider, handleColorHeader, setTurnOffLogo }) => {
                   <SwiperSlide key={e._id}>
                     <Artists
                       setTurnOffLogo={setTurnOffLogo}
-                      titles={[
-                        `${e.artistName}${
-                          e.secondaryArtistName
-                            ? " & " + e.secondaryArtistName
-                            : ""
-                        }`,
-                      ]}
+                      title={e.artistName}
                       body={e.shortDescription}
                       description={e.description}
                       image={e.primaryImage}
@@ -195,6 +218,9 @@ const Landing = ({ openSlider, handleColorHeader, setTurnOffLogo }) => {
                       isPlaying={isPlaying}
                       audioRef={audioRef}
                       eventDate={e.eventDate}
+                      organization={e.organization}
+                      status={e.status}
+                      b2b={e.b2b}
                     />
                   </SwiperSlide>
                 );
