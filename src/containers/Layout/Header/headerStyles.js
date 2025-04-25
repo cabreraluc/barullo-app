@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const HeaderContainer = styled.div`
   width: 100%;
-  position: absolute;
+  position: fixed;
   justify-content: flex-start;
   flex-direction: row;
   z-index: 10;
