@@ -4,13 +4,13 @@ import { motion } from "framer-motion";
 export const ArtistsContainer = styled.div`
   display: flex;
   justify-content: center;
-  height: 100vh;
+  height: 100%;
 `;
 
 export const Card = styled.div`
   position: relative;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -64,7 +64,7 @@ export const SubContainerOpened = styled(motion.div)`
   flex-direction: column;
   background-color: rgb(0, 0, 0, 0.5);
   width: 100%;
-  height: 100vh;
+  height: 100%;
   padding-top: 2rem;
 `;
 
