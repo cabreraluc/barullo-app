@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 export const ArtistsContainer = styled.div`
   display: flex;
@@ -56,7 +57,7 @@ export const SubContainerClosed = styled.div`
   padding: 5%;
 `;
 
-export const SubContainerOpened = styled.div`
+export const SubContainerOpened = styled(motion.div)`
   display: flex;
   justify-content: start;
   align-items: center;

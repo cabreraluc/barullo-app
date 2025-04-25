@@ -22,6 +22,8 @@ import {
   ButtonMoreOf,
 } from "./artistsStyles";
 
+import { motion, AnimatePresence } from "framer-motion";
+
 const Artists = ({
   image,
   color,
@@ -198,7 +200,12 @@ const Artists = ({
               </RightSection>
             </SubContainerClosed>
           ) : (
-            <SubContainerOpened>
+            <SubContainerOpened
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 50 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+            >
               {/* <MusicPlayer
                 audioRef={audioRef}
                 isPlaying={isPlaying}
