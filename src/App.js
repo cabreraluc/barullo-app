@@ -46,7 +46,6 @@ function App() {
   return (
     <div
       style={{
-        height: "100vh",
         marginLeft: openSlider ? "300px" : "0px",
         transition: openSlider ? "0.23s" : "0.19s",
         filter: redFilter
