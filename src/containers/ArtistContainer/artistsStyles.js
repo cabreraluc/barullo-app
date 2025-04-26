@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 export const ArtistsContainer = styled.div`
   display: flex;
   justify-content: center;
-  height: 100%;
+  height: 100vh;
 `;
 
 export const Card = styled.div`
@@ -46,7 +46,6 @@ export const Container = styled.div`
   color: white;
   position: relative;
   z-index: 1;
-  padding: 1rem;
 `;
 
 export const SubContainerClosed = styled.div`

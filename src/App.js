@@ -54,12 +54,12 @@ function App() {
       }}
       className="App"
     >
+      <Header
+        setOpenSlider={setOpenSlider}
+        turnOffLogo={turnOffLogo}
+        setRedFilter={setRedFilter}
+      />
       <div style={{ height: "100%" }}>
-        <Header
-          setOpenSlider={setOpenSlider}
-          turnOffLogo={turnOffLogo}
-          setRedFilter={setRedFilter}
-        />
         <Routes>
           <Route path="/unauthorized" element={<Unauthorized />} />
           <Route
