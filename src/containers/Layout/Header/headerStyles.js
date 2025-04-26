@@ -7,6 +7,7 @@ export const HeaderContainer = styled.div`
   flex-direction: row;
   z-index: 10;
   background-color: transparent;
+  height: 0px;
 `;
 
 export const UserContainer = styled.div`
