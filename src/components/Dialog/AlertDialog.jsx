@@ -1,9 +1,15 @@
 import * as React from "react";
 import Dialog from "@mui/material/Dialog";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import IconButton from "@mui/material/IconButton";
-import { BtnCancelDialog, BtnSaveDialog, Title } from "./alertDialogStyles.js";
+import {
+  Title,
+  DialogContentWrapper,
+  CloseButtonWrapper,
+  MessageWrapper,
+  TextMessage,
+  ActionsWrapper,
+  TitleWrapper,
+} from "./alertDialogStyles.js";
 import { Button } from "@mui/material";
 
 const contextMap = (context, status) => {
@@ -43,79 +49,42 @@ export default function AlertDialog({
   const { title, message, action } = contextMap(context, status);
 
   return (
-    <div>
-      <Dialog
-        open={open}
-        onClose={onClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-        maxWidth="xl"
-      >
-        <div
-          style={{
-            padding: "5rem 5rem",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <div>
-            <IconButton
-              aria-label="close"
-              onClick={onClose}
-              sx={{
-                position: "absolute",
-                right: 30,
-                top: 25,
-                color: (theme) => theme.palette.grey[500],
-              }}
-            >
-              X
-            </IconButton>
-          </div>
-          <div
-            style={{
-              display: "flex",
-              width: "100%",
-              justifyContent: "center",
-              alignItems: "center",
-              padding: "1.5rem 0rem",
+    <Dialog
+      open={open}
+      onClose={onClose}
+      aria-labelledby="alert-dialog-title"
+      aria-describedby="alert-dialog-description"
+      maxWidth="xl"
+    >
+      <DialogContentWrapper>
+        <CloseButtonWrapper>
+          <IconButton
+            aria-label="close"
+            onClick={onClose}
+            sx={{
+              position: "absolute",
+              right: 30,
+              top: 25,
+              color: (theme) => theme.palette.grey[500],
             }}
           >
-            <Title>{title}</Title>
-          </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <span
-              style={{
-                textAlign: "center",
-                fontSize: "16px",
-                color: "rgb(56,71,100,0.55)",
-              }}
-            >
-              {message}
-            </span>
-          </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              marginTop: "3.7rem",
-              marginBottom: "2.2rem",
-              gap: "1rem",
-            }}
-          >
-            <Button onClick={() => onClose()}>CANCEL</Button>
-            <Button onClick={() => handlerAction(objectId)}>{action}</Button>
-          </div>
-        </div>
-      </Dialog>
-    </div>
+            X
+          </IconButton>
+        </CloseButtonWrapper>
+
+        <TitleWrapper>
+          <Title>{title}</Title>
+        </TitleWrapper>
+
+        <MessageWrapper>
+          <TextMessage>{message}</TextMessage>
+        </MessageWrapper>
+
+        <ActionsWrapper>
+          <Button onClick={onClose}>Cancelar</Button>
+          <Button onClick={() => handlerAction(objectId)}>{action}</Button>
+        </ActionsWrapper>
+      </DialogContentWrapper>
+    </Dialog>
   );
 }

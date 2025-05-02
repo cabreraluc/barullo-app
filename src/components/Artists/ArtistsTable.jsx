@@ -18,10 +18,10 @@ export default function ArtistsTable({ allArtists, disableOrActiveArtist }) {
         <TableHead>
           <TableRow>
             <TableCell sx={{ fontFamily: "Oswald" }} align="left">
-              Artist name
+              Nombre
             </TableCell>
             <TableCell sx={{ fontFamily: "Oswald" }} align="left">
-              Status
+              Estado
             </TableCell>
             <TableCell sx={{ width: "1.5rem" }} align="left"></TableCell>
             <TableCell sx={{ width: "1.5rem" }} align="left"></TableCell>

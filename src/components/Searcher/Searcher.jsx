@@ -1,9 +1,8 @@
 import { SearcherContainer } from "./searcherStyles";
 import TextField from "@mui/material/TextField";
-import SearchIcon from "@mui/icons-material/Search";
 import { useState, useEffect } from "react";
 import RefreshIcon from "@mui/icons-material/Refresh";
-import useAuth from "../../containers/Login/useAuth";
+import useAuth from "../../containers/VisibleToClient/Login/useAuth";
 const Searcher = ({
   context,
   list,

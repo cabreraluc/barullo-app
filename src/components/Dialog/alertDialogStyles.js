@@ -99,3 +99,42 @@ export const ButtonsContainer = styled.div`
   justify-content: space-around;
   align-items: center;
 `;
+export const DialogContentWrapper = styled.div`
+  padding: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const CloseButtonWrapper = styled.div`
+  position: relative;
+`;
+
+export const TitleWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem 0;
+`;
+
+export const MessageWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const TextMessage = styled.span`
+  text-align: center;
+  font-size: 16px;
+  color: rgba(56, 71, 100, 0.55);
+`;
+
+export const ActionsWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 3.7rem;
+  margin-bottom: 2.2rem;
+  gap: 1rem;
+`;

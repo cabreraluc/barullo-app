@@ -1,82 +1,66 @@
+import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
+
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
-import Login from "./containers/Login/Login";
-import Landing from "./containers/Landing/Landing";
+
 import Header from "./containers/Layout/Header/Header";
-import useAuth from "./containers/Login/useAuth";
 import PrivateRoute from "./containers/App/PrivateRoute";
+
+import Landing from "./containers/VisibleToClient/Landing/Landing";
+import Login from "./containers/VisibleToClient/Login/Login";
+import PaymentSection from "./containers/VisibleToClient/PaymentSection/PaymentSection";
 import Unauthorized from "./containers/Unauthorized/Unauthorized";
-import { useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
-import AdminPanel from "./containers/AdminPanel/AdminPanel";
-import AddEvent from "./containers/EventsPanel/AddEvent";
-import EditEvent from "./containers/EventsPanel/EditEvent";
-import AddUser from "./containers/UsersPanel/AddUser";
-import EditUser from "./containers/UsersPanel/EditUser";
-import AddArtist from "./containers/ArtistsPanel/AddArtist";
-import EditArtist from "./containers/ArtistsPanel/EditArtist";
-import PaymentSection from "./containers/PaymentSection/PaymentSection";
-import QRScanner from "./containers/QRScanner/QRScanner";
-import { height } from "@mui/system";
+
+import AdminPanel from "./containers/AdminSide/AdminPanel/AdminPanel";
+import QRScanner from "./containers/AdminSide/QRScanner/QRScanner";
+import AddEvent from "./containers/AdminSide/EventsPanel/AddEvent";
+import EditEvent from "./containers/AdminSide/EventsPanel/EditEvent";
+import AddUser from "./containers/AdminSide/UsersPanel/AddUser";
+import EditUser from "./containers/AdminSide/UsersPanel/EditUser";
+import AddArtist from "./containers/AdminSide/ArtistsPanel/AddArtist";
+import EditArtist from "./containers/AdminSide/ArtistsPanel/EditArtist";
 
 function App() {
-  const { pathname } = useLocation();
-  const user = useAuth();
   const [openSlider, setOpenSlider] = useState(false);
-  const [colorHeader, setColorHeader] = useState("transparent");
   const [turnOffLogo, setTurnOffLogo] = useState(false);
   const [redFilter, setRedFilter] = useState(false);
 
-  const handleColorHeader = (event) => {
-    setColorHeader("white");
+  const appStyles = {
+    marginLeft: openSlider ? "300px" : "0px",
+    transition: openSlider ? "0.23s" : "0.19s",
+    filter: redFilter
+      ? "sepia(100%) saturate(300%) brightness(70%) hue-rotate(300deg)"
+      : "none",
   };
-
-  const colorHeadsByPath = () => {
-    if (pathname === "/event-information") {
-      setColorHeader("white");
-    } else if (pathname === "/") {
-      setColorHeader("white");
-    }
-  };
-
-  useEffect(() => {
-    colorHeadsByPath();
-  }, [pathname]);
 
   return (
-    <div
-      style={{
-        marginLeft: openSlider ? "300px" : "0px",
-        transition: openSlider ? "0.23s" : "0.19s",
-        filter: redFilter
-          ? "sepia(100%) saturate(300%) brightness(70%) hue-rotate(300deg)"
-          : "none",
-      }}
-      className="App"
-    >
+    <div className="App" style={appStyles}>
       <Header
         setOpenSlider={setOpenSlider}
         turnOffLogo={turnOffLogo}
         setRedFilter={setRedFilter}
       />
+
       <div style={{ height: "100%" }}>
         <Routes>
-          <Route path="/unauthorized" element={<Unauthorized />} />
+          {/* Public Routes */}
           <Route
             path="/"
             element={
               <Landing
                 setTurnOffLogo={setTurnOffLogo}
-                handleColorHeader={handleColorHeader}
                 openSlider={openSlider}
               />
             }
           />
           <Route path="/login" element={<Login />} />
           <Route path="/event-information" element={<PaymentSection />} />
+          <Route path="/unauthorized" element={<Unauthorized />} />
+
+          {/* Protected Routes */}
           <Route element={<PrivateRoute />}>
-            <Route path="/scanner" element={<QRScanner />} />
             <Route path="/admin-panel" element={<AdminPanel />} />
+            <Route path="/scanner" element={<QRScanner />} />
             <Route path="/add-event" element={<AddEvent />} />
             <Route path="/edit-event" element={<EditEvent />} />
             <Route path="/add-user" element={<AddUser />} />

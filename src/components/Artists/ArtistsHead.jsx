@@ -1,8 +1,8 @@
-import { Checkbox, TableCell, TableHead, TableRow } from "@mui/material";
-import { display } from "@mui/system";
+import { TableCell, TableHead, TableRow } from "@mui/material";
+
 import React from "react";
 
-const ArtistsHead = ({ handleSelectAllOperations, checked }) => {
+const ArtistsHead = () => {
   const headTableTitle = ["Name", "Last name", "Rol"];
   return (
     <TableHead>
@@ -21,22 +21,7 @@ const ArtistsHead = ({ handleSelectAllOperations, checked }) => {
               whiteSpace: "nowrap",
             }}
             align="left"
-          >
-            {/* {t.name === "checkbox" ? (
-              <Checkbox
-                sx={{
-                  color: "gray",
-                  "&.Mui-checked": {
-                    color: "#384764",
-                  },
-                }}
-                checked={checked}
-                onChange={handleSelectAllOperations}
-              />
-            ) : ( */}
-            t.name
-            {/* )} */}
-          </TableCell>
+          ></TableCell>
         ))}
       </TableRow>
     </TableHead>

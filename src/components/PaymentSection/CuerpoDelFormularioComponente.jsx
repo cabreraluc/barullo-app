@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import {
   ButtonsContainer,
   BotonDeTickets,
@@ -7,7 +6,7 @@ import {
   MensajeDeError,
   ContenedorDeInputs,
   InputCargaDeInfo,
-} from "../../containers/PaymentSection/paymentStyles";
+} from "../../containers/VisibleToClient/PaymentSection/paymentStyles";
 import {
   BotonesPaymentSection,
   InputsDePaymentSection,

@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import useAuth from "../Login/useAuth.js";
-import useUsers from "../UsersPanel/useUsers.js";
+import useAuth from "../VisibleToClient/Login/useAuth.js";
+import useUsers from "../AdminSide/UsersPanel/useUsers.js";
 
 const PrivateRoute = () => {
   const { id } = useParams();
