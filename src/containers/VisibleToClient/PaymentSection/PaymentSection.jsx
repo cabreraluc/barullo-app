@@ -33,7 +33,7 @@ const PaymentSection = () => {
     handleCreatePreference,
   } = usePayment();
 
-  initMercadoPago("APP_USR-8976b44f-b237-46ed-9fd2-e1bd184e8fbf");
+  initMercadoPago(process.env.MP_INIT);
 
   const [codigoDeDescuento, setCodigoDeDescuento] = useState("");
   const [estadoDeCodigoIngresado, setEstadoDeCodigoIntegrado] = useState("-");
