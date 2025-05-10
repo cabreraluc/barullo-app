@@ -5,7 +5,7 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 export const ArtistsContainer = styled.div`
   display: flex;
   justify-content: center;
-  height: 100vh;
+  height: 100dvh;
 `;
 
 export const Card = styled.div`
