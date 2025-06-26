@@ -19,10 +19,10 @@ import useAuth from "../../VisibleToClient/Login/useAuth";
 const navigationItems = [
   { title: "LOGIN", link: "/login" },
   { title: "HOME", link: "/" },
-  { title: "NEXT EVENTS", link: "a" },
-  { title: "MERCH", link: "a" },
-  { title: "BARULLO AGENCY", link: "a" },
-  { title: "SE PARTE DE BARULLO", link: "a" },
+  // { title: "NEXT EVENTS", link: "a" },
+  // { title: "MERCH", link: "a" },
+  // { title: "BARULLO AGENCY", link: "a" },
+  // { title: "SE PARTE DE BARULLO", link: "a" },
 ];
 
 export default function DrawerContainer({ children, setOpenSlider }) {
