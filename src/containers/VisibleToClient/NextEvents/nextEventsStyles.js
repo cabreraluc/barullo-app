@@ -63,6 +63,10 @@ export const ContainerEvent = styled.div`
   flex-direction: column;
   padding: 3rem 0rem;
   border-radius: 3rem;
+
+  @media (min-width: 1200px) {
+    width: 40%;
+  }
 `;
 
 export const LeftSection = styled.div`
