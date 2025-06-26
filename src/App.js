@@ -25,16 +25,8 @@ function App() {
   const [turnOffLogo, setTurnOffLogo] = useState(false);
   const [redFilter, setRedFilter] = useState(false);
 
-  const appStyles = {
-    marginLeft: openSlider ? "300px" : "0px",
-    transition: openSlider ? "0.23s" : "0.19s",
-    filter: redFilter
-      ? "sepia(100%) saturate(300%) brightness(70%) hue-rotate(300deg)"
-      : "none",
-  };
-
   return (
-    <div className="App" style={appStyles}>
+    <div className="App">
       <Header
         setOpenSlider={setOpenSlider}
         turnOffLogo={turnOffLogo}

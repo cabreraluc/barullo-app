@@ -74,7 +74,7 @@ export default function DrawerContainer({ children, setOpenSlider }) {
         display: "flex",
         justifyContent: "center",
         gap: "1rem",
-        marginTop: "40vh",
+        marginTop: "20vh",
       }}
     >
       <a
@@ -125,7 +125,14 @@ export default function DrawerContainer({ children, setOpenSlider }) {
   return (
     <>
       {React.cloneElement(children, { onClick: handleToggleDrawer(true) })}
-      <Drawer anchor="left" open={open} onClose={handleToggleDrawer(false)}>
+      <Drawer
+        anchor="left"
+        open={open}
+        onClose={handleToggleDrawer(false)}
+        PaperProps={{
+          sx: { overflow: "hidden" }, // Para Material UI
+        }}
+      >
         <Box
           sx={{ width: 300, backgroundColor: "black", height: "100%" }}
           role="presentation"

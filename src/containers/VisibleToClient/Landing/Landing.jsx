@@ -5,7 +5,7 @@ import "swiper/css";
 import WhoAreUs from "../WhoAreUs/WhoAreUs";
 import Artists from "../ArtistContainer/Artists";
 import Merch from "../Merch/Merch";
-import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import { Autoplay, Pagination, Navigation, Mousewheel } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import useArtists from "../../AdminSide/ArtistsPanel/useArtists";
@@ -13,6 +13,7 @@ import usImage from "../../../assets/images/ne031.jpg";
 import usImage2 from "../../../assets/images/ne036.jpg";
 import LoaderSpin from "../../../components/Loader/LoaderSpin";
 import Main from "../../VisibleToClient/Main/Main";
+
 const Landing = ({ setTurnOffLogo }) => {
   const { getArtists, allArtists } = useArtists();
   const [swiper, setSwiper] = useState(null);
@@ -42,7 +43,6 @@ const Landing = ({ setTurnOffLogo }) => {
     setTurnOffLogo(false);
     setOpen(false);
 
-    // Reiniciar el carrusel horizontal cuando se desliza hacia abajo
     if (
       swiper.activeIndex > swiper.previousIndex &&
       swiperHorizontalRef.current
@@ -77,12 +77,13 @@ const Landing = ({ setTurnOffLogo }) => {
         swiperVerticalRef.current = swiper;
       }}
       scrollbar={{ draggable: true }}
+      mousewheel={true} // 🔥 Habilita scroll con la rueda del mouse
       autoplay={{
         delay: 5000,
         disableOnInteraction: true,
       }}
       navigation={true}
-      modules={[Autoplay, Pagination, Navigation]}
+      modules={[Autoplay, Pagination, Navigation, Mousewheel]} // 🔥 Agrega Mousewheel
     >
       <SwiperSlide>
         <Swiper
@@ -96,9 +97,7 @@ const Landing = ({ setTurnOffLogo }) => {
           onTouchStart={handleHorizontalTouchStart}
           spaceBetween={0}
           slidesPerView={1}
-          onSlideChange={(e) => {
-            setTurnOffLogo(false);
-          }}
+          onSlideChange={() => setTurnOffLogo(false)}
           onSwiper={(swiper) => {
             setSwiper(swiper);
             swiperHorizontalRef.current = swiper;
@@ -112,10 +111,11 @@ const Landing = ({ setTurnOffLogo }) => {
           modules={[Autoplay, Pagination, Navigation]}
         >
           <SwiperSlide>
-            <Main img={usImage} />{" "}
+            <Main img={usImage} />
           </SwiperSlide>
         </Swiper>
       </SwiperSlide>
+
       <SwiperSlide>
         <Swiper
           style={{
@@ -128,9 +128,7 @@ const Landing = ({ setTurnOffLogo }) => {
           onTouchStart={handleHorizontalTouchStart}
           spaceBetween={0}
           slidesPerView={1}
-          onSlideChange={(e) => {
-            setTurnOffLogo(false);
-          }}
+          onSlideChange={() => setTurnOffLogo(false)}
           onSwiper={(swiper) => {
             setSwiper(swiper);
             swiperHorizontalRef.current = swiper;
@@ -144,10 +142,11 @@ const Landing = ({ setTurnOffLogo }) => {
           modules={[Autoplay, Pagination, Navigation]}
         >
           <SwiperSlide>
-            <NextEvents img={usImage2} />{" "}
+            <NextEvents img={usImage2} />
           </SwiperSlide>
         </Swiper>
       </SwiperSlide>
+
       <SwiperSlide>
         {allArtists.length ? (
           <Swiper
@@ -161,9 +160,7 @@ const Landing = ({ setTurnOffLogo }) => {
             onTouchStart={handleHorizontalTouchStart}
             spaceBetween={0}
             slidesPerView={1}
-            onSlideChange={(e) => {
-              setOpen(false);
-            }}
+            onSlideChange={() => setOpen(false)}
             onSwiper={(swiper) => {
               setSwiper(swiper);
               swiperHorizontalRef.current = swiper;
@@ -176,48 +173,47 @@ const Landing = ({ setTurnOffLogo }) => {
             }}
             modules={[Autoplay, Pagination, Navigation]}
           >
-            {allArtists.length &&
-              allArtists.map((e, index) => {
-                const color =
-                  e.status !== "active"
-                    ? "black-white"
-                    : Number.isInteger((index + 1) / 2)
-                    ? "violet"
-                    : "green";
-                return (
-                  <SwiperSlide key={e._id}>
-                    <Artists
-                      setTurnOffLogo={setTurnOffLogo}
-                      title={e.artistName}
-                      body={e.shortDescription}
-                      description={e.description}
-                      image={e.primaryImage}
-                      soundCloud={e.soundCloud}
-                      instagram={e.instagram}
-                      artistName={e.artistName}
-                      secondaryArtistName={e.secondaryArtistName}
-                      spotify={e.spotify}
-                      youtube={e.youtube}
-                      soundCloudSecondary={e.soundCloudSecondary}
-                      instagramSecondary={e.instagramSecondary}
-                      spotifySecondary={e.spotifySecondary}
-                      youtubeSecondary={e.youtubeSecondary}
-                      secondaryImage={e.secondaryImage}
-                      name={e.artistName}
-                      color={color}
-                      open={open}
-                      setOpen={setOpen}
-                      setIsPlaying={setIsPlaying}
-                      isPlaying={isPlaying}
-                      audioRef={audioRef}
-                      eventDate={e.eventDate}
-                      organization={e.organization}
-                      status={e.status}
-                      b2b={e.b2b}
-                    />
-                  </SwiperSlide>
-                );
-              })}
+            {allArtists.map((e, index) => {
+              const color =
+                e.status !== "active"
+                  ? "black-white"
+                  : Number.isInteger((index + 1) / 2)
+                  ? "violet"
+                  : "green";
+              return (
+                <SwiperSlide key={e._id}>
+                  <Artists
+                    setTurnOffLogo={setTurnOffLogo}
+                    title={e.artistName}
+                    body={e.shortDescription}
+                    description={e.description}
+                    image={e.primaryImage}
+                    soundCloud={e.soundCloud}
+                    instagram={e.instagram}
+                    artistName={e.artistName}
+                    secondaryArtistName={e.secondaryArtistName}
+                    spotify={e.spotify}
+                    youtube={e.youtube}
+                    soundCloudSecondary={e.soundCloudSecondary}
+                    instagramSecondary={e.instagramSecondary}
+                    spotifySecondary={e.spotifySecondary}
+                    youtubeSecondary={e.youtubeSecondary}
+                    secondaryImage={e.secondaryImage}
+                    name={e.artistName}
+                    color={color}
+                    open={open}
+                    setOpen={setOpen}
+                    setIsPlaying={setIsPlaying}
+                    isPlaying={isPlaying}
+                    audioRef={audioRef}
+                    eventDate={e.eventDate}
+                    organization={e.organization}
+                    status={e.status}
+                    b2b={e.b2b}
+                  />
+                </SwiperSlide>
+              );
+            })}
           </Swiper>
         ) : (
           <LoaderSpin />
@@ -227,6 +223,7 @@ const Landing = ({ setTurnOffLogo }) => {
       <SwiperSlide>
         <Merch />
       </SwiperSlide>
+
       <SwiperSlide>
         <WhoAreUs />
       </SwiperSlide>
