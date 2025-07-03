@@ -141,7 +141,7 @@ const Artists = ({
               <Title>{title}</Title>
               <Description>{description}</Description>
 
-              {secondaryArtistName.length ? (
+              {secondaryArtistName?.length ? (
                 <SecondaryArtistContainer>
                   <Title style={{ fontSize: "1.5rem" }}>{artistName}</Title>
                   {renderSocialIcons([
