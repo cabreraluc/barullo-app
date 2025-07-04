@@ -1,36 +1,38 @@
 import styled from "styled-components";
 
 export const MerchContainer = styled.div`
+  box-shadow: inset 0 0 30px 7px black;
+  background: ${({ image }) => `url(${image})`};
+  background-size: cover;
+  background-position: center; /* Centra la imagen */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
   display: flex;
+  align-items: center;
   justify-content: center;
-  align-items: end;
-  height: 100vh;
   flex-direction: column;
-  align-items: center;
-`;
-// margin-top: calc(15vh + 6vw);
-export const Card = styled.div`
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: end;
-  align-items: center;
-  color: white;
+  color: black;
+  width: 100vw;
+  height: 100%;
 
-  &::before {
+  &::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: ${({ image }) => `url(${image}) no-repeat center center/cover`};
-    filter: ${({ filter }) =>
-      filter === ""
-        ? "grayscale(100%)"
-        : `sepia(1) hue-rotate(${filter * 1}deg)`};
-    box-shadow: rgba(0, 0, 0, 1) 15px 20px 30px inset;
+    background: rgba(
+      0,
+      0,
+      0,
+      0.7
+    ); /* Ajustá el 0.5 según la opacidad deseada */
+    z-index: 1;
+  }
+
+  & > * {
+    position: relative;
+    z-index: 2;
   }
 `;
+// margin-top: calc(15vh + 6vw);
 
 export const Item = styled.div`
   display: flex;
