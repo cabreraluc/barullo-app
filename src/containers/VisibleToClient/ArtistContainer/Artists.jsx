@@ -88,14 +88,13 @@ const Artists = ({
 
   return (
     <ArtistsContainer>
+      {!open && (
+        <SectionTitle
+          top={status === "active" ? "PRÓXIMOS" : "ÚLTIMOS"}
+          title="ARTISTAS"
+        />
+      )}
       <Card image={image} filter={filter}>
-        {!open && (
-          <SectionTitle
-            top={status === "active" ? "PRÓXIMOS" : "ÚLTIMOS"}
-            title="ARTISTAS"
-          />
-        )}
-
         <Container open={open}>
           {!open ? (
             <SubContainerClosed>

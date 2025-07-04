@@ -4,21 +4,37 @@ export const WhoAreUsContainer = styled.div`
   display: flex;
   justify-content: center;
   height: 100%;
+  align-items: center;
+  flex-direction: column;
 `;
 
 export const Card = styled.div`
   background: ${({ image }) =>
-    `url(${image}) no-repeat center center/cover, rgba(0, 0, 0, 0.7)`};
+    `url(${image}) no-repeat center center/cover, rgba(164, 20, 20,1)`};
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   width: 100vw;
   height: 100vh;
   flex-direction: column;
-  color: black;
-  box-shadow: inset 0 0 30px 1px black;
+  box-shadow: rgba(0, 0, 0, 1) 0px 20px 30px inset;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(
+      0,
+      0,
+      0,
+      0.5
+    ); /* Ajustá el 0.5 según la opacidad deseada */
+    z-index: 1;
+  }
 
-  overflow: hidden;
+  & > * {
+    position: relative;
+    z-index: 2;
+  }
 `;
 export const Title = styled.div`
   font-family: "Oswald";
@@ -27,7 +43,7 @@ export const Title = styled.div`
   display: flex;
   align-items: end;
   width: 60%;
-  font-size: 4vh;
+  font-size: 1.5vh;
   font-weight: 400;
   height: 10%;
 `;
@@ -36,11 +52,11 @@ export const Body = styled.div`
   justify-content: center;
   width: 60%;
   display: flex;
-
-  font-size: 2vh;
-  font-weight: 300;
-  height: 53%;
+  color: lightGray;
+  font-size: 2.5vh;
+  font-weight: 100;
   text-aling: center;
+  text-align: center;
 `;
 
 export const Icons = styled.div`

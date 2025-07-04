@@ -3,28 +3,36 @@ import styled from "styled-components";
 export const MerchContainer = styled.div`
   display: flex;
   justify-content: center;
+  align-items: end;
   height: 100vh;
+  flex-direction: column;
+  align-items: center;
 `;
 // margin-top: calc(15vh + 6vw);
 export const Card = styled.div`
-  padding: 0 1rem;
-  background-color: transparent;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+  position: relative;
+  height: 100%;
   width: 100%;
-  height: 100%;
-  flex-direction: column;
-  color: black;
   overflow: hidden;
-`;
-
-export const Container = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
   flex-direction: column;
+  justify-content: end;
+  align-items: center;
+  z-index: 1;
+  color: white;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: ${({ image }) => `url(${image}) no-repeat center center/cover`};
+    filter: ${({ filter }) =>
+      filter === ""
+        ? "grayscale(100%)"
+        : `sepia(1) hue-rotate(${filter * 1}deg)`};
+    z-index: 0;
+    box-shadow: rgba(0, 0, 0, 1) 15px 20px 30px inset;
+  }
 `;
 
 export const Item = styled.div`
@@ -35,17 +43,4 @@ export const Item = styled.div`
   width: 100%;
 `;
 
-export const MerchLabel = styled.div`
-  background-color: black;
-  color: white;
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-  font-family: "Oswald", sans-serif;
-`;
-
-export const MerchImage = styled.img`
-  height: 100%;
-  object-fit: cover;
-`;
+export const MerchImage = styled.img``;
