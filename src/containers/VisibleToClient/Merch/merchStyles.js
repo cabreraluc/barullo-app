@@ -11,14 +11,12 @@ export const MerchContainer = styled.div`
 // margin-top: calc(15vh + 6vw);
 export const Card = styled.div`
   position: relative;
-  height: 100%;
   width: 100%;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: end;
   align-items: center;
-  z-index: 1;
   color: white;
 
   &::before {
@@ -30,7 +28,6 @@ export const Card = styled.div`
       filter === ""
         ? "grayscale(100%)"
         : `sepia(1) hue-rotate(${filter * 1}deg)`};
-    z-index: 0;
     box-shadow: rgba(0, 0, 0, 1) 15px 20px 30px inset;
   }
 `;
