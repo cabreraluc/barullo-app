@@ -3,12 +3,14 @@ import { WhoAreUsContainer, Card, Title, Body, Icons } from "./whoAreUsStyles";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import { FaSoundcloud } from "react-icons/fa";
+import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 
 const NextEvents = () => {
   return (
     <WhoAreUsContainer>
+      <SectionTitle top={"SOBRE"} title="NOSOTROS" />
+
       <Card image={ImageWe}>
-        <Title>Sobre nosotros</Title>
         <Body>
           A través de BARULLO buscamos romper la grieta de los géneros,
           queriendo llegar a los escépticos de este mundo para que encuentren en

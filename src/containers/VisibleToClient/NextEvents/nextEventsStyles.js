@@ -12,34 +12,29 @@ export const Card = styled.div`
   background-position: center; /* Centra la imagen */
   background-repeat: no-repeat; /* Evita que la imagen se repita */
   display: flex;
-  justify-content: flex-end;
   align-items: center;
+  padding-bottom: 1.5rem;
   flex-direction: column;
   color: black;
-
   width: 100vw;
 
-  /* Aplica el filtro inicial */
-  /* filter: hue-rotate(0deg);
-  animation: redFilterAnimation 2s infinite;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(
+      0,
+      0,
+      0,
+      0.5
+    ); /* Ajustá el 0.5 según la opacidad deseada */
+    z-index: 1;
+  }
 
-  // @keyframes redFilterAnimation {
-  //   0% {
-  //     filter: hue-rotate(0deg); /* Empieza sin color */
-  //   }
-  //   25% {
-  //     filter: hue-rotate(90deg); /* Empieza sin color */
-  //   }
-  //   50% {
-  //     filter: hue-rotate(180deg); /* Cambia el color a rojo */
-  //   }
-  //   75% {
-  //     filter: hue-rotate(270); /* Cambia el color a rojo */
-  //   }
-  //   100% {
-  //     filter: hue-rotate(360deg); /* Vuelve al color original */
-  //   }
-  // }*/
+  & > * {
+    position: relative;
+    z-index: 2;
+  }
 `;
 
 export const Container = styled.div`
@@ -51,21 +46,47 @@ export const Container = styled.div`
 `;
 
 export const ContainerEvent = styled.div`
-  color: white;
+  background: ${({ image }) => `
+    url(${image}), 
+    url(${image}), 
+    url(${image})
+  `};
+  background-size: 33.33% 100%; /* Cada imagen ocupa un tercio del ancho y 100% de alto */
+  background-position: left center, center center, right center;
+  background-repeat: no-repeat;
+
   display: flex;
-  justify-content: center;
   align-items: center;
-  background-color: rgb(0, 0, 0, 0.8);
-  width: 90%;
-
-  gap: 1rem;
-  height: 80%;
   flex-direction: column;
-  padding: 3rem 0rem;
-  border-radius: 3rem;
+  color: black;
+  height: 95%;
+  width: 90%;
+  filter: hue-rotate(0deg);
+  animation: redFilterAnimation 10s infinite;
 
-  @media (min-width: 1200px) {
-    width: 40%;
+  @keyframes redFilterAnimation {
+    0% {
+      filter: hue-rotate(0deg);
+    }
+    25% {
+      filter: hue-rotate(90deg);
+    }
+    50% {
+      filter: hue-rotate(180deg);
+    }
+    75% {
+      filter: hue-rotate(270deg);
+    }
+    100% {
+      filter: hue-rotate(360deg);
+    }
+  }
+
+  @media (max-width: 1023px) {
+    background: ${({ image }) => `url(${image})`};
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 `;
 
@@ -161,10 +182,13 @@ export const TitleBig = styled.span`
   font-weight: lighter;
 `;
 
-export const TitleMedium = styled.span`
+export const TitleMedium = styled.a`
   font-size: 2rem;
   letter-spacing: 1px;
-  font-weight: lighter;
+  font-weight: 200;
+  color: white;
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
 `;
 
 export const LineupText = styled.span`

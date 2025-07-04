@@ -6,7 +6,7 @@ export const Title = styled.span`
   align-items: center;
   color: lightGray;
   width: 100%;
-  font-size: 4rem;
+  font-size: 3.2rem;
   font-weight: 300;
   text-align: center;
 `;
@@ -17,7 +17,18 @@ export const TopTitle = styled.span`
   align-items: center;
   color: lightGray;
   width: 100%;
-  font-size: 1.5rem;
+  font-size: 1rem;
+  font-weight: 200;
+  text-align: center;
+`;
+
+export const BottomTitle = styled.span`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: lightGray;
+  width: 100%;
+  font-size: 1rem;
   font-weight: 200;
   text-align: center;
 `;
@@ -30,21 +41,22 @@ export const Container = styled.div`
   color: lightGray;
   width: 70%;
   line-height: 1;
-  height: 20%;
+  height: 15%;
   z-index: 100;
   @media (min-width: 768px) {
-    width: 70%;
+    width: 50%;
   }
 
   @media (min-width: 1200px) {
-    width: 20%;
+    width: 15%;
   }
 `;
-const SectionTitle = ({ title, top }) => {
+const SectionTitle = ({ title, top, bottom }) => {
   return (
     <Container>
       <TopTitle>{top}</TopTitle>
       <Title>{title}</Title>
+      <BottomTitle>{bottom}</BottomTitle>
     </Container>
   );
 };

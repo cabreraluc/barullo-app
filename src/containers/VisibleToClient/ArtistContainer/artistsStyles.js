@@ -5,7 +5,9 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 export const ArtistsContainer = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
   height: 100dvh;
+  flex-direction: column;
 `;
 
 export const Card = styled.div`
@@ -15,11 +17,10 @@ export const Card = styled.div`
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: end;
   align-items: center;
   z-index: 1;
   color: white;
-  box-shadow: inset 0 0 30px 7px black;
 
   &::before {
     content: "";
@@ -31,6 +32,7 @@ export const Card = styled.div`
         ? "grayscale(100%)"
         : `sepia(1) hue-rotate(${filter * 1}deg)`};
     z-index: 0;
+    box-shadow: rgba(0, 0, 0, 1) 15px 20px 30px inset;
   }
 `;
 
@@ -38,7 +40,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: end;
   align-items: center;
-  background-color: rgb(0, 0, 0, 0.7);
+  background-color: rgb(0, 0, 0, 0.5);
   height: ${({ open }) => (open === true ? "100%" : "none")};
   flex-direction: column;
   width: 100%;
@@ -54,7 +56,7 @@ export const SubContainerClosed = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding: 5%;
+  padding: 1rem;
   font-family: "Oswald";
 `;
 
