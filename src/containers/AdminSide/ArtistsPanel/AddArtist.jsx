@@ -56,7 +56,7 @@ const AddArtist = () => {
     const formData = new FormData();
     formData.append("image", artistInfo.primaryImage);
 
-    const response = artistValidations(artistInfo, "addArtist");
+    const response = artistValidations(artistInfo);
 
     if (response.valid) {
       addArtist(artistInfo, setErrors);
