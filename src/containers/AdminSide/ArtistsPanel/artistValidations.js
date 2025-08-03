@@ -1,7 +1,5 @@
-export const artistValidations = (artistData, context) => {
-  const validateEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+export const artistValidations = (artistData) => {
   const validateNum = /^[0-9]+$/;
-  const validPassword = /(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,}$/;
 
   if (artistData.name === "") {
     return [['The "Name" field cannot be empty.'], { name: true }];
@@ -52,13 +50,6 @@ export const artistValidations = (artistData, context) => {
       return [
         ['The "Event date" field cannot be empty.'],
         { description: true },
-      ];
-    }
-
-    if (artistData.organization === "") {
-      return [
-        ['The "Organization" field cannot be empty.'],
-        { lastName: true },
       ];
     }
 
